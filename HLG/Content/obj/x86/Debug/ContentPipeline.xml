@@ -1,0 +1,1180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Titulo\TitleScreen.jpg</Source>
+      <Name>Titulo\TitleScreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Titulo\TitleScreen.xnb</Output>
+      <Time>2015-03-19T09:47:27.5293901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\ArqueraPic.jpg</Source>
+      <Name>Seleccion\ArqueraPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\ArqueraPic.xnb</Output>
+      <Time>2015-03-19T09:47:27.5123901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\ArqueroPic.jpg</Source>
+      <Name>Seleccion\ArqueroPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\ArqueroPic.xnb</Output>
+      <Time>2015-03-19T09:47:27.5143901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\BarbaraPic.jpg</Source>
+      <Name>Seleccion\BarbaraPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\BarbaraPic.xnb</Output>
+      <Time>2015-03-19T09:47:27.5153901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\BarbaroPic.jpg</Source>
+      <Name>Seleccion\BarbaroPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\BarbaroPic.xnb</Output>
+      <Time>2015-03-19T09:47:27.5163901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\PaladinaPic.jpg</Source>
+      <Name>Seleccion\PaladinaPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\PaladinaPic.xnb</Output>
+      <Time>2015-03-19T09:47:27.5183901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\PaladinPic.jpg</Source>
+      <Name>Seleccion\PaladinPic</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\PaladinPic.xnb</Output>
+      <Time>2015-03-19T09:47:27.5173901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\PlayerSelect.jpg</Source>
+      <Name>Seleccion\PlayerSelect</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\PlayerSelect.xnb</Output>
+      <Time>2015-03-19T09:47:27.5213901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\SelectMachine.png</Source>
+      <Name>Seleccion\SelectMachine</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\SelectMachine.xnb</Output>
+      <Time>2015-03-19T09:47:27.5233901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\fondo.jpg</Source>
+      <Name>Seleccion\fondo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\fondo.xnb</Output>
+      <Time>2015-03-19T09:47:27.5273901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud10_normal_1.png</Source>
+      <Name>Avance\stage1_cloud10_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud10_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2715205-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud11_normal_1.png</Source>
+      <Name>Avance\stage1_cloud11_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud11_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2725209-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud1_normal_1.png</Source>
+      <Name>Avance\stage1_cloud1_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud1_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2605161-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud2_normal_1.png</Source>
+      <Name>Avance\stage1_cloud2_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud2_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2635173-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud3_normal_1.png</Source>
+      <Name>Avance\stage1_cloud3_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud3_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2645177-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud4_normal_1.png</Source>
+      <Name>Avance\stage1_cloud4_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud4_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2655181-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud5_normal_1.png</Source>
+      <Name>Avance\stage1_cloud5_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud5_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2665185-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud6_normal_1.png</Source>
+      <Name>Avance\stage1_cloud6_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud6_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2675189-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud7_normal_1.png</Source>
+      <Name>Avance\stage1_cloud7_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud7_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2685193-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud8_normal_1.png</Source>
+      <Name>Avance\stage1_cloud8_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud8_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2695197-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_cloud9_normal_1.png</Source>
+      <Name>Avance\stage1_cloud9_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_cloud9_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2705201-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_mountain1_normal_1.png</Source>
+      <Name>Avance\stage1_mountain1_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_mountain1_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2735213-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_mountain2_normal_1.png</Source>
+      <Name>Avance\stage1_mountain2_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_mountain2_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2745217-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_soil1_normal_1.png</Source>
+      <Name>Avance\stage1_soil1_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_soil1_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2755221-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Avance\stage1_wood1_normal_1.png</Source>
+      <Name>Avance\stage1_wood1_normal_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Avance\stage1_wood1_normal_1.xnb</Output>
+      <Time>2015-03-22T12:18:32.2765225-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_breastplate_stand_10.png</Source>
+      <Name>Paladin\set1_breastplate_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_breastplate_stand_10.xnb</Output>
+      <Time>2015-03-23T03:12:48.9577343-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_breastplate_walk_12.png</Source>
+      <Name>Paladin\set1_breastplate_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_breastplate_walk_12.xnb</Output>
+      <Time>2015-03-25T11:40:10.8715216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntletback_stand_10.png</Source>
+      <Name>Paladin\set1_gauntletback_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntletback_stand_10.xnb</Output>
+      <Time>2015-03-23T03:04:36.9357343-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntletback_walk_12.png</Source>
+      <Name>Paladin\set1_gauntletback_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntletback_walk_12.xnb</Output>
+      <Time>2015-03-25T11:45:11.2215216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntlettop_stand_10.png</Source>
+      <Name>Paladin\set1_gauntlettop_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntlettop_stand_10.xnb</Output>
+      <Time>2015-03-23T03:02:54.0807343-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntlettop_walk_12.png</Source>
+      <Name>Paladin\set1_gauntlettop_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntlettop_walk_12.xnb</Output>
+      <Time>2015-03-25T11:45:50.6385216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greaveback_stand_10.png</Source>
+      <Name>Paladin\set1_greaveback_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greaveback_stand_10.xnb</Output>
+      <Time>2015-03-25T11:17:39.2004533-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greaveback_walk_12.png</Source>
+      <Name>Paladin\set1_greaveback_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greaveback_walk_12.xnb</Output>
+      <Time>2015-03-25T11:43:41.2385216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greavetop_stand_10.png</Source>
+      <Name>Paladin\set1_greavetop_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greavetop_stand_10.xnb</Output>
+      <Time>2015-03-25T11:16:30.8916231-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greavetop_walk_12.png</Source>
+      <Name>Paladin\set1_greavetop_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greavetop_walk_12.xnb</Output>
+      <Time>2015-03-25T11:44:23.0845216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_helm_stand_10.png</Source>
+      <Name>Paladin\set1_helm_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_helm_stand_10.xnb</Output>
+      <Time>2015-03-23T03:38:33.7337343-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_helm_walk_12.png</Source>
+      <Name>Paladin\set1_helm_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_helm_walk_12.xnb</Output>
+      <Time>2015-03-25T11:39:23.6115216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_shield_stand_10.png</Source>
+      <Name>Paladin\set1_shield_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_shield_stand_10.xnb</Output>
+      <Time>2015-03-25T11:15:03.9079256-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_shield_walk_12.png</Source>
+      <Name>Paladin\set1_shield_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_shield_walk_12.xnb</Output>
+      <Time>2015-03-25T11:41:30.8635216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_sword_stand_10.png</Source>
+      <Name>Paladin\set1_sword_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_sword_stand_10.xnb</Output>
+      <Time>2015-03-23T03:40:18.5067343-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_sword_walk_12.png</Source>
+      <Name>Paladin\set1_sword_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_sword_walk_12.xnb</Output>
+      <Time>2015-03-25T11:40:48.2865216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_tasset_stand_10.png</Source>
+      <Name>Paladin\set1_tasset_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_tasset_stand_10.xnb</Output>
+      <Time>2015-03-25T11:18:29.8885216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_tasset_walk_12.png</Source>
+      <Name>Paladin\set1_tasset_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_tasset_walk_12.xnb</Output>
+      <Time>2015-03-25T11:42:45.1655216-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_breastplate_stand_10.png</Source>
+      <Name>Paladin\set2_breastplate_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_breastplate_stand_10.xnb</Output>
+      <Time>2015-03-20T16:45:59.0910118-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_breastplate_walk_12.png</Source>
+      <Name>Paladin\set2_breastplate_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_breastplate_walk_12.xnb</Output>
+      <Time>2015-03-20T16:46:01.3242351-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_gauntletback_stand_10.png</Source>
+      <Name>Paladin\set2_gauntletback_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_gauntletback_stand_10.xnb</Output>
+      <Time>2015-03-20T16:46:01.3272354-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_gauntletback_walk_12.png</Source>
+      <Name>Paladin\set2_gauntletback_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_gauntletback_walk_12.xnb</Output>
+      <Time>2015-03-20T16:46:01.3292356-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_gauntlettop_stand_10.png</Source>
+      <Name>Paladin\set2_gauntlettop_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_gauntlettop_stand_10.xnb</Output>
+      <Time>2015-03-20T16:46:01.3312358-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_gauntlettop_walk_12.png</Source>
+      <Name>Paladin\set2_gauntlettop_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_gauntlettop_walk_12.xnb</Output>
+      <Time>2015-03-20T16:46:01.3322359-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_greaveback_stand_10.png</Source>
+      <Name>Paladin\set2_greaveback_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_greaveback_stand_10.xnb</Output>
+      <Time>2015-03-20T16:46:04.3595386-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_greaveback_walk_12.png</Source>
+      <Name>Paladin\set2_greaveback_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_greaveback_walk_12.xnb</Output>
+      <Time>2015-03-20T16:46:04.3655392-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_greavetop_stand_10.png</Source>
+      <Name>Paladin\set2_greavetop_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_greavetop_stand_10.xnb</Output>
+      <Time>2015-03-20T16:46:04.3715398-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_greavetop_walk_12.png</Source>
+      <Name>Paladin\set2_greavetop_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_greavetop_walk_12.xnb</Output>
+      <Time>2015-03-20T16:46:04.3775404-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_helm_stand_10.png</Source>
+      <Name>Paladin\set2_helm_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_helm_stand_10.xnb</Output>
+      <Time>2015-03-20T16:46:04.3815408-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_helm_walk_12.png</Source>
+      <Name>Paladin\set2_helm_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_helm_walk_12.xnb</Output>
+      <Time>2015-03-20T16:46:04.3905417-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_shield_stand_10.png</Source>
+      <Name>Paladin\set2_shield_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_shield_stand_10.xnb</Output>
+      <Time>2015-03-20T17:04:39.4440359-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_shield_walk_12.png</Source>
+      <Name>Paladin\set2_shield_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_shield_walk_12.xnb</Output>
+      <Time>2015-03-20T17:04:39.445036-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_sword_stand_10.png</Source>
+      <Name>Paladin\set2_sword_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_sword_stand_10.xnb</Output>
+      <Time>2015-03-20T17:04:39.4460361-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_sword_walk_12.png</Source>
+      <Name>Paladin\set2_sword_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_sword_walk_12.xnb</Output>
+      <Time>2015-03-20T17:04:39.4470362-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_tasset_stand_10.png</Source>
+      <Name>Paladin\set2_tasset_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_tasset_stand_10.xnb</Output>
+      <Time>2015-03-20T16:46:04.3955422-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set2_tasset_walk_12.png</Source>
+      <Name>Paladin\set2_tasset_walk_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set2_tasset_walk_12.xnb</Output>
+      <Time>2015-03-20T16:46:04.3995426-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_breastplate_hit2_12.png</Source>
+      <Name>Paladin\set1_breastplate_hit2_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_breastplate_hit2_12.xnb</Output>
+      <Time>2015-03-25T18:17:59.1890546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_breastplate_hit3_12.png</Source>
+      <Name>Paladin\set1_breastplate_hit3_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_breastplate_hit3_12.xnb</Output>
+      <Time>2015-03-25T18:17:59.1890546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntletback_hit2_12.png</Source>
+      <Name>Paladin\set1_gauntletback_hit2_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntletback_hit2_12.xnb</Output>
+      <Time>2015-03-25T18:20:33.0170546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntletback_hit3_12.png</Source>
+      <Name>Paladin\set1_gauntletback_hit3_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntletback_hit3_12.xnb</Output>
+      <Time>2015-03-25T18:20:33.0170546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntlettop_hit2_12.png</Source>
+      <Name>Paladin\set1_gauntlettop_hit2_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntlettop_hit2_12.xnb</Output>
+      <Time>2015-03-25T18:19:49.5910546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntlettop_hit3_12.png</Source>
+      <Name>Paladin\set1_gauntlettop_hit3_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntlettop_hit3_12.xnb</Output>
+      <Time>2015-03-25T18:19:49.5910546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greaveback_hit2_12.png</Source>
+      <Name>Paladin\set1_greaveback_hit2_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greaveback_hit2_12.xnb</Output>
+      <Time>2015-03-25T18:21:23.5080546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greaveback_hit3_12.png</Source>
+      <Name>Paladin\set1_greaveback_hit3_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greaveback_hit3_12.xnb</Output>
+      <Time>2015-03-25T18:21:23.5080546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greavetop_hit2_12.png</Source>
+      <Name>Paladin\set1_greavetop_hit2_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greavetop_hit2_12.xnb</Output>
+      <Time>2015-03-25T18:23:27.4740546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greavetop_hit3_12.png</Source>
+      <Name>Paladin\set1_greavetop_hit3_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greavetop_hit3_12.xnb</Output>
+      <Time>2015-03-25T18:23:27.4740546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_helm_hit2_12.png</Source>
+      <Name>Paladin\set1_helm_hit2_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_helm_hit2_12.xnb</Output>
+      <Time>2015-03-25T17:43:25.7790546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_helm_hit3_12.png</Source>
+      <Name>Paladin\set1_helm_hit3_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_helm_hit3_12.xnb</Output>
+      <Time>2015-03-25T17:43:25.7790546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_shield_hit2_12.png</Source>
+      <Name>Paladin\set1_shield_hit2_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_shield_hit2_12.xnb</Output>
+      <Time>2015-03-25T18:17:10.9850546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_shield_hit3_12.png</Source>
+      <Name>Paladin\set1_shield_hit3_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_shield_hit3_12.xnb</Output>
+      <Time>2015-03-25T18:17:10.9850546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_sword_hit2_12.png</Source>
+      <Name>Paladin\set1_sword_hit2_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_sword_hit2_12.xnb</Output>
+      <Time>2015-03-25T18:16:20.8400546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_sword_hit3_12.png</Source>
+      <Name>Paladin\set1_sword_hit3_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_sword_hit3_12.xnb</Output>
+      <Time>2015-03-25T18:16:20.8400546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_tasset_hit2_12.png</Source>
+      <Name>Paladin\set1_tasset_hit2_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_tasset_hit2_12.xnb</Output>
+      <Time>2015-03-25T18:18:53.7770546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_tasset_hit3_12.png</Source>
+      <Name>Paladin\set1_tasset_hit3_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_tasset_hit3_12.xnb</Output>
+      <Time>2015-03-25T18:18:53.7770546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_breastplate_hit1_12.png</Source>
+      <Name>Paladin\set1_breastplate_hit1_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_breastplate_hit1_12.xnb</Output>
+      <Time>2015-03-25T18:17:59.1890546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntletback_hit1_12.png</Source>
+      <Name>Paladin\set1_gauntletback_hit1_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntletback_hit1_12.xnb</Output>
+      <Time>2015-03-25T18:20:33.0170546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_gauntlettop_hit1_12.png</Source>
+      <Name>Paladin\set1_gauntlettop_hit1_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_gauntlettop_hit1_12.xnb</Output>
+      <Time>2015-03-25T18:19:49.5910546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greaveback_hit1_12.png</Source>
+      <Name>Paladin\set1_greaveback_hit1_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greaveback_hit1_12.xnb</Output>
+      <Time>2015-03-25T18:21:23.5080546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_greavetop_hit1_12.png</Source>
+      <Name>Paladin\set1_greavetop_hit1_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_greavetop_hit1_12.xnb</Output>
+      <Time>2015-03-25T18:23:27.4740546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_helm_hit1_12.png</Source>
+      <Name>Paladin\set1_helm_hit1_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_helm_hit1_12.xnb</Output>
+      <Time>2015-03-25T17:43:25.7790546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_shield_hit1_12.png</Source>
+      <Name>Paladin\set1_shield_hit1_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_shield_hit1_12.xnb</Output>
+      <Time>2015-03-25T18:17:10.9850546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_sword_hit1_12.png</Source>
+      <Name>Paladin\set1_sword_hit1_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_sword_hit1_12.xnb</Output>
+      <Time>2015-03-25T18:16:20.8400546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Paladin\set1_tasset_hit1_12.png</Source>
+      <Name>Paladin\set1_tasset_hit1_12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Paladin\set1_tasset_hit1_12.xnb</Output>
+      <Time>2015-03-25T18:18:53.7770546-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Seleccion\puntoblanco.jpg</Source>
+      <Name>Seleccion\puntoblanco</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Seleccion\puntoblanco.xnb</Output>
+      <Time>2015-04-30T16:23:26.3594668-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_breastplate_hit1_10.png</Source>
+      <Name>IA_1\set1_breastplate_hit1_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_breastplate_hit1_10.xnb</Output>
+      <Time>2015-09-17T15:20:43.7371636-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_breastplate_walk_10.png</Source>
+      <Name>IA_1\set1_breastplate_walk_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_breastplate_walk_10.xnb</Output>
+      <Time>2015-09-17T16:51:10.727175-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntletback_hit1_10.png</Source>
+      <Name>IA_1\set1_gauntletback_hit1_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntletback_hit1_10.xnb</Output>
+      <Time>2015-09-17T15:23:20.5088392-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntletback_walk_10.png</Source>
+      <Name>IA_1\set1_gauntletback_walk_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntletback_walk_10.xnb</Output>
+      <Time>2015-09-17T17:08:06.7196243-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntlettop_hit1_10.png</Source>
+      <Name>IA_1\set1_gauntlettop_hit1_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntlettop_hit1_10.xnb</Output>
+      <Time>2015-09-17T15:22:25.7543643-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntlettop_walk_10.png</Source>
+      <Name>IA_1\set1_gauntlettop_walk_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntlettop_walk_10.xnb</Output>
+      <Time>2015-09-17T17:07:19.2496243-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greaveback_hit1_10.png</Source>
+      <Name>IA_1\set1_greaveback_hit1_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greaveback_hit1_10.xnb</Output>
+      <Time>2015-09-17T15:24:47.4535328-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greaveback_walk_10.png</Source>
+      <Name>IA_1\set1_greaveback_walk_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greaveback_walk_10.xnb</Output>
+      <Time>2015-09-17T17:09:14.9876243-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greavetop_hit1_10.png</Source>
+      <Name>IA_1\set1_greavetop_hit1_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greavetop_hit1_10.xnb</Output>
+      <Time>2015-09-17T15:24:01.9959875-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greavetop_walk_10.png</Source>
+      <Name>IA_1\set1_greavetop_walk_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greavetop_walk_10.xnb</Output>
+      <Time>2015-09-17T17:08:42.4476243-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_helm_hit1_10.png</Source>
+      <Name>IA_1\set1_helm_hit1_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_helm_hit1_10.xnb</Output>
+      <Time>2015-09-17T15:19:47.4805385-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_helm_walk_10.png</Source>
+      <Name>IA_1\set1_helm_walk_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_helm_walk_10.xnb</Output>
+      <Time>2015-09-17T16:49:59.9610991-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_tasset_hit1_10.png</Source>
+      <Name>IA_1\set1_tasset_hit1_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_tasset_hit1_10.xnb</Output>
+      <Time>2015-09-17T15:21:31.4789373-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_tasset_walk_10.png</Source>
+      <Name>IA_1\set1_tasset_walk_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_tasset_walk_10.xnb</Output>
+      <Time>2015-09-17T17:06:31.9876243-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Fuente_Prueba.spritefont</Source>
+      <Name>Fuente_Prueba</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Fuente_Prueba.xnb</Output>
+      <Time>2015-03-19T09:47:27.5003901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>Fuente_Prueba_2.spritefont</Source>
+      <Name>Fuente_Prueba_2</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\Fuente_Prueba_2.xnb</Output>
+      <Time>2015-03-19T09:47:27.5003901-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_breastplate_hit2_10.png</Source>
+      <Name>IA_1\set1_breastplate_hit2_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_breastplate_hit2_10.xnb</Output>
+      <Time>2015-09-17T15:20:43.7371636-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_breastplate_hit3_10.png</Source>
+      <Name>IA_1\set1_breastplate_hit3_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_breastplate_hit3_10.xnb</Output>
+      <Time>2015-09-17T15:20:43.7371636-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntletback_hit2_10.png</Source>
+      <Name>IA_1\set1_gauntletback_hit2_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntletback_hit2_10.xnb</Output>
+      <Time>2015-09-17T15:23:20.5088392-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntletback_hit3_10.png</Source>
+      <Name>IA_1\set1_gauntletback_hit3_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntletback_hit3_10.xnb</Output>
+      <Time>2015-09-17T15:23:20.5088392-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntlettop_hit2_10.png</Source>
+      <Name>IA_1\set1_gauntlettop_hit2_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntlettop_hit2_10.xnb</Output>
+      <Time>2015-09-17T15:22:25.7543643-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntlettop_hit3_10.png</Source>
+      <Name>IA_1\set1_gauntlettop_hit3_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntlettop_hit3_10.xnb</Output>
+      <Time>2015-09-17T15:22:25.7543643-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greaveback_hit2_10.png</Source>
+      <Name>IA_1\set1_greaveback_hit2_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greaveback_hit2_10.xnb</Output>
+      <Time>2015-09-17T15:24:47.4535328-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greaveback_hit3_10.png</Source>
+      <Name>IA_1\set1_greaveback_hit3_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greaveback_hit3_10.xnb</Output>
+      <Time>2015-09-17T15:24:47.4535328-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greavetop_hit2_10.png</Source>
+      <Name>IA_1\set1_greavetop_hit2_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greavetop_hit2_10.xnb</Output>
+      <Time>2015-09-17T15:24:01.9959875-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greavetop_hit3_10.png</Source>
+      <Name>IA_1\set1_greavetop_hit3_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greavetop_hit3_10.xnb</Output>
+      <Time>2015-09-17T15:24:01.9959875-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_helm_hit2_10.png</Source>
+      <Name>IA_1\set1_helm_hit2_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_helm_hit2_10.xnb</Output>
+      <Time>2015-09-17T15:19:47.4805385-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_helm_hit3_10.png</Source>
+      <Name>IA_1\set1_helm_hit3_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_helm_hit3_10.xnb</Output>
+      <Time>2015-09-17T15:19:47.4805385-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_tasset_hit2_10.png</Source>
+      <Name>IA_1\set1_tasset_hit2_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_tasset_hit2_10.xnb</Output>
+      <Time>2015-09-17T15:21:31.4789373-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_tasset_hit3_10.png</Source>
+      <Name>IA_1\set1_tasset_hit3_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_tasset_hit3_10.xnb</Output>
+      <Time>2015-09-17T15:21:31.4789373-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_breastplate_stand_10.png</Source>
+      <Name>IA_1\set1_breastplate_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_breastplate_stand_10.xnb</Output>
+      <Time>2015-09-17T17:12:55.3876243-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntletback_stand_10.png</Source>
+      <Name>IA_1\set1_gauntletback_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntletback_stand_10.xnb</Output>
+      <Time>2015-09-17T17:13:37.3046243-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_gauntlettop_stand_10.png</Source>
+      <Name>IA_1\set1_gauntlettop_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_gauntlettop_stand_10.xnb</Output>
+      <Time>2015-09-17T17:14:42.1916243-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greaveback_stand_10.png</Source>
+      <Name>IA_1\set1_greaveback_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greaveback_stand_10.xnb</Output>
+      <Time>2015-09-17T17:16:42.8995922-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_greavetop_stand_10.png</Source>
+      <Name>IA_1\set1_greavetop_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_greavetop_stand_10.xnb</Output>
+      <Time>2015-09-17T17:15:24.8187849-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_helm_stand_10.png</Source>
+      <Name>IA_1\set1_helm_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_helm_stand_10.xnb</Output>
+      <Time>2015-09-17T17:11:18.5086243-03:00</Time>
+    </Item>
+    <Item>
+      <Source>IA_1\set1_tasset_stand_10.png</Source>
+      <Name>IA_1\set1_tasset_stand_10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\IA_1\set1_tasset_stand_10.xnb</Output>
+      <Time>2015-09-17T17:12:11.6176243-03:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord GarzulContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord GarzulContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\buezas\Desktop\Lord-Garzul\Hunting Lord Garzul\Hunting Lord Garzul\Hunting Lord Garzul\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18-03:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2015-02-19T23:01:49.9347436-03:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
