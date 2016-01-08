@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>C:/Users/gbuez/Desktop/HLG/HLG/Content/Fuente_Prueba_2.spritefont</SourceFile>
+  <SourceTime>2016-01-08T00:16:15.4413857-03:00</SourceTime>
+  <DestFile>C:/Users/gbuez/Desktop/HLG/HLG/Content/bin/Fuente_Prueba_2.xnb</DestFile>
+  <DestTime>2016-01-08T00:16:18.9041989-03:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2015-04-29T14:14:44-03:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2015-04-29T14:14:44-03:00</ProcessorTime>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
