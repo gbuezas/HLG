@@ -79,8 +79,8 @@ namespace HLG.Objects
         /// <param name="texture"></param>
         public void LoadTexture(Textures texture)
         {
-            this.loadedTexture = texture;
-            this.frameCount = int.Parse(texture.frame);
+            loadedTexture = texture;
+            frameCount = int.Parse(texture.frame);
         }
 
         /// <summary>
@@ -99,22 +99,22 @@ namespace HLG.Objects
             this.color = color;
             this.frameWidth = frameWidth;
             this.frameHeight = frameHeight;
-            this.frameCount = int.Parse(texture.frame);
-            this.oldFrameCount = frameCount;
-            this.frameTime = frametime;
+            frameCount = int.Parse(texture.frame);
+            oldFrameCount = frameCount;
+            frameTime = frametime;
             this.looping = looping;
             this.position = position;
-            this.loadedTexture = texture;
+            loadedTexture = texture;
 
             // Pone el tiempo en 0
-            this.elapsedTime = 0;
-            this.currentFrame = 0;
+            elapsedTime = 0;
+            currentFrame = 0;
 
             // Cancela la pausa
-            this.pause = false;
+            pause = false;
 
             // Pone la animacion en activa por defecto
-            this.active = true;
+            active = true;
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace HLG.Objects
 
         public void ColorChange(Color tinte)
         {
-            this.color = tinte;
+            color = tinte;
         }
 
         public void Update(GameTime gameTime)
@@ -171,10 +171,10 @@ namespace HLG.Objects
             int Width = (int)((Height / AspectRatio) + 0.5f);
 
             // Seteo el rectangulo donde va a ir con las dimensiones ajustadas.
-            destinationRect = new Rectangle((int)position.X - (int)(Width) / 2,
-            (int)position.Y - (int)(Height) / 2,
-            (int)(Width),
-            (int)(Height));
+            destinationRect = new Rectangle((int)position.X - Width / 2,
+            (int)position.Y - Height / 2,
+            Width,
+            Height);
 
         }
 

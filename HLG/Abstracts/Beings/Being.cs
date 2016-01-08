@@ -17,12 +17,12 @@ namespace HLG.Abstracts.Beings
         /// Esta bandera es para que no se vuelva a dibujar varias veces el mismo objeto, 
         /// en caso de que el eje Y del mismo se repita con otro objeto
         /// </summary>
-        private Boolean Drawn = false;
+        private bool Drawn = false;
 
         /// <summary>
         /// Si el personaje es manejado por la maquina o por un humano
         /// </summary>
-        private Boolean Machine = false;
+        private bool Machine = false;
 
         /// <summary>
         /// Para que lado esta mirando el personaje
@@ -51,7 +51,7 @@ namespace HLG.Abstracts.Beings
         /// la misma se reseteara cuando acabe la animacion del golpe correspondiente.
         /// Siempre tiene que englobar al total de personajes que estan en el juego (tanto jugables como IA).
         /// </summary>
-        private Boolean[] Injured = new bool[Global.totalQuant];
+        private bool[] Injured = new bool[Global.totalQuant];
 
         /// <summary>
         /// La cantidad de daño recibida, en un futuro sera un objeto o un struct que pueda contener distintos tipos de daño.
@@ -66,7 +66,7 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// Si pierde toda su HP pasa a modo fantasma
         /// </summary>
-        private Boolean Ghost_Mode = false;
+        private bool Ghost_Mode = false;
 
         #endregion
 
@@ -78,13 +78,13 @@ namespace HLG.Abstracts.Beings
 
         #region CONTROLES
 
-        public Boolean drawn
+        public bool drawn
         {
             get { return Drawn; }
             set { Drawn = value; }
         }
 
-        public Boolean machine
+        public bool machine
         {
             get { return Machine; }
             set { Machine = value; }
@@ -130,7 +130,7 @@ namespace HLG.Abstracts.Beings
             set { Health = value; }
         }
 
-        public Boolean ghost_mode
+        public bool ghost_mode
         {
             get { return Ghost_Mode; }
             set { Ghost_Mode = value; }

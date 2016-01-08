@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace HLG.Objects
 {
@@ -24,29 +23,29 @@ namespace HLG.Objects
         }
 
         // Set de armadura a la que pertenece esta pieza
-        private String Set;
-        public String set
+        private string Set;
+        public string set
         {
             get { return Set; }
         }
 
         // Pieza que representa la textura
-        private String Piece;
-        public String piece
+        private string Piece;
+        public string piece
         {
             get { return Piece; }
         }
 
         // Accion que realiza esta pieza
-        private String Action;
-        public String action
+        private string Action;
+        public string action
         {
             get { return Action; }
         }
 
         // Frames de la animacion
-        private String Frame;
-        public String frame
+        private string Frame;
+        public string frame
         {
             get { return Frame; }
             set { Frame = value; }
@@ -63,7 +62,7 @@ namespace HLG.Objects
         /// </summary>
         /// <param name="textura">Los sprites que se van a utilizar</param>
         /// <param name="nombre">El nombre del archivo con sus datos pertinentes</param>
-        public Textures(Texture2D textura, String nombre)
+        public Textures(Texture2D textura, string nombre)
         {
             Textura = textura;
             Nombre_textura = nombre;

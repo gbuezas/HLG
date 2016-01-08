@@ -39,13 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Abstracts\Beings\Being.cs" />
-    <Compile Include="Abstracts\Beings\IA_Basic.cs" />
+    <Compile Include="Abstracts\Beings\IA_1.cs" />
     <Compile Include="Abstracts\Beings\Paladin.cs" />
     <Compile Include="Abstracts\GameStates\States.cs" />
     <Compile Include="Abstracts\GameStates\State_Level_1.cs" />
     <Compile Include="Abstracts\GameStates\State_Selection.cs" />
     <Compile Include="Abstracts\GameStates\State_Title.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="TheGame.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Objects\Animation.cs" />
     <Compile Include="Objects\Camera.cs" />

@@ -24,7 +24,7 @@ namespace HLG.Abstracts.GameStates
 
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             // Agarro el cuadro correcto
             sourceRect = new Rectangle(0, 0, Global.ViewportWidth,
@@ -42,7 +42,7 @@ namespace HLG.Abstracts.GameStates
             UpdateState(gameTime);
         }
 
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
             spriteBatch.Draw(Global.Pantalla_Seleccion, sourceRect, Color.White);
@@ -53,7 +53,7 @@ namespace HLG.Abstracts.GameStates
             spriteBatch.End();
         }
 
-        public override void UpdateState(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void UpdateState(GameTime gameTime)
         {
             //if (Variables_Generales.currentGamePadState[0].Buttons.B == ButtonState.Pressed)
             //{

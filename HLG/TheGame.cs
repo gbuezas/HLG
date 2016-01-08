@@ -12,7 +12,7 @@ namespace HLG
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class TheGame : Game
     {
         #region VARIABLES
 
@@ -30,7 +30,7 @@ namespace HLG
 
         #region METODOS
 
-        public Game1()
+        public TheGame()
         {
             graphics = new GraphicsDeviceManager(this);
 
@@ -65,7 +65,7 @@ namespace HLG
             for (int i = 0; i < Global.enemiesQuant; i++)
             {
                 //Global.players.Add(new IA_1((Global.TargetCondition)azar.Next(0, 4)));
-                Global.players.Add(new IA_Basic());
+                Global.players.Add(new IA_1());
             }
 
             Global.CurrentState = new State_Level_1();
@@ -285,12 +285,12 @@ namespace HLG
             spriteBatch.Begin();
 
             spriteBatch.DrawString(Global.CheckStatusVar,
-            "altoViewport = " + Global.mensaje1.ToString() + System.Environment.NewLine +
-            "anchoViewport = " + Global.mensaje2.ToString() + System.Environment.NewLine +
-            "limitePantallaX = " + Global.mensaje3.ToString() + System.Environment.NewLine +
-            "limitePantallaAncho = " + Global.mensaje4.ToString() + System.Environment.NewLine +
-            "Zoom = " + Global.mensaje5.ToString() + System.Environment.NewLine +
-            "FPS = " + Global.frameRate + System.Environment.NewLine,
+            "altoViewport = " + Global.mensaje1.ToString() + Environment.NewLine +
+            "anchoViewport = " + Global.mensaje2.ToString() + Environment.NewLine +
+            "limitePantallaX = " + Global.mensaje3.ToString() + Environment.NewLine +
+            "limitePantallaAncho = " + Global.mensaje4.ToString() + Environment.NewLine +
+            "Zoom = " + Global.mensaje5.ToString() + Environment.NewLine +
+            "FPS = " + Global.frameRate + Environment.NewLine,
             ChkStatVar, Color.DarkRed);
 
             spriteBatch.End();

@@ -19,8 +19,8 @@
 
         public void Initialize(string piece, string set)
         {
-            this.Piece = piece;
-            this.Set = set;
+            Piece = piece;
+            Set = set;
         }
     }
 }

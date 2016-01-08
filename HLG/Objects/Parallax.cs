@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 
 namespace HLG.Objects
 {
@@ -33,7 +32,7 @@ namespace HLG.Objects
             set { Parallax_Y = value; }
         }
 
-        public Parallax(String[] capa_parallax, float parallax_x, float parallax_y)
+        public Parallax(string[] capa_parallax, float parallax_x, float parallax_y)
         {
             CapaParallax = capa_parallax;
             Parallax_X = parallax_x;

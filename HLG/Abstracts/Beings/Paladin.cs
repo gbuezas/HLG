@@ -23,7 +23,7 @@ namespace HLG.Abstracts.Beings
         private Global.Actions OldAction;
 
         /// <summary>
-        /// Animation de cada pieza de armadura:
+        /// animacion de cada pieza de armadura:
         /// 1.shield
         /// 2.gauntletback
         /// 3.greaveback
@@ -142,7 +142,7 @@ namespace HLG.Abstracts.Beings
             // Inicializo partes de armadura actual
             pieces_armor.Initialize();
 
-            // Inicializo las piezas de Animation
+            // Inicializo las piezas de animacion
             for (int i = 0; i < Global.PiecesPaladin.Length; i++)
             {
                 Pieces_Anim[i] = new Animation();
@@ -192,7 +192,7 @@ namespace HLG.Abstracts.Beings
             // Piezas de la armadura al comenzar
             UpdateArmor(pieces_armor_new);
 
-            this.animations = this.Pieces_Anim;
+            animations = Pieces_Anim;
 
             // Asigno control por default al jugador
             controls[(int)Global.Controls.UP] = Keys.W;
@@ -207,7 +207,7 @@ namespace HLG.Abstracts.Beings
         }
 
         /// <summary>
-        /// Actualizar Animation
+        /// Actualizar animacion
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
@@ -250,7 +250,7 @@ namespace HLG.Abstracts.Beings
             // rectangulos de colision para chequear
             if (Global.EnableRectangles)
             {
-                DrawRectangle(this.GetPositionRec(), Global.Punto_Blanco, spriteBatch);
+                DrawRectangle(GetPositionRec(), Global.Punto_Blanco, spriteBatch);
                 DrawRectangle(Global.Rectangle_Collision, Global.Punto_Blanco, spriteBatch);
                 DrawRectangle(Global.Rectangle_Collision_2, Global.Punto_Blanco, spriteBatch);
             }
@@ -283,13 +283,13 @@ namespace HLG.Abstracts.Beings
             // Hace que el jugador no salga de la pantalla reacomodandolo dentro de la misma.
             // Tomamos como pantalla el rectangulo que genera la camara para acomodar al jugador y limitamos de acuerdo a estas medidas.
             // El FrameEscalado es para acomodar al personaje de acuerdo a la nueva escala adquirida dependiendo de la pantalla fisica donde se ejecuta el juego.
-            Rectangle FrameEscalado = this.GetPositionRec();
+            Rectangle FrameEscalado = GetPositionRec();
             Position.X = MathHelper.Clamp(Position.X, LimitesPantalla.Left + FrameEscalado.Width / 2, LimitesPantalla.Width - FrameEscalado.Width / 2);
             Position.Y = MathHelper.Clamp(Position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
 
             // No es necesario mas acomodar la fila ya que todos vienen con fila 0
-            // Solo se acomoda la cantidad de frames por Animation y que Animation va en cada pieza segun la accion ejecutandose.
-            #region Animation POR PIEZA
+            // Solo se acomoda la cantidad de frames por animacion y que animacion va en cada pieza segun la accion ejecutandose.
+            #region ANIMACION POR PIEZA
 
             foreach (Animation piezaAnimation in Pieces_Anim)
             {
@@ -304,7 +304,7 @@ namespace HLG.Abstracts.Beings
                 }
             }
 
-            // Vuelve a 0 el frame de la Animation si cambio de accion
+            // Vuelve a 0 el frame de la animacion si cambio de accion
             if (oldAction != currentAction)
             {
                 foreach (Animation Animation in Pieces_Anim)
@@ -318,14 +318,14 @@ namespace HLG.Abstracts.Beings
             #endregion
 
             // Status del personaje
-            mensaje1 = this.GetCurrentFrame();
-            mensaje2 = this.GetTotalFrames();
+            mensaje1 = GetCurrentFrame();
+            mensaje2 = GetTotalFrames();
             mensaje3 = direction;
             mensaje4 = currentAction;
             mensaje5 = Global.FrameHeight;
             mensaje6 = Global.FrameWidth;
-            mensaje7 = this.GetPositionVec().X;
-            mensaje8 = this.GetPositionVec().Y;
+            mensaje7 = GetPositionVec().X;
+            mensaje8 = GetPositionVec().Y;
         }
 
         /// <summary>
@@ -361,16 +361,16 @@ namespace HLG.Abstracts.Beings
         /// <returns> Posicion del jugador </returns>
         public override Vector2 GetPositionVec()
         {
-            return this.Position;
+            return Position;
         }
 
         /// <summary>
-        /// Obtiene la posicion de una pieza de Animation en rectangulo
+        /// Obtiene la posicion de una pieza de animacion en rectangulo
         /// </summary>
         /// <returns> Posicion del jugador </returns>
         public override Rectangle GetPositionRec()
         {
-            return this.pieces_anim[0].GetPosition();
+            return pieces_anim[0].GetPosition();
         }
 
         /// <summary>
@@ -379,7 +379,7 @@ namespace HLG.Abstracts.Beings
         /// <param name="tinte"> Color deseado </param>
         public override void ColorAnimationChange(Color tinte)
         {
-            foreach (Animation Animation in this.animations)
+            foreach (Animation Animation in animations)
             {
                 Animation.ColorChange(tinte);
             }
@@ -392,27 +392,27 @@ namespace HLG.Abstracts.Beings
         /// <param name="pieza"> Pieza que queremos cambiar el color </param>
         public override void ColorPieceChange(Color tinte, int pieza)
         {
-            this.animations[pieza].ColorChange(tinte);
+            animations[pieza].ColorChange(tinte);
         }
 
         /// <summary>
-        /// Obtiene el frame actual de la Animation parandose en la primera pieza de la misma [0]
+        /// Obtiene el frame actual de la animacion parandose en la primera pieza de la misma [0]
         /// </summary>
-        /// <returns> Frame actual de la Animation </returns>
+        /// <returns> Frame actual de la animacion </returns>
         public override int GetCurrentFrame()
         {
-            return this.animations[0].CurrentFrame;
+            return animations[0].CurrentFrame;
         }
 
         /// <summary>
-        /// Obtiene cantidad total de frames de la Animation parandose en la primera pieza de la misma [0]
+        /// Obtiene cantidad total de frames de la animacion parandose en la primera pieza de la misma [0]
         /// Se le resta 1 al valor ya que como es cantidad no cuenta desde 0, como lo hacen los indices,
         /// de esta manera podemos comparar indices con cantidad.
         /// </summary>
-        /// <returns> Frames total de la Animation </returns>
+        /// <returns> Frames total de la animacion </returns>
         public override int GetTotalFrames()
         {
-            return this.animations[0].FrameCount - 1;
+            return animations[0].FrameCount - 1;
         }
 
         /// <summary>
@@ -420,20 +420,20 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         public override void ActivatePlayer(bool active)
         {
-            foreach (Animation piece in this.animations)
+            foreach (Animation piece in animations)
             {
                 piece.active = active;
             }
         }
 
         /// <summary>
-        /// Limpio la lista interna de personajes que daño este objeto, este metodo se usa al terminar una Animation que daña.
+        /// Limpio la lista interna de personajes que daño este objeto, este metodo se usa al terminar una animacion que daña.
         /// </summary>
         public override void ResetInjured()
         {
             for (int i = 0; i < injured.Length; i++)
             {
-                this.injured[i] = false;
+                injured[i] = false;
             }
         }
 
@@ -444,7 +444,7 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// Establece el tiempo de frame en ejecucion
         /// </summary>
-        /// <param name="Tiempo">El tiempo que va a durar el frame en pantalla de las distintas Animationes del personaje</param>
+        /// <param name="Tiempo">El tiempo que va a durar el frame en pantalla de las distintas animaciones del personaje</param>
         void FrameSpeed(int Tiempo)
         {
             foreach (Animation piezaAnimada in Pieces_Anim)
@@ -454,7 +454,7 @@ namespace HLG.Abstracts.Beings
         }
 
         /// <summary>
-        /// Pausa la Animation en el frame actual
+        /// Pausa la animacion en el frame actual
         /// </summary>
         /// <param name="desactivar">pone o quita la pausa segun este parametro</param>
         void PauseAnimation(bool desactivar)
@@ -522,13 +522,13 @@ namespace HLG.Abstracts.Beings
             }
             else
             {
-                // Si esta pegando tiene que terminar su Animation y despues desbloquear otra vez la gama de movimientos
-                // Para esto comparamos el frame actual de la Animation con su frame total
-                if (this.GetCurrentFrame() == this.GetTotalFrames())
+                // Si esta pegando tiene que terminar su animacion y despues desbloquear otra vez la gama de movimientos
+                // Para esto comparamos el frame actual de la animacion con su frame total
+                if (GetCurrentFrame() == GetTotalFrames())
                 {
                     currentAction = Global.Actions.STAND;
 
-                    // Cuando termine la Animation de pegar puede generar daño de vuelta a alguien que ya haya atacado
+                    // Cuando termine la animacion de pegar puede generar daño de vuelta a alguien que ya haya atacado
                     ResetInjured();
                 }
             }
@@ -539,16 +539,16 @@ namespace HLG.Abstracts.Beings
         /// 
         ///     Implementamos un chequeo jugador por jugador a la hora de golpear, que cumpla con las siguientes reglas:
         ///     - Si le toca chequear con el mismo se saltea.
-        ///     - Si el frame de la Animation no es justo cuando golpea con la espada se saltea.
+        ///     - Si el frame de la animacion no es justo cuando golpea con la espada se saltea.
         ///     - Si fue golpeado anteriormente se saltea
         ///     - Si es fantasma se saltea
         /// </summary>
         private void CollisionLogic()
         {
-            if ((this.currentAction == Global.Actions.HIT1 ||
-                    this.currentAction == Global.Actions.HIT2 ||
-                    this.currentAction == Global.Actions.HIT3) &&
-                    !this.ghost_mode)
+            if ((currentAction == Global.Actions.HIT1 ||
+                    currentAction == Global.Actions.HIT2 ||
+                    currentAction == Global.Actions.HIT3) &&
+                    !ghost_mode)
             {
 
                 for (int i = 0; i < Global.totalQuant; i++)
@@ -556,10 +556,10 @@ namespace HLG.Abstracts.Beings
                     // Ver summary
                     if (Global.players[i] != this &&
                         !Global.players[i].ghost_mode &&
-                        !this.injured[i] &&
-                        this.GetCurrentFrame() == 5)
+                        !injured[i] &&
+                        GetCurrentFrame() == 5)
                     {
-                        Rectangle temp = this.GetPositionRec();
+                        Rectangle temp = GetPositionRec();
                         Rectangle temp2 = Global.players[i].GetPositionRec();
 
                         // Si esta dentro del radio del golpe
@@ -568,7 +568,7 @@ namespace HLG.Abstracts.Beings
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             Global.players[i].ColorAnimationChange(Color.Red);
                             Global.players[i].injured_value = 10;
-                            this.injured[i] = true;
+                            injured[i] = true;
                         }
                     }
                 }
@@ -581,37 +581,37 @@ namespace HLG.Abstracts.Beings
         private void EffectLogic()
         {
 
-            if (!this.ghost_mode)
+            if (!ghost_mode)
             {
                 // Reestablezco su color natural si no va a recibir daño, de esta manera no permito que vuelva a su color 
                 // demasiado rapido como para que no se vea que fue dañado
-                if (this.injured_value == 0)
-                    this.ColorAnimationChange(Color.White);
+                if (injured_value == 0)
+                    ColorAnimationChange(Color.White);
 
                 // Hago la resta necesaria a la health
-                this.health -= this.injured_value;
+                health -= injured_value;
 
                 // Vuelvo el contador de daño a 0 y quito que este dañado
-                this.injured_value = 0;
+                injured_value = 0;
 
                 // Si pierde toda su HP se vuelve fantasma
-                if (this.health <= 0)
+                if (health <= 0)
                 {
-                    this.ghost_mode = true;
+                    ghost_mode = true;
                 }
             }
             else
             {
-                this.ColorAnimationChange(Global.ColorGhost);
+                ColorAnimationChange(Global.ColorGhost);
 
-                if (this.health > 0)
+                if (health > 0)
                 {
                     ghost_mode = false;
                 }
             }
 
             // MENSAJES: Veo la health de los personajes
-            mensaje9 = this.health;
+            mensaje9 = health;
         }
 
         /// <summary>
@@ -626,13 +626,13 @@ namespace HLG.Abstracts.Beings
                     temp.X <= temp2.X &&
                     temp.Y >= temp2.Y - Global.PaladinHitRangeY &&
                     temp.Y <= temp2.Y + Global.PaladinHitRangeY &&
-                    this.direction == Global.Mirada.RIGHT)
+                    direction == Global.Mirada.RIGHT)
                     ||
                    (temp.X <= temp2.Center.X + Global.PaladinHitRangeX &&
                     temp.X + temp.Width >= temp2.X + temp2.Width &&
                     temp.Y >= temp2.Y - Global.PaladinHitRangeY &&
                     temp.Y <= temp2.Y + Global.PaladinHitRangeY &&
-                    this.direction == Global.Mirada.LEFT);
+                    direction == Global.Mirada.LEFT);
         }
 
         /// <summary>
@@ -646,13 +646,13 @@ namespace HLG.Abstracts.Beings
             Vector2 Position = new Vector2(rec.X, rec.Y);
             int border = 1;
 
-            int borderWidth = (int)(rec.Width) + (border * 2);
-            int borderHeight = (int)(rec.Height) + (border);
+            int borderWidth = rec.Width + (border * 2);
+            int borderHeight = rec.Height + (border);
 
-            DrawStraightLine(new Vector2((int)rec.X, (int)rec.Y), new Vector2((int)rec.X + rec.Width, (int)rec.Y), tex, Color.White, spriteBatch, border);
-            DrawStraightLine(new Vector2((int)rec.X, (int)rec.Y + rec.Height), new Vector2((int)rec.X + rec.Width, (int)rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
-            DrawStraightLine(new Vector2((int)rec.X, (int)rec.Y), new Vector2((int)rec.X, (int)rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
-            DrawStraightLine(new Vector2((int)rec.X + rec.Width, (int)rec.Y), new Vector2((int)rec.X + rec.Width, (int)rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X + rec.Width, rec.Y), tex, Color.White, spriteBatch, border);
+            DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
         }
 
         /// <summary>

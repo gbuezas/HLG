@@ -122,7 +122,7 @@ namespace HLG.Abstracts.GameStates
         /// Aca se hace el calculo de que personaje se dibuja primero
         /// Tambien se hace el calculo de la camara y el parallax
         /// </summary>
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
 
             # region CAPAS
