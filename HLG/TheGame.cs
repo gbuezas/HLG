@@ -39,9 +39,14 @@ namespace HLG
             // Hay que probarlo en algun lado
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
+            
 
             // No estoy seguro de si esto me da antialiasing o ya con lo que puse cuando dibujo alcanza
             graphics.PreferMultiSampling = true;
+
+            /* Chquear bien como arreglo que se vea bien con esto */
+            graphics.ToggleFullScreen();
+
             graphics.ApplyChanges();
 
             Content.RootDirectory = "Content";
