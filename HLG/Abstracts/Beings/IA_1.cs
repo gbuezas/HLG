@@ -34,14 +34,7 @@ namespace HLG.Abstracts.Beings
         /// 9.gauntlettop
         /// </summary>
         private Animation[] Pieces_Anim = new Animation[Global.PiecesIA_1.Length];
-
-        /// <summary>
-        /// Posicion del jugador relativa a la parte superior izquierda de la pantalla.
-        /// Esta posicion marca donde se encuentra el jugador en la pantalla y no en el mapa donde se esta moviendo,
-        /// y es a esta posicion a la que se le aplican los limites de la pantalla.  
-        /// </summary>
-        protected Vector2 Position;
-
+        
         /// <summary>
         /// Ancho y alto de un cuadro del sprite, el tamaño que esta en la carpeta, el fisico.
         /// </summary>
@@ -49,6 +42,8 @@ namespace HLG.Abstracts.Beings
         //protected int FrameHeight = Global.FrameHeight;
         protected int FrameWidth = 400;
         protected int FrameHeight = 300;
+
+        Color defaultColor;
 
         #endregion
 
@@ -115,14 +110,16 @@ namespace HLG.Abstracts.Beings
         {
 
             // Establezco variables por default para comenzar
-            Position = posicion;
+            position = posicion;
             PlayerSpeed = 3.0f;
             direction = Global.Mirada.RIGHT;
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
             FrameTime = 50;
             health -= 70;
-
+            hitrangeX = 2;
+            hitrangeY = 2;
+            
             // Establezco las banderas de dañados
             ResetInjured();
 
@@ -147,6 +144,10 @@ namespace HLG.Abstracts.Beings
             // Seteo condicion de busqueda de objetivo para atacar
             GetCondition();
 
+            // Tenemos que usar una variable default color para que vuelva a ese color cuando cambia, sino me lo sobreescribe
+            defaultColor = Global.EnemyRandomColor[Global.randomly.Next(0, 4)];
+            ColorAnimationChange(defaultColor);
+
             // Ralentizar los cuadros por segundo del personaje
             // TiempoFrameEjecucion(1);
 
@@ -161,7 +162,7 @@ namespace HLG.Abstracts.Beings
         {
             foreach (Animation piezaAnimada in Pieces_Anim)
             {
-                piezaAnimada.position = Position;
+                piezaAnimada.position = position;
                 piezaAnimada.Update(gameTime);
             }
         }
@@ -253,7 +254,7 @@ namespace HLG.Abstracts.Beings
                         textura.set == pieces_armor.Get_Set(textura.piece) &&
                         textura.action == currentAction.ToString().ToLower())
                     {
-                        piezaAnimation.LoadTexture(textura, Position, FrameWidth, FrameHeight, FrameTime, Color.White, true);
+                        piezaAnimation.LoadTexture(textura, position, FrameWidth, FrameHeight, FrameTime, Color.White, true);
                     }
                 }
             }
@@ -266,7 +267,7 @@ namespace HLG.Abstracts.Beings
         /// <returns> Posicion del jugador </returns>
         public override Vector2 GetPositionVec()
         {
-            return Position;
+            return position;
         }
 
         /// <summary>
@@ -391,31 +392,31 @@ namespace HLG.Abstracts.Beings
                 // Tambien se toma el lugar donde la IA va a detenerse y el punto que va a buscar para atacar a cierto personaja.
                 // Para obtener el lugar antes mencionado usamos la variable de HitRange asi se posiciona optimamente para su ataque.
                 // El HitRangeX tiene que ser mayor para que no hostigue tanto al blanco, sino se pega mucho a el
-                if (target.GetPositionVec().X <= Position.X - Global.IA1HitRangeX)
+                if (target.GetPositionVec().X <= position.X - hitrangeX)
                 {
                     // Izquierda
-                    Position.X -= PlayerSpeed;
+                    positionX -= PlayerSpeed;
                     direction = Global.Mirada.LEFT;
                     currentAction = Global.Actions.WALK;
                 }
-                else if (target.GetPositionVec().X >= Position.X + Global.IA1HitRangeX)
+                else if (target.GetPositionVec().X >= position.X + hitrangeX)
                 {
                     // Derecha
-                    Position.X += PlayerSpeed;
+                    positionX += PlayerSpeed;
                     direction = Global.Mirada.RIGHT;
                     currentAction = Global.Actions.WALK;
                 }
 
-                if (target.GetPositionVec().Y <= Position.Y - Global.IA1HitRangeY)
+                if (target.GetPositionVec().Y <= position.Y - hitrangeY)
                 {
                     // Arriba
-                    Position.Y -= PlayerSpeed;
+                    positionY -= PlayerSpeed;
                     currentAction = Global.Actions.WALK;
                 }
-                else if (target.GetPositionVec().Y >= Position.Y + Global.IA1HitRangeY)
+                else if (target.GetPositionVec().Y >= position.Y + hitrangeY)
                 {
                     // Abajo
-                    Position.Y += PlayerSpeed;
+                    positionY += PlayerSpeed;
                     currentAction = Global.Actions.WALK;
                 }
 
@@ -428,7 +429,7 @@ namespace HLG.Abstracts.Beings
                 Rectangle temp2 = target.GetPositionRec();
 
                 // Si el blanco esta dentro del rango de golpe se lo ataca
-                if (CollisionVerifier(ref temp, ref temp2))
+                if (CollisionVerifier(temp, temp2))
                 {
                     // El rango depende de como estan almacenados en las variables Global, la primer variable es incluyente y la segunda excluyente.
                     currentAction = (Global.Actions)Global.randomly.Next(2, 5);
@@ -475,11 +476,9 @@ namespace HLG.Abstracts.Beings
                         !injured[i] &&
                         !Global.players[i].ghost_mode)
                     {
-                        Rectangle temp = GetPositionRec();
-                        Rectangle temp2 = Global.players[i].GetPositionRec();
-
+                        
                         // Si esta dentro del radio del golpe
-                        if (CollisionVerifier(ref temp, ref temp2))
+                        if (CollisionVerifier(GetPositionRec(), Global.players[i].GetPositionRec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             Global.players[i].ColorAnimationChange(Color.Red);
@@ -502,7 +501,7 @@ namespace HLG.Abstracts.Beings
                 // Reestablezco su color natural si no va a recibir daño, de esta manera no permito que vuelva a su color 
                 // demasiado rapido como para que no se vea que fue dañado
                 if (injured_value == 0)
-                    ColorAnimationChange(Color.White);
+                    ColorAnimationChange(defaultColor);
 
                 // Hago la resta necesaria a la health
                 health -= injured_value;
@@ -524,28 +523,7 @@ namespace HLG.Abstracts.Beings
                 ActivatePlayer(false);
             }
         }
-
-        /// <summary>
-        /// Chequea las colisiones
-        /// </summary>
-        /// <param name="temp">Rectangulo del primer elemento</param>
-        /// <param name="temp2">Rectangulo del segundo elemento</param>
-        /// <returns></returns>
-        private bool CollisionVerifier(ref Rectangle temp, ref Rectangle temp2)
-        {
-            return (temp.X + temp.Width >= temp2.Center.X - Global.IA1HitRangeX &&
-                    temp.X <= temp2.X &&
-                    temp.Y >= temp2.Y - Global.IA1HitRangeY &&
-                    temp.Y <= temp2.Y + Global.IA1HitRangeY &&
-                    direction == Global.Mirada.RIGHT)
-                    ||
-                   (temp.X <= temp2.Center.X + Global.IA1HitRangeX &&
-                    temp.X + temp.Width >= temp2.X + temp2.Width &&
-                    temp.Y >= temp2.Y - Global.IA1HitRangeY &&
-                    temp.Y <= temp2.Y + Global.IA1HitRangeY &&
-                    direction == Global.Mirada.LEFT);
-        }
-
+        
         /// <summary>
         /// Obtiene condiciones al azar, se hace en inicializar para que se haga una sola vez en la creacion del personaje
         /// </summary>
