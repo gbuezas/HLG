@@ -43,8 +43,9 @@ namespace HLG.Abstracts.Beings
         protected int FrameWidth = 400;
         protected int FrameHeight = 300;
 
-        Color defaultColor;
-
+        // Colores de las piezas por default
+        private Color[] defaultColors = new Color[Global.PiecesIA_1.Length];
+        
         #endregion
 
         #region JUGABILIDAD
@@ -111,7 +112,7 @@ namespace HLG.Abstracts.Beings
 
             // Establezco variables por default para comenzar
             position = posicion;
-            PlayerSpeed = 3.0f;
+            PlayerSpeed = 1.5f;
             direction = Global.Mirada.RIGHT;
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
@@ -119,7 +120,7 @@ namespace HLG.Abstracts.Beings
             health -= 70;
             hitrangeX = 2;
             hitrangeY = 2;
-            
+
             // Establezco las banderas de dañados
             ResetInjured();
 
@@ -144,16 +145,16 @@ namespace HLG.Abstracts.Beings
             // Seteo condicion de busqueda de objetivo para atacar
             GetCondition();
 
-            // Tenemos que usar una variable default color para que vuelva a ese color cuando cambia, sino me lo sobreescribe
-            defaultColor = Global.EnemyRandomColor[Global.randomly.Next(0, 4)];
-            ColorAnimationChange(defaultColor);
-
+            // Genero colores al azar en cada pieza del personaje
+            // Mas tarde usaremos DefaultRandomPiecesColors() para repintar con estos colores obtenidos luego de alguna modificacion
+            GenerateRandomPiecesColors();
+            
             // Ralentizar los cuadros por segundo del personaje
             // TiempoFrameEjecucion(1);
 
             //this.ActivatePlayer(true);
         }
-
+        
         /// <summary>
         /// Actualizar animacion
         /// </summary>
@@ -350,7 +351,7 @@ namespace HLG.Abstracts.Beings
         /// Establece el tiempo de frame en ejecucion
         /// </summary>
         /// <param name="Tiempo">El tiempo que va a durar el frame en pantalla de las distintas animaciones del personaje</param>
-        void FrameSpeed(int Tiempo)
+        private void FrameSpeed(int Tiempo)
         {
             foreach (Animation piezaAnimada in Pieces_Anim)
             {
@@ -362,7 +363,7 @@ namespace HLG.Abstracts.Beings
         /// Pausa la animacion en el frame actual
         /// </summary>
         /// <param name="desactivar">pone o quita la pausa segun este parametro</param>
-        void PauseAnimation(bool desactivar)
+        private void PauseAnimation(bool desactivar)
         {
             foreach (Animation piezaAnimada in Pieces_Anim)
             {
@@ -501,7 +502,9 @@ namespace HLG.Abstracts.Beings
                 // Reestablezco su color natural si no va a recibir daño, de esta manera no permito que vuelva a su color 
                 // demasiado rapido como para que no se vea que fue dañado
                 if (injured_value == 0)
-                    ColorAnimationChange(defaultColor);
+                {
+                    DefaultRandomPiecesColors();
+                }
 
                 // Hago la resta necesaria a la health
                 health -= injured_value;
@@ -523,7 +526,30 @@ namespace HLG.Abstracts.Beings
                 ActivatePlayer(false);
             }
         }
-        
+
+        /// <summary>
+        /// Genero colores al azar en cada pieza del personaje
+        /// </summary>
+        private void GenerateRandomPiecesColors()
+        {
+            for (int i = 0; i < Global.PiecesIA_1.Length; i++)
+            {
+                defaultColors[i] = Global.SkeletonRandomColors[Global.randomly.Next(0, Global.SkeletonRandomColors.Length)];
+                ColorPieceChange(defaultColors[i], i);
+            }
+        }
+
+        /// <summary>
+        /// Vuelvo a pintar del color que se genero en un principio con GenerateRandomPiecesColors()
+        /// </summary>
+        private void DefaultRandomPiecesColors()
+        {
+            for (int i = 0; i < Global.PiecesIA_1.Length; i++)
+            {
+                ColorPieceChange(defaultColors[i], i);
+            }
+        }
+
         /// <summary>
         /// Obtiene condiciones al azar, se hace en inicializar para que se haga una sola vez en la creacion del personaje
         /// </summary>

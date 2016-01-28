@@ -238,8 +238,8 @@ namespace HLG
                 Jugador.Initialize(new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X + ejeX,
                                                 GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2 + ejeY));
 
-                ejeX = ejeX + 50;
-                ejeY = ejeY + 50;
+                ejeX += 50;
+                ejeY += 50;
             }
         }
 
