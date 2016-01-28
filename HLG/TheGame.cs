@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace HLG
@@ -37,15 +38,22 @@ namespace HLG
             // Establezco la resolucion maxima adecuada para el dispositivo
             // Supuestamente con esta resolucion autoescala a menores
             // Hay que probarlo en algun lado
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
-            
+
+            // Seteo manual de resolucion
+            graphics.PreferredBackBufferWidth = 1200;
+            graphics.PreferredBackBufferHeight = 675;
+
+            // Obtengo lista de modos soportados por el adaptador gráfico actual de la pc
+            //DisplayModeCollection SupportModes;
+            //SupportModes = GraphicsAdapter.DefaultAdapter.SupportedDisplayModes;
+
+            // Seteo la resolucion grafica que esta actualmente en la pcy hago pantalla completa
+            //graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            //graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            //graphics.ToggleFullScreen();
 
             // No estoy seguro de si esto me da antialiasing o ya con lo que puse cuando dibujo alcanza
-            graphics.PreferMultiSampling = true;
-
-            /* Chquear bien como arreglo que se vea bien con esto */
-            graphics.ToggleFullScreen();
+            //graphics.PreferMultiSampling = true;
 
             graphics.ApplyChanges();
 

@@ -35,14 +35,7 @@ namespace HLG.Abstracts.Beings
         /// 9.gauntlettop
         /// </summary>
         private Animation[] Pieces_Anim = new Animation[9];
-
-        /// <summary>
-        /// Posicion del jugador relativa a la parte superior izquierda de la pantalla.
-        /// Esta posicion marca donde se encuentra el jugador en la pantalla y no en el mapa donde se esta moviendo,
-        /// y es a esta posicion a la que se le aplican los limites de la pantalla.  
-        /// </summary>
-        protected Vector2 Position;
-
+        
         /// <summary>
         /// Ancho y alto de un cuadro del sprite
         /// </summary>
@@ -127,14 +120,16 @@ namespace HLG.Abstracts.Beings
         {
 
             // Establezco variables por default para comenzar
-            Position = posicion;
-            mensaje = Position;
+            position = posicion;
+            mensaje = position;
             PlayerSpeed = 3.0f;
             direction = Global.Mirada.RIGHT;
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
             FrameTime = 50;
             health += 500;
+            hitrangeX = 15;
+            hitrangeY = 7;
 
             // Establezco las banderas de dañados
             ResetInjured();
@@ -214,11 +209,11 @@ namespace HLG.Abstracts.Beings
         {
             foreach (Animation piezaAnimada in Pieces_Anim)
             {
-                piezaAnimada.position = Position;
+                piezaAnimada.position = position;
                 piezaAnimada.Update(gameTime);
 
                 // Para los stats de cada personaje (borrar mas tarde) GAB
-                mensaje = Position;
+                mensaje = position;
             }
         }
 
@@ -284,8 +279,9 @@ namespace HLG.Abstracts.Beings
             // Tomamos como pantalla el rectangulo que genera la camara para acomodar al jugador y limitamos de acuerdo a estas medidas.
             // El FrameEscalado es para acomodar al personaje de acuerdo a la nueva escala adquirida dependiendo de la pantalla fisica donde se ejecuta el juego.
             Rectangle FrameEscalado = GetPositionRec();
-            Position.X = MathHelper.Clamp(Position.X, LimitesPantalla.Left + FrameEscalado.Width / 2, LimitesPantalla.Width - FrameEscalado.Width / 2);
-            Position.Y = MathHelper.Clamp(Position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
+
+            positionX = MathHelper.Clamp(position.X, LimitesPantalla.Left + FrameEscalado.Width / 2, LimitesPantalla.Width - FrameEscalado.Width / 2);
+            positionY = MathHelper.Clamp(position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
 
             // No es necesario mas acomodar la fila ya que todos vienen con fila 0
             // Solo se acomoda la cantidad de frames por animacion y que animacion va en cada pieza segun la accion ejecutandose.
@@ -348,7 +344,7 @@ namespace HLG.Abstracts.Beings
                         textura.set == pieces_armor.Get_Set(textura.piece) &&
                         textura.action == currentAction.ToString().ToLower())
                     {
-                        piezaAnimation.LoadTexture(textura, Position, FrameWidth, FrameHeight, FrameTime, Color.White, true);
+                        piezaAnimation.LoadTexture(textura, position, FrameWidth, FrameHeight, FrameTime, Color.White, true);
                     }
                 }
             }
@@ -361,7 +357,7 @@ namespace HLG.Abstracts.Beings
         /// <returns> Posicion del jugador </returns>
         public override Vector2 GetPositionVec()
         {
-            return Position;
+            return position;
         }
 
         /// <summary>
@@ -483,25 +479,25 @@ namespace HLG.Abstracts.Beings
                 // Si se presiona alguna tecla de movimiento
                 if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.LEFT]))
                 {
-                    Position.X -= PlayerSpeed;
+                    positionX -= PlayerSpeed;
                     direction = Global.Mirada.LEFT;
                     currentAction = Global.Actions.WALK;
                 }
                 else if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.RIGHT]))
                 {
-                    Position.X += PlayerSpeed;
+                    positionX += PlayerSpeed;
                     direction = Global.Mirada.RIGHT;
                     currentAction = Global.Actions.WALK;
                 }
 
                 if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.UP]))
                 {
-                    Position.Y -= PlayerSpeed;
+                    positionY -= PlayerSpeed;
                     currentAction = Global.Actions.WALK;
                 }
                 else if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.DOWN]))
                 {
-                    Position.Y += PlayerSpeed;
+                    positionY += PlayerSpeed;
                     currentAction = Global.Actions.WALK;
                 }
 
@@ -563,7 +559,7 @@ namespace HLG.Abstracts.Beings
                         Rectangle temp2 = Global.players[i].GetPositionRec();
 
                         // Si esta dentro del radio del golpe
-                        if (CollisionVerifier(ref temp, ref temp2))
+                        if (CollisionVerifier(temp, temp2))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             Global.players[i].ColorAnimationChange(Color.Red);
@@ -613,28 +609,7 @@ namespace HLG.Abstracts.Beings
             // MENSAJES: Veo la health de los personajes
             mensaje9 = health;
         }
-
-        /// <summary>
-        /// Chequea las colisiones
-        /// </summary>
-        /// <param name="temp">Rectangulo del primer elemento</param>
-        /// <param name="temp2">Rectangulo del segundo elemento</param>
-        /// <returns></returns>
-        private bool CollisionVerifier(ref Rectangle temp, ref Rectangle temp2)
-        {
-            return (temp.X + temp.Width >= temp2.Center.X - Global.PaladinHitRangeX &&
-                    temp.X <= temp2.X &&
-                    temp.Y >= temp2.Y - Global.PaladinHitRangeY &&
-                    temp.Y <= temp2.Y + Global.PaladinHitRangeY &&
-                    direction == Global.Mirada.RIGHT)
-                    ||
-                   (temp.X <= temp2.Center.X + Global.PaladinHitRangeX &&
-                    temp.X + temp.Width >= temp2.X + temp2.Width &&
-                    temp.Y >= temp2.Y - Global.PaladinHitRangeY &&
-                    temp.Y <= temp2.Y + Global.PaladinHitRangeY &&
-                    direction == Global.Mirada.LEFT);
-        }
-
+        
         /// <summary>
         /// Dibuja los rectangulos que delimitan las colisiones del personaje.
         /// </summary>
@@ -643,12 +618,9 @@ namespace HLG.Abstracts.Beings
         /// <param name="spriteBatch">Proceso de dibujado</param>
         public static void DrawRectangle(Rectangle rec, Texture2D tex, SpriteBatch spriteBatch)
         {
-            Vector2 Position = new Vector2(rec.X, rec.Y);
             int border = 1;
-
             int borderWidth = rec.Width + (border * 2);
             int borderHeight = rec.Height + (border);
-
             DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X + rec.Width, rec.Y), tex, Color.White, spriteBatch, border);
             DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
             DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);

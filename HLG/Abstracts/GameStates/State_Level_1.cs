@@ -99,8 +99,8 @@ namespace HLG.Abstracts.GameStates
             Global.players[3].controls[(int)Global.Controls.BUTTON_1] = Keys.Enter;
 
             // Enemigo
-            Global.players[4].controls = null;
-            Global.players[5].controls = null;
+            //Global.players[4].controls = null;
+            //Global.players[5].controls = null;
 
             // Hacer un foreach para todos los personajes que quedan en camara, 
             // solo los controlados por humanos, la maquina no, asi pueden salir y no me desconcha toda la camara y el zoom
