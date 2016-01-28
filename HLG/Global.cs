@@ -22,9 +22,8 @@ namespace HLG
 
         // Colores
         public static Color ColorGhost = new Color(255, 255, 255, 30);
-        public static Color ColorEnemy = Color.White;
-        public static Color[] EnemyRandomColor = new Color[4] { Color.AntiqueWhite, Color.Beige, Color.Coral, Color.GhostWhite };
-
+        public static Color[] SkeletonRandomColors = new Color[] { Color.AntiqueWhite, Color.Wheat, Color.WhiteSmoke, Color.SeaShell, Color.OldLace, Color.LightYellow, Color.Gainsboro, Color.Cornsilk };
+        
         // La clase de los estados del juego
         public static States CurrentState;
 
