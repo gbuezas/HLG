@@ -60,7 +60,7 @@ namespace HLG
         public enum EstadosJuego { INTRO, TITULO, SELECCION, MAPA, VS, AVANCE, PAUSA, GAMEOVER, FINAL }
 
         // Los distintos parametros de busqueda de objetivo de la IA
-        public enum TargetCondition { MAXHEALTH, MINHEALTH, MAXMONEY, MINMONEY }
+        public enum TargetCondition { MAXHEALTH, MINHEALTH/*, MAXMONEY, MINMONEY */}
 
         // Los distintos heroes
         public static string[] Heroes = new string[7] { "Paladin", "Paladina", "Barbaro", "Barbara", "Arquero", "Arquera", "IA_1" };
