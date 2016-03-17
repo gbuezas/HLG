@@ -278,11 +278,15 @@ namespace HLG.Abstracts.Beings
             // Hace que el jugador no salga de la pantalla reacomodandolo dentro de la misma.
             // Tomamos como pantalla el rectangulo que genera la camara para acomodar al jugador y limitamos de acuerdo a estas medidas.
             // El FrameEscalado es para acomodar al personaje de acuerdo a la nueva escala adquirida dependiendo de la pantalla fisica donde se ejecuta el juego.
-            Rectangle FrameEscalado = GetPositionRec();
-
-            positionX = MathHelper.Clamp(position.X, LimitesPantalla.Left + FrameEscalado.Width / 2, LimitesPantalla.Width - FrameEscalado.Width / 2);
-            positionY = MathHelper.Clamp(position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
-
+            // Hago este if porque al principio apenas empieza esta todo en 0 y no deja poner posiciones randoms
+            if (LimitesPantalla.Right != 0)
+            {
+                Rectangle FrameEscalado = GetPositionRec();
+                // No usar LimitesPantalla.Right porque rompe el trabado de la pantalla con los personajes principales y deja que uno ararstre al resto
+                // Para el LimitesPantalla.Left da igual porque tiene que ser 0, creo que siempre es 0 ajjaja
+                positionX = MathHelper.Clamp(position.X, LimitesPantalla.Left + FrameEscalado.Width / 2, LimitesPantalla.Width - FrameEscalado.Width / 2);
+                positionY = MathHelper.Clamp(position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
+            }
             // No es necesario mas acomodar la fila ya que todos vienen con fila 0
             // Solo se acomoda la cantidad de frames por animacion y que animacion va en cada pieza segun la accion ejecutandose.
             #region ANIMACION POR PIEZA
@@ -436,6 +440,11 @@ namespace HLG.Abstracts.Beings
         #endregion
 
         #region PROPIOS
+
+        public Paladin()
+        {
+            machine = false;
+        }
 
         /// <summary>
         /// Establece el tiempo de frame en ejecucion

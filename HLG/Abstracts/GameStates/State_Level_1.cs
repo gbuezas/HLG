@@ -104,6 +104,8 @@ namespace HLG.Abstracts.GameStates
 
             // Hacer un foreach para todos los personajes que quedan en camara, 
             // solo los controlados por humanos, la maquina no, asi pueden salir y no me desconcha toda la camara y el zoom
+            // Aca controlamos donde van a aparecer inicialmente todos los jugadores
+
             Camara.ViewTargets.Clear();
             foreach (Being Jugador in Global.players)
             {

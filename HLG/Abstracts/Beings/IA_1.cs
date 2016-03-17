@@ -2,6 +2,7 @@
 using HLG.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace HLG.Abstracts.Beings
 {
@@ -44,8 +45,8 @@ namespace HLG.Abstracts.Beings
         protected int FrameHeight = 300;
 
         // Colores de las piezas por default
-        private Color[] defaultColors = new Color[Global.PiecesIA_1.Length];
-        
+        private Color[] defaultColors = new Color[Global.PiecesIA_1.Length]; 
+
         #endregion
 
         #region JUGABILIDAD
@@ -102,7 +103,7 @@ namespace HLG.Abstracts.Beings
         #endregion
 
         #region ABSTRACTAS
-
+        
         /// <summary>
         /// Inicializar al jugador
         /// </summary>
@@ -118,7 +119,7 @@ namespace HLG.Abstracts.Beings
             oldAction = currentAction;
             FrameTime = 50;
             health -= 70;
-            hitrangeX = 2;
+            hitrangeX = 50;
             hitrangeY = 2;
 
             // Establezco las banderas de dañados
@@ -348,6 +349,14 @@ namespace HLG.Abstracts.Beings
         #region PROPIOS
 
         /// <summary>
+        /// Constructor de la clase, antes de llamar al Initialize
+        /// </summary>
+        public IA_1()
+        {
+            machine = true;
+        }
+
+        /// <summary>
         /// Establece el tiempo de frame en ejecucion
         /// </summary>
         /// <param name="Tiempo">El tiempo que va a durar el frame en pantalla de las distintas animaciones del personaje</param>
@@ -393,50 +402,78 @@ namespace HLG.Abstracts.Beings
                 // Tambien se toma el lugar donde la IA va a detenerse y el punto que va a buscar para atacar a cierto personaja.
                 // Para obtener el lugar antes mencionado usamos la variable de HitRange asi se posiciona optimamente para su ataque.
                 // El HitRangeX tiene que ser mayor para que no hostigue tanto al blanco, sino se pega mucho a el
-                if (target.GetPositionVec().X <= position.X - hitrangeX)
+                if (GetPositionRec().Center.X < target.GetPositionRec().Center.X)
                 {
                     // Izquierda
-                    positionX -= PlayerSpeed;
-                    direction = Global.Mirada.LEFT;
-                    currentAction = Global.Actions.WALK;
-                }
-                else if (target.GetPositionVec().X >= position.X + hitrangeX)
-                {
-                    // Derecha
-                    positionX += PlayerSpeed;
+                    if (GetPositionRec().Center.X > target.GetPositionRec().Center.X - hitrangeX)
+                    {
+                        positionX -= PlayerSpeed;
+                    }
+                    else
+                    {
+                        positionX += PlayerSpeed;
+                    }
+
                     direction = Global.Mirada.RIGHT;
                     currentAction = Global.Actions.WALK;
                 }
+                else if (GetPositionRec().Center.X > target.GetPositionRec().Center.X)
+                {
+                    // Derecha
+                    if (GetPositionRec().Center.X < target.GetPositionRec().Center.X + hitrangeX)
+                    {
+                        positionX += PlayerSpeed;
+                    }
+                    else
+                    {
+                        positionX -= PlayerSpeed;
+                    }
 
-                if (target.GetPositionVec().Y <= position.Y - hitrangeY)
+                    direction = Global.Mirada.LEFT;
+                    currentAction = Global.Actions.WALK;
+                }
+                
+                if (target.GetPositionRec().Center.Y < GetPositionRec().Center.Y - hitrangeY)
                 {
                     // Arriba
                     positionY -= PlayerSpeed;
                     currentAction = Global.Actions.WALK;
                 }
-                else if (target.GetPositionVec().Y >= position.Y + hitrangeY)
+                else if (target.GetPositionRec().Center.Y > GetPositionRec().Center.Y + hitrangeY)
                 {
                     // Abajo
                     positionY += PlayerSpeed;
                     currentAction = Global.Actions.WALK;
                 }
 
-                #endregion
-
-                #region GOLPEAR
-
-                // Obtengo las posiciones del blanco y nuestra
-                Rectangle temp = GetPositionRec();
-                Rectangle temp2 = target.GetPositionRec();
-
-                // Si el blanco esta dentro del rango de golpe se lo ataca
-                if (CollisionVerifier(temp, temp2))
+                /// Perfeccionarlo, hay que eliminar un pequeno flickering que hace por als velocidades,
+                /// me parece que con un rango mas grande en vez del == se puede solucionar
+                if (GetPositionRec().Center.X == target.GetPositionRec().Center.X + hitrangeX ||
+                    GetPositionRec().Center.X == target.GetPositionRec().Center.X - hitrangeX)
                 {
-                    // El rango depende de como estan almacenados en las variables Global, la primer variable es incluyente y la segunda excluyente.
-                    currentAction = (Global.Actions)Global.randomly.Next(2, 5);
+                    currentAction = Global.Actions.STAND;
                 }
 
                 #endregion
+
+                //#region GOLPEAR
+
+                //// Obtengo las posiciones del blanco y nuestra
+                //Rectangle temp = GetPositionRec();
+                //Rectangle temp2 = target.GetPositionRec();
+
+                //// Si el blanco esta dentro del rango de golpe se lo ataca
+                //if (CollisionVerifier(temp, temp2) &&
+                //    (   
+                //    GetPositionRec().Center.X == target.GetPositionRec().Center.X - hitrangeX || 
+                //    GetPositionRec().Center.X == target.GetPositionRec().Center.X + hitrangeX
+                //    ))
+                //{
+                //    // El rango depende de como estan almacenados en las variables Global, la primer variable es incluyente y la segunda excluyente.
+                //    currentAction = (Global.Actions)Global.randomly.Next(2, 5);
+                //}
+
+                //#endregion
             }
             else
             {
@@ -555,7 +592,8 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         private void GetCondition()
         {
-            TargetCond = (Global.TargetCondition)Global.randomly.Next(0, 4);
+            /// Me muevo en el rango de la cantidad de condiciones que existen en generales
+            TargetCond = (Global.TargetCondition)Global.randomly.Next(0, Enum.GetNames(typeof(Global.TargetCondition)).Length);
         }
 
         /// <summary>
@@ -565,46 +603,51 @@ namespace HLG.Abstracts.Beings
         /// <returns></returns>
         private Being GetTarget(Global.TargetCondition Condition)
         {
+            /// Si estan todos muertos van por default al jugador 0, no es necesario que devuelva null. El cambio de target se hace solo al
+            /// recalcular si la vida del target actual es igual o menor a 0
             switch (Condition)
             {
-
+                /// MAX HEALTH: No mata a nadie pero lastima siempre al mas fuerte, un equilibrador.
+                #region MAX HEALTH
                 case Global.TargetCondition.MAXHEALTH:
                     {
-                        int vida = 0;
-                        // GAB - Tiene que buscar un target nuevo o quedarse quieto cuando mata al que era su target
-                        // Si le pongo -1 hace el efecto de querer cambiar de target pero si dejo -1 tira out of index
+                        int healthTemp = 0;
                         int playerMaxHealth = 0;
 
                         for (int i = 0; i < Global.playersQuant; i++)
                         {
-                            if (Global.players[i].health > vida && Global.players[i].health > 0)
+                            if (Global.players[i].health >= healthTemp && Global.players[i].health > 0)
                             {
-                                vida = Global.players[i].health;
+                                healthTemp = Global.players[i].health;
                                 playerMaxHealth = i;
                             }
                         }
 
                         return Global.players[playerMaxHealth];
                     }
+                #endregion
 
+                /// MIN HEALTH: Es un finisher, va a tratar de matar a los mas débiles.
+                #region MIN HEALTH
                 case Global.TargetCondition.MINHEALTH:
                     {
-                        int vida = 1000;
+                        int healthTemp = 5000;
                         int playerMinHealth = 0;
 
                         for (int i = 0; i < Global.playersQuant; i++)
                         {
-                            if (Global.players[i].health < vida && Global.players[i].health > 0)
+                            if (Global.players[i].health <= healthTemp && Global.players[i].health > 0)
                             {
-                                vida = Global.players[i].health;
+                                healthTemp = Global.players[i].health;
                                 playerMinHealth = i;
                             }
                         }
-
+                        
                         return Global.players[playerMinHealth];
                     }
+                #endregion
 
-                case Global.TargetCondition.MAXMONEY:
+                /*case Global.TargetCondition.MAXMONEY:
                     {
                         return Global.players[2];
                     }
@@ -612,14 +655,11 @@ namespace HLG.Abstracts.Beings
                 case Global.TargetCondition.MINMONEY:
                     {
                         return Global.players[3];
-                    }
+                    }*/
 
-                default: break;
+                default: return Global.players[0];
 
             }
-
-
-            return Global.players[0];
         }
                 
         #endregion

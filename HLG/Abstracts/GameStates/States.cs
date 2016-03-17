@@ -62,6 +62,7 @@ namespace HLG.Abstracts.GameStates
             {
                 foreach (Being Jugador in Global.players)
                 {
+                    // GAB - Fijarse si se estan dibujando los esqueletos fuera de la pantalla, aca o en la IA
                     if (Jugador.drawn == false && Jugador.GetPositionVec().Y == Coordenada)
                     {
                         Jugador.Draw(spriteBatch);
