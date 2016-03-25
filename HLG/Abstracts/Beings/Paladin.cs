@@ -564,11 +564,9 @@ namespace HLG.Abstracts.Beings
                         !injured[i] &&
                         GetCurrentFrame() == 5)
                     {
-                        Rectangle temp = GetPositionRec();
-                        Rectangle temp2 = Global.players[i].GetPositionRec();
-
+                        
                         // Si esta dentro del radio del golpe
-                        if (CollisionVerifier(temp, temp2))
+                        if (CollisionVerifier(Global.players[i].GetPositionRec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             Global.players[i].ColorAnimationChange(Color.Red);
