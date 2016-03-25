@@ -22,8 +22,8 @@ namespace HLG
 
         // Colores
         public static Color ColorGhost = new Color(255, 255, 255, 30);
-        public static Color ColorEnemy = Color.White;
-
+        public static Color[] SkeletonRandomColors = new Color[] { Color.AntiqueWhite, Color.Wheat, Color.WhiteSmoke, Color.SeaShell, Color.OldLace, Color.LightYellow, Color.Gainsboro, Color.Cornsilk };
+        
         // La clase de los estados del juego
         public static States CurrentState;
 
@@ -60,7 +60,7 @@ namespace HLG
         public enum EstadosJuego { INTRO, TITULO, SELECCION, MAPA, VS, AVANCE, PAUSA, GAMEOVER, FINAL }
 
         // Los distintos parametros de busqueda de objetivo de la IA
-        public enum TargetCondition { MAXHEALTH, MINHEALTH, MAXMONEY, MINMONEY }
+        public enum TargetCondition { MAXHEALTH, MINHEALTH/*, MAXMONEY, MINMONEY */}
 
         // Los distintos heroes
         public static string[] Heroes = new string[7] { "Paladin", "Paladina", "Barbaro", "Barbara", "Arquero", "Arquera", "IA_1" };
@@ -104,15 +104,7 @@ namespace HLG
         public static TimeSpan elapsedTime = TimeSpan.Zero;
         public static int frameRate = 0;
         public static int frameCounter = 0;
-
-        /// <summary>
-        /// Rango que admite el golpe sobre el eje X e Y
-        /// </summary>
-        public static int PaladinHitRangeY = 7;
-        public static int PaladinHitRangeX = 15;
-        public static int IA1HitRangeY = 2; // standar 5
-        public static int IA1HitRangeX = 2; // standar 5
-
+        
         /// <summary>
         /// Variable random
         /// </summary>

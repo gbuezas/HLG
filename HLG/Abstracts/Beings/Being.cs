@@ -25,6 +25,13 @@ namespace HLG.Abstracts.Beings
         private bool Machine = false;
 
         /// <summary>
+        /// Posicion del jugador relativa a la parte superior izquierda de la pantalla.
+        /// Esta posicion marca donde se encuentra el jugador en la pantalla y no en el mapa donde se esta moviendo,
+        /// y es a esta posicion a la que se le aplican los limites de la pantalla.  
+        /// </summary>
+        private Vector2 Position;
+
+        /// <summary>
         /// Para que lado esta mirando el personaje
         /// </summary>
         private Global.Mirada Direction;
@@ -68,6 +75,11 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         private bool Ghost_Mode = false;
 
+        /// <summary>
+        /// Alcance de golpe basico
+        /// </summary>
+        private int HitRangeX, HitRangeY;
+
         #endregion
 
         #endregion
@@ -90,6 +102,24 @@ namespace HLG.Abstracts.Beings
             set { Machine = value; }
         }
 
+        public Vector2 position
+        {
+            get { return Position; }
+            set { Position = value; }
+        }
+
+        public float positionX
+        {
+            get { return Position.X; }
+            set { Position.X = value; }
+        }
+
+        public float positionY
+        {
+            get { return Position.Y; }
+            set { Position.Y = value; }
+        }
+
         public Global.Mirada direction
         {
             get { return Direction; }
@@ -101,13 +131,7 @@ namespace HLG.Abstracts.Beings
             get { return Controls; }
             set { Controls = value; }
         }
-
-        protected bool[] injured
-        {
-            get { return Injured; }
-            set { Injured = value; }
-        }
-
+        
         internal Animation[] animations
         {
             get { return Animations; }
@@ -117,6 +141,12 @@ namespace HLG.Abstracts.Beings
         #endregion
 
         #region JUGABILIDAD
+
+        protected bool[] injured
+        {
+            get { return Injured; }
+            set { Injured = value; }
+        }
 
         public int injured_value
         {
@@ -134,6 +164,18 @@ namespace HLG.Abstracts.Beings
         {
             get { return Ghost_Mode; }
             set { Ghost_Mode = value; }
+        }
+
+        public int hitrangeX
+        {
+            get { return HitRangeX; }
+            set { HitRangeX = value; }
+        }
+
+        public int hitrangeY
+        {
+            get { return HitRangeY; }
+            set { HitRangeY = value; }
         }
 
         #endregion
@@ -180,6 +222,31 @@ namespace HLG.Abstracts.Beings
 
         // Limpio la lista interna de personajes que dañe, este metodo se usa al terminar una animacion que daña.
         public abstract void ResetInjured();
+
+        #endregion
+
+        #region PROPIAS
+
+        /// <summary>
+        /// Chequea las colisiones
+        /// </summary>
+        /// <param name="atacante">Rectangulo del atacante</param>
+        /// <param name="victima">Rectangulo de la victima</param>
+        /// <returns>Si colisionan o no</returns>
+        public bool CollisionVerifier(Rectangle atacante, Rectangle victima)
+        {
+            return (atacante.X + atacante.Width >= victima.Center.X - HitRangeX &&
+                    atacante.X <= victima.X &&
+                    atacante.Y >= victima.Y - HitRangeY &&
+                    atacante.Y <= victima.Y + HitRangeY &&
+                    direction == Global.Mirada.RIGHT)
+                    ||
+                   (atacante.X <= victima.Center.X + HitRangeX &&
+                    atacante.X + atacante.Width >= victima.X + victima.Width &&
+                    atacante.Y >= victima.Y - HitRangeY &&
+                    atacante.Y <= victima.Y + HitRangeY &&
+                    direction == Global.Mirada.LEFT);
+        }
 
         #endregion
 

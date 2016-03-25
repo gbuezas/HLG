@@ -37,11 +37,23 @@ namespace HLG
             // Establezco la resolucion maxima adecuada para el dispositivo
             // Supuestamente con esta resolucion autoescala a menores
             // Hay que probarlo en algun lado
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+
+            // Seteo manual de resolucion
+            graphics.PreferredBackBufferWidth = 1200;
+            graphics.PreferredBackBufferHeight = 675;
+
+            // Obtengo lista de modos soportados por el adaptador gráfico actual de la pc
+            //DisplayModeCollection SupportModes;
+            //SupportModes = GraphicsAdapter.DefaultAdapter.SupportedDisplayModes;
+
+            // Seteo la resolucion grafica que esta actualmente en la pc y hago pantalla completa
+            //graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            //graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            //graphics.ToggleFullScreen();
 
             // No estoy seguro de si esto me da antialiasing o ya con lo que puse cuando dibujo alcanza
-            graphics.PreferMultiSampling = true;
+            //graphics.PreferMultiSampling = true;
+
             graphics.ApplyChanges();
 
             Content.RootDirectory = "Content";
@@ -55,16 +67,15 @@ namespace HLG
         /// </summary>
         protected override void Initialize()
         {
-            // Agrego los personajes a la lista asi se pueden utilizar mas tarde
+            // Agrego los personajes a la lista asi se pueden utilizar mas tarde, no importa la clase en esta instancia
             for (int i = 0; i < Global.playersQuant; i++)
             {
                 Global.players.Add(new Paladin());
             }
 
-            // Agrego los enemigos a la lista
+            // Agrego los enemigos a la lista, no importa la clase en esta instancia
             for (int i = 0; i < Global.enemiesQuant; i++)
             {
-                //Global.players.Add(new IA_1((Global.TargetCondition)azar.Next(0, 4)));
                 Global.players.Add(new IA_1());
             }
 
@@ -215,18 +226,19 @@ namespace HLG
             Global.CheckStatusVar = Content.Load<SpriteFont>("Fuente_Prueba");
             Global.CheckStatusVar_2 = Content.Load<SpriteFont>("Fuente_Prueba_2");
 
-            // Asigno posiciones iniciales de los personajes, tanto Being como IA
-            int ejeX = 0;
-            int ejeY = 0;
+            // Asigno posiciones iniciales de los personajes, se chequea antes del Initialize
             foreach (Being Jugador in Global.players)
             {
-
-
-                Jugador.Initialize(new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X + ejeX,
-                                                GraphicsDevice.Viewport.TitleSafeArea.Y + GraphicsDevice.Viewport.TitleSafeArea.Height / 2 + ejeY));
-
-                ejeX = ejeX + 50;
-                ejeY = ejeY + 50;
+                if (Jugador.machine)
+                {
+                    Jugador.Initialize(new Vector2(Global.randomly.Next(-100, Global.ViewportWidth + 100),
+                                                   Global.randomly.Next(Global.ViewportHeight / 2 + 50, Global.ViewportHeight + 100)));
+                }
+                else
+                {
+                    Jugador.Initialize(new Vector2(Global.randomly.Next(200, Global.ViewportWidth - 200),
+                                                   Global.randomly.Next(Global.ViewportHeight / 2 + 50, Global.ViewportHeight - 50)));
+                }
             }
         }
 
@@ -251,7 +263,7 @@ namespace HLG
             GiveLife();
             EnableColRec();
 
-            // Acomoda los estados correspondientes del jeugo
+            // Acomoda los estados correspondientes del juego, las distintas pantallas
             StateSwitch();
 
             Global.CurrentState.Update(gameTime);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/gbuez/Desktop/HLG/HLG/Content/Seleccion/fondo.jpg</SourceFile>
-  <SourceTime>2016-01-08T00:13:48.8423709-03:00</SourceTime>
-  <DestFile>C:/Users/gbuez/Desktop/HLG/HLG/Content/bin/Windows/Seleccion/fondo.xnb</DestFile>
-  <DestTime>2016-01-08T00:16:44.1073613-03:00</DestTime>
+  <SourceFile>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/fondo.jpg</SourceFile>
+  <SourceTime>2015-03-19T09:47:27.5273901-03:00</SourceTime>
+  <DestFile>C:/Users/buezas/Desktop/HLG/HLG/Content/bin/Windows/Seleccion/fondo.xnb</DestFile>
+  <DestTime>2016-01-14T15:05:20.2523386-03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T14:14:44-03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
