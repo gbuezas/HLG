@@ -4,131 +4,131 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Titulo/TitleScreen.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Fuente_Prueba.spritefont</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/ArqueraPic.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/ArqueroPic.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/BarbaraPic.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/BarbaroPic.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/PaladinaPic.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/PaladinPic.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/PlayerSelect.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/SelectMachine.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/fondo.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Fuente_Prueba_2.spritefont</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud10_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud11_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud1_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud2_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud3_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud4_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud5_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud6_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud7_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud8_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_cloud9_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_mountain1_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_mountain2_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_soil1_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_wood1_normal_1.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_breastplate_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_breastplate_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntletback_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntletback_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntlettop_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntlettop_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greaveback_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greaveback_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greavetop_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greavetop_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_helm_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_helm_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_shield_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_shield_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_sword_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_sword_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_tasset_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_tasset_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_breastplate_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_breastplate_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_gauntletback_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_gauntletback_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_gauntlettop_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_gauntlettop_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_greaveback_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_greaveback_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_greavetop_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_greavetop_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_helm_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_helm_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_shield_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_shield_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_sword_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_sword_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_tasset_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_tasset_walk_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_breastplate_hit2_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_breastplate_hit3_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntletback_hit2_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntletback_hit3_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntlettop_hit2_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntlettop_hit3_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greaveback_hit2_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greaveback_hit3_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greavetop_hit2_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greavetop_hit3_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_helm_hit2_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_helm_hit3_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_shield_hit2_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_shield_hit3_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_sword_hit2_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_sword_hit3_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_tasset_hit2_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_tasset_hit3_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_breastplate_hit1_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntletback_hit1_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_gauntlettop_hit1_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greaveback_hit1_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_greavetop_hit1_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_helm_hit1_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_shield_hit1_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_sword_hit1_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_tasset_hit1_12.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/Seleccion/puntoblanco.jpg</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_breastplate_hit1_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_breastplate_hit2_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_breastplate_hit3_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_breastplate_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_breastplate_walk_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntletback_hit1_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntletback_hit2_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntletback_hit3_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntletback_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntletback_walk_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntlettop_hit1_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntlettop_hit2_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntlettop_hit3_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntlettop_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntlettop_walk_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greaveback_hit1_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greaveback_hit2_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greaveback_hit3_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greaveback_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greaveback_walk_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greavetop_hit1_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greavetop_hit2_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greavetop_hit3_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greavetop_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_greavetop_walk_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_helm_hit1_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_helm_hit2_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_helm_hit3_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_helm_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_helm_walk_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_tasset_hit1_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_tasset_hit2_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_tasset_hit3_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_tasset_stand_10.png</File>
-    <File>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_tasset_walk_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Titulo/TitleScreen.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Fuente_Prueba.spritefont</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/ArqueraPic.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/ArqueroPic.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/BarbaraPic.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/BarbaroPic.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/PaladinaPic.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/PaladinPic.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/PlayerSelect.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/SelectMachine.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/fondo.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Fuente_Prueba_2.spritefont</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud10_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud11_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud1_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud2_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud3_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud4_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud5_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud6_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud7_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud8_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_cloud9_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_mountain1_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_mountain2_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_soil1_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_wood1_normal_1.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_breastplate_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_breastplate_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntletback_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntletback_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntlettop_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntlettop_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greaveback_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greaveback_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greavetop_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greavetop_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_helm_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_helm_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_shield_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_shield_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_sword_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_sword_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_tasset_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_tasset_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_breastplate_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_breastplate_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_gauntletback_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_gauntletback_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_gauntlettop_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_gauntlettop_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_greaveback_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_greaveback_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_greavetop_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_greavetop_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_helm_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_helm_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_shield_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_shield_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_sword_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_sword_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_tasset_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set2_tasset_walk_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_breastplate_hit2_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_breastplate_hit3_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntletback_hit2_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntletback_hit3_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntlettop_hit2_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntlettop_hit3_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greaveback_hit2_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greaveback_hit3_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greavetop_hit2_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greavetop_hit3_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_helm_hit2_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_helm_hit3_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_shield_hit2_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_shield_hit3_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_sword_hit2_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_sword_hit3_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_tasset_hit2_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_tasset_hit3_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_breastplate_hit1_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntletback_hit1_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_gauntlettop_hit1_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greaveback_hit1_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_greavetop_hit1_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_helm_hit1_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_shield_hit1_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_sword_hit1_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Paladin/set1_tasset_hit1_12.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Seleccion/puntoblanco.jpg</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_breastplate_hit1_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_breastplate_hit2_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_breastplate_hit3_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_breastplate_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_breastplate_walk_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntletback_hit1_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntletback_hit2_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntletback_hit3_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntletback_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntletback_walk_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntlettop_hit1_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntlettop_hit2_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntlettop_hit3_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntlettop_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntlettop_walk_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greaveback_hit1_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greaveback_hit2_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greaveback_hit3_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greaveback_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greaveback_walk_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greavetop_hit1_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greavetop_hit2_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greavetop_hit3_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greavetop_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_greavetop_walk_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_helm_hit1_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_helm_hit2_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_helm_hit3_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_helm_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_helm_walk_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_tasset_hit1_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_tasset_hit2_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_tasset_hit3_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_tasset_stand_10.png</File>
+    <File>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_tasset_walk_10.png</File>
   </SourceFiles>
 </SourceFileCollection>

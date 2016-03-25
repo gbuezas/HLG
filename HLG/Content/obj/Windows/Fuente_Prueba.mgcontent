@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/buezas/Desktop/HLG/HLG/Content/Fuente_Prueba.spritefont</SourceFile>
+  <SourceFile>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Fuente_Prueba.spritefont</SourceFile>
   <SourceTime>2016-01-12T11:32:46.1232498-03:00</SourceTime>
-  <DestFile>C:/Users/buezas/Desktop/HLG/HLG/Content/bin/Windows/Fuente_Prueba.xnb</DestFile>
-  <DestTime>2016-01-28T13:01:40.844785-03:00</DestTime>
+  <DestFile>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/bin/Windows/Fuente_Prueba.xnb</DestFile>
+  <DestTime>2016-03-23T10:56:28.2242202-03:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2015-04-29T14:14:44-03:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

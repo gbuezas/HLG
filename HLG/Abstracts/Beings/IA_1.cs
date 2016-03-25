@@ -6,6 +6,18 @@ using System;
 
 namespace HLG.Abstracts.Beings
 {
+    /// <summary>
+    /// Primer IA:
+    /// ----------
+    /// 
+    /// - Los sprites son esqueletos
+    /// - No esta implementado para que obtenga su comportamiento de archivos externos, tipo XML
+    /// - El movimiento de busqueda de targets es correcto pero tiene un pequeño flickering cuando 
+    ///   llega a destino (posible solución utilizar float en vez de int para todos los calculos de movimientos)
+    /// - Hacerla menos agresiva, ataca muy rapido
+    /// - No esta recibiendo daño
+    /// 
+    /// </summary>
     class IA_1 : Being
     {
         #region VARIABLES
@@ -45,7 +57,10 @@ namespace HLG.Abstracts.Beings
         protected int FrameHeight = 300;
 
         // Colores de las piezas por default
-        private Color[] defaultColors = new Color[Global.PiecesIA_1.Length]; 
+        private Color[] defaultColors = new Color[Global.PiecesIA_1.Length];
+
+        // Si puede golpear o no
+        //bool CanHit = false;
 
         #endregion
 
@@ -398,11 +413,17 @@ namespace HLG.Abstracts.Beings
                 // Si no esta en movimiento por default queda parado
                 currentAction = Global.Actions.STAND;
 
-                // Dirigirse al blanco, dependiendo de donde esta ele eje del blanco vamos a sumarle la velocidad hacia el.
-                // Tambien se toma el lugar donde la IA va a detenerse y el punto que va a buscar para atacar a cierto personaja.
-                // Para obtener el lugar antes mencionado usamos la variable de HitRange asi se posiciona optimamente para su ataque.
-                // El HitRangeX tiene que ser mayor para que no hostigue tanto al blanco, sino se pega mucho a el
-                if (GetPositionRec().Center.X < target.GetPositionRec().Center.X)
+                /// Dirigirse al blanco, dependiendo de donde esta ele eje del blanco vamos a sumarle la velocidad hacia el.
+                /// Tambien se toma el lugar donde la IA va a detenerse y el punto que va a buscar para atacar a cierto personaja.
+                /// Para obtener el lugar antes mencionado usamos la variable de HitRange asi se posiciona optimamente para su ataque.
+                /// El HitRangeX tiene que ser mayor para que no hostigue tanto al blanco, sino se pega mucho a el
+                /// Uno de los 2 tenia que tener el igual (=) asi no habia un punto en el que se queda quieto el esqueleto, en este caso
+                /// es el primer check, el segundo ya no lo tiene
+                /// 
+                /// * Algo esta pasando con los iguales que hace que se pare fuera del rango, esto se dio con los cambios que hice del rango
+                /// parece que se paran lejos del alcance y pegan pero no los toca (claro que esto es cuando quieren golpear)
+
+                if (GetPositionRec().Center.X <= target.GetPositionRec().Center.X)
                 {
                     // Izquierda
                     if (GetPositionRec().Center.X > target.GetPositionRec().Center.X - hitrangeX)
@@ -446,34 +467,27 @@ namespace HLG.Abstracts.Beings
                     currentAction = Global.Actions.WALK;
                 }
 
-                /// Perfeccionarlo, hay que eliminar un pequeno flickering que hace por als velocidades,
+                /// Perfeccionarlo, hay que eliminar un pequeno flickering que hace por las velocidades,
                 /// me parece que con un rango mas grande en vez del == se puede solucionar
-                if (GetPositionRec().Center.X == target.GetPositionRec().Center.X + hitrangeX ||
-                    GetPositionRec().Center.X == target.GetPositionRec().Center.X - hitrangeX)
-                {
-                    currentAction = Global.Actions.STAND;
-                }
+                //if (GetPositionRec().Center.X == target.GetPositionRec().Center.X + hitrangeX ||
+                //    GetPositionRec().Center.X == target.GetPositionRec().Center.X - hitrangeX)
+                //{
+                //    currentAction = Global.Actions.STAND;
+                //    PlayerSpeed = 0;
+                //}
 
                 #endregion
 
-                //#region GOLPEAR
+                #region GOLPEAR
 
-                //// Obtengo las posiciones del blanco y nuestra
-                //Rectangle temp = GetPositionRec();
-                //Rectangle temp2 = target.GetPositionRec();
+                // Si el blanco esta dentro del rango de golpe se lo ataca
+                if (CollisionVerifier(target.GetPositionRec()))
+                {
+                    // El rango depende de como estan almacenados en las variables Global, la primer variable es incluyente y la segunda excluyente.
+                    currentAction = (Global.Actions)Global.randomly.Next(2, 5);
+                }
 
-                //// Si el blanco esta dentro del rango de golpe se lo ataca
-                //if (CollisionVerifier(temp, temp2) &&
-                //    (   
-                //    GetPositionRec().Center.X == target.GetPositionRec().Center.X - hitrangeX || 
-                //    GetPositionRec().Center.X == target.GetPositionRec().Center.X + hitrangeX
-                //    ))
-                //{
-                //    // El rango depende de como estan almacenados en las variables Global, la primer variable es incluyente y la segunda excluyente.
-                //    currentAction = (Global.Actions)Global.randomly.Next(2, 5);
-                //}
-
-                //#endregion
+                #endregion
             }
             else
             {
@@ -516,7 +530,7 @@ namespace HLG.Abstracts.Beings
                     {
                         
                         // Si esta dentro del radio del golpe
-                        if (CollisionVerifier(GetPositionRec(), Global.players[i].GetPositionRec()))
+                        if (CollisionVerifier(Global.players[i].GetPositionRec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             Global.players[i].ColorAnimationChange(Color.Red);

@@ -78,7 +78,7 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// Alcance de golpe basico
         /// </summary>
-        private int HitRangeX, HitRangeY;
+        private float HitRangeX, HitRangeY;
 
         #endregion
 
@@ -166,13 +166,13 @@ namespace HLG.Abstracts.Beings
             set { Ghost_Mode = value; }
         }
 
-        public int hitrangeX
+        public float hitrangeX
         {
             get { return HitRangeX; }
             set { HitRangeX = value; }
         }
 
-        public int hitrangeY
+        public float hitrangeY
         {
             get { return HitRangeY; }
             set { HitRangeY = value; }
@@ -228,23 +228,27 @@ namespace HLG.Abstracts.Beings
         #region PROPIAS
 
         /// <summary>
-        /// Chequea las colisiones
+        /// Chequea las colisiones.
+        /// Si el objeto esta del lado izquierdo chequea del rango izquierdo hasta el centro de la victima y
+        /// si esta del lado derecho chequea del rango derecho hasta el centro de la victima.
+        /// El rango lo toma del mismo objeto, depende de cada atacante.
         /// </summary>
-        /// <param name="atacante">Rectangulo del atacante</param>
         /// <param name="victima">Rectangulo de la victima</param>
-        /// <returns>Si colisionan o no</returns>
-        public bool CollisionVerifier(Rectangle atacante, Rectangle victima)
+        /// <returns>Si la victima colisiona o no con el objeto</returns>
+        public bool CollisionVerifier(Rectangle victima)
         {
-            return (atacante.X + atacante.Width >= victima.Center.X - HitRangeX &&
-                    atacante.X <= victima.X &&
-                    atacante.Y >= victima.Y - HitRangeY &&
-                    atacante.Y <= victima.Y + HitRangeY &&
+            Rectangle atacante = GetPositionRec();
+
+            return (atacante.Center.X >= (victima.Center.X - HitRangeX) &&
+                    atacante.Center.X <= victima.Center.X &&
+                    atacante.Center.Y >= (victima.Center.Y - HitRangeY) &&
+                    atacante.Center.Y <= (victima.Center.Y + HitRangeY) &&
                     direction == Global.Mirada.RIGHT)
                     ||
-                   (atacante.X <= victima.Center.X + HitRangeX &&
-                    atacante.X + atacante.Width >= victima.X + victima.Width &&
-                    atacante.Y >= victima.Y - HitRangeY &&
-                    atacante.Y <= victima.Y + HitRangeY &&
+                   (atacante.Center.X <= (victima.Center.X + HitRangeX) &&
+                    atacante.Center.X >= victima.Center.X &&
+                    atacante.Center.Y >= (victima.Center.Y - HitRangeY) &&
+                    atacante.Center.Y <= (victima.Center.Y + HitRangeY) &&
                     direction == Global.Mirada.LEFT);
         }
 

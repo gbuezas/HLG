@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/buezas/Desktop/HLG/HLG/Content/IA_1/set1_gauntletback_hit1_10.png</SourceFile>
+  <SourceFile>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/IA_1/set1_gauntletback_hit1_10.png</SourceFile>
   <SourceTime>2015-09-17T15:23:20.5088392-03:00</SourceTime>
-  <DestFile>C:/Users/buezas/Desktop/HLG/HLG/Content/bin/Windows/IA_1/set1_gauntletback_hit1_10.xnb</DestFile>
-  <DestTime>2016-01-14T15:05:26.5853386-03:00</DestTime>
+  <DestFile>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/bin/Windows/IA_1/set1_gauntletback_hit1_10.xnb</DestFile>
+  <DestTime>2016-03-23T10:56:39.8632202-03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T14:14:44-03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

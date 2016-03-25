@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/buezas/Desktop/HLG/HLG/Content/Avance/stage1_soil1_normal_1.png</SourceFile>
+  <SourceFile>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/Avance/stage1_soil1_normal_1.png</SourceFile>
   <SourceTime>2015-03-22T12:18:32.2755221-03:00</SourceTime>
-  <DestFile>C:/Users/buezas/Desktop/HLG/HLG/Content/bin/Windows/Avance/stage1_soil1_normal_1.xnb</DestFile>
-  <DestTime>2016-01-14T15:05:21.2013386-03:00</DestTime>
+  <DestFile>C:/Users/buezas/Desktop/OneDrive - Hewlett Packard Enterprise/HLG/HLG/Content/bin/Windows/Avance/stage1_soil1_normal_1.xnb</DestFile>
+  <DestTime>2016-03-23T10:56:30.6306202-03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T14:14:44-03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

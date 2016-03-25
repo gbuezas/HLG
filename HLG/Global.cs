@@ -41,7 +41,7 @@ namespace HLG
         public static int FrameHeight = 240;
         public static int FrameWidth = 320;
         // Mas grande es el numero mas chico es el personaje
-        public static int Scalar = 6;
+        public static float Scalar = 6;
 
         // Crea lista de Being y enemigos
         public static List<Being> players = new List<Being>();
