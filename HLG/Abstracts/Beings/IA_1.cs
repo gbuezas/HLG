@@ -14,8 +14,8 @@ namespace HLG.Abstracts.Beings
     /// - No esta implementado para que obtenga su comportamiento de archivos externos, tipo XML
     /// - El movimiento de busqueda de targets es correcto pero tiene un pequeño flickering cuando 
     ///   llega a destino (posible solución utilizar float en vez de int para todos los calculos de movimientos)
+    ///   Esto ocurre si sacamos la habilidad de golpear solamente, ya que se la pasa buscando el lugar donde estar.
     /// - Hacerla menos agresiva, ataca muy rapido
-    /// - No esta recibiendo daño
     /// 
     /// </summary>
     class IA_1 : Being
@@ -517,14 +517,14 @@ namespace HLG.Abstracts.Beings
             if ((currentAction == Global.Actions.HIT1 ||
                     currentAction == Global.Actions.HIT2 ||
                     currentAction == Global.Actions.HIT3) &&
-                    !ghost_mode)
+                    !ghost_mode &&
+                    GetCurrentFrame() == 5)
             {
 
                 for (int i = 0; i < Global.totalQuant; i++)
                 {
                     // Ver sumamry
                     if (!Global.players[i].machine &&
-                        GetCurrentFrame() == 5 &&
                         !injured[i] &&
                         !Global.players[i].ghost_mode)
                     {
@@ -573,7 +573,7 @@ namespace HLG.Abstracts.Beings
             {
                 // Lo manejo con el ghost a la IA tb asi no tengo que cambiar todo lo que esta hecho con los Being.
                 // De esta manera es mas facil porque las corroboraciones del ghost_mode siguen corriendo, 
-                // nada mas que no se dibujan las animaciones de la IA porque estan desactivadas
+                // entonces si la IA entra en modo ghost (muere) se desactiva su animacion
                 ActivatePlayer(false);
             }
         }

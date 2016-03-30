@@ -128,7 +128,7 @@ namespace HLG.Abstracts.Beings
             oldAction = currentAction;
             FrameTime = 50;
             health += 500;
-            hitrangeX = 15;
+            hitrangeX = 95;
             hitrangeY = 7;
 
             // Establezco las banderas de dañados
@@ -553,16 +553,16 @@ namespace HLG.Abstracts.Beings
             if ((currentAction == Global.Actions.HIT1 ||
                     currentAction == Global.Actions.HIT2 ||
                     currentAction == Global.Actions.HIT3) &&
-                    !ghost_mode)
+                    !ghost_mode &&
+                    GetCurrentFrame() == 5)
             {
 
                 for (int i = 0; i < Global.totalQuant; i++)
                 {
                     // Ver summary
-                    if (Global.players[i] != this &&
-                        !Global.players[i].ghost_mode &&
-                        !injured[i] &&
-                        GetCurrentFrame() == 5)
+                    if (!injured[i] &&
+                        Global.players[i] != this &&
+                        !Global.players[i].ghost_mode)
                     {
                         
                         // Si esta dentro del radio del golpe

@@ -54,8 +54,8 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// Cuando daño a un personaje lo marco en esta lista.
         /// La resta se hace inmediatamente en vuelta logica, no de dibujado, del damnificado.
-        /// Para evitar que se vuelva a generar daño en un plazo corto se utilizara esta variable que tendra en cuenta a quien se daño y sera interna de cada atacante, 
-        /// la misma se reseteara cuando acabe la animacion del golpe correspondiente.
+        /// Para evitar que se vuelva a generar daño en un plazo corto se utilizara esta variable que tendra en cuenta a quien se daño y 
+        /// sera interna de cada atacante, la misma se reseteara cuando acabe la animacion del golpe correspondiente.
         /// Siempre tiene que englobar al total de personajes que estan en el juego (tanto jugables como IA).
         /// </summary>
         private bool[] Injured = new bool[Global.totalQuant];
