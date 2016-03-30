@@ -191,6 +191,20 @@ namespace HLG.Abstracts.GameStates
 
             #endregion
 
+            #region INTERFACE
+
+            spriteBatch.Begin();
+
+            int UI1X = int.Parse((Camara.parallax.X + spriteBatch.GraphicsDevice.Viewport.Width / 6).ToString());
+            int UI1Y = int.Parse((Camara.parallax.Y.ToString()));
+
+            Rectangle sourceRect2 = new Rectangle(UI1X, UI1Y, 100, 150);
+
+            spriteBatch.Draw(Global.PaladinLifebar, sourceRect2, Color.White);
+            spriteBatch.End();
+
+            #endregion
+
         }
 
         public override void UpdateState(GameTime gameTime)

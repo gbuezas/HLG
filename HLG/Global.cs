@@ -100,6 +100,9 @@ namespace HLG
         public static Texture2D Punto_Blanco;
         public static Boolean EnableRectangles = false;
 
+        // GAB
+        public static Texture2D PaladinLifebar;
+
         // Para llevar la cuenta de los frames por segundo
         public static TimeSpan elapsedTime = TimeSpan.Zero;
         public static int frameRate = 0;

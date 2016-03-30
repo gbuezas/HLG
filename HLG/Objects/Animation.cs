@@ -172,9 +172,9 @@ namespace HLG.Objects
 
             // Seteo el rectangulo donde va a ir con las dimensiones ajustadas.
             destinationRect = new Rectangle((int)position.X - Width / 2,
-            (int)position.Y - Height / 2,
-            Width,
-            Height);
+                                            (int)position.Y - Height / 2,
+                                            Width,
+                                            Height);
 
         }
 

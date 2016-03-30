@@ -451,3 +451,4 @@ C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\bin\Window
 C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\obj\x86\Debug\HLG.csprojResolveAssemblyReference.cache
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Seleccion\PaladinLifebar.xnb
