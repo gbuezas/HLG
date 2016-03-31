@@ -107,7 +107,7 @@ namespace HLG.Abstracts.Beings
             get { return Pieces_Anim; }
             set { Pieces_Anim = value; }
         }
-
+        
         #endregion
 
         #region ABSTRACTAS
@@ -128,7 +128,7 @@ namespace HLG.Abstracts.Beings
             oldAction = currentAction;
             FrameTime = 50;
             health += 500;
-            hitrangeX = 15;
+            hitrangeX = 95;
             hitrangeY = 7;
 
             // Establezco las banderas de dañados
@@ -196,7 +196,7 @@ namespace HLG.Abstracts.Beings
             controls[(int)Global.Controls.RIGHT] = Keys.D;
             controls[(int)Global.Controls.BUTTON_1] = Keys.T;
             controls[(int)Global.Controls.BUTTON_2] = Keys.Y;
-
+            
             // Ralentizar los cuadros por segundo del personaje
             // TiempoFrameEjecucion(1);
         }
@@ -227,7 +227,7 @@ namespace HLG.Abstracts.Beings
             {
                 piezaAnimada.Draw(spriteBatch, direction, piezaAnimada.color);
             }
-
+            
             // Si no separo este proceso de dibujo desconcha las posiciones de las capas del jugador
             // +++ Me parece que esto se soluciono cuando cambie el parametro de dibujo en el draw general +++
             spriteBatch.DrawString(Global.CheckStatusVar_2,
@@ -553,16 +553,16 @@ namespace HLG.Abstracts.Beings
             if ((currentAction == Global.Actions.HIT1 ||
                     currentAction == Global.Actions.HIT2 ||
                     currentAction == Global.Actions.HIT3) &&
-                    !ghost_mode)
+                    !ghost_mode &&
+                    GetCurrentFrame() == 5)
             {
 
                 for (int i = 0; i < Global.totalQuant; i++)
                 {
                     // Ver summary
-                    if (Global.players[i] != this &&
-                        !Global.players[i].ghost_mode &&
-                        !injured[i] &&
-                        GetCurrentFrame() == 5)
+                    if (!injured[i] &&
+                        Global.players[i] != this &&
+                        !Global.players[i].ghost_mode)
                     {
                         
                         // Si esta dentro del radio del golpe

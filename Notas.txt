@@ -1,0 +1,8 @@
+***** GOLPES
+Acordarse que el hit range para que sea "real" tiene que tener un numero alrededor de los 50 o mayor. 
+Ya que si es muy chico, por ejemplo 17 como tenia el Paladin casi no se nota y parece que no esta funcionando.
+*****
+
+***** DATOS EN PANTALLA
+Acordarse de poner estos datos en modo IF DEBUG asi solo salen cuando DEBUGUEO
+*****
