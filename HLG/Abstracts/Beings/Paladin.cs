@@ -127,7 +127,7 @@ namespace HLG.Abstracts.Beings
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
             FrameTime = 50;
-            health += 500;
+            current_health += 500;
             hitrangeX = 95;
             hitrangeY = 7;
 
@@ -592,13 +592,13 @@ namespace HLG.Abstracts.Beings
                     ColorAnimationChange(Color.White);
 
                 // Hago la resta necesaria a la health
-                health -= injured_value;
+                current_health -= injured_value;
 
                 // Vuelvo el contador de daño a 0 y quito que este dañado
                 injured_value = 0;
 
                 // Si pierde toda su HP se vuelve fantasma
-                if (health <= 0)
+                if (current_health <= 0)
                 {
                     ghost_mode = true;
                 }
@@ -607,14 +607,14 @@ namespace HLG.Abstracts.Beings
             {
                 ColorAnimationChange(Global.ColorGhost);
 
-                if (health > 0)
+                if (current_health > 0)
                 {
                     ghost_mode = false;
                 }
             }
 
             // MENSAJES: Veo la health de los personajes
-            mensaje9 = health;
+            mensaje9 = current_health;
         }
         
         /// <summary>

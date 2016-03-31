@@ -66,10 +66,11 @@ namespace HLG.Abstracts.Beings
         private int Injured_Value = 0;
 
         /// <summary>
-        /// La vitalidad del personaje
+        /// La vitalidad maxima y actual del personaje
         /// </summary>
-        private int Health = 100;
-
+        private int MaxHealth = 500;
+        private int CurrentHealth = 100;
+        
         /// <summary>
         /// Si pierde toda su HP pasa a modo fantasma
         /// </summary>
@@ -154,10 +155,16 @@ namespace HLG.Abstracts.Beings
             set { Injured_Value = value; }
         }
 
-        public int health
+        public int max_health
         {
-            get { return Health; }
-            set { Health = value; }
+            get { return MaxHealth; }
+            set { MaxHealth = value; }
+        }
+
+        public int current_health
+        {
+            get { return CurrentHealth; }
+            set { CurrentHealth = value; }
         }
 
         public bool ghost_mode
