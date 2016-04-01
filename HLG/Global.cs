@@ -101,7 +101,8 @@ namespace HLG
         public static Boolean EnableRectangles = false;
 
         // GAB
-        public static Texture2D PaladinLifebar;
+        public static Texture2D PaladinUI;
+        public static Texture2D BarbarianUI;
 
         // Para llevar la cuenta de los frames por segundo
         public static TimeSpan elapsedTime = TimeSpan.Zero;

@@ -16,7 +16,7 @@ namespace HLG.Abstracts.Beings
     ///   llega a destino (posible solución utilizar float en vez de int para todos los calculos de movimientos)
     ///   Esto ocurre si sacamos la habilidad de golpear solamente, ya que se la pasa buscando el lugar donde estar.
     /// - Hacerla menos agresiva, ataca muy rapido
-    /// 
+    /// - No estan pegando los 8 al mismo tiempo, sino que hace de a 5 como mucho
     /// </summary>
     class IA_1 : Being
     {
@@ -133,7 +133,7 @@ namespace HLG.Abstracts.Beings
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
             FrameTime = 50;
-            health -= 70;
+            current_health -= 70;
             hitrangeX = 50;
             hitrangeY = 2;
 
@@ -558,13 +558,13 @@ namespace HLG.Abstracts.Beings
                 }
 
                 // Hago la resta necesaria a la health
-                health -= injured_value;
+                current_health -= injured_value;
 
                 // Vuelvo el contador de daño a 0 y quito que este dañado
                 injured_value = 0;
 
                 // Si pierde toda su HP se vuelve fantasma
-                if (health <= 0)
+                if (current_health <= 0)
                 {
                     ghost_mode = true;
                 }
@@ -630,9 +630,9 @@ namespace HLG.Abstracts.Beings
 
                         for (int i = 0; i < Global.playersQuant; i++)
                         {
-                            if (Global.players[i].health >= healthTemp && Global.players[i].health > 0)
+                            if (Global.players[i].current_health >= healthTemp && Global.players[i].current_health > 0)
                             {
-                                healthTemp = Global.players[i].health;
+                                healthTemp = Global.players[i].current_health;
                                 playerMaxHealth = i;
                             }
                         }
@@ -650,9 +650,9 @@ namespace HLG.Abstracts.Beings
 
                         for (int i = 0; i < Global.playersQuant; i++)
                         {
-                            if (Global.players[i].health <= healthTemp && Global.players[i].health > 0)
+                            if (Global.players[i].current_health <= healthTemp && Global.players[i].current_health > 0)
                             {
-                                healthTemp = Global.players[i].health;
+                                healthTemp = Global.players[i].current_health;
                                 playerMinHealth = i;
                             }
                         }
