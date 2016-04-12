@@ -54,8 +54,8 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// Cuando daño a un personaje lo marco en esta lista.
         /// La resta se hace inmediatamente en vuelta logica, no de dibujado, del damnificado.
-        /// Para evitar que se vuelva a generar daño en un plazo corto se utilizara esta variable que tendra en cuenta a quien se daño y sera interna de cada atacante, 
-        /// la misma se reseteara cuando acabe la animacion del golpe correspondiente.
+        /// Para evitar que se vuelva a generar daño en un plazo corto se utilizara esta variable que tendra en cuenta a quien se daño y 
+        /// sera interna de cada atacante, la misma se reseteara cuando acabe la animacion del golpe correspondiente.
         /// Siempre tiene que englobar al total de personajes que estan en el juego (tanto jugables como IA).
         /// </summary>
         private bool[] Injured = new bool[Global.totalQuant];
@@ -66,10 +66,11 @@ namespace HLG.Abstracts.Beings
         private int Injured_Value = 0;
 
         /// <summary>
-        /// La vitalidad del personaje
+        /// La vitalidad maxima y actual del personaje
         /// </summary>
-        private int Health = 100;
-
+        private int MaxHealth = 500;
+        private int CurrentHealth = 100;
+        
         /// <summary>
         /// Si pierde toda su HP pasa a modo fantasma
         /// </summary>
@@ -78,7 +79,7 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// Alcance de golpe basico
         /// </summary>
-        private int HitRangeX, HitRangeY;
+        private float HitRangeX, HitRangeY;
 
         #endregion
 
@@ -154,10 +155,16 @@ namespace HLG.Abstracts.Beings
             set { Injured_Value = value; }
         }
 
-        public int health
+        public int max_health
         {
-            get { return Health; }
-            set { Health = value; }
+            get { return MaxHealth; }
+            set { MaxHealth = value; }
+        }
+
+        public int current_health
+        {
+            get { return CurrentHealth; }
+            set { CurrentHealth = value; }
         }
 
         public bool ghost_mode
@@ -166,13 +173,13 @@ namespace HLG.Abstracts.Beings
             set { Ghost_Mode = value; }
         }
 
-        public int hitrangeX
+        public float hitrangeX
         {
             get { return HitRangeX; }
             set { HitRangeX = value; }
         }
 
-        public int hitrangeY
+        public float hitrangeY
         {
             get { return HitRangeY; }
             set { HitRangeY = value; }
@@ -228,23 +235,27 @@ namespace HLG.Abstracts.Beings
         #region PROPIAS
 
         /// <summary>
-        /// Chequea las colisiones
+        /// Chequea las colisiones.
+        /// Si el objeto esta del lado izquierdo chequea del rango izquierdo hasta el centro de la victima y
+        /// si esta del lado derecho chequea del rango derecho hasta el centro de la victima.
+        /// El rango lo toma del mismo objeto, depende de cada atacante.
         /// </summary>
-        /// <param name="atacante">Rectangulo del atacante</param>
         /// <param name="victima">Rectangulo de la victima</param>
-        /// <returns>Si colisionan o no</returns>
-        public bool CollisionVerifier(Rectangle atacante, Rectangle victima)
+        /// <returns>Si la victima colisiona o no con el objeto</returns>
+        public bool CollisionVerifier(Rectangle victima)
         {
-            return (atacante.X + atacante.Width >= victima.Center.X - HitRangeX &&
-                    atacante.X <= victima.X &&
-                    atacante.Y >= victima.Y - HitRangeY &&
-                    atacante.Y <= victima.Y + HitRangeY &&
+            Rectangle atacante = GetPositionRec();
+
+            return (atacante.Center.X >= (victima.Center.X - HitRangeX) &&
+                    atacante.Center.X <= victima.Center.X &&
+                    atacante.Center.Y >= (victima.Center.Y - HitRangeY) &&
+                    atacante.Center.Y <= (victima.Center.Y + HitRangeY) &&
                     direction == Global.Mirada.RIGHT)
                     ||
-                   (atacante.X <= victima.Center.X + HitRangeX &&
-                    atacante.X + atacante.Width >= victima.X + victima.Width &&
-                    atacante.Y >= victima.Y - HitRangeY &&
-                    atacante.Y <= victima.Y + HitRangeY &&
+                   (atacante.Center.X <= (victima.Center.X + HitRangeX) &&
+                    atacante.Center.X >= victima.Center.X &&
+                    atacante.Center.Y >= (victima.Center.Y - HitRangeY) &&
+                    atacante.Center.Y <= (victima.Center.Y + HitRangeY) &&
                     direction == Global.Mirada.LEFT);
         }
 

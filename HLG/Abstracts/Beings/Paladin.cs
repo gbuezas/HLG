@@ -107,7 +107,7 @@ namespace HLG.Abstracts.Beings
             get { return Pieces_Anim; }
             set { Pieces_Anim = value; }
         }
-
+        
         #endregion
 
         #region ABSTRACTAS
@@ -127,8 +127,8 @@ namespace HLG.Abstracts.Beings
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
             FrameTime = 50;
-            health += 500;
-            hitrangeX = 15;
+            current_health += 500;
+            hitrangeX = 95;
             hitrangeY = 7;
 
             // Establezco las banderas de dañados
@@ -196,7 +196,7 @@ namespace HLG.Abstracts.Beings
             controls[(int)Global.Controls.RIGHT] = Keys.D;
             controls[(int)Global.Controls.BUTTON_1] = Keys.T;
             controls[(int)Global.Controls.BUTTON_2] = Keys.Y;
-
+            
             // Ralentizar los cuadros por segundo del personaje
             // TiempoFrameEjecucion(1);
         }
@@ -227,7 +227,7 @@ namespace HLG.Abstracts.Beings
             {
                 piezaAnimada.Draw(spriteBatch, direction, piezaAnimada.color);
             }
-
+            
             // Si no separo este proceso de dibujo desconcha las posiciones de las capas del jugador
             // +++ Me parece que esto se soluciono cuando cambie el parametro de dibujo en el draw general +++
             spriteBatch.DrawString(Global.CheckStatusVar_2,
@@ -553,22 +553,20 @@ namespace HLG.Abstracts.Beings
             if ((currentAction == Global.Actions.HIT1 ||
                     currentAction == Global.Actions.HIT2 ||
                     currentAction == Global.Actions.HIT3) &&
-                    !ghost_mode)
+                    !ghost_mode &&
+                    GetCurrentFrame() == 5)
             {
 
                 for (int i = 0; i < Global.totalQuant; i++)
                 {
                     // Ver summary
-                    if (Global.players[i] != this &&
-                        !Global.players[i].ghost_mode &&
-                        !injured[i] &&
-                        GetCurrentFrame() == 5)
+                    if (!injured[i] &&
+                        Global.players[i] != this &&
+                        !Global.players[i].ghost_mode)
                     {
-                        Rectangle temp = GetPositionRec();
-                        Rectangle temp2 = Global.players[i].GetPositionRec();
-
+                        
                         // Si esta dentro del radio del golpe
-                        if (CollisionVerifier(temp, temp2))
+                        if (CollisionVerifier(Global.players[i].GetPositionRec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             Global.players[i].ColorAnimationChange(Color.Red);
@@ -594,13 +592,13 @@ namespace HLG.Abstracts.Beings
                     ColorAnimationChange(Color.White);
 
                 // Hago la resta necesaria a la health
-                health -= injured_value;
+                current_health -= injured_value;
 
                 // Vuelvo el contador de daño a 0 y quito que este dañado
                 injured_value = 0;
 
                 // Si pierde toda su HP se vuelve fantasma
-                if (health <= 0)
+                if (current_health <= 0)
                 {
                     ghost_mode = true;
                 }
@@ -609,14 +607,14 @@ namespace HLG.Abstracts.Beings
             {
                 ColorAnimationChange(Global.ColorGhost);
 
-                if (health > 0)
+                if (current_health > 0)
                 {
                     ghost_mode = false;
                 }
             }
 
             // MENSAJES: Veo la health de los personajes
-            mensaje9 = health;
+            mensaje9 = current_health;
         }
         
         /// <summary>

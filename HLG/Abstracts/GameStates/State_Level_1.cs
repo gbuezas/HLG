@@ -35,7 +35,7 @@ namespace HLG.Abstracts.GameStates
 
         // Creo la variable de la camara en estatica
         static Camera Camara;
-
+        
         #endregion
 
         #region METODOS
@@ -186,6 +186,39 @@ namespace HLG.Abstracts.GameStates
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp, null, null, null, Camara.ViewMatrix);
 
             Reordenar_Personajes(spriteBatch);
+
+            spriteBatch.End();
+
+            #endregion
+
+            #region INTERFACE
+
+            spriteBatch.Begin();
+
+            /// Obtengo el eje x a partir del cual van a desplegarse los 4 UI de cada personaje, este eje depende estrictamente de la camara
+            int UIx = int.Parse((Camara.parallax.X + spriteBatch.GraphicsDevice.Viewport.Width / 5).ToString());
+
+            int UIy = 0;
+            int UIancho = 100;
+            int UIalto = 150;
+
+            Vector2[] mensaje = new Vector2[4];
+            
+            for (int i = 0; i < Global.playersQuant; i++)
+            {
+                
+                Rectangle UI_Rect = new Rectangle(UIx*(i+1) - UIancho/2, UIy, UIancho, UIalto);
+
+                mensaje[i].X = UI_Rect.X + UIancho/4;
+                mensaje[i].Y = UI_Rect.Y + UIalto/2 + 10;
+
+                spriteBatch.Draw(Global.PaladinUI, UI_Rect, Color.White);
+
+                spriteBatch.DrawString(Global.CheckStatusVar_2, 
+                                       Global.players[i].current_health.ToString() + " / " + Global.players[i].max_health.ToString(), 
+                                       mensaje[i],
+                                       Color.White);
+            }
 
             spriteBatch.End();
 

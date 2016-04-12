@@ -222,6 +222,9 @@ namespace HLG
             Global.Pantalla_Seleccion = Content.Load<Texture2D>("Seleccion/fondo");
             //Variables_Generales.Selector = Content.Load<Texture2D>("Seleccion/Selector");
 
+            // GAB
+            Global.PaladinUI = Content.Load<Texture2D>("Seleccion/PaladinLifebar");
+
             // Cargo fuentes
             Global.CheckStatusVar = Content.Load<SpriteFont>("Fuente_Prueba");
             Global.CheckStatusVar_2 = Content.Load<SpriteFont>("Fuente_Prueba_2");
@@ -321,7 +324,7 @@ namespace HLG
             {
                 foreach (Being jugador in Global.players)
                 {
-                    jugador.health += 1;
+                    jugador.current_health += 1;
                 }
             }
         }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/gbuez/Desktop/HLG/HLG/Content/Paladin/set1_helm_hit2_12.png</SourceFile>
-  <SourceTime>2016-01-08T00:13:48.800009-03:00</SourceTime>
-  <DestFile>C:/Users/gbuez/Desktop/HLG/HLG/Content/bin/Paladin/set1_helm_hit2_12.xnb</DestFile>
-  <DestTime>2016-01-08T00:16:22.1278524-03:00</DestTime>
+  <SourceFile>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_helm_hit2_12.png</SourceFile>
+  <SourceTime>2015-03-25T17:43:25.7790546-03:00</SourceTime>
+  <DestFile>C:/Users/buezas/Desktop/HLG/HLG/Content/bin/Paladin/set1_helm_hit2_12.xnb</DestFile>
+  <DestTime>2016-03-30T16:56:30.5238773-03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T14:14:44-03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

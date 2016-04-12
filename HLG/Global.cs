@@ -41,7 +41,7 @@ namespace HLG
         public static int FrameHeight = 240;
         public static int FrameWidth = 320;
         // Mas grande es el numero mas chico es el personaje
-        public static int Scalar = 6;
+        public static float Scalar = 6;
 
         // Crea lista de Being y enemigos
         public static List<Being> players = new List<Being>();
@@ -99,6 +99,10 @@ namespace HLG
         public static Rectangle Rectangle_Collision_2;
         public static Texture2D Punto_Blanco;
         public static Boolean EnableRectangles = false;
+
+        // GAB
+        public static Texture2D PaladinUI;
+        public static Texture2D BarbarianUI;
 
         // Para llevar la cuenta de los frames por segundo
         public static TimeSpan elapsedTime = TimeSpan.Zero;

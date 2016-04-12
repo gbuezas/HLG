@@ -1389,3 +1389,14 @@
 /processorParam:TextureFormat=Color
 /build:IA_1/set1_tasset_walk_10.png
 
+#begin Seleccion/PaladinLifebar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Seleccion/PaladinLifebar.png
+
