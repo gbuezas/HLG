@@ -127,7 +127,12 @@ namespace HLG.Abstracts.Beings
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
             FrameTime = 50;
-            current_health += 500;
+
+            // La maxima vida que puede tener el personaje
+            max_health = 200;
+            current_health = max_health;
+
+            // Alcance del ataque
             hitrangeX = 95;
             hitrangeY = 7;
 
@@ -211,6 +216,12 @@ namespace HLG.Abstracts.Beings
             {
                 piezaAnimada.position = position;
                 piezaAnimada.Update(gameTime);
+
+                // Fijarse donde va bien este chequeo, en este lugar parece funcionar bien - GAB
+                if (current_health > max_health)
+                {
+                    current_health = max_health;
+                }
 
                 // Para los stats de cada personaje (borrar mas tarde) GAB
                 mensaje = position;

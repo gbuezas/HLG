@@ -197,8 +197,10 @@ namespace HLG.Abstracts.GameStates
 
             /// Obtengo el eje x a partir del cual van a desplegarse los 4 UI de cada personaje, este eje depende estrictamente de la camara
             int UIx = int.Parse((Camara.parallax.X + spriteBatch.GraphicsDevice.Viewport.Width / 5).ToString());
-
+            // Como usa el espacio transparente del JPG lo ponemos en 0
             int UIy = 0;
+
+            // Debemos adaptar a la pantalla como los personajes - GAB
             int UIancho = 100;
             int UIalto = 150;
 
