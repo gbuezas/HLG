@@ -20,6 +20,9 @@ namespace HLG
         public static float mensaje4;
         public static float mensaje5;
 
+        // Camara - Se setea en el Load() de cada nivel
+        public static Camera Camara;
+
         // Colores
         public static Color ColorGhost = new Color(255, 255, 255, 30);
         public static Color[] SkeletonRandomColors = new Color[] { Color.AntiqueWhite, Color.Wheat, Color.WhiteSmoke, Color.SeaShell, Color.OldLace, Color.LightYellow, Color.Gainsboro, Color.Cornsilk };
@@ -113,5 +116,30 @@ namespace HLG
         /// Variable random
         /// </summary>
         public static Random randomly = new Random();
+        
+        /// <summary>
+        /// Dibuja lineas rectas
+        /// </summary>
+        /// <param name="A">Punto A</param>
+        /// <param name="B">Punto B</param>
+        /// <param name="tex">Textura utilizada para dibujar las lineas</param>
+        /// <param name="col">Color de las lineas</param>
+        /// <param name="spriteBatch">Proceso de dibujado</param>
+        /// <param name="thickness">Grosor de la linea</param>
+        public static void DrawStraightLine(Vector2 A, Vector2 B, Texture2D tex, Color col, SpriteBatch spriteBatch, int thickness)
+        {
+            Rectangle rec;
+            if (A.X < B.X)
+            {
+                rec = new Rectangle((int)A.X, (int)A.Y, (int)(B.X - A.X), thickness);
+            }
+            else
+            {
+                rec = new Rectangle((int)A.X, (int)A.Y, thickness, (int)(B.Y - A.Y));
+            }
+
+            spriteBatch.Draw(tex, rec, col);
+        }
+
     }
 }

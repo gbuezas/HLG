@@ -213,7 +213,7 @@ namespace HLG.Abstracts.Beings
         /// <param name="LimitesPantalla">Los limites que puso la camara con respecto a la pantalla que vemos.</param>
         /// <param name="AltoNivel">La altura total del escenario.</param>
         /// <param name="AnchoNivel">El ancho total del escenario.</param>
-        public override void UpdatePlayer(GameTime gameTime, Rectangle LimitesPantalla, int AltoNivel, int AnchoNivel)
+        public override void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel)
         {
 
             Update(gameTime);
