@@ -127,7 +127,12 @@ namespace HLG.Abstracts.Beings
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
             FrameTime = 50;
-            current_health += 500;
+
+            // La maxima vida que puede tener el personaje
+            max_health = 200;
+            current_health = max_health;
+
+            // Alcance del ataque
             hitrangeX = 95;
             hitrangeY = 7;
 
@@ -212,6 +217,12 @@ namespace HLG.Abstracts.Beings
                 piezaAnimada.position = position;
                 piezaAnimada.Update(gameTime);
 
+                // Fijarse donde va bien este chequeo, en este lugar parece funcionar bien - GAB
+                if (current_health > max_health)
+                {
+                    current_health = max_health;
+                }
+
                 // Para los stats de cada personaje (borrar mas tarde) GAB
                 mensaje = position;
             }
@@ -258,7 +269,7 @@ namespace HLG.Abstracts.Beings
         /// <param name="LimitesPantalla">Los limites que puso la camara con respecto a la pantalla que vemos.</param>
         /// <param name="AltoNivel">La altura total del escenario.</param>
         /// <param name="AnchoNivel">El ancho total del escenario.</param>
-        public override void UpdatePlayer(GameTime gameTime, Rectangle LimitesPantalla, int AltoNivel, int AnchoNivel)
+        public override void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel)
         {
 
             Update(gameTime);
@@ -279,12 +290,12 @@ namespace HLG.Abstracts.Beings
             // Tomamos como pantalla el rectangulo que genera la camara para acomodar al jugador y limitamos de acuerdo a estas medidas.
             // El FrameEscalado es para acomodar al personaje de acuerdo a la nueva escala adquirida dependiendo de la pantalla fisica donde se ejecuta el juego.
             // Hago este if porque al principio apenas empieza esta todo en 0 y no deja poner posiciones randoms
-            if (LimitesPantalla.Right != 0)
+            if (Global.Camara.LimitesPantalla.Right != 0)
             {
                 Rectangle FrameEscalado = GetPositionRec();
                 // No usar LimitesPantalla.Right porque rompe el trabado de la pantalla con los personajes principales y deja que uno ararstre al resto
                 // Para el LimitesPantalla.Left da igual porque tiene que ser 0, creo que siempre es 0 ajjaja
-                positionX = MathHelper.Clamp(position.X, LimitesPantalla.Left + FrameEscalado.Width / 2, LimitesPantalla.Width - FrameEscalado.Width / 2);
+                positionX = MathHelper.Clamp(position.X, Global.Camara.LimitesPantalla.Left + FrameEscalado.Width / 2, Global.Camara.LimitesPantalla.Width - FrameEscalado.Width / 2);
                 positionY = MathHelper.Clamp(position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
             }
             // No es necesario mas acomodar la fila ya que todos vienen con fila 0
@@ -628,36 +639,12 @@ namespace HLG.Abstracts.Beings
             int border = 1;
             int borderWidth = rec.Width + (border * 2);
             int borderHeight = rec.Height + (border);
-            DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X + rec.Width, rec.Y), tex, Color.White, spriteBatch, border);
-            DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
-            DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
-            DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X + rec.Width, rec.Y), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
         }
 
-        /// <summary>
-        /// Dibuja lineas rectas
-        /// </summary>
-        /// <param name="A">Medida A</param>
-        /// <param name="B">Medida B</param>
-        /// <param name="tex">Textura utilizada para dibujar las lineas</param>
-        /// <param name="col">Color de las lineas</param>
-        /// <param name="spriteBatch">Proceso de dibujado</param>
-        /// <param name="thickness">Grosor de la linea</param>
-        public static void DrawStraightLine(Vector2 A, Vector2 B, Texture2D tex, Color col, SpriteBatch spriteBatch, int thickness)
-        {
-            Rectangle rec;
-            if (A.X < B.X)
-            {
-                rec = new Rectangle((int)A.X, (int)A.Y, (int)(B.X - A.X), thickness);
-            }
-            else
-            {
-                rec = new Rectangle((int)A.X, (int)A.Y, thickness, (int)(B.Y - A.Y));
-            }
-
-            spriteBatch.Draw(tex, rec, col);
-        }
-        
         #endregion
 
         #endregion
