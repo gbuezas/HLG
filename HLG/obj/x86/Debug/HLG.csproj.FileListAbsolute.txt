@@ -300,6 +300,7 @@ C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\bin\Window
 C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\obj\x86\Debug\HLG.csprojResolveAssemblyReference.cache
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D11.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud10_normal_1.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud11_normal_1.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud1_normal_1.xnb
@@ -382,6 +383,7 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_helm_hit2
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_helm_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_helm_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_helm_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_lifebar_live_2.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_shield_hit1_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_shield_hit2_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_shield_hit3_12.xnb
@@ -397,22 +399,50 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_tasset_hi
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_tasset_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_tasset_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set1_tasset_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_breastplate_hit1_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_breastplate_hit2_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_breastplate_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_breastplate_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_breastplate_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntletback_hit1_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntletback_hit2_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntletback_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntletback_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntletback_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntlettop_hit1_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntlettop_hit2_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntlettop_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntlettop_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_gauntlettop_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greaveback_hit1_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greaveback_hit2_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greaveback_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greaveback_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greaveback_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greavetop_hit1_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greavetop_hit2_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greavetop_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greavetop_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_greavetop_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_helm_hit1_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_helm_hit2_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_helm_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_helm_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_helm_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_lifebar_live_2.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_shield_hit1_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_shield_hit2_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_shield_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_shield_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_shield_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_sword_hit1_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_sword_hit2_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_sword_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_sword_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_sword_walk_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_tasset_hit1_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_tasset_hit2_12.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_tasset_hit3_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_tasset_stand_10.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Paladin\set2_tasset_walk_12.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Seleccion\ArqueraPic.xnb
@@ -427,6 +457,10 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Seleccion\PlayerSelect
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Seleccion\puntoblanco.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Seleccion\SelectMachine.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Titulo\TitleScreen.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_lifebar_paladin_2.png
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_lifebar_paladin_2.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_barbaro_2.png
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_barbaro_2.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\HLG.exe
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\HLG.pdb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\MonoGame.Framework.dll
@@ -443,7 +477,6 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\MonoGame.Framework.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.MediaFoundation.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.XAudio2.xml
-C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D11.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.DXGI.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct2D1.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.XInput.xml

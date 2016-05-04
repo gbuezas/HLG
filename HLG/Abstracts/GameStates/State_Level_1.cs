@@ -115,6 +115,9 @@ namespace HLG.Abstracts.GameStates
 
             Global.mensaje1 = Global.ViewportHeight;
             Global.mensaje2 = Global.ViewportWidth;
+
+            CalculateHealthBar();
+
         }
 
         /// <summary>
@@ -190,31 +193,32 @@ namespace HLG.Abstracts.GameStates
 
             #region INTERFACE
 
+            // Se usa el dibujado por default
             spriteBatch.Begin();
 
-            /// Obtengo el eje x a partir del cual van a desplegarse los 4 UI de cada personaje, este eje depende estrictamente de la camara
-            int UIx = int.Parse((Global.Camara.parallax.X + spriteBatch.GraphicsDevice.Viewport.Width / 5).ToString());
-            // Como usa el espacio transparente del JPG lo ponemos en 0
-            int UIy = 0;
+            //DrawHealthBar(spriteBatch);
+            foreach (Animation UI in Global.UIAnimation)
+            {
+                UI.Draw(spriteBatch, Global.Mirada.RIGHT);
+            }
 
-            // Debemos adaptar a la pantalla como los personajes - GAB
-            // Se adapta solo al usar el objeto animacion para crear cualquier cosa animada (GENIAL)
+            #region Barra de vida
+
+            Vector2[] mensaje = new Vector2[Global.playersQuant];
             int UIancho = 100;
             int UIalto = 150;
+            int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
 
-            Vector2[] mensaje = new Vector2[4];
-            
             for (int i = 0; i < Global.playersQuant; i++)
             {
-                
-                Rectangle UI_Rect = new Rectangle(UIx*(i+1) - UIancho/2, UIy, UIancho, UIalto);
 
-                mensaje[i].X = UI_Rect.X + UIancho/4;
-                mensaje[i].Y = UI_Rect.Y + UIalto/2 + 10;
-                
-                // UI de vida - GAB
-                spriteBatch.Draw(Global.PaladinUI, UI_Rect, Color.White);
-                
+                #region loop
+
+                Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - UIancho / 2, 0, UIancho, UIalto);
+
+                mensaje[i].X = UI_Rect.X + UIancho / 4;
+                mensaje[i].Y = UI_Rect.Y + UIalto / 2 + 10;
+
                 // Barra de vida - GAB
                 // Los calculos del tamaño y el color de la barra estan hechos con regla de 3 simple
                 float max_bar_length = 49;
@@ -223,28 +227,79 @@ namespace HLG.Abstracts.GameStates
                 // Color
                 int new_color = (int)(actual_bar_length * 210 / 49);
                 Color bar_color = new Color(255 - new_color, new_color, 0);
-                
+
                 // Dibujar barra de vida
-                Global.DrawStraightLine(new Vector2(mensaje[i].X - 1, mensaje[i].Y + 2), 
-                                        new Vector2(mensaje[i].X + actual_bar_length, mensaje[i].Y), 
-                                        Global.Punto_Blanco, 
-                                        bar_color, 
-                                        spriteBatch, 
+                Global.DrawStraightLine(new Vector2(mensaje[i].X - 1, mensaje[i].Y + 2),
+                                        new Vector2(mensaje[i].X + actual_bar_length, mensaje[i].Y),
+                                        Global.Punto_Blanco,
+                                        bar_color,
+                                        spriteBatch,
                                         14);
-                
+
                 // Vida en numeros - GAB
                 spriteBatch.DrawString(Global.CheckStatusVar_2,
                                        Global.players[i].current_health.ToString() + " / " + Global.players[i].max_health.ToString(),
                                        mensaje[i],
                                        Color.White);
-
+                #endregion
 
             }
 
-            spriteBatch.End();
-
             #endregion
 
+            spriteBatch.End();
+            
+            #endregion
+
+        }
+
+        private static void CalculateHealthBar()
+        {
+            /// Obtengo el eje x a partir del cual van a desplegarse los 4 UI de cada personaje, este eje depende estrictamente de la camara
+            /// Como usa el espacio transparente del PNG al eje Y lo ponemos en 0
+            //int UIx = int.Parse((Global.Camara.parallax.X + spriteBatch.GraphicsDevice.Viewport.Width / 5).ToString());
+            int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
+
+            // Debemos adaptar a la pantalla como los personajes - GAB
+            // Se adapta solo al usar el objeto animacion para crear cualquier cosa animada (GENIAL)
+            int UIancho = 100;
+            int UIalto = 150;
+
+            //Vector2[] mensaje = new Vector2[Global.playersQuant];
+
+            for (int i = 0; i < Global.playersQuant; i++)
+            {
+
+                if (Global.players[i].animations[0].active)
+                {
+                    Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - UIancho / 2, 0, UIancho, UIalto);
+
+                    Vector2 UI_Vec = new Vector2();
+                    UI_Vec.X = UI_Rect.X;
+                    UI_Vec.Y = UI_Rect.Y;
+                    
+                    //mensaje[i].X = UI_Rect.X + UIancho / 4;
+                    //mensaje[i].Y = UI_Rect.Y + UIalto / 2 + 10;
+
+                    Global.UIAnimation[i] = new Animation();
+                    // Aca en texturas donde dice 0 endria que ir el identificador de que textura se tiene que cargar
+                    // Ya sea la UI del Paladin o la del Barbaro, etc
+                    Global.UIAnimation[i].LoadTexture(Global.UITextures[0], UI_Vec, UIancho, UIalto, int.Parse(Global.UITextures[0].frame), Color.White, true);
+
+                    //Global.UIAnimation[i].Draw(spriteBatch, Global.Mirada.RIGHT);
+
+                    // UI de vida - GAB
+                    //if (Global.players[i].animations[9].loadedTexture != null)
+                    //{
+                    //    spriteBatch.Draw(Global.players[i].animations[9].loadedTexture.textura, UI_Rect, Color.White);
+                    //}
+                    //else
+                    //{
+
+                    //}
+                    
+                }   
+            }
         }
 
         public override void UpdateState(GameTime gameTime)

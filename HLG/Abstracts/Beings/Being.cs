@@ -199,7 +199,7 @@ namespace HLG.Abstracts.Beings
 
         // Dibujar Jugador
         public abstract void Draw(SpriteBatch spriteBatch);
-
+        
         // Actualizar cosas del jugador - GAB retocar
         public abstract void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel);
 

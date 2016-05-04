@@ -34,8 +34,11 @@ namespace HLG.Abstracts.Beings
         /// 8.sword
         /// 9.gauntlettop
         /// </summary>
-        private Animation[] Pieces_Anim = new Animation[9];
-        
+        private Animation[] Pieces_Anim = new Animation[Global.PiecesPaladin.Length];
+
+        // GAB - borrar despues
+        List<Piece_Set> pieces_armor_recambio = new List<Piece_Set>();
+
         /// <summary>
         /// Ancho y alto de un cuadro del sprite
         /// </summary>
@@ -148,47 +151,7 @@ namespace HLG.Abstracts.Beings
                 Pieces_Anim[i] = new Animation();
                 Pieces_Anim[i].Initialize(Global.PiecesPaladin[i]);
             }
-
-            #region cambiar armadura (solo para probar, borrar mas tarde)
-            // Coloco un recambio de armadura, que en el juego orginal esto tiene que pasar al obtener armaduras nuevas
-            // por lo tanto se haria chequeando el inventario.
-            //Piece_Set recambio = new Piece_Set();
-            //recambio.Initialize("shield", "set1");
-            //pieces_armor_new.Add(recambio);
-
-            //recambio = new Piece_Set();
-            //recambio.Initialize("gauntletback", "set1");
-            //pieces_armor_new.Add(recambio);
-
-            //recambio = new Piece_Set();
-            //recambio.Initialize("greaveback", "set1");
-            //pieces_armor_new.Add(recambio);
-
-            //recambio = new Piece_Set();
-            //recambio.Initialize("helm", "set1");
-            //pieces_armor_new.Add(recambio);
-
-            //recambio = new Piece_Set();
-            //recambio.Initialize("breastplate", "set1");
-            //pieces_armor_new.Add(recambio);
-
-            //recambio = new Piece_Set();
-            //recambio.Initialize("tasset", "set1");
-            //pieces_armor_new.Add(recambio);
-
-            //recambio = new Piece_Set();
-            //recambio.Initialize("greavetop", "set1");
-            //pieces_armor_new.Add(recambio);
-
-            //recambio = new Piece_Set();
-            //recambio.Initialize("sword", "set1");
-            //pieces_armor_new.Add(recambio);
-
-            //recambio = new Piece_Set();
-            //recambio.Initialize("gauntlettop", "set1");
-            //pieces_armor_new.Add(recambio);
-            #endregion
-
+            
             // Piezas de la armadura al comenzar
             UpdateArmor(pieces_armor_new);
 
@@ -201,9 +164,50 @@ namespace HLG.Abstracts.Beings
             controls[(int)Global.Controls.RIGHT] = Keys.D;
             controls[(int)Global.Controls.BUTTON_1] = Keys.T;
             controls[(int)Global.Controls.BUTTON_2] = Keys.Y;
-            
+
             // Ralentizar los cuadros por segundo del personaje
             // TiempoFrameEjecucion(1);
+
+            // GAB - borrar despues
+            // esta mal armado por eso las posiciones son distintas a las globales
+            #region cambiar armadura (solo para probar, borrar mas tarde)
+            // shield, gauntletback, greaveback, breastplate, helm, tasset, greavetop, sword, gauntlettop, lifebar
+            // 0, 4, 7 ,9
+            // 1-8, 2-6, 3-5
+            // Coloco un recambio de armadura, que en el juego orginal esto tiene que pasar al obtener armaduras nuevas
+            // por lo tanto se haria chequeando el inventario.
+
+            Piece_Set recambio = new Piece_Set();
+            recambio.Initialize("shield", "set1");
+            pieces_armor_recambio.Add(recambio);
+            recambio = new Piece_Set();
+            recambio.Initialize("gauntletback", "set1");
+            pieces_armor_recambio.Add(recambio);
+            recambio = new Piece_Set();
+            recambio.Initialize("greaveback", "set1");
+            pieces_armor_recambio.Add(recambio);
+            recambio = new Piece_Set();
+            recambio.Initialize("breastplate", "set1");
+            pieces_armor_recambio.Add(recambio);
+            recambio = new Piece_Set();
+            recambio.Initialize("helm", "set1");
+            pieces_armor_recambio.Add(recambio);
+            recambio = new Piece_Set();
+            recambio.Initialize("tasset", "set1");
+            pieces_armor_recambio.Add(recambio);
+            recambio = new Piece_Set();
+            recambio.Initialize("greavetop", "set1");
+            pieces_armor_recambio.Add(recambio);
+            recambio = new Piece_Set();
+            recambio.Initialize("sword", "set1");
+            pieces_armor_recambio.Add(recambio);
+            recambio = new Piece_Set();
+            recambio.Initialize("gauntlettop", "set1");
+            pieces_armor_recambio.Add(recambio);
+            recambio = new Piece_Set();
+            recambio.Initialize("lifebar", "set1");
+            pieces_armor_recambio.Add(recambio);
+            #endregion
         }
 
         /// <summary>
@@ -212,6 +216,99 @@ namespace HLG.Abstracts.Beings
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+            #region CAMBIO_ARMADURA_MANUAL
+
+            // Para cambiar armadura, solo para probar cosas
+            // funciona pero cambia muy rapido al apretar
+            if ((Keyboard.GetState().IsKeyDown(Keys.D9)))
+            {
+                if (pieces_armor_recambio[9].set == "set1")
+                    pieces_armor_recambio[9].set = "set2";
+                else
+                    pieces_armor_recambio[9].set = "set1";
+
+                UpdateArmor(pieces_armor_recambio);
+            }
+            if ((Keyboard.GetState().IsKeyDown(Keys.D8)))
+            {
+                if (pieces_armor_recambio[7].set == "set1")
+                    pieces_armor_recambio[7].set = "set2";
+                else
+                    pieces_armor_recambio[7].set = "set1";
+                
+                UpdateArmor(pieces_armor_recambio);
+            }
+
+            if ((Keyboard.GetState().IsKeyDown(Keys.D7)))
+            {
+                if (pieces_armor_recambio[0].set == "set1")
+                    pieces_armor_recambio[0].set = "set2";
+                else
+                    pieces_armor_recambio[0].set = "set1";
+                
+                UpdateArmor(pieces_armor_recambio);
+            }
+
+            if ((Keyboard.GetState().IsKeyDown(Keys.D6)))
+            {
+                if (pieces_armor_recambio[3].set == "set1")
+                {
+                    pieces_armor_recambio[3].set = "set2";
+                    pieces_armor_recambio[5].set = "set2";
+                }
+                else
+                {
+                    pieces_armor_recambio[3].set = "set1";
+                    pieces_armor_recambio[5].set = "set1";
+                }
+
+                UpdateArmor(pieces_armor_recambio);
+            }
+
+            if ((Keyboard.GetState().IsKeyDown(Keys.D5)))
+            {
+                if (pieces_armor_recambio[2].set == "set1")
+                {
+                    pieces_armor_recambio[2].set = "set2";
+                    pieces_armor_recambio[6].set = "set2";
+                }
+                else
+                {
+                    pieces_armor_recambio[2].set = "set1";
+                    pieces_armor_recambio[6].set = "set1";
+                }
+
+                UpdateArmor(pieces_armor_recambio);
+            }
+
+            if ((Keyboard.GetState().IsKeyDown(Keys.D4)))
+            {
+                if (pieces_armor_recambio[1].set == "set1")
+                {
+                    pieces_armor_recambio[1].set = "set2";
+                    pieces_armor_recambio[8].set = "set2";
+                }
+                else
+                {
+                    pieces_armor_recambio[1].set = "set1";
+                    pieces_armor_recambio[8].set = "set1";
+                }
+
+                UpdateArmor(pieces_armor_recambio);
+            }
+
+            if ((Keyboard.GetState().IsKeyDown(Keys.D3)))
+            {
+                if (pieces_armor_recambio[4].set == "set1")
+                    pieces_armor_recambio[4].set = "set2";
+                else
+                    pieces_armor_recambio[4].set = "set1";
+                
+                UpdateArmor(pieces_armor_recambio);
+            }
+
+            #endregion
+
             foreach (Animation piezaAnimada in Pieces_Anim)
             {
                 piezaAnimada.position = position;
@@ -222,7 +319,7 @@ namespace HLG.Abstracts.Beings
                 {
                     current_health = max_health;
                 }
-
+                
                 // Para los stats de cada personaje (borrar mas tarde) GAB
                 mensaje = position;
             }
@@ -256,9 +353,9 @@ namespace HLG.Abstracts.Beings
             // rectangulos de colision para chequear
             if (Global.EnableRectangles)
             {
-                DrawRectangle(GetPositionRec(), Global.Punto_Blanco, spriteBatch);
-                DrawRectangle(Global.Rectangle_Collision, Global.Punto_Blanco, spriteBatch);
-                DrawRectangle(Global.Rectangle_Collision_2, Global.Punto_Blanco, spriteBatch);
+                Global.DrawRectangle(GetPositionRec(), Global.Punto_Blanco, spriteBatch);
+                Global.DrawRectangle(Global.Rectangle_Collision, Global.Punto_Blanco, spriteBatch);
+                Global.DrawRectangle(Global.Rectangle_Collision_2, Global.Punto_Blanco, spriteBatch);
             }
         }
 
@@ -285,19 +382,25 @@ namespace HLG.Abstracts.Beings
 
             // Aqui aplicamos los daños y todo lo correspondiente a los efectos de las acciones hechas anteriormente
             EffectLogic();
-
+            
             // Hace que el jugador no salga de la pantalla reacomodandolo dentro de la misma.
             // Tomamos como pantalla el rectangulo que genera la camara para acomodar al jugador y limitamos de acuerdo a estas medidas.
-            // El FrameEscalado es para acomodar al personaje de acuerdo a la nueva escala adquirida dependiendo de la pantalla fisica donde se ejecuta el juego.
+            // El FrameEscalado es para acomodar al personaje de acuerdo a la nueva escala adquirida dependiendo 
+            // de la pantalla fisica donde se ejecuta el juego.
             // Hago este if porque al principio apenas empieza esta todo en 0 y no deja poner posiciones randoms
+            #region CAMARA
+
             if (Global.Camara.LimitesPantalla.Right != 0)
             {
                 Rectangle FrameEscalado = GetPositionRec();
                 // No usar LimitesPantalla.Right porque rompe el trabado de la pantalla con los personajes principales y deja que uno ararstre al resto
-                // Para el LimitesPantalla.Left da igual porque tiene que ser 0, creo que siempre es 0 ajjaja
+                // Lo mismo para el LimitesPantalla.Left 
                 positionX = MathHelper.Clamp(position.X, Global.Camara.LimitesPantalla.Left + FrameEscalado.Width / 2, Global.Camara.LimitesPantalla.Width - FrameEscalado.Width / 2);
                 positionY = MathHelper.Clamp(position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
             }
+            
+            #endregion
+
             // No es necesario mas acomodar la fila ya que todos vienen con fila 0
             // Solo se acomoda la cantidad de frames por animacion y que animacion va en cada pieza segun la accion ejecutandose.
             #region ANIMACION POR PIEZA
@@ -628,23 +731,6 @@ namespace HLG.Abstracts.Beings
             mensaje9 = current_health;
         }
         
-        /// <summary>
-        /// Dibuja los rectangulos que delimitan las colisiones del personaje.
-        /// </summary>
-        /// <param name="rec">Rectangulo del personaje</param>
-        /// <param name="tex">Textura utilizada para dibujar el rectangulo</param>
-        /// <param name="spriteBatch">Proceso de dibujado</param>
-        public static void DrawRectangle(Rectangle rec, Texture2D tex, SpriteBatch spriteBatch)
-        {
-            int border = 1;
-            int borderWidth = rec.Width + (border * 2);
-            int borderHeight = rec.Height + (border);
-            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X + rec.Width, rec.Y), tex, Color.White, spriteBatch, border);
-            Global.DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
-            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
-            Global.DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
-        }
-
         #endregion
 
         #endregion

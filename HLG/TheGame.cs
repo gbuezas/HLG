@@ -212,6 +212,32 @@ namespace HLG
 
             #endregion
 
+            // Cargo las UI
+            #region TEXTURA_UI
+
+            try
+            {
+
+                string[] archivos_UI = Directory.GetFiles("Content/UI", "*.png");
+
+                foreach (string nombre_UI in archivos_UI)
+                {
+                    string nombre = Path.GetFileNameWithoutExtension(nombre_UI);
+                    Textures textura = new Textures(Content.Load<Texture2D>("UI/" + nombre), nombre);
+
+                    Global.UITextures.Add(textura);
+                }
+            }
+            catch
+            {
+                // Para que aunque no encuentre carpeta ni nada siga igual, 
+                // porque no hace diferencia al juego que no pueda encontrar nada.
+                // Mas tarde si va a importar que no cargue todas las Textures de todos cuando las tengamos.
+                // Pero ahora en esta etapa de prueba donde me faltan un monton de cosas no es necesario.
+            }
+            
+            #endregion
+
             // Cargo punto blanco
             Global.Punto_Blanco = Content.Load<Texture2D>("Seleccion/puntoblanco");
 
@@ -221,10 +247,7 @@ namespace HLG
             // Cargo pantalla de seleccion y selectores
             Global.Pantalla_Seleccion = Content.Load<Texture2D>("Seleccion/fondo");
             //Variables_Generales.Selector = Content.Load<Texture2D>("Seleccion/Selector");
-
-            // GAB
-            Global.PaladinUI = Content.Load<Texture2D>("Seleccion/PaladinLifebar");
-
+            
             // Cargo fuentes
             Global.CheckStatusVar = Content.Load<SpriteFont>("Fuente_Prueba");
             Global.CheckStatusVar_2 = Content.Load<SpriteFont>("Fuente_Prueba_2");

@@ -104,9 +104,9 @@ namespace HLG
         public static Boolean EnableRectangles = false;
 
         // GAB
-        public static Texture2D PaladinUI;
-        public static Texture2D BarbarianUI;
-
+        public static List<Textures> UITextures = new List<Textures>();
+        public static Animation[] UIAnimation = new Animation[playersQuant];
+        
         // Para llevar la cuenta de los frames por segundo
         public static TimeSpan elapsedTime = TimeSpan.Zero;
         public static int frameRate = 0;
@@ -141,5 +141,21 @@ namespace HLG
             spriteBatch.Draw(tex, rec, col);
         }
 
+        /// <summary>
+        /// Dibuja los rectangulos que delimitan las colisiones del personaje.
+        /// </summary>
+        /// <param name="rec">Rectangulo del personaje</param>
+        /// <param name="tex">Textura utilizada para dibujar el rectangulo</param>
+        /// <param name="spriteBatch">Proceso de dibujado</param>
+        public static void DrawRectangle(Rectangle rec, Texture2D tex, SpriteBatch spriteBatch)
+        {
+            int border = 1;
+            int borderWidth = rec.Width + (border * 2);
+            int borderHeight = rec.Height + (border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X + rec.Width, rec.Y), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+        }
     }
 }

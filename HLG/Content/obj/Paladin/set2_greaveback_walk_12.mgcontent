@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set2_greaveback_walk_12.png</SourceFile>
-  <SourceTime>2015-03-20T16:46:04.3655392-03:00</SourceTime>
+  <SourceTime>2016-04-28T13:53:20.4538726-03:00</SourceTime>
   <DestFile>C:/Users/buezas/Desktop/HLG/HLG/Content/bin/Paladin/set2_greaveback_walk_12.xnb</DestFile>
-  <DestTime>2016-03-30T16:56:29.1268773-03:00</DestTime>
+  <DestTime>2016-05-04T15:17:47.1114144-03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T14:14:44-03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
