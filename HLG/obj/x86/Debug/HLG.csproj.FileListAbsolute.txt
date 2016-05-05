@@ -484,3 +484,4 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.exe
 C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.pdb
+C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.csprojResolveAssemblyReference.cache

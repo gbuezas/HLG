@@ -47,6 +47,7 @@ namespace HLG.Abstracts.GameStates
             Global.Layers.Add(Nubes);
             Global.Layers.Add(Arboles);
             Global.Layers.Add(Piso);
+            
         }
 
         /// <summary>
@@ -115,9 +116,29 @@ namespace HLG.Abstracts.GameStates
 
             Global.mensaje1 = Global.ViewportHeight;
             Global.mensaje2 = Global.ViewportWidth;
+            
+            //CalculateHealthBar();
+            
+            int UIancho = 450;
+            int UIalto = 550;
 
-            CalculateHealthBar();
+            int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
+            //int UIy = (int)Global.Camara.parallax.Y;
+            int UIy = 78;
 
+            for (int i=0; i < Global.playersQuant; i++)
+            {
+                //Vector2 UI_Vec = new Vector2(UIx * (i + 1) - UIancho / 2, 0);
+                Vector2 UI_Vec = new Vector2(UIx * (i + 1), UIy);
+                if (Global.UIAnimation[i] == null)
+                {
+                    Global.UIAnimation[i] = new Animation();
+                    Global.UIAnimation[i].LoadTexture(Global.UITextures[0], UI_Vec, UIancho, UIalto, 2, Color.White, true);
+                }
+
+                Global.UIAnimation[i].frameTime = 300;
+                Global.UIAnimation[i].Update(gameTime);
+            }
         }
 
         /// <summary>
@@ -193,14 +214,8 @@ namespace HLG.Abstracts.GameStates
 
             #region INTERFACE
 
-            // Se usa el dibujado por default
+            // Se usa el dibujado por default asi queda separado de la camara y esta siempre visible
             spriteBatch.Begin();
-
-            //DrawHealthBar(spriteBatch);
-            foreach (Animation UI in Global.UIAnimation)
-            {
-                UI.Draw(spriteBatch, Global.Mirada.RIGHT);
-            }
 
             #region Barra de vida
 
@@ -208,11 +223,14 @@ namespace HLG.Abstracts.GameStates
             int UIancho = 100;
             int UIalto = 150;
             int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
-
+            
             for (int i = 0; i < Global.playersQuant; i++)
             {
 
                 #region loop
+
+                // Dibuja UI
+                Global.UIAnimation[i].Draw(spriteBatch, Global.Mirada.RIGHT);
 
                 Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - UIancho / 2, 0, UIancho, UIalto);
 
@@ -225,7 +243,7 @@ namespace HLG.Abstracts.GameStates
                 float actual_bar_length = Global.players[i].current_health * max_bar_length / Global.players[i].max_health;
 
                 // Color
-                int new_color = (int)(actual_bar_length * 210 / 49);
+                int new_color = (int)(actual_bar_length * 210 / max_bar_length);
                 Color bar_color = new Color(255 - new_color, new_color, 0);
 
                 // Dibujar barra de vida
@@ -253,54 +271,54 @@ namespace HLG.Abstracts.GameStates
 
         }
 
-        private static void CalculateHealthBar()
-        {
-            /// Obtengo el eje x a partir del cual van a desplegarse los 4 UI de cada personaje, este eje depende estrictamente de la camara
-            /// Como usa el espacio transparente del PNG al eje Y lo ponemos en 0
-            //int UIx = int.Parse((Global.Camara.parallax.X + spriteBatch.GraphicsDevice.Viewport.Width / 5).ToString());
-            int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
+        //private static void CalculateHealthBar()
+        //{
+        //    /// Obtengo el eje x a partir del cual van a desplegarse los 4 UI de cada personaje, este eje depende estrictamente de la camara
+        //    /// Como usa el espacio transparente del PNG al eje Y lo ponemos en 0
+        //    //int UIx = int.Parse((Global.Camara.parallax.X + spriteBatch.GraphicsDevice.Viewport.Width / 5).ToString());
+        //    int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
 
-            // Debemos adaptar a la pantalla como los personajes - GAB
-            // Se adapta solo al usar el objeto animacion para crear cualquier cosa animada (GENIAL)
-            int UIancho = 100;
-            int UIalto = 150;
+        //    // Debemos adaptar a la pantalla como los personajes - GAB
+        //    // Se adapta solo al usar el objeto animacion para crear cualquier cosa animada (GENIAL)
+        //    int UIancho = 100;
+        //    int UIalto = 150;
 
-            //Vector2[] mensaje = new Vector2[Global.playersQuant];
+        //    //Vector2[] mensaje = new Vector2[Global.playersQuant];
 
-            for (int i = 0; i < Global.playersQuant; i++)
-            {
+        //    for (int i = 0; i < Global.playersQuant; i++)
+        //    {
 
-                if (Global.players[i].animations[0].active)
-                {
-                    Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - UIancho / 2, 0, UIancho, UIalto);
+        //        if (Global.players[i].animations[0].active)
+        //        {
+        //            Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - UIancho / 2, 0, UIancho, UIalto);
 
-                    Vector2 UI_Vec = new Vector2();
-                    UI_Vec.X = UI_Rect.X;
-                    UI_Vec.Y = UI_Rect.Y;
+        //            Vector2 UI_Vec = new Vector2();
+        //            UI_Vec.X = UI_Rect.X;
+        //            UI_Vec.Y = UI_Rect.Y;
+
+        //            //mensaje[i].X = UI_Rect.X + UIancho / 4;
+        //            //mensaje[i].Y = UI_Rect.Y + UIalto / 2 + 10;
+        //            Global.UIAnimation[i] = new Animation();
+        //            Global.UIAnimation[i].Initialize("UI" + i);
+        //            // Aca en texturas donde dice 0 endria que ir el identificador de que textura se tiene que cargar
+        //            // Ya sea la UI del Paladin o la del Barbaro, etc
+        //            Global.UIAnimation[i].LoadTexture(Global.UITextures[0], UI_Vec, UIancho, UIalto, int.Parse(Global.UITextures[0].frame), Color.White, true);
+
+        //            //Global.UIAnimation[i].Draw(spriteBatch, Global.Mirada.RIGHT);
+
+        //            // UI de vida - GAB
+        //            //if (Global.players[i].animations[9].loadedTexture != null)
+        //            //{
+        //            //    spriteBatch.Draw(Global.players[i].animations[9].loadedTexture.textura, UI_Rect, Color.White);
+        //            //}
+        //            //else
+        //            //{
+
+        //            //}
                     
-                    //mensaje[i].X = UI_Rect.X + UIancho / 4;
-                    //mensaje[i].Y = UI_Rect.Y + UIalto / 2 + 10;
-
-                    Global.UIAnimation[i] = new Animation();
-                    // Aca en texturas donde dice 0 endria que ir el identificador de que textura se tiene que cargar
-                    // Ya sea la UI del Paladin o la del Barbaro, etc
-                    Global.UIAnimation[i].LoadTexture(Global.UITextures[0], UI_Vec, UIancho, UIalto, int.Parse(Global.UITextures[0].frame), Color.White, true);
-
-                    //Global.UIAnimation[i].Draw(spriteBatch, Global.Mirada.RIGHT);
-
-                    // UI de vida - GAB
-                    //if (Global.players[i].animations[9].loadedTexture != null)
-                    //{
-                    //    spriteBatch.Draw(Global.players[i].animations[9].loadedTexture.textura, UI_Rect, Color.White);
-                    //}
-                    //else
-                    //{
-
-                    //}
-                    
-                }   
-            }
-        }
+        //        }   
+        //    }
+        //}
 
         public override void UpdateState(GameTime gameTime)
         {
