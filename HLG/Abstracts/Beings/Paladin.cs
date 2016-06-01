@@ -204,9 +204,6 @@ namespace HLG.Abstracts.Beings
             recambio = new Piece_Set();
             recambio.Initialize("gauntlettop", "set1");
             pieces_armor_recambio.Add(recambio);
-            recambio = new Piece_Set();
-            recambio.Initialize("lifebar", "set1");
-            pieces_armor_recambio.Add(recambio);
             #endregion
         }
 
@@ -220,15 +217,6 @@ namespace HLG.Abstracts.Beings
 
             // Para cambiar armadura, solo para probar cosas
             // funciona pero cambia muy rapido al apretar
-            if ((Keyboard.GetState().IsKeyDown(Keys.D9)))
-            {
-                if (pieces_armor_recambio[9].set == "set1")
-                    pieces_armor_recambio[9].set = "set2";
-                else
-                    pieces_armor_recambio[9].set = "set1";
-
-                UpdateArmor(pieces_armor_recambio);
-            }
             if ((Keyboard.GetState().IsKeyDown(Keys.D8)))
             {
                 if (pieces_armor_recambio[7].set == "set1")
@@ -382,19 +370,18 @@ namespace HLG.Abstracts.Beings
 
             // Aqui aplicamos los daños y todo lo correspondiente a los efectos de las acciones hechas anteriormente
             EffectLogic();
-            
+
             // Hace que el jugador no salga de la pantalla reacomodandolo dentro de la misma.
             // Tomamos como pantalla el rectangulo que genera la camara para acomodar al jugador y limitamos de acuerdo a estas medidas.
             // El FrameEscalado es para acomodar al personaje de acuerdo a la nueva escala adquirida dependiendo 
             // de la pantalla fisica donde se ejecuta el juego.
-            // Hago este if porque al principio apenas empieza esta todo en 0 y no deja poner posiciones randoms
             #region CAMARA
 
+            // Hago este if porque al principio apenas empieza esta todo en 0 y no deja poner posiciones randoms
             if (Global.Camara.LimitesPantalla.Right != 0)
             {
                 Rectangle FrameEscalado = GetPositionRec();
                 // No usar LimitesPantalla.Right porque rompe el trabado de la pantalla con los personajes principales y deja que uno ararstre al resto
-                // Lo mismo para el LimitesPantalla.Left 
                 positionX = MathHelper.Clamp(position.X, Global.Camara.LimitesPantalla.Left + FrameEscalado.Width / 2, Global.Camara.LimitesPantalla.Width - FrameEscalado.Width / 2);
                 positionY = MathHelper.Clamp(position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
             }

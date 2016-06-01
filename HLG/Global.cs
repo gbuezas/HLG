@@ -103,10 +103,14 @@ namespace HLG
         public static Texture2D Punto_Blanco;
         public static Boolean EnableRectangles = false;
 
-        // GAB
+        // UI de vida
         public static List<Textures> UITextures = new List<Textures>();
         public static Animation[] UIAnimation = new Animation[playersQuant];
-        
+        public static Vector2[] UILifeNumber = new Vector2[Global.playersQuant];
+        public static int UIancho = 100;
+        public static int UIalto = 150;
+        public static float max_bar_length = 49;
+
         // Para llevar la cuenta de los frames por segundo
         public static TimeSpan elapsedTime = TimeSpan.Zero;
         public static int frameRate = 0;

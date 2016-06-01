@@ -78,6 +78,8 @@ namespace HLG.Abstracts.GameStates
 
             // Para poder controlar al otro personaje por separado
             // Si lo saco de aca no me toma los cambios del control
+            #region controles de los personajes - borrar
+
             Global.players[1].controls[(int)Global.Controls.UP] = Keys.Up;
             Global.players[1].controls[(int)Global.Controls.DOWN] = Keys.Down;
             Global.players[1].controls[(int)Global.Controls.LEFT] = Keys.Left;
@@ -100,10 +102,11 @@ namespace HLG.Abstracts.GameStates
             //Global.players[4].controls = null;
             //Global.players[5].controls = null;
 
+            #endregion
+
             // Hacer un foreach para todos los personajes que quedan en camara, 
             // solo los controlados por humanos, la maquina no, asi pueden salir y no me desconcha toda la camara y el zoom
             // Aca controlamos donde van a aparecer inicialmente todos los jugadores
-
             Global.Camara.ViewTargets.Clear();
             foreach (Being Jugador in Global.players)
             {
@@ -116,8 +119,6 @@ namespace HLG.Abstracts.GameStates
 
             Global.mensaje1 = Global.ViewportHeight;
             Global.mensaje2 = Global.ViewportWidth;
-            
-            //CalculateHealthBar();
             
             int UIancho = 450;
             int UIalto = 550;
@@ -215,110 +216,56 @@ namespace HLG.Abstracts.GameStates
             #region INTERFACE
 
             // Se usa el dibujado por default asi queda separado de la camara y esta siempre visible
+            // XX LO HAGO COMO REORDENAR PERSONAJES EN LA CLASE PADRE? XX
             spriteBatch.Begin();
 
-            #region Barra de vida
+            DrawUI(spriteBatch);
 
-            Vector2[] mensaje = new Vector2[Global.playersQuant];
-            int UIancho = 100;
-            int UIalto = 150;
+            spriteBatch.End();
+
+            #endregion
+
+        }
+
+        private static void DrawUI(SpriteBatch spriteBatch)
+        {
+            /// Para obtener los 4 puntos donde tiene que dibujarse cada UI, obtener el punto Y es innecesario, el mismo es siempre 0 ya que se
+            /// usan las transparencias de la imagen para obtener el espacio necesario del eje Y.
             int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
-            
+
             for (int i = 0; i < Global.playersQuant; i++)
             {
-
-                #region loop
-
-                // Dibuja UI
+                // Dibuja UI animada
                 Global.UIAnimation[i].Draw(spriteBatch, Global.Mirada.RIGHT);
 
-                Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - UIancho / 2, 0, UIancho, UIalto);
+                /// Calculo sector de numero de vida
+                Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - Global.UIancho / 2, 0, Global.UIancho, Global.UIalto);
+                Global.UILifeNumber[i].X = UI_Rect.X + Global.UIancho / 4;
+                Global.UILifeNumber[i].Y = UI_Rect.Y + Global.UIalto / 2 + 10;
 
-                mensaje[i].X = UI_Rect.X + UIancho / 4;
-                mensaje[i].Y = UI_Rect.Y + UIalto / 2 + 10;
+                /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
 
-                // Barra de vida - GAB
-                // Los calculos del tamaño y el color de la barra estan hechos con regla de 3 simple
-                float max_bar_length = 49;
-                float actual_bar_length = Global.players[i].current_health * max_bar_length / Global.players[i].max_health;
+                float actual_bar_length = Global.players[i].current_health * Global.max_bar_length / Global.players[i].max_health;
 
-                // Color
-                int new_color = (int)(actual_bar_length * 210 / max_bar_length);
+                /// Color
+                int new_color = (int)(actual_bar_length * 210 / Global.max_bar_length);
                 Color bar_color = new Color(255 - new_color, new_color, 0);
 
                 // Dibujar barra de vida
-                Global.DrawStraightLine(new Vector2(mensaje[i].X - 1, mensaje[i].Y + 2),
-                                        new Vector2(mensaje[i].X + actual_bar_length, mensaje[i].Y),
+                Global.DrawStraightLine(new Vector2(Global.UILifeNumber[i].X - 1, Global.UILifeNumber[i].Y + 2),
+                                        new Vector2(Global.UILifeNumber[i].X + actual_bar_length, Global.UILifeNumber[i].Y),
                                         Global.Punto_Blanco,
                                         bar_color,
                                         spriteBatch,
                                         14);
 
-                // Vida en numeros - GAB
+                // Vida en numeros
                 spriteBatch.DrawString(Global.CheckStatusVar_2,
                                        Global.players[i].current_health.ToString() + " / " + Global.players[i].max_health.ToString(),
-                                       mensaje[i],
+                                       Global.UILifeNumber[i],
                                        Color.White);
-                #endregion
-
             }
-
-            #endregion
-
-            spriteBatch.End();
-            
-            #endregion
-
         }
-
-        //private static void CalculateHealthBar()
-        //{
-        //    /// Obtengo el eje x a partir del cual van a desplegarse los 4 UI de cada personaje, este eje depende estrictamente de la camara
-        //    /// Como usa el espacio transparente del PNG al eje Y lo ponemos en 0
-        //    //int UIx = int.Parse((Global.Camara.parallax.X + spriteBatch.GraphicsDevice.Viewport.Width / 5).ToString());
-        //    int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
-
-        //    // Debemos adaptar a la pantalla como los personajes - GAB
-        //    // Se adapta solo al usar el objeto animacion para crear cualquier cosa animada (GENIAL)
-        //    int UIancho = 100;
-        //    int UIalto = 150;
-
-        //    //Vector2[] mensaje = new Vector2[Global.playersQuant];
-
-        //    for (int i = 0; i < Global.playersQuant; i++)
-        //    {
-
-        //        if (Global.players[i].animations[0].active)
-        //        {
-        //            Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - UIancho / 2, 0, UIancho, UIalto);
-
-        //            Vector2 UI_Vec = new Vector2();
-        //            UI_Vec.X = UI_Rect.X;
-        //            UI_Vec.Y = UI_Rect.Y;
-
-        //            //mensaje[i].X = UI_Rect.X + UIancho / 4;
-        //            //mensaje[i].Y = UI_Rect.Y + UIalto / 2 + 10;
-        //            Global.UIAnimation[i] = new Animation();
-        //            Global.UIAnimation[i].Initialize("UI" + i);
-        //            // Aca en texturas donde dice 0 endria que ir el identificador de que textura se tiene que cargar
-        //            // Ya sea la UI del Paladin o la del Barbaro, etc
-        //            Global.UIAnimation[i].LoadTexture(Global.UITextures[0], UI_Vec, UIancho, UIalto, int.Parse(Global.UITextures[0].frame), Color.White, true);
-
-        //            //Global.UIAnimation[i].Draw(spriteBatch, Global.Mirada.RIGHT);
-
-        //            // UI de vida - GAB
-        //            //if (Global.players[i].animations[9].loadedTexture != null)
-        //            //{
-        //            //    spriteBatch.Draw(Global.players[i].animations[9].loadedTexture.textura, UI_Rect, Color.White);
-        //            //}
-        //            //else
-        //            //{
-
-        //            //}
-                    
-        //        }   
-        //    }
-        //}
 
         public override void UpdateState(GameTime gameTime)
         {
