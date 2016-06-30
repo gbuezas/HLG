@@ -16,12 +16,17 @@ namespace HLG.Abstracts.GameStates
         static string[] Mapa_Piso = new string[] { "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1" };
         static string[] Mapa_Arboles = new string[] { "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1" };
         static string[] Mapa_Nubes = new string[] { "cloud1", "cloud2", "cloud3", "cloud4", "cloud5", "cloud6", "cloud7", "cloud8", "cloud9", "cloud10", "cloud11", "cloud1", "cloud2", "cloud3", "cloud4", "cloud5", };
+        // GAB
+        static string[] Mapa_Frente = new string[] { "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", };
 
         // Velocidades del parallax de cada capa
-        Parallax Piso = new Parallax(Mapa_Piso, 1f, 1f);
-        Parallax Arboles = new Parallax(Mapa_Arboles, 0.8f, 0.5f);
-        Parallax Nubes = new Parallax(Mapa_Nubes, 0.5f, 1f);
-
+        // Valores de parallax aceptables con esta configuracion y zoom (1.0 a 0.2) 
+        Parallax Nubes = new Parallax(Mapa_Nubes, 0.4f, 1f);
+        Parallax Arboles = new Parallax(Mapa_Arboles, 0.6f, 0.5f);
+        Parallax Piso = new Parallax(Mapa_Piso, 0.85f, 1f);
+        // GAB
+        Parallax Frente = new Parallax(Mapa_Frente, 1f, 1f);
+        
         #endregion
 
         // Genero un vector con la cantidad de rectangulos necesarios para pintar todo el mapa
@@ -44,9 +49,11 @@ namespace HLG.Abstracts.GameStates
         public override void Initialize()
         {
             // Agrego las diferentes capas de parallax
-            Global.Layers.Add(Nubes);
-            Global.Layers.Add(Arboles);
-            Global.Layers.Add(Piso);
+            Global.Background_Layers.Add(Nubes);
+            Global.Background_Layers.Add(Arboles);
+            Global.Background_Layers.Add(Piso);
+            // GAB
+            Global.Front_Layers.Add(Frente);
         }
 
         /// <summary>
@@ -70,39 +77,47 @@ namespace HLG.Abstracts.GameStates
             }
 
             // Ajusto los limites de la camara para que no pueda mostrar mas de este rectangulo
+            // En vez de ir de 0 al limite del nivel voy a recortarlo un poco asi no se ven los cortes de las capas del parallax
+
+            /*ORIGINAL*/
             Global.Camara.Limits = new Rectangle(0, 0, Global.ViewportWidth / 4 * Mapa_Nubes.Length, Var_AltoNivel);
+
+            //Global.Camara.Limits = new Rectangle(Global.ViewportWidth / 4, 0, Global.ViewportWidth / 4 * (Mapa_Nubes.Length - 1), Var_AltoNivel);
 
             // Tomo tiempo transcurrido.
             //float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // Para poder controlar al otro personaje por separado
             // Si lo saco de aca no me toma los cambios del control
+            #region controles de los personajes - borrar
+
             Global.players[1].controls[(int)Global.Controls.UP] = Keys.Up;
             Global.players[1].controls[(int)Global.Controls.DOWN] = Keys.Down;
             Global.players[1].controls[(int)Global.Controls.LEFT] = Keys.Left;
             Global.players[1].controls[(int)Global.Controls.RIGHT] = Keys.Right;
             Global.players[1].controls[(int)Global.Controls.BUTTON_1] = Keys.Space;
 
-            Global.players[2].controls[(int)Global.Controls.UP] = Keys.I;
-            Global.players[2].controls[(int)Global.Controls.DOWN] = Keys.K;
-            Global.players[2].controls[(int)Global.Controls.LEFT] = Keys.J;
-            Global.players[2].controls[(int)Global.Controls.RIGHT] = Keys.L;
-            Global.players[2].controls[(int)Global.Controls.BUTTON_1] = Keys.Enter;
+            //Global.players[2].controls[(int)Global.Controls.UP] = Keys.I;
+            //Global.players[2].controls[(int)Global.Controls.DOWN] = Keys.K;
+            //Global.players[2].controls[(int)Global.Controls.LEFT] = Keys.J;
+            //Global.players[2].controls[(int)Global.Controls.RIGHT] = Keys.L;
+            //Global.players[2].controls[(int)Global.Controls.BUTTON_1] = Keys.Enter;
 
-            Global.players[3].controls[(int)Global.Controls.UP] = Keys.I;
-            Global.players[3].controls[(int)Global.Controls.DOWN] = Keys.K;
-            Global.players[3].controls[(int)Global.Controls.LEFT] = Keys.J;
-            Global.players[3].controls[(int)Global.Controls.RIGHT] = Keys.L;
-            Global.players[3].controls[(int)Global.Controls.BUTTON_1] = Keys.Enter;
+            //Global.players[3].controls[(int)Global.Controls.UP] = Keys.I;
+            //Global.players[3].controls[(int)Global.Controls.DOWN] = Keys.K;
+            //Global.players[3].controls[(int)Global.Controls.LEFT] = Keys.J;
+            //Global.players[3].controls[(int)Global.Controls.RIGHT] = Keys.L;
+            //Global.players[3].controls[(int)Global.Controls.BUTTON_1] = Keys.Enter;
 
             // Enemigo
             //Global.players[4].controls = null;
             //Global.players[5].controls = null;
 
+            #endregion
+
             // Hacer un foreach para todos los personajes que quedan en camara, 
             // solo los controlados por humanos, la maquina no, asi pueden salir y no me desconcha toda la camara y el zoom
             // Aca controlamos donde van a aparecer inicialmente todos los jugadores
-
             Global.Camara.ViewTargets.Clear();
             foreach (Being Jugador in Global.players)
             {
@@ -115,6 +130,27 @@ namespace HLG.Abstracts.GameStates
 
             Global.mensaje1 = Global.ViewportHeight;
             Global.mensaje2 = Global.ViewportWidth;
+            
+            int UIancho = 450;
+            int UIalto = 550;
+
+            int UIx = (int)(Global.Camara.parallax.X + Global.ViewportWidth / 5);
+            //int UIy = (int)Global.Camara.parallax.Y;
+            int UIy = 78;
+
+            for (int i=0; i < Global.playersQuant; i++)
+            {
+                //Vector2 UI_Vec = new Vector2(UIx * (i + 1) - UIancho / 2, 0);
+                Vector2 UI_Vec = new Vector2(UIx * (i + 1), UIy);
+                if (Global.UIAnimation[i] == null)
+                {
+                    Global.UIAnimation[i] = new Animation();
+                    Global.UIAnimation[i].LoadTexture(Global.UITextures[0], UI_Vec, UIancho, UIalto, 2, Color.White, true);
+                }
+
+                Global.UIAnimation[i].frameTime = 300;
+                Global.UIAnimation[i].Update(gameTime);
+            }
         }
 
         /// <summary>
@@ -131,12 +167,15 @@ namespace HLG.Abstracts.GameStates
             // La posicion donde va el siguiente rectangulo
             int posicion;
 
-            foreach (Parallax capa in Global.Layers)
+            foreach (Parallax capa in Global.Background_Layers)
             {
 
                 Global.Camara.parallax = new Vector2(capa.parallax_x, capa.parallax_y);
 
+                /*ORIGINAL*/
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp, null, null, null, Global.Camara.ViewMatrix);
+                
+                //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Global.Camara.ViewMatrix);
 
                 rectangulo = 0;
                 posicion = 0;
@@ -153,14 +192,21 @@ namespace HLG.Abstracts.GameStates
 
                             // Recalculo el rectangulo para que se adapte a la velocidad correspondiente de la capa
                             capa.RectanguloParallax = sourceRect[rectangulo];
-                            capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x + 0.5f);
+
+                            // Me parece que sumandole el parallax_x a la multiplicacion del mismo hizo el truco de pegar los tiles bien sin que desaparezcan
+                            /*ORIGINAL*/
+                            //capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x + 0.5f);
+
+                            capa.RectanguloParallax.X += (int)((Global.Camara.LimitesPantalla.X * capa.parallax_x) + capa.parallax_x);
+                            //capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x + capa.parallax_x);
+                            //capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x);
 
                             // Mensajes de chequeo
                             Global.mensaje3 = Global.Camara.LimitesPantalla.X;
                             Global.mensaje4 = Global.Camara.LimitesPantalla.Width;
 
-                            // Si no esta dentro de la camara no lo dibujo
-                            if (Global.Camara.EnCamara(capa.RectanguloParallax))
+                            // Si no esta dentro de la camara amplificada horizontalmente no lo dibujo
+                            if (Global.Camara.EnCamaraAmplificado(capa.RectanguloParallax))
                             {
                                 spriteBatch.Draw(avance.textura, sourceRect[rectangulo], Color.White);
                             }
@@ -179,8 +225,14 @@ namespace HLG.Abstracts.GameStates
 
             #region PERSONAJES
 
+            // Vuelvo la camara al default?, porque aca todos estamos usando la misma, cuando en el archivo original recibe el paralllax
+            // aca lo toma de adentro de ella misma lo cual infiere en un monton de calculos
+            // Me parece que tendría que separarlo, por eso lo reseteo de esta manera
+            Global.Camara.parallax = new Vector2(1, 1);
+
             // SpriteSortMode.Deferred soluciono el problema de que pegaba las capas como se le cantaba el ojete, estaba en BacktoFront
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp, null, null, null, Global.Camara.ViewMatrix);
+            //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Global.Camara.ViewMatrix);
 
             Reordenar_Personajes(spriteBatch);
 
@@ -188,58 +240,56 @@ namespace HLG.Abstracts.GameStates
 
             #endregion
 
+            # region CAPAS FRENTE
+
+            // El rectangulo contenedor del tile
+            int rectangulo2, posicion2;
+
+            foreach (Parallax capa in Global.Front_Layers)
+            {
+
+                Global.Camara.parallax = new Vector2(capa.parallax_x, capa.parallax_y);
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp, null, null, null, Global.Camara.ViewMatrix);
+                
+                rectangulo2 = 0;
+                posicion2 = 0;
+
+                foreach (string seccion in capa.capa_parallax)
+                {
+                    foreach (Textures avance in Global.Level_1Textures)
+                    {
+                        if (seccion == avance.piece)
+                        {
+                            sourceRect[rectangulo2] = new Rectangle(posicion2, 0, Global.ViewportWidth / 4, Global.ViewportHeight);
+
+                            capa.RectanguloParallax = sourceRect[rectangulo2];
+                            capa.RectanguloParallax.X += (int)((Global.Camara.LimitesPantalla.X * capa.parallax_x) + capa.parallax_x);
+                            
+                            // Si no esta dentro de la camara amplificada horizontalmente no lo dibujo
+                            if (Global.Camara.EnCamaraAmplificado(capa.RectanguloParallax))
+                            {
+                                spriteBatch.Draw(avance.textura, sourceRect[rectangulo2], Color.White);
+                            }
+
+                            posicion2 += Global.ViewportWidth / 4;
+                        }
+
+                    }
+                    rectangulo2++;
+                }
+
+                spriteBatch.End();
+            }
+
+            #endregion
+
             #region INTERFACE
 
+            // Se usa el dibujado por default asi queda separado de la camara y esta siempre visible
+            // XX LO HAGO COMO REORDENAR PERSONAJES EN LA CLASE PADRE? XX
             spriteBatch.Begin();
 
-            /// Obtengo el eje x a partir del cual van a desplegarse los 4 UI de cada personaje, este eje depende estrictamente de la camara
-            int UIx = int.Parse((Global.Camara.parallax.X + spriteBatch.GraphicsDevice.Viewport.Width / 5).ToString());
-            // Como usa el espacio transparente del JPG lo ponemos en 0
-            int UIy = 0;
-
-            // Debemos adaptar a la pantalla como los personajes - GAB
-            // Se adapta solo al usar el objeto animacion para crear cualquier cosa animada (GENIAL)
-            int UIancho = 100;
-            int UIalto = 150;
-
-            Vector2[] mensaje = new Vector2[4];
-            
-            for (int i = 0; i < Global.playersQuant; i++)
-            {
-                
-                Rectangle UI_Rect = new Rectangle(UIx*(i+1) - UIancho/2, UIy, UIancho, UIalto);
-
-                mensaje[i].X = UI_Rect.X + UIancho/4;
-                mensaje[i].Y = UI_Rect.Y + UIalto/2 + 10;
-                
-                // UI de vida - GAB
-                spriteBatch.Draw(Global.PaladinUI, UI_Rect, Color.White);
-                
-                // Barra de vida - GAB
-                // Los calculos del tamaño y el color de la barra estan hechos con regla de 3 simple
-                float max_bar_length = 49;
-                float actual_bar_length = Global.players[i].current_health * max_bar_length / Global.players[i].max_health;
-
-                // Color
-                int new_color = (int)(actual_bar_length * 210 / 49);
-                Color bar_color = new Color(255 - new_color, new_color, 0);
-                
-                // Dibujar barra de vida
-                Global.DrawStraightLine(new Vector2(mensaje[i].X - 1, mensaje[i].Y + 2), 
-                                        new Vector2(mensaje[i].X + actual_bar_length, mensaje[i].Y), 
-                                        Global.Punto_Blanco, 
-                                        bar_color, 
-                                        spriteBatch, 
-                                        14);
-                
-                // Vida en numeros - GAB
-                spriteBatch.DrawString(Global.CheckStatusVar_2,
-                                       Global.players[i].current_health.ToString() + " / " + Global.players[i].max_health.ToString(),
-                                       mensaje[i],
-                                       Color.White);
-
-
-            }
+            DrawUI(spriteBatch);
 
             spriteBatch.End();
 
@@ -247,11 +297,61 @@ namespace HLG.Abstracts.GameStates
 
         }
 
+        private static void DrawUI(SpriteBatch spriteBatch)
+        {
+            /// Para obtener los 4 puntos donde tiene que dibujarse cada UI, obtener el punto Y es innecesario, el mismo es siempre 0 ya que se
+            /// usan las transparencias de la imagen para obtener el espacio necesario del eje Y.
+            int UIx = (int)(Global.Camara.parallax.X + Global.ViewportWidth / 5);
+
+            for (int i = 0; i < Global.playersQuant; i++)
+            {
+                // Dibuja UI animada
+                Global.UIAnimation[i].Draw(spriteBatch, Global.Mirada.RIGHT);
+
+                /// Calculo sector de numero de vida
+                Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - Global.UIancho / 2, 0, Global.UIancho, Global.UIalto);
+                Global.UILifeNumber[i].X = UI_Rect.X + Global.UIancho / 4;
+                Global.UILifeNumber[i].Y = UI_Rect.Y + Global.UIalto / 2 + 10;
+
+                /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
+
+                float actual_bar_length = Global.players[i].current_health * Global.max_bar_length / Global.players[i].max_health;
+
+                /// Color
+                int new_color = (int)(actual_bar_length * 210 / Global.max_bar_length);
+                Color bar_color = new Color(255 - new_color, new_color, 0);
+
+                // Dibujar barra de vida
+                Global.DrawStraightLine(new Vector2(Global.UILifeNumber[i].X - 1, Global.UILifeNumber[i].Y + 2),
+                                        new Vector2(Global.UILifeNumber[i].X + actual_bar_length, Global.UILifeNumber[i].Y),
+                                        Global.Punto_Blanco,
+                                        bar_color,
+                                        spriteBatch,
+                                        14);
+
+                // Vida en numeros
+                spriteBatch.DrawString(Global.CheckStatusVar_2,
+                                       Global.players[i].current_health.ToString() + " / " + Global.players[i].max_health.ToString(),
+                                       Global.UILifeNumber[i],
+                                       Color.White);
+            }
+        }
+
         public override void UpdateState(GameTime gameTime)
         {
             
         }
-        
+
+        //public Vector2 WorldToScreen(Vector2 worldPosition)
+        //{
+        //    return Vector2.Transform(worldPosition, Global.Camara.ViewMatrix(parallax));
+        //}
+
+        //public Vector2 ScreenToWorld(Vector2 screenPosition)
+        //{
+        //    return Vector2.Transform(screenPosition, Matrix.Invert(camera.GetViewMatrix(parallax)));
+        //}
+
         #endregion
     }
 }

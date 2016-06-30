@@ -23,7 +23,7 @@ namespace HLG
         // Camara - Se setea en el Load() de cada nivel
         public static Camera Camara;
 
-        // Colores
+        // Colores, tintes
         public static Color ColorGhost = new Color(255, 255, 255, 30);
         public static Color[] SkeletonRandomColors = new Color[] { Color.AntiqueWhite, Color.Wheat, Color.WhiteSmoke, Color.SeaShell, Color.OldLace, Color.LightYellow, Color.Gainsboro, Color.Cornsilk };
         
@@ -46,7 +46,7 @@ namespace HLG
         // Mas grande es el numero mas chico es el personaje
         public static float Scalar = 6;
 
-        // Crea lista de Being y enemigos
+        // Crea lista del objeto Being, el cual alberga a los personajes y a los enemigos
         public static List<Being> players = new List<Being>();
         public static int playersQuant = 4;
         public static int enemiesQuant = 8;
@@ -82,14 +82,15 @@ namespace HLG
         public static List<Textures> PaladinTextures = new List<Textures>();
         public static List<Textures> IA_BasicTextures = new List<Textures>();
 
-        // Los distintos niveles de avance
+        // Los distintos niveles de avance y los tamaños de sus tiles
         public static List<Textures> Level_1Textures = new List<Textures>();
 
         // Los distintos niveles de versus
         public static List<Textures> VersusTextures = new List<Textures>();
 
         // Las distintas capas de parallax
-        public static List<Parallax> Layers = new List<Parallax>();
+        public static List<Parallax> Background_Layers = new List<Parallax>();
+        public static List<Parallax> Front_Layers = new List<Parallax>();
 
         // Textures de titulos
         public static Texture2D Pantalla_Titulo;
@@ -97,15 +98,20 @@ namespace HLG
         public static Texture2D Pantalla_Seleccion;
         public static Texture2D Selector;
 
-        // Rectangulos de colisiones para chequear y su textura
+        // Rectangulos de colisiones para chequear y su textura, 
+        // solo se implementa en el modo de creación, no se utiliza para el producto final.
         public static Rectangle Rectangle_Collision;
         public static Rectangle Rectangle_Collision_2;
         public static Texture2D Punto_Blanco;
         public static Boolean EnableRectangles = false;
 
-        // GAB
-        public static Texture2D PaladinUI;
-        public static Texture2D BarbarianUI;
+        // UI de vida
+        public static List<Textures> UITextures = new List<Textures>();
+        public static Animation[] UIAnimation = new Animation[playersQuant];
+        public static Vector2[] UILifeNumber = new Vector2[Global.playersQuant];
+        public static int UIancho = 100;
+        public static int UIalto = 150;
+        public static float max_bar_length = 49;
 
         // Para llevar la cuenta de los frames por segundo
         public static TimeSpan elapsedTime = TimeSpan.Zero;
@@ -141,5 +147,22 @@ namespace HLG
             spriteBatch.Draw(tex, rec, col);
         }
 
+        /// <summary>
+        /// Dibuja los rectangulos que delimitan las colisiones del personaje.
+        /// Se utiliza en la instancia de creación solamente, se quitan para el producto final.
+        /// </summary>
+        /// <param name="rec">Rectangulo del personaje</param>
+        /// <param name="tex">Textura utilizada para dibujar el rectangulo</param>
+        /// <param name="spriteBatch">Proceso de dibujado</param>
+        public static void DrawRectangle(Rectangle rec, Texture2D tex, SpriteBatch spriteBatch)
+        {
+            int border = 1;
+            int borderWidth = rec.Width + (border * 2);
+            int borderHeight = rec.Height + (border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X + rec.Width, rec.Y), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+        }
     }
 }

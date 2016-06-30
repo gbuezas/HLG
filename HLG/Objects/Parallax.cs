@@ -4,7 +4,6 @@ namespace HLG.Objects
 {
     public class Parallax
     {
-
         private string[] CapaParallax;
         public string[] capa_parallax
         {
@@ -14,7 +13,7 @@ namespace HLG.Objects
 
         // Rectangulo adaptado al parallax para no poner tiles de mas
         // y que se adapte segun la velocidad de la capa correspondiente al limite de la pantalla
-        public Rectangle RectanguloParallax;
+        public Rectangle RectanguloParallax = Rectangle.Empty;
 
         // Velocidad del parallax en el eje X
         private float Parallax_X;
@@ -31,7 +30,13 @@ namespace HLG.Objects
             get { return Parallax_Y; }
             set { Parallax_Y = value; }
         }
-
+        
+        /// <summary>
+        /// Inicializador de capa parallax
+        /// </summary>
+        /// <param name="capa_parallax">Nombre del archivo capa</param>
+        /// <param name="parallax_x">Movimiento sobre eje X</param>
+        /// <param name="parallax_y">Movimiento sobre eje Y</param>
         public Parallax(string[] capa_parallax, float parallax_x, float parallax_y)
         {
             CapaParallax = capa_parallax;

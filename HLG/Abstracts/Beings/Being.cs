@@ -14,12 +14,6 @@ namespace HLG.Abstracts.Beings
         #region CONTROLES
 
         /// <summary>
-        /// Esta bandera es para que no se vuelva a dibujar varias veces el mismo objeto, 
-        /// en caso de que el eje Y del mismo se repita con otro objeto
-        /// </summary>
-        private bool Drawn = false;
-
-        /// <summary>
         /// Si el personaje es manejado por la maquina o por un humano
         /// </summary>
         private bool Machine = false;
@@ -90,12 +84,6 @@ namespace HLG.Abstracts.Beings
         #region GET-SET
 
         #region CONTROLES
-
-        public bool drawn
-        {
-            get { return Drawn; }
-            set { Drawn = value; }
-        }
 
         public bool machine
         {
@@ -199,7 +187,7 @@ namespace HLG.Abstracts.Beings
 
         // Dibujar Jugador
         public abstract void Draw(SpriteBatch spriteBatch);
-
+        
         // Actualizar cosas del jugador - GAB retocar
         public abstract void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel);
 

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HLG.Objects
 {
-    class Animation
+    public class Animation
     {
         #region VARIABLES
 
@@ -42,7 +42,7 @@ namespace HLG.Objects
         // El color del cuadro que estamos mostrando
         public Color color;
 
-        // El area de la linea de sprite que queremos mostrar
+        // El area de la fila de sprite que queremos mostrar
         Rectangle sourceRect = new Rectangle();
 
         // El area donde queremos mostrar el sprite

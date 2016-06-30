@@ -2,14 +2,13 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
-/*
-Para usar la camara:
+/*Para usar la camara:
 
     1) Creo la variable de la camara como estatica en la seccion de las variables del objeto.
     2) Le seteamos el viewport correspondiente en el load con el comando new.
     3) Seteamos el rectangulo delimitador. Usualmente las medidas del nivel.
-    4) Usamos su matriz en el begin del draw y listo. 
-*/
+    4) Si queremos algun parallax seteamos el parametro parallax de la misma.
+    4) Usamos su matriz en el begin del draw y listo, el parallax que esta tenga sera aplicado en el draw.*/
 
 namespace HLG.Objects
 {
@@ -187,6 +186,14 @@ namespace HLG.Objects
         public bool EnCamara(Rectangle Objeto)
         {
             return LimitesPantalla.Intersects(Objeto);
+        }
+
+        public bool EnCamaraAmplificado(Rectangle Objeto)
+        {
+            Rectangle RecAmplify = LimitesPantalla;
+            RecAmplify.X = RecAmplify.X - RecAmplify.Width / 2;
+            RecAmplify.Width = RecAmplify.Width + RecAmplify.Width / 2;
+            return RecAmplify.Intersects(Objeto);
         }
     }
 }
