@@ -1719,3 +1719,14 @@
 /processorParam:TextureFormat=Color
 /build:UI/set2_lifebar_paladin_2.png
 
+#begin Avance/stage1_front1_normal_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Avance/stage1_front1_normal_1.png
+

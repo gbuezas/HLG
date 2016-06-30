@@ -14,12 +14,6 @@ namespace HLG.Abstracts.Misc
         #region CONTROLES
 
         /// <summary>
-        /// Esta bandera es para que no se vuelva a dibujar varias veces el mismo objeto, 
-        /// en caso de que el eje Y del mismo se repita con otro objeto
-        /// </summary>
-        private bool Drawn = false;
-
-        /// <summary>
         /// Posicion del jugador relativa a la parte superior izquierda de la pantalla.
         /// Esta posicion marca donde se encuentra el jugador en la pantalla y no en el mapa donde se esta moviendo,
         /// y es a esta posicion a la que se le aplican los limites de la pantalla.  
@@ -55,12 +49,6 @@ namespace HLG.Abstracts.Misc
         //#region GET-SET
 
         //#region CONTROLES
-
-        //public bool drawn
-        //{
-        //    get { return Drawn; }
-        //    set { Drawn = value; }
-        //}
 
         //public bool machine
         //{

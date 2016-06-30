@@ -382,10 +382,20 @@ namespace HLG.Abstracts.Beings
             {
                 Rectangle FrameEscalado = GetPositionRec();
                 // No usar LimitesPantalla.Right porque rompe el trabado de la pantalla con los personajes principales y deja que uno ararstre al resto
-                positionX = MathHelper.Clamp(position.X, Global.Camara.LimitesPantalla.Left + FrameEscalado.Width / 2, Global.Camara.LimitesPantalla.Width - FrameEscalado.Width / 2);
+                // Hago que no pueda salir de la camara ya que esta no puede salir del nivel, sino estarian manejando los 2 limites distintos
+                int ZoomDif = (int)(Global.Camara.LimitesPantalla.Width * Global.Camara.Zoom) - Global.Camara.LimitesPantalla.Width;
+                positionX = MathHelper.Clamp(position.X, Global.Camara.LimitesPantalla.Left + FrameEscalado.Width / 2, Global.Camara.LimitesPantalla.Width - ZoomDif - FrameEscalado.Width / 2);
                 positionY = MathHelper.Clamp(position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
+
+                //GAB - Esto trae el valor de pantalla
+                //Vector2 ScreenPosition = Vector2.Transform(Global.Camara.Position, Global.Camara.ViewMatrix);
+                //Vector2 ScreenPosition2 = Vector2.Transform(Global.Camara.Position, Matrix.Invert(Global.Camara.ViewMatrix));
+
+                //positionX = MathHelper.Clamp(position.X, ScreenPosition2.X + FrameEscalado.Width / 2, Global.Camara.LimitesPantalla.Width - FrameEscalado.Width / 2);
+                //positionY = MathHelper.Clamp(position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
+                
             }
-            
+
             #endregion
 
             // No es necesario mas acomodar la fila ya que todos vienen con fila 0

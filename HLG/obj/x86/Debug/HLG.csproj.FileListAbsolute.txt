@@ -300,7 +300,6 @@ C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\bin\Window
 C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\buezas\Desktop\OneDrive - Hewlett Packard Enterprise\HLG\HLG\obj\x86\Debug\HLG.csprojResolveAssemblyReference.cache
-C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D11.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud10_normal_1.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud11_normal_1.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud1_normal_1.xnb
@@ -312,6 +311,7 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud6_n
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud7_normal_1.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud8_normal_1.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_cloud9_normal_1.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_front1_normal_1.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_mountain1_normal_1.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_mountain2_normal_1.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Avance\stage1_soil1_normal_1.xnb
@@ -461,6 +461,7 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_lifebar_paladi
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_lifebar_paladin_2.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_barbaro_2.png
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_barbaro_2.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_paladin_2.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\HLG.exe
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\HLG.pdb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\MonoGame.Framework.dll
@@ -477,12 +478,12 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\MonoGame.Framework.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.MediaFoundation.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.XAudio2.xml
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D11.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.DXGI.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct2D1.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.csprojResolveAssemblyReference.cache
 C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.exe
 C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.pdb
-C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.csprojResolveAssemblyReference.cache
-C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_paladin_2.xnb

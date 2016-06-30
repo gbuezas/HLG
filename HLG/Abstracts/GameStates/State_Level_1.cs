@@ -22,6 +22,13 @@ namespace HLG.Abstracts.GameStates
         Parallax Arboles = new Parallax(Mapa_Arboles, 0.8f, 0.5f);
         Parallax Nubes = new Parallax(Mapa_Nubes, 0.5f, 1f);
 
+        /*
+            Claramente hay un problema con las velocidades y el parallax, me parece que cuanto mas lento va mas grande tiene que ser?
+        */
+        //Parallax Nubes = new Parallax(Mapa_Nubes, 0.3f, 1f);
+        //Parallax Arboles = new Parallax(Mapa_Arboles, 0.5f, 0.8f);
+        //Parallax Piso = new Parallax(Mapa_Piso, 1f, 1f);
+
         #endregion
 
         // Genero un vector con la cantidad de rectangulos necesarios para pintar todo el mapa
@@ -44,9 +51,9 @@ namespace HLG.Abstracts.GameStates
         public override void Initialize()
         {
             // Agrego las diferentes capas de parallax
-            Global.Layers.Add(Nubes);
-            Global.Layers.Add(Arboles);
-            Global.Layers.Add(Piso);
+            Global.Background_Layers.Add(Nubes);
+            Global.Background_Layers.Add(Arboles);
+            Global.Background_Layers.Add(Piso);
             
         }
 
@@ -71,7 +78,12 @@ namespace HLG.Abstracts.GameStates
             }
 
             // Ajusto los limites de la camara para que no pueda mostrar mas de este rectangulo
-            Global.Camara.Limits = new Rectangle(0, 0, Global.ViewportWidth / 4 * Mapa_Nubes.Length, Var_AltoNivel);
+            // En vez de ir de 0 al limite del nivel voy a recortarlo un poco asi no se ven los cortes de las capas del parallax
+
+            /*ORIGINAL*/
+            Global.Camara.Limits = new Rectangle(0, 0, Global.ViewportWidth / 4 * (Mapa_Nubes.Length - 1), Var_AltoNivel);
+            
+            //Global.Camara.Limits = new Rectangle(Global.ViewportWidth / 4, 0, Global.ViewportWidth / 4 * (Mapa_Nubes.Length - 1), Var_AltoNivel);
 
             // Tomo tiempo transcurrido.
             //float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -86,17 +98,17 @@ namespace HLG.Abstracts.GameStates
             Global.players[1].controls[(int)Global.Controls.RIGHT] = Keys.Right;
             Global.players[1].controls[(int)Global.Controls.BUTTON_1] = Keys.Space;
 
-            Global.players[2].controls[(int)Global.Controls.UP] = Keys.I;
-            Global.players[2].controls[(int)Global.Controls.DOWN] = Keys.K;
-            Global.players[2].controls[(int)Global.Controls.LEFT] = Keys.J;
-            Global.players[2].controls[(int)Global.Controls.RIGHT] = Keys.L;
-            Global.players[2].controls[(int)Global.Controls.BUTTON_1] = Keys.Enter;
+            //Global.players[2].controls[(int)Global.Controls.UP] = Keys.I;
+            //Global.players[2].controls[(int)Global.Controls.DOWN] = Keys.K;
+            //Global.players[2].controls[(int)Global.Controls.LEFT] = Keys.J;
+            //Global.players[2].controls[(int)Global.Controls.RIGHT] = Keys.L;
+            //Global.players[2].controls[(int)Global.Controls.BUTTON_1] = Keys.Enter;
 
-            Global.players[3].controls[(int)Global.Controls.UP] = Keys.I;
-            Global.players[3].controls[(int)Global.Controls.DOWN] = Keys.K;
-            Global.players[3].controls[(int)Global.Controls.LEFT] = Keys.J;
-            Global.players[3].controls[(int)Global.Controls.RIGHT] = Keys.L;
-            Global.players[3].controls[(int)Global.Controls.BUTTON_1] = Keys.Enter;
+            //Global.players[3].controls[(int)Global.Controls.UP] = Keys.I;
+            //Global.players[3].controls[(int)Global.Controls.DOWN] = Keys.K;
+            //Global.players[3].controls[(int)Global.Controls.LEFT] = Keys.J;
+            //Global.players[3].controls[(int)Global.Controls.RIGHT] = Keys.L;
+            //Global.players[3].controls[(int)Global.Controls.BUTTON_1] = Keys.Enter;
 
             // Enemigo
             //Global.players[4].controls = null;
@@ -123,7 +135,7 @@ namespace HLG.Abstracts.GameStates
             int UIancho = 450;
             int UIalto = 550;
 
-            int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
+            int UIx = (int)(Global.Camara.parallax.X + Global.ViewportWidth / 5);
             //int UIy = (int)Global.Camara.parallax.Y;
             int UIy = 78;
 
@@ -156,12 +168,15 @@ namespace HLG.Abstracts.GameStates
             // La posicion donde va el siguiente rectangulo
             int posicion;
 
-            foreach (Parallax capa in Global.Layers)
+            foreach (Parallax capa in Global.Background_Layers)
             {
 
                 Global.Camara.parallax = new Vector2(capa.parallax_x, capa.parallax_y);
 
+                /*ORIGINAL*/
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp, null, null, null, Global.Camara.ViewMatrix);
+                
+                //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Global.Camara.ViewMatrix);
 
                 rectangulo = 0;
                 posicion = 0;
@@ -178,7 +193,14 @@ namespace HLG.Abstracts.GameStates
 
                             // Recalculo el rectangulo para que se adapte a la velocidad correspondiente de la capa
                             capa.RectanguloParallax = sourceRect[rectangulo];
+
+                            // Me parece que sumandole el parallax_x a la multiplicacion del mismo hizo el truco de pegar los tiles bien sin que desaparezcan
+
+                            /*ORIGINAL*/
                             capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x + 0.5f);
+                            
+                            //capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x + capa.parallax_x);
+                            //capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x);
 
                             // Mensajes de chequeo
                             Global.mensaje3 = Global.Camara.LimitesPantalla.X;
@@ -204,8 +226,14 @@ namespace HLG.Abstracts.GameStates
 
             #region PERSONAJES
 
+            // Vuelvo la camara al default?, porque aca todos estamos usando la misma, cuando en el archivo original recibe el paralllax
+            // aca lo toma de adentro de ella misma lo cual infiere en un monton de calculos
+            // Me parece que tendría que separarlo
+            Global.Camara.parallax = new Vector2(1, 1);
+
             // SpriteSortMode.Deferred soluciono el problema de que pegaba las capas como se le cantaba el ojete, estaba en BacktoFront
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp, null, null, null, Global.Camara.ViewMatrix);
+            //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Global.Camara.ViewMatrix);
 
             Reordenar_Personajes(spriteBatch);
 
@@ -231,7 +259,7 @@ namespace HLG.Abstracts.GameStates
         {
             /// Para obtener los 4 puntos donde tiene que dibujarse cada UI, obtener el punto Y es innecesario, el mismo es siempre 0 ya que se
             /// usan las transparencias de la imagen para obtener el espacio necesario del eje Y.
-            int UIx = int.Parse((Global.Camara.parallax.X + Global.ViewportWidth / 5).ToString());
+            int UIx = (int)(Global.Camara.parallax.X + Global.ViewportWidth / 5);
 
             for (int i = 0; i < Global.playersQuant; i++)
             {
@@ -271,7 +299,17 @@ namespace HLG.Abstracts.GameStates
         {
             
         }
-        
+
+        //public Vector2 WorldToScreen(Vector2 worldPosition)
+        //{
+        //    return Vector2.Transform(worldPosition, Global.Camara.ViewMatrix(parallax));
+        //}
+
+        //public Vector2 ScreenToWorld(Vector2 screenPosition)
+        //{
+        //    return Vector2.Transform(screenPosition, Matrix.Invert(camera.GetViewMatrix(parallax)));
+        //}
+
         #endregion
     }
 }
