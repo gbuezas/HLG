@@ -81,8 +81,8 @@ namespace HLG.Abstracts.GameStates
             // En vez de ir de 0 al limite del nivel voy a recortarlo un poco asi no se ven los cortes de las capas del parallax
 
             /*ORIGINAL*/
-            Global.Camara.Limits = new Rectangle(0, 0, Global.ViewportWidth / 4 * (Mapa_Nubes.Length - 1), Var_AltoNivel);
-            
+            Global.Camara.Limits = new Rectangle(0, 0, Global.ViewportWidth / 4 * Mapa_Nubes.Length, Var_AltoNivel);
+
             //Global.Camara.Limits = new Rectangle(Global.ViewportWidth / 4, 0, Global.ViewportWidth / 4 * (Mapa_Nubes.Length - 1), Var_AltoNivel);
 
             // Tomo tiempo transcurrido.

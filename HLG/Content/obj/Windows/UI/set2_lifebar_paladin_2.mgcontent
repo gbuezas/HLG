@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/buezas/Desktop/HLG/HLG/Content/UI/set2_lifebar_paladin_2.png</SourceFile>
-  <SourceTime>2016-04-28T13:49:19.4808726-03:00</SourceTime>
+  <SourceTime>2016-06-30T14:54:09.8016877-03:00</SourceTime>
   <DestFile>C:/Users/buezas/Desktop/HLG/HLG/Content/bin/Windows/UI/set2_lifebar_paladin_2.xnb</DestFile>
-  <DestTime>2016-05-11T18:49:52.6520115-03:00</DestTime>
+  <DestTime>2016-06-30T15:06:37.050686-03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T14:14:44-03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
