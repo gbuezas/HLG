@@ -188,5 +188,6 @@ namespace HLG.Objects
         {
             return LimitesPantalla.Intersects(Objeto);
         }
+        
     }
 }
