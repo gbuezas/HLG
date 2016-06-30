@@ -201,7 +201,7 @@ namespace HLG.Abstracts.Beings
         public abstract void Draw(SpriteBatch spriteBatch);
 
         // Actualizar cosas del jugador - GAB retocar
-        public abstract void UpdatePlayer(GameTime gameTime, Rectangle LimitesJugador, int AltoNivel, int AnchoNivel);
+        public abstract void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel);
 
         // Carga los set de armadura que corresponden a cada pieza del cuerpo.
         public abstract void UpdateArmor(List<Piece_Set> set_pieces);

@@ -58,10 +58,7 @@ namespace HLG.Abstracts.Beings
 
         // Colores de las piezas por default
         private Color[] defaultColors = new Color[Global.PiecesIA_1.Length];
-
-        // Si puede golpear o no
-        //bool CanHit = false;
-
+        
         #endregion
 
         #region JUGABILIDAD
@@ -133,9 +130,14 @@ namespace HLG.Abstracts.Beings
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
             FrameTime = 50;
-            current_health -= 70;
+
+            // Alcance del ataque
             hitrangeX = 50;
             hitrangeY = 2;
+
+            // La maxima vida que puede tener el personaje
+            max_health = 10;
+            current_health = max_health;
 
             // Establezco las banderas de dañados
             ResetInjured();
@@ -182,6 +184,12 @@ namespace HLG.Abstracts.Beings
                 piezaAnimada.position = position;
                 piezaAnimada.Update(gameTime);
             }
+
+            // Fijarse donde va bien este chequeo, en este lugar parece funcionar bien - GAB
+            if (current_health > max_health)
+            {
+                current_health = max_health;
+            }
         }
 
         /// <summary>
@@ -205,7 +213,7 @@ namespace HLG.Abstracts.Beings
         /// <param name="LimitesPantalla">Los limites que puso la camara con respecto a la pantalla que vemos.</param>
         /// <param name="AltoNivel">La altura total del escenario.</param>
         /// <param name="AnchoNivel">El ancho total del escenario.</param>
-        public override void UpdatePlayer(GameTime gameTime, Rectangle LimitesPantalla, int AltoNivel, int AnchoNivel)
+        public override void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel)
         {
 
             Update(gameTime);
@@ -413,8 +421,8 @@ namespace HLG.Abstracts.Beings
                 // Si no esta en movimiento por default queda parado
                 currentAction = Global.Actions.STAND;
 
-                /// Dirigirse al blanco, dependiendo de donde esta ele eje del blanco vamos a sumarle la velocidad hacia el.
-                /// Tambien se toma el lugar donde la IA va a detenerse y el punto que va a buscar para atacar a cierto personaja.
+                /// Dirigirse al blanco, dependiendo de donde esta el eje del blanco vamos a sumarle la velocidad hacia el.
+                /// Tambien se toma el punto que va a buscar para atacar a cierto personaja.
                 /// Para obtener el lugar antes mencionado usamos la variable de HitRange asi se posiciona optimamente para su ataque.
                 /// El HitRangeX tiene que ser mayor para que no hostigue tanto al blanco, sino se pega mucho a el
                 /// Uno de los 2 tenia que tener el igual (=) asi no habia un punto en el que se queda quieto el esqueleto, en este caso
@@ -466,16 +474,7 @@ namespace HLG.Abstracts.Beings
                     positionY += PlayerSpeed;
                     currentAction = Global.Actions.WALK;
                 }
-
-                /// Perfeccionarlo, hay que eliminar un pequeno flickering que hace por las velocidades,
-                /// me parece que con un rango mas grande en vez del == se puede solucionar
-                //if (GetPositionRec().Center.X == target.GetPositionRec().Center.X + hitrangeX ||
-                //    GetPositionRec().Center.X == target.GetPositionRec().Center.X - hitrangeX)
-                //{
-                //    currentAction = Global.Actions.STAND;
-                //    PlayerSpeed = 0;
-                //}
-
+                
                 #endregion
 
                 #region GOLPEAR
