@@ -136,7 +136,7 @@ namespace HLG.Abstracts.Beings
             current_health = max_health;
 
             // Alcance del ataque
-            hitrangeX = 95;
+            hitrangeX = 100;
             hitrangeY = 7;
 
             // Establezco las banderas de dañados
@@ -670,8 +670,9 @@ namespace HLG.Abstracts.Beings
                         if (CollisionVerifier(Global.players[i].GetPositionRec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
+                            // Le sumamos el resultado para que sea acumulativo si varios golpean al mismo objetivo
                             Global.players[i].ColorAnimationChange(Color.Red);
-                            Global.players[i].injured_value = 10;
+                            Global.players[i].injured_value += 10;
                             injured[i] = true;
                         }
                     }

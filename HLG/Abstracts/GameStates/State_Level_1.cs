@@ -16,15 +16,13 @@ namespace HLG.Abstracts.GameStates
         static string[] Mapa_Piso = new string[] { "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1" };
         static string[] Mapa_Arboles = new string[] { "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1" };
         static string[] Mapa_Nubes = new string[] { "cloud1", "cloud2", "cloud3", "cloud4", "cloud5", "cloud6", "cloud7", "cloud8", "cloud9", "cloud10", "cloud11", "cloud1", "cloud2", "cloud3", "cloud4", "cloud5", };
-        // GAB
         static string[] Mapa_Frente = new string[] { "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", };
 
         // Velocidades del parallax de cada capa
-        // Valores de parallax aceptables con esta configuracion y zoom (1.0 a 0.2) 
+        // Valores de parallax aceptables con esta configuracion y zoom (0.2 a 1.0) 
         Parallax Nubes = new Parallax(Mapa_Nubes, 0.4f, 1f);
         Parallax Arboles = new Parallax(Mapa_Arboles, 0.6f, 0.5f);
         Parallax Piso = new Parallax(Mapa_Piso, 0.85f, 1f);
-        // GAB
         Parallax Frente = new Parallax(Mapa_Frente, 1f, 1f);
         
         #endregion
@@ -52,7 +50,6 @@ namespace HLG.Abstracts.GameStates
             Global.Background_Layers.Add(Nubes);
             Global.Background_Layers.Add(Arboles);
             Global.Background_Layers.Add(Piso);
-            // GAB
             Global.Front_Layers.Add(Frente);
         }
 
@@ -160,7 +157,7 @@ namespace HLG.Abstracts.GameStates
         public override void Draw(SpriteBatch spriteBatch)
         {
 
-            # region CAPAS
+            # region CAPAS FONDO
 
             // El rectangulo contenedor del tile
             int rectangulo;
@@ -172,11 +169,8 @@ namespace HLG.Abstracts.GameStates
 
                 Global.Camara.parallax = new Vector2(capa.parallax_x, capa.parallax_y);
 
-                /*ORIGINAL*/
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp, null, null, null, Global.Camara.ViewMatrix);
                 
-                //spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Global.Camara.ViewMatrix);
-
                 rectangulo = 0;
                 posicion = 0;
 
@@ -194,19 +188,14 @@ namespace HLG.Abstracts.GameStates
                             capa.RectanguloParallax = sourceRect[rectangulo];
 
                             // Me parece que sumandole el parallax_x a la multiplicacion del mismo hizo el truco de pegar los tiles bien sin que desaparezcan
-                            /*ORIGINAL*/
-                            //capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x + 0.5f);
-
                             capa.RectanguloParallax.X += (int)((Global.Camara.LimitesPantalla.X * capa.parallax_x) + capa.parallax_x);
-                            //capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x + capa.parallax_x);
-                            //capa.RectanguloParallax.X += (int)(Global.Camara.LimitesPantalla.X * capa.parallax_x);
-
+                            
                             // Mensajes de chequeo
                             Global.mensaje3 = Global.Camara.LimitesPantalla.X;
                             Global.mensaje4 = Global.Camara.LimitesPantalla.Width;
 
                             // Si no esta dentro de la camara amplificada horizontalmente no lo dibujo
-                            if (Global.Camara.EnCamaraAmplificado(capa.RectanguloParallax))
+                            if (Global.Camara.EnCamaraAmplificada(capa.RectanguloParallax))
                             {
                                 spriteBatch.Draw(avance.textura, sourceRect[rectangulo], Color.White);
                             }
@@ -266,7 +255,7 @@ namespace HLG.Abstracts.GameStates
                             capa.RectanguloParallax.X += (int)((Global.Camara.LimitesPantalla.X * capa.parallax_x) + capa.parallax_x);
                             
                             // Si no esta dentro de la camara amplificada horizontalmente no lo dibujo
-                            if (Global.Camara.EnCamaraAmplificado(capa.RectanguloParallax))
+                            if (Global.Camara.EnCamaraAmplificada(capa.RectanguloParallax))
                             {
                                 spriteBatch.Draw(avance.textura, sourceRect[rectangulo2], Color.White);
                             }
@@ -286,7 +275,6 @@ namespace HLG.Abstracts.GameStates
             #region INTERFACE
 
             // Se usa el dibujado por default asi queda separado de la camara y esta siempre visible
-            // XX LO HAGO COMO REORDENAR PERSONAJES EN LA CLASE PADRE? XX
             spriteBatch.Begin();
 
             DrawUI(spriteBatch);

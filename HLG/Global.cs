@@ -50,6 +50,7 @@ namespace HLG
         public static List<Being> players = new List<Being>();
         public static int playersQuant = 4;
         public static int enemiesQuant = 8;
+        //public static int miscQuant = 6;
         public static int totalQuant = playersQuant + enemiesQuant;
 
         // Para donde mira el personaje

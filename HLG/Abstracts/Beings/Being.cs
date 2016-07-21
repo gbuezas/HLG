@@ -247,6 +247,23 @@ namespace HLG.Abstracts.Beings
                     direction == Global.Mirada.LEFT);
         }
 
+        public bool CollisionVerifierEnhanced(Rectangle victima)
+        {
+            Rectangle atacante = GetPositionRec();
+
+            return (atacante.Center.X >= (victima.Center.X - HitRangeX - 10) &&
+                    atacante.Center.X <= victima.Center.X &&
+                    atacante.Center.Y >= (victima.Center.Y - HitRangeY) &&
+                    atacante.Center.Y <= (victima.Center.Y + HitRangeY) &&
+                    direction == Global.Mirada.RIGHT)
+                    ||
+                   (atacante.Center.X <= (victima.Center.X + HitRangeX + 10) &&
+                    atacante.Center.X >= victima.Center.X &&
+                    atacante.Center.Y >= (victima.Center.Y - HitRangeY) &&
+                    atacante.Center.Y <= (victima.Center.Y + HitRangeY) &&
+                    direction == Global.Mirada.LEFT);
+        }
+
         #endregion
 
         #endregion
