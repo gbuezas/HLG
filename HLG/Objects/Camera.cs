@@ -188,7 +188,7 @@ namespace HLG.Objects
             return LimitesPantalla.Intersects(Objeto);
         }
 
-        public bool EnCamaraAmplificado(Rectangle Objeto)
+        public bool EnCamaraAmplificada(Rectangle Objeto)
         {
             Rectangle RecAmplify = LimitesPantalla;
             RecAmplify.X = RecAmplify.X - RecAmplify.Width / 2;
