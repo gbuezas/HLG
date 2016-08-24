@@ -23,7 +23,12 @@ namespace HLG.Abstracts.Beings
             throw new NotImplementedException();
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void DrawWithParallax(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void DrawWithoutParallax(SpriteBatch spriteBatch)
         {
             throw new NotImplementedException();
         }

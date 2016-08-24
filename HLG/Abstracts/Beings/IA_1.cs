@@ -196,12 +196,17 @@ namespace HLG.Abstracts.Beings
         /// Dibujar Jugador
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void DrawWithParallax(SpriteBatch spriteBatch)
         {
             foreach (Animation piezaAnimada in Pieces_Anim)
             {
                 piezaAnimada.Draw(spriteBatch, direction, piezaAnimada.color);
             }
+        }
+
+        public override void DrawWithoutParallax(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

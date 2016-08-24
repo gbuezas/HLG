@@ -25,6 +25,8 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         private Vector2 Position;
 
+        private int IndexPlayer = -1;
+
         /// <summary>
         /// Para que lado esta mirando el personaje
         /// </summary>
@@ -173,6 +175,12 @@ namespace HLG.Abstracts.Beings
             set { HitRangeY = value; }
         }
 
+        public int indexPlayer
+        {
+            get { return IndexPlayer; }
+            set { IndexPlayer = value; }
+        }
+
         #endregion
 
         #endregion
@@ -185,9 +193,18 @@ namespace HLG.Abstracts.Beings
         // Actualizar animacion
         public abstract void Update(GameTime gameTime);
 
-        // Dibujar Jugador
-        public abstract void Draw(SpriteBatch spriteBatch);
-        
+        /// <summary>
+        /// Dibuja dentro del parallax, por ejemplo los personajes
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public abstract void DrawWithParallax(SpriteBatch spriteBatch);
+
+        /// <summary>
+        /// Dibuja fuera del parallax, por ejemplo toda la UI
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public abstract void DrawWithoutParallax(SpriteBatch spriteBatch);
+
         // Actualizar cosas del jugador - GAB retocar
         public abstract void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel);
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HLG.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -57,10 +58,18 @@ namespace HLG.Abstracts.Beings
         protected List<Piece_Set> pieces_armor_new = new List<Piece_Set>();
 
         /// <summary>
+        /// Animaciones de la UI de vida, estaba en estático y por eso no dibujaba varias instancias
+        /// </summary>
+        protected Animation UIAnimation;
+        protected Vector2 UILifeNumber;
+        protected float actual_bar_length;
+        protected Color bar_color;
+
+        /// <summary>
         /// Velocidad de movimiento del jugador 
         /// </summary>
         protected float PlayerSpeed;
-
+        
         /// <summary>
         /// Establece tiempo de frame inicial cuando llama al UpdateArmor
         /// El UpdateArmor no ocurre en el loop se pide explicitamente 
@@ -151,11 +160,31 @@ namespace HLG.Abstracts.Beings
                 Pieces_Anim[i] = new Animation();
                 Pieces_Anim[i].Initialize(Global.PiecesPaladin[i]);
             }
-            
+
             // Piezas de la armadura al comenzar
             UpdateArmor(pieces_armor_new);
 
             animations = Pieces_Anim;
+
+            // Animacion de escudito animado de vida
+            /// Usamos [2] porque es la textura de los escuditos animados de vida, pero tenemos que buscar una buena manera de que localice
+            /// y que sean los escuditos, porque ahora tambien estan los iconos de inventorio [0] y [1]
+            UIAnimation = new Animation();
+            UIAnimation.LoadTexture(Global.UITextures[2], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1), Global.UIy),
+                                        Global.UIancho,
+                                        Global.UIalto,
+                                        2,
+                                        Color.White,
+                                        true);
+
+            /// Calculo sector de numero de vida
+            //Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - Global.UIancho / 2, 0, Global.UIancho, Global.UIalto);
+            //Rectangle UI_Rect = new Rectangle((int)UIAnimation.position.X * (indexPlayer + 1), 0, Global.UIancho, Global.UIalto);
+            //Rectangle UI_Rect = new Rectangle(0, 0, Global.UIancho, Global.UIalto);
+            //UILifeNumber.X = UI_Rect.X + Global.UIancho / 4;
+            //UILifeNumber.Y = UI_Rect.Y + Global.UIalto / 2 + 10;
+            UILifeNumber.X = ((Global.ViewportWidth/5) * (indexPlayer + 1)) - 25;
+            UILifeNumber.Y = Global.UIy + 8;
 
             // Asigno control por default al jugador
             controls[(int)Global.Controls.UP] = Keys.W;
@@ -311,19 +340,32 @@ namespace HLG.Abstracts.Beings
                 // Para los stats de cada personaje (borrar mas tarde) GAB
                 mensaje = position;
             }
+
+            #region UI
+
+            UIAnimation.frameTime = 300;
+            UIAnimation.Update(gameTime);
+
+            /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
+            actual_bar_length = current_health * Global.max_bar_length / max_health;
+            bar_color = new Color(255 - (int)(actual_bar_length * 210 / Global.max_bar_length), (int)(actual_bar_length * 210 / Global.max_bar_length), 0);
+
+
+            #endregion
+
         }
 
         /// <summary>
-        /// Dibujar Jugador
+        /// Dibujar dentro de parallax, personajes y objetos interactivos con ellos
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void DrawWithParallax(SpriteBatch spriteBatch)
         {
             foreach (Animation piezaAnimada in Pieces_Anim)
             {
                 piezaAnimada.Draw(spriteBatch, direction, piezaAnimada.color);
             }
-            
+
             // Si no separo este proceso de dibujo desconcha las posiciones de las capas del jugador
             // +++ Me parece que esto se soluciono cuando cambie el parametro de dibujo en el draw general +++
             spriteBatch.DrawString(Global.CheckStatusVar_2,
@@ -345,6 +387,22 @@ namespace HLG.Abstracts.Beings
                 Global.DrawRectangle(Global.Rectangle_Collision, Global.Punto_Blanco, spriteBatch);
                 Global.DrawRectangle(Global.Rectangle_Collision_2, Global.Punto_Blanco, spriteBatch);
             }
+        }
+
+        /// <summary>
+        /// Dibujo fuera del parallax, mayormente UI
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        public override void DrawWithoutParallax(SpriteBatch spriteBatch)
+        {
+
+            #region INTERFACE
+
+            // Se usa el dibujado por default asi queda separado de la camara y esta siempre visible
+            DrawUI(spriteBatch);
+
+            #endregion
+
         }
 
         /// <summary>
@@ -718,7 +776,38 @@ namespace HLG.Abstracts.Beings
             // MENSAJES: Veo la health de los personajes
             mensaje9 = current_health;
         }
-        
+
+        public void DrawUI(SpriteBatch spriteBatch)
+        {
+            /// Para obtener los 4 puntos donde tiene que dibujarse cada UI, obtener el punto Y es innecesario, el mismo es siempre 0 ya que se
+            /// usan las transparencias de la imagen para obtener el espacio necesario del eje Y.
+            //int UIx = (int)(Global.Camara.parallax.X + Global.ViewportWidth / 5);
+
+            // Dibuja UI animada (escuditos)
+            UIAnimation.Draw(spriteBatch, Global.Mirada.RIGHT);
+            
+            // Dibujar barra de vida
+            //Global.DrawStraightLine(new Vector2(UILifeNumber.X - 1, UILifeNumber.Y + 2),
+            //                        new Vector2(UILifeNumber.X + actual_bar_length, UILifeNumber.Y),
+            //                        Global.Punto_Blanco,
+            //                        bar_color,
+            //                        spriteBatch,
+            //                        14);
+
+            Global.DrawStraightLine(new Vector2(UILifeNumber.X, UILifeNumber.Y),
+                                    new Vector2(UILifeNumber.X + actual_bar_length, UILifeNumber.Y),
+                                    Global.Punto_Blanco,
+                                    bar_color,
+                                    spriteBatch,
+                                    14);
+
+            // Vida en numeros
+            spriteBatch.DrawString(Global.CheckStatusVar_2,
+                                   current_health.ToString() + " / " + max_health.ToString(),
+                                   UILifeNumber,
+                                   Color.White);
+       }
+
         #endregion
 
         #endregion
