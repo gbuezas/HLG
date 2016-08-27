@@ -48,7 +48,7 @@ namespace HLG.Abstracts.GameStates
             foreach (Being character in AxisList)
             {
                 if (Global.Camara.EnCamara(character.GetPositionRec()))
-                    character.Draw(spriteBatch);
+                    character.DrawWithParallax(spriteBatch);
             }
         }
 

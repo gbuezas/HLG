@@ -6,3 +6,12 @@ Ya que si es muy chico, por ejemplo 17 como tenia el Paladin casi no se nota y p
 ***** DATOS EN PANTALLA
 Acordarse de poner estos datos en modo IF DEBUG asi solo salen cuando DEBUGUEO
 *****
+
+***** EVITAR DIBUJADO FUERA DE CAMARA
+Lo hago desde States.cs asi ni entra al dibujado del objeto en si
+
+if (Global.Camara.EnCamara(**OBJETO EN CUESTION**))
+{
+	Draw(**OBJETO EN CUESTION**);
+}
+*****

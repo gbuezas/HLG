@@ -40,12 +40,12 @@
   <ItemGroup>
     <Compile Include="Abstracts\Beings\Being.cs" />
     <Compile Include="Abstracts\Beings\IA_1.cs" />
+    <Compile Include="Abstracts\Beings\Misc.cs" />
     <Compile Include="Abstracts\Beings\Paladin.cs" />
     <Compile Include="Abstracts\GameStates\States.cs" />
     <Compile Include="Abstracts\GameStates\State_Level_1.cs" />
     <Compile Include="Abstracts\GameStates\State_Selection.cs" />
     <Compile Include="Abstracts\GameStates\State_Title.cs" />
-    <Compile Include="Abstracts\Misc\Misc.cs" />
     <Compile Include="TheGame.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Objects\Animation.cs" />

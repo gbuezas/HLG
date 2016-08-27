@@ -87,7 +87,7 @@ namespace HLG.Objects
         /// Cargo la textura por primera vez, o cuando cambio el set de alguna pieza.
         /// </summary>
         /// <param name="texture"></param>
-        /// <param name="position"></param>
+        /// <param name="position">Posición Destino</param>
         /// <param name="frameWidth"></param>
         /// <param name="frameHeight"></param>
         /// <param name="frametime"></param>

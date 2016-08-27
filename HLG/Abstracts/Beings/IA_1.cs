@@ -196,12 +196,17 @@ namespace HLG.Abstracts.Beings
         /// Dibujar Jugador
         /// </summary>
         /// <param name="spriteBatch"></param>
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void DrawWithParallax(SpriteBatch spriteBatch)
         {
             foreach (Animation piezaAnimada in Pieces_Anim)
             {
                 piezaAnimada.Draw(spriteBatch, direction, piezaAnimada.color);
             }
+        }
+
+        public override void DrawWithoutParallax(SpriteBatch spriteBatch)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -408,73 +413,17 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         private void ActionLogic()
         {
-            // Busca blanco ara golpear segun los criterios dados
+            // Busca blanco para golpear segun los criterios dados
             Being target = GetTarget(TargetCond);
 
             if (currentAction != Global.Actions.HIT1 &&
                 currentAction != Global.Actions.HIT2 &&
                 currentAction != Global.Actions.HIT3)
             {
-
                 #region MOVIMIENTO
 
-                // Si no esta en movimiento por default queda parado
-                currentAction = Global.Actions.STAND;
+                GoToTarget(target);
 
-                /// Dirigirse al blanco, dependiendo de donde esta el eje del blanco vamos a sumarle la velocidad hacia el.
-                /// Tambien se toma el punto que va a buscar para atacar a cierto personaja.
-                /// Para obtener el lugar antes mencionado usamos la variable de HitRange asi se posiciona optimamente para su ataque.
-                /// El HitRangeX tiene que ser mayor para que no hostigue tanto al blanco, sino se pega mucho a el
-                /// Uno de los 2 tenia que tener el igual (=) asi no habia un punto en el que se queda quieto el esqueleto, en este caso
-                /// es el primer check, el segundo ya no lo tiene
-                /// 
-                /// * Algo esta pasando con los iguales que hace que se pare fuera del rango, esto se dio con los cambios que hice del rango
-                /// parece que se paran lejos del alcance y pegan pero no los toca (claro que esto es cuando quieren golpear)
-
-                if (GetPositionRec().Center.X <= target.GetPositionRec().Center.X)
-                {
-                    // Izquierda
-                    if (GetPositionRec().Center.X > target.GetPositionRec().Center.X - hitrangeX)
-                    {
-                        positionX -= PlayerSpeed;
-                    }
-                    else
-                    {
-                        positionX += PlayerSpeed;
-                    }
-
-                    direction = Global.Mirada.RIGHT;
-                    currentAction = Global.Actions.WALK;
-                }
-                else if (GetPositionRec().Center.X > target.GetPositionRec().Center.X)
-                {
-                    // Derecha
-                    if (GetPositionRec().Center.X < target.GetPositionRec().Center.X + hitrangeX)
-                    {
-                        positionX += PlayerSpeed;
-                    }
-                    else
-                    {
-                        positionX -= PlayerSpeed;
-                    }
-
-                    direction = Global.Mirada.LEFT;
-                    currentAction = Global.Actions.WALK;
-                }
-                
-                if (target.GetPositionRec().Center.Y < GetPositionRec().Center.Y - hitrangeY)
-                {
-                    // Arriba
-                    positionY -= PlayerSpeed;
-                    currentAction = Global.Actions.WALK;
-                }
-                else if (target.GetPositionRec().Center.Y > GetPositionRec().Center.Y + hitrangeY)
-                {
-                    // Abajo
-                    positionY += PlayerSpeed;
-                    currentAction = Global.Actions.WALK;
-                }
-                
                 #endregion
 
                 #region GOLPEAR
@@ -503,6 +452,69 @@ namespace HLG.Abstracts.Beings
         }
 
         /// <summary>
+        /// Logica de movimiento hacia el objetivo adquirido
+        /// Dirigirse al blanco, dependiendo de donde esta el eje del blanco vamos a sumarle la velocidad hacia el.
+        /// Tambien se toma el punto que va a buscar para atacar a cierto personaja.
+        /// Para obtener el lugar antes mencionado usamos la variable de HitRange asi se posiciona optimamente para su ataque.
+        /// El HitRangeX tiene que ser mayor para que no hostigue tanto al blanco, sino se pega mucho a el
+        /// Uno de los 2 tenia que tener el igual (=) asi no habia un punto en el que se queda quieto el esqueleto, en este caso
+        /// es el primer check, el segundo ya no lo tiene
+        /// </summary>
+        /// <param name="target">Objetivo adquirido</param>
+        private void GoToTarget(Being target)
+        {
+            // Si no esta en movimiento por default queda parado
+            //currentAction = Global.Actions.STAND;
+            
+            if (GetPositionRec().Center.X <= target.GetPositionRec().Center.X)
+            {
+                // Izquierda
+                if (GetPositionRec().Center.X >= target.GetPositionRec().Center.X - hitrangeX)
+                {
+                    positionX -= PlayerSpeed;
+                }
+                else
+                {
+                    positionX += PlayerSpeed;
+                }
+
+                direction = Global.Mirada.RIGHT;
+                //currentAction = Global.Actions.WALK;
+            }
+            else if (GetPositionRec().Center.X > target.GetPositionRec().Center.X)
+            {
+                // Derecha
+                if (GetPositionRec().Center.X <= target.GetPositionRec().Center.X + hitrangeX)
+                {
+                    positionX += PlayerSpeed;
+                }
+                else
+                {
+                    positionX -= PlayerSpeed;
+                }
+
+                direction = Global.Mirada.LEFT;
+                //currentAction = Global.Actions.WALK;
+            }
+
+            //if (target.GetPositionRec().Center.Y < GetPositionRec().Center.Y - hitrangeY)
+            if (target.GetPositionRec().Center.Y <= GetPositionRec().Center.Y - hitrangeY)
+            {
+                // Arriba
+                positionY -= PlayerSpeed;
+                //currentAction = Global.Actions.WALK;
+            }
+            else if (target.GetPositionRec().Center.Y > GetPositionRec().Center.Y + hitrangeY)
+            {
+                // Abajo
+                positionY += PlayerSpeed;
+                //currentAction = Global.Actions.WALK;
+            }
+
+            currentAction = Global.Actions.WALK;
+        }
+
+        /// <summary>
         /// Logica de las colisiones de los golpes:
         /// 
         ///     Implementamos un chequeo jugador por jugador a la hora de golpear, que cumpla con las siguientes reglas:
@@ -527,13 +539,17 @@ namespace HLG.Abstracts.Beings
                         !injured[i] &&
                         !Global.players[i].ghost_mode)
                     {
-                        
-                        // Si esta dentro del radio del golpe
-                        if (CollisionVerifier(Global.players[i].GetPositionRec()))
+
+                        /// Si esta dentro del radio del golpe se calculan los daños, 
+                        /// se usa en CollisionVerifierEnhanced porque tiene un arreglo que agranda el rango
+                        /// lamentablemente no pude reconocer por que hay un desfasaje de pixeles
+                        /// podría ser el tema de la camara y tendría que ver si utilizando el revert matrix de la misma se puede solucionar
+                        if (CollisionVerifierEnhanced(Global.players[i].GetPositionRec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             Global.players[i].ColorAnimationChange(Color.Red);
-                            Global.players[i].injured_value = 10;
+                            // Se le hace una suma para que sea acumulativo el daño de todos, sino siempre era 10 y no se sumaba
+                            Global.players[i].injured_value += 10;
                             injured[i] = true;
                         }
                     }

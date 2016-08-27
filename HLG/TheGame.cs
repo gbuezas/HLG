@@ -71,12 +71,14 @@ namespace HLG
             for (int i = 0; i < Global.playersQuant; i++)
             {
                 Global.players.Add(new Paladin());
+                Global.players[i].indexPlayer = i;
             }
 
             // Agrego los enemigos a la lista, no importa la clase en esta instancia
             for (int i = 0; i < Global.enemiesQuant; i++)
             {
                 Global.players.Add(new IA_1());
+                //Global.players[i].indexPlayer = i;
             }
 
             Global.CurrentState = new State_Level_1();
@@ -228,12 +230,13 @@ namespace HLG
                     Global.UITextures.Add(textura);
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 // Para que aunque no encuentre carpeta ni nada siga igual, 
                 // porque no hace diferencia al juego que no pueda encontrar nada.
                 // Mas tarde si va a importar que no cargue todas las Textures de todos cuando las tengamos.
                 // Pero ahora en esta etapa de prueba donde me faltan un monton de cosas no es necesario.
+                throw ex;
             }
             
             #endregion
