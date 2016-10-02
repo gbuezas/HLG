@@ -119,7 +119,7 @@ namespace HLG.Abstracts.GameStates
             Global.Camara.ViewTargets.Clear();
             foreach (Being Jugador in Global.players)
             {
-                if (!Jugador.machine)
+                if (Jugador.indexPlayer != -1)
                 {
                     Global.Camara.ViewTargets.Add(Jugador.GetPositionVec());
                 }
@@ -316,7 +316,7 @@ namespace HLG.Abstracts.GameStates
 
             foreach (var item in Global.players)
             {
-                if (!item.machine)
+                if (item.indexPlayer != -1)
                 {
                     item.DrawWithoutParallax(spriteBatch);
                 }

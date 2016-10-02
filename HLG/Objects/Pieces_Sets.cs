@@ -27,6 +27,11 @@ namespace HLG.Objects
             }
         }
 
+        /// <summary>
+        /// Obtiene el set asignado a esa pieza de armadura, si no la puede encontrar devuelve string.Empty.
+        /// </summary>
+        /// <param name="pieceSearched">Pieza de armadura que deseamos saber a que set pertenece.</param>
+        /// <returns>Set al cual pertenece la pieza buscada.</returns>
         public string Get_Set(string pieceSearched)
         {
             foreach (Piece_Set piece in Pieces)

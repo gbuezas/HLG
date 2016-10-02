@@ -258,7 +258,7 @@ namespace HLG
             // Asigno posiciones iniciales de los personajes, se chequea antes del Initialize
             foreach (Being Jugador in Global.players)
             {
-                if (Jugador.machine)
+                if (Jugador.indexPlayer == -1)
                 {
                     Jugador.Initialize(new Vector2(Global.randomly.Next(-100, Global.ViewportWidth + 100),
                                                    Global.randomly.Next(Global.ViewportHeight / 2 + 50, Global.ViewportHeight + 100)));

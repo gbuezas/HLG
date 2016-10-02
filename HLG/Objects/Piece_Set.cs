@@ -1,4 +1,6 @@
-﻿namespace HLG.Objects
+﻿using Microsoft.Xna.Framework;
+
+namespace HLG.Objects
 {
     public class Piece_Set
     {
@@ -17,6 +19,8 @@
             set { Set = value; }
         }
 
+        private Color IconSetColor = Color.White;
+        
         public void Initialize(string piece, string set)
         {
             Piece = piece;

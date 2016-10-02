@@ -39,7 +39,7 @@ namespace HLG.Abstracts.Beings
 
         // GAB - borrar despues
         List<Piece_Set> pieces_armor_recambio = new List<Piece_Set>();
-
+        
         /// <summary>
         /// Ancho y alto de un cuadro del sprite
         /// </summary>
@@ -64,6 +64,9 @@ namespace HLG.Abstracts.Beings
         protected Vector2 UILifeNumber;
         protected float actual_bar_length;
         protected Color bar_color;
+
+        protected List<Animation> UIInventario = new List<Animation>();
+        protected List<Animation> UIIcon = new List<Animation>();
 
         /// <summary>
         /// Velocidad de movimiento del jugador 
@@ -177,6 +180,56 @@ namespace HLG.Abstracts.Beings
                                         Color.White,
                                         true);
 
+            /// Animacion de Iconos del inventario
+            /// X - Tenemos que automatizar la locacion de los iconos y los fonditos, esta harcodeada. 
+            ///     Se hace a partir de las escalas que se le dan a los iconos y barra
+            /// X - Tenemos que hacer que cambie de set desde esa barra de iconos. Ella tendria que tener los colores correspondientes a los set disponibles 
+            ///     y cuando aceptamos ese cambio se tiene que cambiar el set en el personaje.
+            int moverEje = 0;
+            int iii = 0;
+            foreach (var item in Global.IconBarSlots)
+            {
+                Animation UIInvAnimation = new Animation();
+                Animation UIIconAnimation = new Animation();
+
+                UIInvAnimation.SetScale(25);
+                UIIconAnimation.SetScale(25);
+
+                //UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.ViewportWidth / 7) * (indexPlayer + 1) + moverEje, 30),
+                //UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - ((Global.ViewportWidth / 5) / 2) + moverEje, 30),
+                UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho * 2 + (41/3)) + moverEje, 20),
+                                            Global.InvAncho,
+                                            Global.InvAlto,
+                                            2,
+                                            Color.White,
+                                            false);
+
+                //UIIconAnimation.LoadTexture(Global.UITextures[1], new Vector2((int)(Global.ViewportWidth / 7) * (indexPlayer + 1) + moverEje, 30),
+                //UIIconAnimation.LoadTexture(Global.UITextures[1], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - ((Global.ViewportWidth / 5) / 3) + moverEje, 30),
+                UIIconAnimation.LoadTexture(Global.UITextures[1], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho*2+(41/3)) + moverEje, 20),
+                                            Global.InvAncho,
+                                            Global.InvAlto,
+                                            2,
+                                            Color.White,
+                                            false);
+
+                //UIInvAnimation.SetScale(30);
+                //UIIconAnimation.SetScale(30);
+                
+                UIInvAnimation.pause = true;
+                UIIconAnimation.pause = true;
+
+                UIIconAnimation.CurrentFrame = iii;
+                iii++;
+
+                UIInventario.Add(UIInvAnimation);
+                UIIcon.Add(UIIconAnimation);
+
+                //moverEje += Global.InvAncho - 20;
+                moverEje += Global.InvAncho - 15;
+                //iii++;
+            }
+            
             /// Calculo sector de numero de vida
             //Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - Global.UIancho / 2, 0, Global.UIancho, Global.UIalto);
             //Rectangle UI_Rect = new Rectangle((int)UIAnimation.position.X * (indexPlayer + 1), 0, Global.UIancho, Global.UIalto);
@@ -345,6 +398,19 @@ namespace HLG.Abstracts.Beings
 
             UIAnimation.frameTime = 300;
             UIAnimation.Update(gameTime);
+
+            // Inventario
+            foreach (var item in UIInventario)
+            {
+                item.frameTime = 300;
+                item.Update(gameTime);
+            }
+            // Inventario
+            foreach (var item in UIIcon)
+            {
+                item.frameTime = 300;
+                item.Update(gameTime);
+            }
 
             /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
             actual_bar_length = current_health * Global.max_bar_length / max_health;
@@ -602,7 +668,7 @@ namespace HLG.Abstracts.Beings
 
         public Paladin()
         {
-            machine = false;
+            // machine = false;
         }
 
         /// <summary>
@@ -785,15 +851,18 @@ namespace HLG.Abstracts.Beings
 
             // Dibuja UI animada (escuditos)
             UIAnimation.Draw(spriteBatch, Global.Mirada.RIGHT);
-            
-            // Dibujar barra de vida
-            //Global.DrawStraightLine(new Vector2(UILifeNumber.X - 1, UILifeNumber.Y + 2),
-            //                        new Vector2(UILifeNumber.X + actual_bar_length, UILifeNumber.Y),
-            //                        Global.Punto_Blanco,
-            //                        bar_color,
-            //                        spriteBatch,
-            //                        14);
 
+            // Dibujo inventorio
+            foreach (var item in UIInventario)
+            {
+                item.Draw(spriteBatch, Global.Mirada.RIGHT);
+            }
+            foreach (var item in UIIcon)
+            {
+                item.Draw(spriteBatch, Global.Mirada.RIGHT);
+            }
+
+            // Dibujar barra de vida
             Global.DrawStraightLine(new Vector2(UILifeNumber.X, UILifeNumber.Y),
                                     new Vector2(UILifeNumber.X + actual_bar_length, UILifeNumber.Y),
                                     Global.Punto_Blanco,
