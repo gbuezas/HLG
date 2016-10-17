@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using HLG.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -260,33 +259,35 @@ namespace HLG.Abstracts.Beings
             // por lo tanto se haria chequeando el inventario.
 
             Piece_Set recambio = new Piece_Set();
-            recambio.Initialize("shield", "set1");
+            recambio.Initialize("shield", "blue");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("gauntletback", "set1");
+            recambio.Initialize("gauntletback", "blue");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("greaveback", "set1");
+            recambio.Initialize("greaveback", "blue");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("breastplate", "set1");
+            recambio.Initialize("breastplate", "blue");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("helm", "set1");
+            recambio.Initialize("helm", "blue");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("tasset", "set1");
+            recambio.Initialize("tasset", "blue");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("greavetop", "set1");
+            recambio.Initialize("greavetop", "blue");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("sword", "set1");
+            recambio.Initialize("sword", "blue");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("gauntlettop", "set1");
+            recambio.Initialize("gauntlettop", "blue");
             pieces_armor_recambio.Add(recambio);
+            
             #endregion
+
         }
 
         /// <summary>
@@ -301,35 +302,35 @@ namespace HLG.Abstracts.Beings
             // funciona pero cambia muy rapido al apretar
             if ((Keyboard.GetState().IsKeyDown(Keys.D8)))
             {
-                if (pieces_armor_recambio[7].set == "set1")
-                    pieces_armor_recambio[7].set = "set2";
+                if (pieces_armor_recambio[7].set == "blue")
+                    pieces_armor_recambio[7].set = "red";
                 else
-                    pieces_armor_recambio[7].set = "set1";
-                
+                    pieces_armor_recambio[7].set = "blue";
+
                 UpdateArmor(pieces_armor_recambio);
             }
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D7)))
             {
-                if (pieces_armor_recambio[0].set == "set1")
-                    pieces_armor_recambio[0].set = "set2";
+                if (pieces_armor_recambio[0].set == "blue")
+                    pieces_armor_recambio[0].set = "red";
                 else
-                    pieces_armor_recambio[0].set = "set1";
-                
+                    pieces_armor_recambio[0].set = "blue";
+
                 UpdateArmor(pieces_armor_recambio);
             }
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D6)))
             {
-                if (pieces_armor_recambio[3].set == "set1")
+                if (pieces_armor_recambio[3].set == "blue")
                 {
-                    pieces_armor_recambio[3].set = "set2";
-                    pieces_armor_recambio[5].set = "set2";
+                    pieces_armor_recambio[3].set = "red";
+                    pieces_armor_recambio[5].set = "red";
                 }
                 else
                 {
-                    pieces_armor_recambio[3].set = "set1";
-                    pieces_armor_recambio[5].set = "set1";
+                    pieces_armor_recambio[3].set = "blue";
+                    pieces_armor_recambio[5].set = "blue";
                 }
 
                 UpdateArmor(pieces_armor_recambio);
@@ -337,15 +338,15 @@ namespace HLG.Abstracts.Beings
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D5)))
             {
-                if (pieces_armor_recambio[2].set == "set1")
+                if (pieces_armor_recambio[2].set == "blue")
                 {
-                    pieces_armor_recambio[2].set = "set2";
-                    pieces_armor_recambio[6].set = "set2";
+                    pieces_armor_recambio[2].set = "red";
+                    pieces_armor_recambio[6].set = "red";
                 }
                 else
                 {
-                    pieces_armor_recambio[2].set = "set1";
-                    pieces_armor_recambio[6].set = "set1";
+                    pieces_armor_recambio[2].set = "blue";
+                    pieces_armor_recambio[6].set = "blue";
                 }
 
                 UpdateArmor(pieces_armor_recambio);
@@ -353,15 +354,15 @@ namespace HLG.Abstracts.Beings
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D4)))
             {
-                if (pieces_armor_recambio[1].set == "set1")
+                if (pieces_armor_recambio[1].set == "blue")
                 {
-                    pieces_armor_recambio[1].set = "set2";
-                    pieces_armor_recambio[8].set = "set2";
+                    pieces_armor_recambio[1].set = "red";
+                    pieces_armor_recambio[8].set = "red";
                 }
                 else
                 {
-                    pieces_armor_recambio[1].set = "set1";
-                    pieces_armor_recambio[8].set = "set1";
+                    pieces_armor_recambio[1].set = "blue";
+                    pieces_armor_recambio[8].set = "blue";
                 }
 
                 UpdateArmor(pieces_armor_recambio);
@@ -369,11 +370,11 @@ namespace HLG.Abstracts.Beings
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D3)))
             {
-                if (pieces_armor_recambio[4].set == "set1")
-                    pieces_armor_recambio[4].set = "set2";
+                if (pieces_armor_recambio[4].set == "blue")
+                    pieces_armor_recambio[4].set = "red";
                 else
-                    pieces_armor_recambio[4].set = "set1";
-                
+                    pieces_armor_recambio[4].set = "blue";
+
                 UpdateArmor(pieces_armor_recambio);
             }
 
@@ -851,6 +852,22 @@ namespace HLG.Abstracts.Beings
 
             // Dibuja UI animada (escuditos)
             UIAnimation.Draw(spriteBatch, Global.Mirada.RIGHT);
+
+            // El color de los iconos es el mismo que el de la armadura actual
+            for (int i = 0; i< Global.PiecesPaladin.Length-1; i++)
+            {
+                // GAB
+                // Tengo que tratar de conseguir los colores a partir de un string
+                //UIInventario[i].ColorChange(animations[i].color);
+                //var tempcolor = Color.AliceBlue.ToString(); //animations[i].loadedTexture.set
+                
+                //Color.FromName
+                
+                System.Drawing.Color systemColor = System.Drawing.Color.FromName(animations[i].loadedTexture.set);
+                Color xnaColor = new Color(systemColor.R,systemColor.G,systemColor.B,systemColor.A);
+                UIIcon[i].ColorChange(xnaColor);
+                
+            }
 
             // Dibujo inventorio
             foreach (var item in UIInventario)

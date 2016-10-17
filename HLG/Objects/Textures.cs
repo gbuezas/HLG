@@ -58,7 +58,7 @@ namespace HLG.Objects
         /// <summary>
         /// Cargamos los sprites a utilizar y los datos necesarios para poder utilizarlos.
         /// Mas tarde se van a contrastar con los datos del jugador para utilizarlos correctamente.
-        /// Ejemplo: set1_gauntlettop_walk_10.png
+        /// Ejemplo: blue_gauntlettop_walk_10.png
         /// </summary>
         /// <param name="textura">Los sprites que se van a utilizar</param>
         /// <param name="nombre">El nombre del archivo con sus datos pertinentes</param>

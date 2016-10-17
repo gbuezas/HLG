@@ -35,8 +35,8 @@ namespace HLG
         /// no se bien como voy a hacer para que sea inteligente la asignacion de colores, pero algo va a salir
         public static Dictionary<string, Color> ColorSets = new Dictionary<string, Color>()
         {
-            { "set1", Color.Red },
-            { "set2", Color.Blue },
+            { "red", Color.Red },
+            { "blue", Color.Blue },
             { "set3", Color.Green }
         };
 

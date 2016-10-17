@@ -15,3 +15,8 @@ if (Global.Camara.EnCamara(**OBJETO EN CUESTION**))
 	Draw(**OBJETO EN CUESTION**);
 }
 *****
+
+***** UBICACION ARCHIVOS
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI
+Se tienne que pegar los .png aca tb
+*****
