@@ -16,7 +16,14 @@ if (Global.Camara.EnCamara(**OBJETO EN CUESTION**))
 }
 *****
 
+***** OBTENER COLOR DE UN STRING
+
+
+
+*****
+
 ***** UBICACION ARCHIVOS
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI
+C:\Users\buezas\Desktop\HLG\HLG\Content\bin\Windows\UI
 Se tienne que pegar los .png aca tb
 *****

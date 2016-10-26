@@ -863,9 +863,10 @@ namespace HLG.Abstracts.Beings
                 
                 //Color.FromName
                 
-                System.Drawing.Color systemColor = System.Drawing.Color.FromName(animations[i].loadedTexture.set);
-                Color xnaColor = new Color(systemColor.R,systemColor.G,systemColor.B,systemColor.A);
-                UIIcon[i].ColorChange(xnaColor);
+                // GAB - FUNCA
+                //System.Drawing.Color systemColor = System.Drawing.Color.FromName(animations[i].loadedTexture.set);
+                //Color xnaColor = new Color(systemColor.R,systemColor.G,systemColor.B,systemColor.A);
+                //UIIcon[i].ColorChange(xnaColor);
                 
             }
 

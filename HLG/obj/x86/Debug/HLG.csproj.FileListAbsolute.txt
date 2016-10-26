@@ -457,14 +457,15 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Seleccion\PlayerSelect
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Seleccion\puntoblanco.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Seleccion\SelectMachine.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\Titulo\TitleScreen.xnb
-C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\InvBar_IconBar_paladin_1.png
-C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\InvIcon_IconBar_paladin_8.png
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_invbar_paladin_1.png
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_invbar_paladin_1.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_invicon_paladin_8.png
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_invicon_paladin_8.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_lifebar_paladin_2.png
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set1_lifebar_paladin_2.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_barbaro_2.png
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_barbaro_2.xnb
+C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_paladin_2.png
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI\set2_lifebar_paladin_2.xnb
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\HLG.exe
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\HLG.pdb
@@ -488,6 +489,5 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct2D1.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\SharpDX.Direct3D9.xml
-C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.csprojResolveAssemblyReference.cache
 C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.exe
 C:\Users\buezas\Desktop\HLG\HLG\obj\x86\Debug\HLG.pdb
