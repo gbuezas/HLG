@@ -370,11 +370,7 @@ namespace HLG
         /// </summary>
         private static void EnableColRec()
         {
-            Global.previousKeyboardState = Global.currentKeyboardState;
-            Global.currentKeyboardState = Keyboard.GetState();
-
-            // Acciones que no se tienen que repetir al mantener la tecla
-            if (Global.previousKeyboardState.IsKeyDown(Keys.D2) && Global.currentKeyboardState.IsKeyUp(Keys.D2))
+            if (Global.OnePulseKey(Keys.D2))
             {
                 if (Global.EnableRectangles)
                 {

@@ -89,10 +89,10 @@ namespace HLG.Abstracts.GameStates
             // Si lo saco de aca no me toma los cambios del control
             #region controles de los personajes - borrar
 
-            Global.players[1].controls[(int)Global.Controls.UP] = Keys.Up;
-            Global.players[1].controls[(int)Global.Controls.DOWN] = Keys.Down;
-            Global.players[1].controls[(int)Global.Controls.LEFT] = Keys.Left;
-            Global.players[1].controls[(int)Global.Controls.RIGHT] = Keys.Right;
+            Global.players[1].controls[(int)Global.Controls.UP] = Keys.I;
+            Global.players[1].controls[(int)Global.Controls.DOWN] = Keys.K;
+            Global.players[1].controls[(int)Global.Controls.LEFT] = Keys.J;
+            Global.players[1].controls[(int)Global.Controls.RIGHT] = Keys.L;
             Global.players[1].controls[(int)Global.Controls.BUTTON_1] = Keys.Space;
 
             //Global.players[2].controls[(int)Global.Controls.UP] = Keys.I;

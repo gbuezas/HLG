@@ -26,21 +26,7 @@ namespace HLG
         // Colores, tintes
         public static Color ColorGhost = new Color(255, 255, 255, 30);
         public static Color[] SkeletonRandomColors = new Color[] { Color.AntiqueWhite, Color.Wheat, Color.WhiteSmoke, Color.SeaShell, Color.OldLace, Color.LightYellow, Color.Gainsboro, Color.Cornsilk };
-
-        /// Colores de set de los items del inventario
-        /// A ver para hacer esto tendria que usar los nombres bien de los set, onda en el nombre de la textura dice
-        /// SetVeneno o SetFuego o algo asi y yo aca le asigno los colores.
-        /// Me parece que lo piola seria que se fije en una lista que tenga cargado todos los nombres de los set, 
-        /// creo que eso esta en texturas y se carga al principio y por cada nombre de set que se le asigne un color
-        /// no se bien como voy a hacer para que sea inteligente la asignacion de colores, pero algo va a salir
-        public static Dictionary<string, Color> ColorSets = new Dictionary<string, Color>()
-        {
-            { "red", Color.Red },
-            { "blue", Color.Blue },
-            { "set3", Color.Green }
-        };
-
-
+        
         // La clase de los estados del juego
         public static States CurrentState;
 
@@ -188,6 +174,22 @@ namespace HLG
             Global.DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
             Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
             Global.DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+        }
+
+        /// <summary>
+        /// La tecla se activa cuando se suelta despues de haber sido presionada.
+        /// </summary>
+        /// <param name="Tecla">La tecla que queremos verificar si se presiono</param>
+        /// <returns></returns>
+        public static bool OnePulseKey(Keys Tecla)
+        {
+            //previousKeyboardState = currentKeyboardState;
+            //currentKeyboardState = Keyboard.GetState();
+
+            if (previousKeyboardState.IsKeyDown(Tecla) && currentKeyboardState.IsKeyUp(Tecla))
+                return true;
+            else
+                return false;
         }
     }
 }

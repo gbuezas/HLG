@@ -46,6 +46,7 @@
     <Compile Include="Abstracts\GameStates\State_Level_1.cs" />
     <Compile Include="Abstracts\GameStates\State_Selection.cs" />
     <Compile Include="Abstracts\GameStates\State_Title.cs" />
+    <Compile Include="Objects\InvSlot.cs" />
     <Compile Include="TheGame.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Objects\Animation.cs" />

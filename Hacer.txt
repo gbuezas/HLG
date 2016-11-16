@@ -1,0 +1,18 @@
+- Clase Sonidos
+- Clase Input
+- Clase UI
+------------------ 
+Estas 3 clases tiene que ser una onda la clase que hicimos de Animation para poder controlarlas facilmente
+
+- Unit test Class
+- Logger de errores
+- Manejo de errores
+
+- Networking
+
+- Achievements (que no sean por hacer cosas que las tenes que hacer inevitablemente)
+
+
+- Luck changer items, like bowser punish in Mario party & the game of playstation
+
+- Los skins se pueden comprar o ganar jugando y ganando 100 veces con esa armadura.

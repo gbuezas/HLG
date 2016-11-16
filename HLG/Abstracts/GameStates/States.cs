@@ -1,6 +1,7 @@
 ﻿using HLG.Abstracts.Beings;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -57,6 +58,7 @@ namespace HLG.Abstracts.GameStates
         {
             // Guarda los estados anteriores del joystick y del teclado
             Global.previousKeyboardState = Global.currentKeyboardState;
+            Global.currentKeyboardState = Keyboard.GetState();
 
             //for (int i = 0; i < 4;i++ )
             //{

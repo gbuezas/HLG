@@ -50,6 +50,11 @@ namespace HLG.Abstracts.Beings
         #region JUGABILIDAD
 
         /// <summary>
+        /// El conjunto de slots de inventario del jugador.
+        /// </summary>
+        List<InvSlot> Inventory = new List<InvSlot>();
+
+        /// <summary>
         /// Tipo de cada pieza de armadura:
         /// Shield, gauntletback, greaveback, helm, breastplate, tasset, greavetop, sword, gauntlettop. 
         /// </summary>
@@ -66,6 +71,8 @@ namespace HLG.Abstracts.Beings
 
         protected List<Animation> UIInventario = new List<Animation>();
         protected List<Animation> UIIcon = new List<Animation>();
+        // GAB Selector
+        protected List<Animation> UISelector = new List<Animation>();
 
         /// <summary>
         /// Velocidad de movimiento del jugador 
@@ -184,51 +191,65 @@ namespace HLG.Abstracts.Beings
             ///     Se hace a partir de las escalas que se le dan a los iconos y barra
             /// X - Tenemos que hacer que cambie de set desde esa barra de iconos. Ella tendria que tener los colores correspondientes a los set disponibles 
             ///     y cuando aceptamos ese cambio se tiene que cambiar el set en el personaje.
+            
             int moverEje = 0;
             int iii = 0;
             foreach (var item in Global.IconBarSlots)
             {
                 Animation UIInvAnimation = new Animation();
                 Animation UIIconAnimation = new Animation();
-
+                
                 UIInvAnimation.SetScale(25);
                 UIIconAnimation.SetScale(25);
-
-                //UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.ViewportWidth / 7) * (indexPlayer + 1) + moverEje, 30),
-                //UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - ((Global.ViewportWidth / 5) / 2) + moverEje, 30),
-                UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho * 2 + (41/3)) + moverEje, 20),
+                
+                // Fondo del inventario (slots)
+                UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho * 2 + (41 / 3)) + moverEje, 20),
                                             Global.InvAncho,
                                             Global.InvAlto,
                                             2,
                                             Color.White,
                                             false);
 
-                //UIIconAnimation.LoadTexture(Global.UITextures[1], new Vector2((int)(Global.ViewportWidth / 7) * (indexPlayer + 1) + moverEje, 30),
-                //UIIconAnimation.LoadTexture(Global.UITextures[1], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - ((Global.ViewportWidth / 5) / 3) + moverEje, 30),
-                UIIconAnimation.LoadTexture(Global.UITextures[1], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho*2+(41/3)) + moverEje, 20),
+                // Aca se elige los iconos del invenario
+                UIIconAnimation.LoadTexture(Global.UITextures[3], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho*2+(41/3)) + moverEje, 20),
                                             Global.InvAncho,
                                             Global.InvAlto,
                                             2,
                                             Color.White,
                                             false);
-
+                
                 //UIInvAnimation.SetScale(30);
                 //UIIconAnimation.SetScale(30);
-                
+
                 UIInvAnimation.pause = true;
                 UIIconAnimation.pause = true;
-
+                
                 UIIconAnimation.CurrentFrame = iii;
                 iii++;
 
                 UIInventario.Add(UIInvAnimation);
                 UIIcon.Add(UIIconAnimation);
-
+                
                 //moverEje += Global.InvAncho - 20;
                 moverEje += Global.InvAncho - 15;
                 //iii++;
             }
-            
+
+            // GAB - Selector
+            Animation UISelectorAnimation = new Animation();
+            UISelectorAnimation.SetScale(25);
+            // Aca van los slots selector
+            UISelectorAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho * 2 + (41 / 3)), 20),
+                                                    Global.InvAncho,
+                                                    Global.InvAlto,
+                                                    2,
+                                                    Color.Red,
+                                                    false);
+            UISelectorAnimation.pause = true;
+            UISelectorAnimation.CurrentFrame = 3;
+            UISelector.Add(UISelectorAnimation);
+
+
             /// Calculo sector de numero de vida
             //Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - Global.UIancho / 2, 0, Global.UIancho, Global.UIalto);
             //Rectangle UI_Rect = new Rectangle((int)UIAnimation.position.X * (indexPlayer + 1), 0, Global.UIancho, Global.UIalto);
@@ -259,31 +280,31 @@ namespace HLG.Abstracts.Beings
             // por lo tanto se haria chequeando el inventario.
 
             Piece_Set recambio = new Piece_Set();
-            recambio.Initialize("shield", "blue");
+            recambio.Initialize("shield", "set1");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("gauntletback", "blue");
+            recambio.Initialize("gauntletback", "set1");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("greaveback", "blue");
+            recambio.Initialize("greaveback", "set1");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("breastplate", "blue");
+            recambio.Initialize("breastplate", "set1");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("helm", "blue");
+            recambio.Initialize("helm", "set1");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("tasset", "blue");
+            recambio.Initialize("tasset", "set1");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("greavetop", "blue");
+            recambio.Initialize("greavetop", "set1");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("sword", "blue");
+            recambio.Initialize("sword", "set1");
             pieces_armor_recambio.Add(recambio);
             recambio = new Piece_Set();
-            recambio.Initialize("gauntlettop", "blue");
+            recambio.Initialize("gauntlettop", "set1");
             pieces_armor_recambio.Add(recambio);
             
             #endregion
@@ -298,39 +319,48 @@ namespace HLG.Abstracts.Beings
         {
             #region CAMBIO_ARMADURA_MANUAL
 
+            // Para mover el selector de cambio de armadura - GAB
+            if (Global.OnePulseKey(Keys.Right))
+                UISelector[0].position.X += UISelector[0].frameWidth/2;
+                //UISelector[0].position.X += (Global.Camara.parallax.X + Global.ViewportWidth / 5 - (Global.InvAncho * 2 + (41 / 3)));
+
+            if (Global.OnePulseKey(Keys.Left))
+                UISelector[0].position.X -= (Global.Camara.parallax.X + Global.ViewportWidth / 5 - (Global.InvAncho * 2 + (41 / 3)));
+            
+
             // Para cambiar armadura, solo para probar cosas
             // funciona pero cambia muy rapido al apretar
             if ((Keyboard.GetState().IsKeyDown(Keys.D8)))
             {
-                if (pieces_armor_recambio[7].set == "blue")
-                    pieces_armor_recambio[7].set = "red";
+                if (pieces_armor_recambio[7].set == "set1")
+                    pieces_armor_recambio[7].set = "set2";
                 else
-                    pieces_armor_recambio[7].set = "blue";
+                    pieces_armor_recambio[7].set = "set1";
 
                 UpdateArmor(pieces_armor_recambio);
             }
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D7)))
             {
-                if (pieces_armor_recambio[0].set == "blue")
-                    pieces_armor_recambio[0].set = "red";
+                if (pieces_armor_recambio[0].set == "set1")
+                    pieces_armor_recambio[0].set = "set2";
                 else
-                    pieces_armor_recambio[0].set = "blue";
+                    pieces_armor_recambio[0].set = "set1";
 
                 UpdateArmor(pieces_armor_recambio);
             }
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D6)))
             {
-                if (pieces_armor_recambio[3].set == "blue")
+                if (pieces_armor_recambio[3].set == "set1")
                 {
-                    pieces_armor_recambio[3].set = "red";
-                    pieces_armor_recambio[5].set = "red";
+                    pieces_armor_recambio[3].set = "set2";
+                    pieces_armor_recambio[5].set = "set2";
                 }
                 else
                 {
-                    pieces_armor_recambio[3].set = "blue";
-                    pieces_armor_recambio[5].set = "blue";
+                    pieces_armor_recambio[3].set = "set1";
+                    pieces_armor_recambio[5].set = "set1";
                 }
 
                 UpdateArmor(pieces_armor_recambio);
@@ -338,15 +368,15 @@ namespace HLG.Abstracts.Beings
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D5)))
             {
-                if (pieces_armor_recambio[2].set == "blue")
+                if (pieces_armor_recambio[2].set == "set1")
                 {
-                    pieces_armor_recambio[2].set = "red";
-                    pieces_armor_recambio[6].set = "red";
+                    pieces_armor_recambio[2].set = "set2";
+                    pieces_armor_recambio[6].set = "set2";
                 }
                 else
                 {
-                    pieces_armor_recambio[2].set = "blue";
-                    pieces_armor_recambio[6].set = "blue";
+                    pieces_armor_recambio[2].set = "set1";
+                    pieces_armor_recambio[6].set = "set1";
                 }
 
                 UpdateArmor(pieces_armor_recambio);
@@ -354,15 +384,15 @@ namespace HLG.Abstracts.Beings
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D4)))
             {
-                if (pieces_armor_recambio[1].set == "blue")
+                if (pieces_armor_recambio[1].set == "set1")
                 {
-                    pieces_armor_recambio[1].set = "red";
-                    pieces_armor_recambio[8].set = "red";
+                    pieces_armor_recambio[1].set = "set2";
+                    pieces_armor_recambio[8].set = "set2";
                 }
                 else
                 {
-                    pieces_armor_recambio[1].set = "blue";
-                    pieces_armor_recambio[8].set = "blue";
+                    pieces_armor_recambio[1].set = "set1";
+                    pieces_armor_recambio[8].set = "set1";
                 }
 
                 UpdateArmor(pieces_armor_recambio);
@@ -370,14 +400,14 @@ namespace HLG.Abstracts.Beings
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D3)))
             {
-                if (pieces_armor_recambio[4].set == "blue")
-                    pieces_armor_recambio[4].set = "red";
+                if (pieces_armor_recambio[4].set == "set1")
+                    pieces_armor_recambio[4].set = "set2";
                 else
-                    pieces_armor_recambio[4].set = "blue";
+                    pieces_armor_recambio[4].set = "set1";
 
                 UpdateArmor(pieces_armor_recambio);
             }
-
+            
             #endregion
 
             foreach (Animation piezaAnimada in Pieces_Anim)
@@ -413,13 +443,20 @@ namespace HLG.Abstracts.Beings
                 item.Update(gameTime);
             }
 
+            // GAB inventario
+            foreach (var item in UISelector)
+            {
+                item.frameTime = 300;
+                item.Update(gameTime);
+            }
+
             /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
             actual_bar_length = current_health * Global.max_bar_length / max_health;
             bar_color = new Color(255 - (int)(actual_bar_length * 210 / Global.max_bar_length), (int)(actual_bar_length * 210 / Global.max_bar_length), 0);
 
 
             #endregion
-
+            
         }
 
         /// <summary>
@@ -484,9 +521,9 @@ namespace HLG.Abstracts.Beings
 
             Update(gameTime);
 
-            // Obtengo teclas presionadas
-            Global.currentKeyboardState = Keyboard.GetState();
-
+            // Obtengo teclas presionadas - GAB - 
+            // Solo lo voy a hacer aca, sino se resetea cada vez que se llama, y como toca variables globales me modifica todo.
+            
             // Logica de las acciones, moverse, pegar, etc
             ActionLogic();
 
@@ -852,30 +889,19 @@ namespace HLG.Abstracts.Beings
 
             // Dibuja UI animada (escuditos)
             UIAnimation.Draw(spriteBatch, Global.Mirada.RIGHT);
-
-            // El color de los iconos es el mismo que el de la armadura actual
-            for (int i = 0; i< Global.PiecesPaladin.Length-1; i++)
-            {
-                // GAB
-                // Tengo que tratar de conseguir los colores a partir de un string
-                //UIInventario[i].ColorChange(animations[i].color);
-                //var tempcolor = Color.AliceBlue.ToString(); //animations[i].loadedTexture.set
-                
-                //Color.FromName
-                
-                // GAB - FUNCA
-                //System.Drawing.Color systemColor = System.Drawing.Color.FromName(animations[i].loadedTexture.set);
-                //Color xnaColor = new Color(systemColor.R,systemColor.G,systemColor.B,systemColor.A);
-                //UIIcon[i].ColorChange(xnaColor);
-                
-            }
-
+            
             // Dibujo inventorio
             foreach (var item in UIInventario)
             {
                 item.Draw(spriteBatch, Global.Mirada.RIGHT);
             }
             foreach (var item in UIIcon)
+            {
+                item.Draw(spriteBatch, Global.Mirada.RIGHT);
+            }
+
+            // GAB Dibujar UISelector
+            foreach (var item in UISelector)
             {
                 item.Draw(spriteBatch, Global.Mirada.RIGHT);
             }

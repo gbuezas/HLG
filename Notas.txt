@@ -17,9 +17,11 @@ if (Global.Camara.EnCamara(**OBJETO EN CUESTION**))
 *****
 
 ***** OBTENER COLOR DE UN STRING
-
-
-
+Al final no necesitamos esto porque es al pedo colorear,
+ya que cada set tiene que tener su propio dibujito.
+Esta bien que tenga el nombre del set en la nomenclatura
+asi lo podemos usar para los stats, etc.
+De ultima si queremos que un color pertenezca a ese set lo ponemos en algun lado tipo globales.
 *****
 
 ***** UBICACION ARCHIVOS
@@ -27,3 +29,9 @@ C:\Users\buezas\Desktop\HLG\HLG\bin\Windows\Debug\Content\UI
 C:\Users\buezas\Desktop\HLG\HLG\Content\bin\Windows\UI
 Se tienne que pegar los .png aca tb
 *****
+
+***** ACTUALIZACION DE INPUT
+Dejamos una sola actualizacion, este chequeo esta en el objeto state y es utilizado 1 vez por cada state que se esta ejecutando, 
+esto quiere decir que a la hora de consultar el input solo se le tiene que preguntar el estado a las variables globales. 
+Sino fuera de esta manera se ejecutarian unos reseteos cuando pide getstate cada milisegundo dentro de las demas funciones de golpes, etc.
+***** 
