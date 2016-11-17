@@ -143,7 +143,7 @@ namespace HLG.Abstracts.Beings
             ResetInjured();
 
             // Seteo IA
-            machine = true;
+            // machine = true;
 
             // Inicializo partes de armadura actual
             pieces_armor.Initialize();
@@ -381,7 +381,7 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         public IA_1()
         {
-            machine = true;
+            // machine = true;
         }
 
         /// <summary>
@@ -535,7 +535,7 @@ namespace HLG.Abstracts.Beings
                 for (int i = 0; i < Global.totalQuant; i++)
                 {
                     // Ver sumamry
-                    if (!Global.players[i].machine &&
+                    if (Global.players[i].indexPlayer != -1 &&
                         !injured[i] &&
                         !Global.players[i].ghost_mode)
                     {

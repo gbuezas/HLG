@@ -62,7 +62,7 @@ namespace HLG.Objects
         public Vector2 position;
 
         // Escala de Heroes con respecto al alto de la pantalla
-        public float escalaAnimacion = Global.ViewportHeight / Global.Scalar;
+        private float escalaAnimacion = Global.ViewportHeight / Global.Scalar;
 
         #endregion
 
@@ -212,6 +212,11 @@ namespace HLG.Objects
                 }
 
             }
+        }
+
+        public void SetScale(int Scale)
+        {
+            escalaAnimacion = Global.ViewportHeight / Scale;
         }
 
         #endregion

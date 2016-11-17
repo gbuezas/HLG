@@ -258,7 +258,7 @@ namespace HLG
             // Asigno posiciones iniciales de los personajes, se chequea antes del Initialize
             foreach (Being Jugador in Global.players)
             {
-                if (Jugador.machine)
+                if (Jugador.indexPlayer == -1)
                 {
                     Jugador.Initialize(new Vector2(Global.randomly.Next(-100, Global.ViewportWidth + 100),
                                                    Global.randomly.Next(Global.ViewportHeight / 2 + 50, Global.ViewportHeight + 100)));
@@ -370,11 +370,7 @@ namespace HLG
         /// </summary>
         private static void EnableColRec()
         {
-            Global.previousKeyboardState = Global.currentKeyboardState;
-            Global.currentKeyboardState = Keyboard.GetState();
-
-            // Acciones que no se tienen que repetir al mantener la tecla
-            if (Global.previousKeyboardState.IsKeyDown(Keys.D2) && Global.currentKeyboardState.IsKeyUp(Keys.D2))
+            if (Global.OnePulseKey(Keys.D2))
             {
                 if (Global.EnableRectangles)
                 {

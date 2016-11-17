@@ -16,7 +16,7 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// Si el personaje es manejado por la maquina o por un humano
         /// </summary>
-        private bool Machine = false;
+        // private bool Machine = false;
 
         /// <summary>
         /// Posicion del jugador relativa a la parte superior izquierda de la pantalla.
@@ -25,6 +25,10 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         private Vector2 Position;
 
+        /// <summary>
+        /// Indice del jugador en el vector, si es -1 es una maquina
+        /// Cuando se cargan los personajes se les asigna el indice indicado distinto del default
+        /// </summary>
         private int IndexPlayer = -1;
 
         /// <summary>
@@ -87,11 +91,11 @@ namespace HLG.Abstracts.Beings
 
         #region CONTROLES
 
-        public bool machine
-        {
-            get { return Machine; }
-            set { Machine = value; }
-        }
+        //public bool machine
+        //{
+        //    get { return Machine; }
+        //    set { Machine = value; }
+        //}
 
         public Vector2 position
         {

@@ -46,6 +46,9 @@ namespace HLG
         // Mas grande es el numero mas chico es el personaje
         public static float Scalar = 6;
 
+        // Dimensiones de los iconos del inventario
+        //public static int IconHeight, IconWidht = 41;
+
         // Crea lista del objeto Being, el cual alberga a los personajes y a los enemigos
         public static List<Being> players = new List<Being>();
         public static int playersQuant = 4;
@@ -73,6 +76,7 @@ namespace HLG
         public static string[] PiecesPaladin = new string[] { "shield", "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "sword", "gauntlettop" };
         public static string[] PiecesBarbaro = new string[] { "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "sword", "gauntlettop" };
         public static string[] PiecesIA_1 = new string[] { "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "gauntlettop" };
+        public static string[] IconBarSlots = new string[] { "greaves", "gauntlets", "breastplates", "helms", "shields", "swords", "weapons", "items" };
         public static List<string> Armors = new List<string>();
 
         // Los distintos estilos de escenarios
@@ -170,6 +174,22 @@ namespace HLG
             Global.DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
             Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
             Global.DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+        }
+
+        /// <summary>
+        /// La tecla se activa cuando se suelta despues de haber sido presionada.
+        /// </summary>
+        /// <param name="Tecla">La tecla que queremos verificar si se presiono</param>
+        /// <returns></returns>
+        public static bool OnePulseKey(Keys Tecla)
+        {
+            //previousKeyboardState = currentKeyboardState;
+            //currentKeyboardState = Keyboard.GetState();
+
+            if (previousKeyboardState.IsKeyDown(Tecla) && currentKeyboardState.IsKeyUp(Tecla))
+                return true;
+            else
+                return false;
         }
     }
 }
