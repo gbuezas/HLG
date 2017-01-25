@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace HLG.Abstracts.Beings
 {
-    class Paladin : Being
+    class Paladin : Playable_Characters
     {
         #region VARIABLES
 
@@ -52,7 +52,7 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// El conjunto de slots de inventario del jugador.
         /// </summary>
-        List<InvSlot> Inventory = new List<InvSlot>();
+        //List<Misc> Inventory = new List<Misc>();
 
         /// <summary>
         /// Tipo de cada pieza de armadura:
@@ -71,9 +71,7 @@ namespace HLG.Abstracts.Beings
 
         protected List<Animation> UIInventario = new List<Animation>();
         protected List<Animation> UIIcon = new List<Animation>();
-        // GAB Selector
-        protected List<Animation> UISelector = new List<Animation>();
-
+        
         /// <summary>
         /// Velocidad de movimiento del jugador 
         /// </summary>
@@ -179,7 +177,7 @@ namespace HLG.Abstracts.Beings
             /// Usamos [2] porque es la textura de los escuditos animados de vida, pero tenemos que buscar una buena manera de que localice
             /// y que sean los escuditos, porque ahora tambien estan los iconos de inventorio [0] y [1]
             UIAnimation = new Animation();
-            UIAnimation.LoadTexture(Global.UITextures[2], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1), Global.UIy),
+            UIAnimation.LoadTexture(Global.UITextures[2], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (index + 1), Global.UIy),
                                         Global.UIancho,
                                         Global.UIalto,
                                         2,
@@ -196,6 +194,7 @@ namespace HLG.Abstracts.Beings
             int iii = 0;
             foreach (var item in Global.IconBarSlots)
             {
+
                 Animation UIInvAnimation = new Animation();
                 Animation UIIconAnimation = new Animation();
                 
@@ -203,7 +202,7 @@ namespace HLG.Abstracts.Beings
                 UIIconAnimation.SetScale(25);
                 
                 // Fondo del inventario (slots)
-                UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho * 2 + (41 / 3)) + moverEje, 20),
+                UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (index + 1) - (Global.InvAncho * 2 + (41 / 3)) + moverEje, 20),
                                             Global.InvAncho,
                                             Global.InvAlto,
                                             2,
@@ -211,7 +210,7 @@ namespace HLG.Abstracts.Beings
                                             false);
 
                 // Aca se elige los iconos del invenario
-                UIIconAnimation.LoadTexture(Global.UITextures[3], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho*2+(41/3)) + moverEje, 20),
+                UIIconAnimation.LoadTexture(Global.UITextures[3], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (index + 1) - (Global.InvAncho*2+(41/3)) + moverEje, 20),
                                             Global.InvAncho,
                                             Global.InvAlto,
                                             2,
@@ -234,29 +233,14 @@ namespace HLG.Abstracts.Beings
                 moverEje += Global.InvAncho - 15;
                 //iii++;
             }
-
-            // GAB - Selector
-            Animation UISelectorAnimation = new Animation();
-            UISelectorAnimation.SetScale(25);
-            // Aca van los slots selector
-            UISelectorAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (indexPlayer + 1) - (Global.InvAncho * 2 + (41 / 3)), 20),
-                                                    Global.InvAncho,
-                                                    Global.InvAlto,
-                                                    2,
-                                                    Color.Red,
-                                                    false);
-            UISelectorAnimation.pause = true;
-            UISelectorAnimation.CurrentFrame = 3;
-            UISelector.Add(UISelectorAnimation);
-
-
+            
             /// Calculo sector de numero de vida
             //Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - Global.UIancho / 2, 0, Global.UIancho, Global.UIalto);
             //Rectangle UI_Rect = new Rectangle((int)UIAnimation.position.X * (indexPlayer + 1), 0, Global.UIancho, Global.UIalto);
             //Rectangle UI_Rect = new Rectangle(0, 0, Global.UIancho, Global.UIalto);
             //UILifeNumber.X = UI_Rect.X + Global.UIancho / 4;
             //UILifeNumber.Y = UI_Rect.Y + Global.UIalto / 2 + 10;
-            UILifeNumber.X = ((Global.ViewportWidth/5) * (indexPlayer + 1)) - 25;
+            UILifeNumber.X = ((Global.ViewportWidth/5) * (index + 1)) - 25;
             UILifeNumber.Y = Global.UIy + 8;
 
             // Asigno control por default al jugador
@@ -318,15 +302,6 @@ namespace HLG.Abstracts.Beings
         public override void Update(GameTime gameTime)
         {
             #region CAMBIO_ARMADURA_MANUAL
-
-            // Para mover el selector de cambio de armadura - GAB
-            if (Global.OnePulseKey(Keys.Right))
-                UISelector[0].position.X += UISelector[0].frameWidth/2;
-                //UISelector[0].position.X += (Global.Camara.parallax.X + Global.ViewportWidth / 5 - (Global.InvAncho * 2 + (41 / 3)));
-
-            if (Global.OnePulseKey(Keys.Left))
-                UISelector[0].position.X -= (Global.Camara.parallax.X + Global.ViewportWidth / 5 - (Global.InvAncho * 2 + (41 / 3)));
-            
 
             // Para cambiar armadura, solo para probar cosas
             // funciona pero cambia muy rapido al apretar
@@ -442,14 +417,7 @@ namespace HLG.Abstracts.Beings
                 item.frameTime = 300;
                 item.Update(gameTime);
             }
-
-            // GAB inventario
-            foreach (var item in UISelector)
-            {
-                item.frameTime = 300;
-                item.Update(gameTime);
-            }
-
+            
             /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
             actual_bar_length = current_health * Global.max_bar_length / max_health;
             bar_color = new Color(255 - (int)(actual_bar_length * 210 / Global.max_bar_length), (int)(actual_bar_length * 210 / Global.max_bar_length), 0);
@@ -833,7 +801,7 @@ namespace HLG.Abstracts.Beings
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             // Le sumamos el resultado para que sea acumulativo si varios golpean al mismo objetivo
-                            Global.players[i].ColorAnimationChange(Color.Red);
+                            //Global.players[i].ColorAnimationChange(Color.Red);
                             Global.players[i].injured_value += 10;
                             injured[i] = true;
                         }
@@ -854,6 +822,8 @@ namespace HLG.Abstracts.Beings
                 // demasiado rapido como para que no se vea que fue dañado
                 if (injured_value == 0)
                     ColorAnimationChange(Color.White);
+                else
+                    ColorAnimationChange(Color.Red);
 
                 // Hago la resta necesaria a la health
                 current_health -= injured_value;
@@ -899,13 +869,7 @@ namespace HLG.Abstracts.Beings
             {
                 item.Draw(spriteBatch, Global.Mirada.RIGHT);
             }
-
-            // GAB Dibujar UISelector
-            foreach (var item in UISelector)
-            {
-                item.Draw(spriteBatch, Global.Mirada.RIGHT);
-            }
-
+            
             // Dibujar barra de vida
             Global.DrawStraightLine(new Vector2(UILifeNumber.X, UILifeNumber.Y),
                                     new Vector2(UILifeNumber.X + actual_bar_length, UILifeNumber.Y),

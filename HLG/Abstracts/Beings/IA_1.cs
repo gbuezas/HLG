@@ -18,7 +18,7 @@ namespace HLG.Abstracts.Beings
     /// - Hacerla menos agresiva, ataca muy rapido
     /// - No estan pegando los 8 al mismo tiempo, sino que hace de a 5 como mucho
     /// </summary>
-    class IA_1 : Being
+    class IA_1 : IA_Characters
     {
         #region VARIABLES
 
@@ -535,7 +535,7 @@ namespace HLG.Abstracts.Beings
                 for (int i = 0; i < Global.totalQuant; i++)
                 {
                     // Ver sumamry
-                    if (Global.players[i].indexPlayer != -1 &&
+                    if (Global.players[i].index != -1 &&
                         !injured[i] &&
                         !Global.players[i].ghost_mode)
                     {
@@ -547,7 +547,7 @@ namespace HLG.Abstracts.Beings
                         if (CollisionVerifierEnhanced(Global.players[i].GetPositionRec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
-                            Global.players[i].ColorAnimationChange(Color.Red);
+                            // Global.players[i] ColorAnimationChange(Color.Red);
                             // Se le hace una suma para que sea acumulativo el daño de todos, sino siempre era 10 y no se sumaba
                             Global.players[i].injured_value += 10;
                             injured[i] = true;
@@ -570,6 +570,10 @@ namespace HLG.Abstracts.Beings
                 if (injured_value == 0)
                 {
                     DefaultRandomPiecesColors();
+                }
+                else
+                {
+                    ColorAnimationChange(Color.Red);
                 }
 
                 // Hago la resta necesaria a la health

@@ -71,7 +71,7 @@ namespace HLG
             for (int i = 0; i < Global.playersQuant; i++)
             {
                 Global.players.Add(new Paladin());
-                Global.players[i].indexPlayer = i;
+                Global.players[i].index = i;
             }
 
             // Agrego los enemigos a la lista, no importa la clase en esta instancia
@@ -258,7 +258,7 @@ namespace HLG
             // Asigno posiciones iniciales de los personajes, se chequea antes del Initialize
             foreach (Being Jugador in Global.players)
             {
-                if (Jugador.indexPlayer == -1)
+                if (Jugador.index == -1)
                 {
                     Jugador.Initialize(new Vector2(Global.randomly.Next(-100, Global.ViewportWidth + 100),
                                                    Global.randomly.Next(Global.ViewportHeight / 2 + 50, Global.ViewportHeight + 100)));

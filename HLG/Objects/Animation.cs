@@ -67,7 +67,11 @@ namespace HLG.Objects
         #endregion
 
         #region METODOS
-
+        
+        /// <summary>
+        /// Asignamos el nombre al principio, cuando esta todo vacio, para poder completarlo gracias a este dato.
+        /// </summary>
+        /// <param name="nombre"></param>
         public void Initialize(string nombre)
         {
             pieceName = nombre;
