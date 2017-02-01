@@ -2,7 +2,7 @@
 
 namespace HLG.Objects
 {
-    class Pieces_Sets
+    public class Pieces_Sets
     {
         public List<Piece_Set> Pieces = new List<Piece_Set>();
 

@@ -93,7 +93,7 @@ namespace HLG.Abstracts.GameStates
             Global.players[1].controls[(int)Global.Controls.DOWN] = Keys.K;
             Global.players[1].controls[(int)Global.Controls.LEFT] = Keys.J;
             Global.players[1].controls[(int)Global.Controls.RIGHT] = Keys.L;
-            Global.players[1].controls[(int)Global.Controls.BUTTON_1] = Keys.Space;
+            Global.players[1].controls[(int)Global.Controls.BUTTON_HIT] = Keys.Space;
 
             //Global.players[2].controls[(int)Global.Controls.UP] = Keys.I;
             //Global.players[2].controls[(int)Global.Controls.DOWN] = Keys.K;

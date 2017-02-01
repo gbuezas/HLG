@@ -60,7 +60,7 @@ namespace HLG
 
         // Las distintas acciones que puede hacer con sus respectivos frames y los controles
         public enum Actions { WALK, STAND, HIT1, HIT2, HIT3, DEAD }
-        public enum Controls { UP, DOWN, LEFT, RIGHT, BUTTON_1, BUTTON_2 }
+        public enum Controls { UP, DOWN, LEFT, RIGHT, BUTTON_HIT, BUTTON_2 }
 
         // Los distintos estados del juego
         public enum EstadosJuego { INTRO, TITULO, SELECCION, MAPA, VS, AVANCE, PAUSA, GAMEOVER, FINAL }

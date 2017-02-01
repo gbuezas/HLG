@@ -3,25 +3,12 @@ using HLG.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Linq;
 
 namespace HLG.Abstracts.Beings
 {
     class Paladin : Playable_Characters
     {
-        #region VARIABLES
-
-        #region CONTROLES
-
-        /// <summary>
-        /// Accion que se realiza 
-        /// </summary>
-        private Global.Actions CurrentAction;
-
-        /// <summary>
-        /// Accion realizada anteriormente
-        /// </summary>
-        private Global.Actions OldAction;
-
         /// <summary>
         /// animacion de cada pieza de armadura:
         /// 1.shield
@@ -35,142 +22,35 @@ namespace HLG.Abstracts.Beings
         /// 9.gauntlettop
         /// </summary>
         private Animation[] Pieces_Anim = new Animation[Global.PiecesPaladin.Length];
-
-        // GAB - borrar despues
-        List<Piece_Set> pieces_armor_recambio = new List<Piece_Set>();
-        
-        /// <summary>
-        /// Ancho y alto de un cuadro del sprite
-        /// </summary>
-        protected int FrameWidth = Global.FrameWidth;
-        protected int FrameHeight = Global.FrameHeight;
-
-        #endregion
-
-        #region JUGABILIDAD
-
-        /// <summary>
-        /// El conjunto de slots de inventario del jugador.
-        /// </summary>
-        //List<Misc> Inventory = new List<Misc>();
-
-        /// <summary>
-        /// Tipo de cada pieza de armadura:
-        /// Shield, gauntletback, greaveback, helm, breastplate, tasset, greavetop, sword, gauntlettop. 
-        /// </summary>
-        protected Pieces_Sets pieces_armor = new Pieces_Sets();
-        protected List<Piece_Set> pieces_armor_new = new List<Piece_Set>();
-
-        /// <summary>
-        /// Animaciones de la UI de vida, estaba en estático y por eso no dibujaba varias instancias
-        /// </summary>
-        protected Animation UIAnimation;
-        protected Vector2 UILifeNumber;
-        protected float actual_bar_length;
-        protected Color bar_color;
-
-        protected List<Animation> UIInventario = new List<Animation>();
-        protected List<Animation> UIIcon = new List<Animation>();
-        
-        /// <summary>
-        /// Velocidad de movimiento del jugador 
-        /// </summary>
-        protected float PlayerSpeed;
-        
-        /// <summary>
-        /// Establece tiempo de frame inicial cuando llama al UpdateArmor
-        /// El UpdateArmor no ocurre en el loop se pide explicitamente 
-        /// </summary>
-        protected int FrameTime;
-
-        #endregion
-
-        #region DATOS
-
-        // Mensajes de datos
-        protected float mensaje1;
-        protected float mensaje2;
-        protected Global.Mirada mensaje3;
-        protected Global.Actions mensaje4;
-        protected float mensaje5;
-        protected float mensaje6;
-        protected float mensaje7;
-        protected float mensaje8;
-        protected float mensaje9;
-
-        // Donde se va a alojar el mensaje de chequeo de status
-        Vector2 mensaje;
-
-        #endregion
-
-        #endregion
-
-        #region METODOS
-
-        #region GET-SET
-
-        public Global.Actions currentAction
-        {
-            get { return CurrentAction; }
-            set { CurrentAction = value; }
-        }
-
-        public Global.Actions oldAction
-        {
-            get { return OldAction; }
-            set { OldAction = value; }
-        }
-
         public Animation[] pieces_anim
         {
             get { return Pieces_Anim; }
             set { Pieces_Anim = value; }
         }
+        // GAB - borrar despues
+        List<Piece_Set> pieces_armor_recambio = new List<Piece_Set>();
         
-        #endregion
-
-        #region ABSTRACTAS
-
-        /// <summary>
-        /// Inicializar al jugador
-        /// </summary>
-        /// <param name="posicion"></param>
         public override void Initialize(Vector2 posicion)
         {
-
-            // Establezco variables por default para comenzar
             position = posicion;
             mensaje = position;
             PlayerSpeed = 3.0f;
             direction = Global.Mirada.RIGHT;
-            currentAction = Global.Actions.STAND;
-            oldAction = currentAction;
+            CurrentAction = Global.Actions.STAND;
+            OldAction = CurrentAction;
             FrameTime = 50;
-
-            // La maxima vida que puede tener el personaje
             max_health = 200;
             current_health = max_health;
-
-            // Alcance del ataque
             hitrangeX = 100;
             hitrangeY = 7;
-
-            // Establezco las banderas de dañados
             ResetInjured();
-
-            // Inicializo partes de armadura actual
-            pieces_armor.Initialize();
-
-            // Inicializo las piezas de animacion
-            for (int i = 0; i < Global.PiecesPaladin.Length; i++)
+            pieces_armor.Initialize(); // Inicializo partes de armadura actual
+            for (int i = 0; i < Global.PiecesPaladin.Length; i++) // Inicializo las piezas de animacion
             {
                 Pieces_Anim[i] = new Animation();
                 Pieces_Anim[i].Initialize(Global.PiecesPaladin[i]);
             }
-
-            // Piezas de la armadura al comenzar
-            UpdateArmor(pieces_armor_new);
-
+            UpdateArmor(pieces_armor_new); // Piezas de la armadura al comenzar
             animations = Pieces_Anim;
 
             // Animacion de escudito animado de vida
@@ -226,8 +106,8 @@ namespace HLG.Abstracts.Beings
                 UIIconAnimation.CurrentFrame = iii;
                 iii++;
 
-                UIInventario.Add(UIInvAnimation);
-                UIIcon.Add(UIIconAnimation);
+                //UIInventario.Add(UIInvAnimation);
+                //UIIcon.Add(UIIconAnimation);
                 
                 //moverEje += Global.InvAncho - 20;
                 moverEje += Global.InvAncho - 15;
@@ -248,7 +128,7 @@ namespace HLG.Abstracts.Beings
             controls[(int)Global.Controls.DOWN] = Keys.S;
             controls[(int)Global.Controls.LEFT] = Keys.A;
             controls[(int)Global.Controls.RIGHT] = Keys.D;
-            controls[(int)Global.Controls.BUTTON_1] = Keys.T;
+            controls[(int)Global.Controls.BUTTON_HIT] = Keys.T;
             controls[(int)Global.Controls.BUTTON_2] = Keys.Y;
 
             // Ralentizar los cuadros por segundo del personaje
@@ -301,10 +181,51 @@ namespace HLG.Abstracts.Beings
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            #region CAMBIO_ARMADURA_MANUAL
+            ManualArmorChange();
 
-            // Para cambiar armadura, solo para probar cosas
-            // funciona pero cambia muy rapido al apretar
+            foreach (Animation piezaAnimada in Pieces_Anim)
+            {
+                piezaAnimada.position = position;
+                piezaAnimada.Update(gameTime);
+
+                // Fijarse donde va bien este chequeo, en este lugar parece funcionar bien - GAB
+                if (current_health > max_health)
+                {
+                    current_health = max_health;
+                }
+
+                // Para los stats de cada personaje (borrar mas tarde) GAB
+                mensaje = position;
+            }
+
+            #region UI
+
+            UIAnimation.frameTime = 300;
+            UIAnimation.Update(gameTime);
+
+            // Inventario
+            //foreach (var item in UIInventario)
+            //{
+            //    item.frameTime = 300;
+            //    item.Update(gameTime);
+            //}
+            //// Inventario
+            //foreach (var item in UIIcon)
+            //{
+            //    item.frameTime = 300;
+            //    item.Update(gameTime);
+            //}
+
+            /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
+            actual_bar_length = current_health * Global.max_bar_length / max_health;
+            bar_color = new Color(255 - (int)(actual_bar_length * 210 / Global.max_bar_length), (int)(actual_bar_length * 210 / Global.max_bar_length), 0);
+
+
+            #endregion
+
+        }
+        private void ManualArmorChange()
+        {
             if ((Keyboard.GetState().IsKeyDown(Keys.D8)))
             {
                 if (pieces_armor_recambio[7].set == "set1")
@@ -382,49 +303,6 @@ namespace HLG.Abstracts.Beings
 
                 UpdateArmor(pieces_armor_recambio);
             }
-            
-            #endregion
-
-            foreach (Animation piezaAnimada in Pieces_Anim)
-            {
-                piezaAnimada.position = position;
-                piezaAnimada.Update(gameTime);
-
-                // Fijarse donde va bien este chequeo, en este lugar parece funcionar bien - GAB
-                if (current_health > max_health)
-                {
-                    current_health = max_health;
-                }
-                
-                // Para los stats de cada personaje (borrar mas tarde) GAB
-                mensaje = position;
-            }
-
-            #region UI
-
-            UIAnimation.frameTime = 300;
-            UIAnimation.Update(gameTime);
-
-            // Inventario
-            foreach (var item in UIInventario)
-            {
-                item.frameTime = 300;
-                item.Update(gameTime);
-            }
-            // Inventario
-            foreach (var item in UIIcon)
-            {
-                item.frameTime = 300;
-                item.Update(gameTime);
-            }
-            
-            /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
-            actual_bar_length = current_health * Global.max_bar_length / max_health;
-            bar_color = new Color(255 - (int)(actual_bar_length * 210 / Global.max_bar_length), (int)(actual_bar_length * 210 / Global.max_bar_length), 0);
-
-
-            #endregion
-            
         }
 
         /// <summary>
@@ -528,7 +406,7 @@ namespace HLG.Abstracts.Beings
                 {
                     if (textura.piece == piezaAnimation.pieceName &&
                         textura.set == pieces_armor.Get_Set(textura.piece) &&
-                        textura.action == currentAction.ToString().ToLower())
+                        textura.action == CurrentAction.ToString().ToLower())
                     {
                         piezaAnimation.LoadTexture(textura);
                     }
@@ -536,14 +414,14 @@ namespace HLG.Abstracts.Beings
             }
 
             // Vuelve a 0 el frame de la animacion si cambio de accion
-            if (oldAction != currentAction)
+            if (OldAction != CurrentAction)
             {
                 foreach (Animation Animation in Pieces_Anim)
                 {
                     Animation.CurrentFrame = 0;
                 }
 
-                oldAction = currentAction;
+                OldAction = CurrentAction;
             }
 
             #endregion
@@ -552,7 +430,7 @@ namespace HLG.Abstracts.Beings
             mensaje1 = GetCurrentFrame();
             mensaje2 = GetTotalFrames();
             mensaje3 = direction;
-            mensaje4 = currentAction;
+            mensaje4 = CurrentAction;
             mensaje5 = Global.FrameHeight;
             mensaje6 = Global.FrameWidth;
             mensaje7 = GetPositionVec().X;
@@ -577,7 +455,7 @@ namespace HLG.Abstracts.Beings
                 {
                     if (textura.piece == piezaAnimation.pieceName &&
                         textura.set == pieces_armor.Get_Set(textura.piece) &&
-                        textura.action == currentAction.ToString().ToLower())
+                        textura.action == CurrentAction.ToString().ToLower())
                     {
                         piezaAnimation.LoadTexture(textura, position, FrameWidth, FrameHeight, FrameTime, Color.White, true);
                     }
@@ -585,16 +463,7 @@ namespace HLG.Abstracts.Beings
             }
 
         }
-
-        /// <summary>
-        /// Obtiene la posicion del jugador relativa a la parte superior izquierda de la pantalla
-        /// </summary>
-        /// <returns> Posicion del jugador </returns>
-        public override Vector2 GetPositionVec()
-        {
-            return position;
-        }
-
+        
         /// <summary>
         /// Obtiene la posicion de una pieza de animacion en rectangulo
         /// </summary>
@@ -667,15 +536,8 @@ namespace HLG.Abstracts.Beings
                 injured[i] = false;
             }
         }
-
-        #endregion
-
-        #region PROPIOS
-
-        public Paladin()
-        {
-            // machine = false;
-        }
+        
+        #region METODOS PROPIOS
 
         /// <summary>
         /// Establece el tiempo de frame en ejecucion
@@ -701,74 +563,7 @@ namespace HLG.Abstracts.Beings
             }
         }
 
-        /// <summary>
-        /// Logica de todas las acciones, los movimientos, los golpes, etc.
-        /// </summary>
-        private void ActionLogic()
-        {
-            if (currentAction != Global.Actions.HIT1 &&
-                currentAction != Global.Actions.HIT2 &&
-                currentAction != Global.Actions.HIT3)
-            {
-
-                #region MOVIMIENTO
-
-                // Si no se toca nada quedara por default que esta parado
-                currentAction = Global.Actions.STAND;
-
-                // Si se presiona alguna tecla de movimiento
-                if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.LEFT]))
-                {
-                    positionX -= PlayerSpeed;
-                    direction = Global.Mirada.LEFT;
-                    currentAction = Global.Actions.WALK;
-                }
-                else if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.RIGHT]))
-                {
-                    positionX += PlayerSpeed;
-                    direction = Global.Mirada.RIGHT;
-                    currentAction = Global.Actions.WALK;
-                }
-
-                if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.UP]))
-                {
-                    positionY -= PlayerSpeed;
-                    currentAction = Global.Actions.WALK;
-                }
-                else if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.DOWN]))
-                {
-                    positionY += PlayerSpeed;
-                    currentAction = Global.Actions.WALK;
-                }
-
-                #endregion
-
-
-                #region GOLPE
-
-                // Si presiono golpear cancela todas las demas acciones hasta que esta termine su ciclo
-                // Tambien genera un rango de los 3 diferentes tipos de golpes (algo netamente visual sin impacto en el juego)
-                if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.BUTTON_1]))
-                {
-                    // La aleatoriedad en los golpes depende de como estan almacenados en las variables Global, la primer variable es incluyente y la segunda excluyente.
-                    currentAction = (Global.Actions)Global.randomly.Next(2, 5);
-
-                }
-                #endregion
-            }
-            else
-            {
-                // Si esta pegando tiene que terminar su animacion y despues desbloquear otra vez la gama de movimientos
-                // Para esto comparamos el frame actual de la animacion con su frame total
-                if (GetCurrentFrame() == GetTotalFrames())
-                {
-                    currentAction = Global.Actions.STAND;
-
-                    // Cuando termine la animacion de pegar puede generar daño de vuelta a alguien que ya haya atacado
-                    ResetInjured();
-                }
-            }
-        }
+        
 
         /// <summary>
         /// Logica de las colisiones de los golpes:
@@ -781,11 +576,11 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         private void CollisionLogic()
         {
-            if ((currentAction == Global.Actions.HIT1 ||
-                    currentAction == Global.Actions.HIT2 ||
-                    currentAction == Global.Actions.HIT3) &&
-                    !ghost_mode &&
-                    GetCurrentFrame() == 5)
+            if ((CurrentAction == Global.Actions.HIT1 ||
+                 CurrentAction == Global.Actions.HIT2 ||
+                 CurrentAction == Global.Actions.HIT3) &&
+                 !ghost_mode &&
+                 GetCurrentFrame() == 5)
             {
 
                 for (int i = 0; i < Global.totalQuant; i++)
@@ -861,14 +656,14 @@ namespace HLG.Abstracts.Beings
             UIAnimation.Draw(spriteBatch, Global.Mirada.RIGHT);
             
             // Dibujo inventorio
-            foreach (var item in UIInventario)
-            {
-                item.Draw(spriteBatch, Global.Mirada.RIGHT);
-            }
-            foreach (var item in UIIcon)
-            {
-                item.Draw(spriteBatch, Global.Mirada.RIGHT);
-            }
+            //foreach (var item in UIInventario)
+            //{
+            //    item.Draw(spriteBatch, Global.Mirada.RIGHT);
+            //}
+            //foreach (var item in UIIcon)
+            //{
+            //    item.Draw(spriteBatch, Global.Mirada.RIGHT);
+            //}
             
             // Dibujar barra de vida
             Global.DrawStraightLine(new Vector2(UILifeNumber.X, UILifeNumber.Y),
@@ -887,6 +682,5 @@ namespace HLG.Abstracts.Beings
 
         #endregion
 
-        #endregion
     }
 }
