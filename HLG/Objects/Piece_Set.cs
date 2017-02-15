@@ -18,8 +18,6 @@ namespace HLG.Objects
             get { return Set; }
             set { Set = value; }
         }
-
-        private Color IconSetColor = Color.White;
         
         public void Initialize(string piece, string set)
         {

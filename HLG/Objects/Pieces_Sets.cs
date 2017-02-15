@@ -6,9 +6,9 @@ namespace HLG.Objects
     {
         public List<Piece_Set> Pieces = new List<Piece_Set>();
 
-        public void Initialize()
+        public void Initialize(string[] pieces)
         {
-            foreach (string piece in Global.PiecesPaladin)
+            foreach (string piece in pieces)
             {
                 Piece_Set newPiece = new Piece_Set();
                 newPiece.Initialize(piece, "set1");

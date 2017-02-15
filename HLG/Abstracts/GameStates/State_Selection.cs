@@ -11,8 +11,8 @@ namespace HLG.Abstracts.GameStates
         Rectangle sourceRect;
         Rectangle[] Fichas = new Rectangle[4];
 
-        int Var_AltoNivel = Global.ViewportHeight;
-        int Var_AnchoNivel = Global.ViewportWidth;
+        int Var_AltoNivel = Global.viewport_height;
+        int Var_AnchoNivel = Global.viewport_width;
 
         public override void Initialize()
         {
@@ -27,8 +27,8 @@ namespace HLG.Abstracts.GameStates
         public override void Update(GameTime gameTime)
         {
             // Agarro el cuadro correcto
-            sourceRect = new Rectangle(0, 0, Global.ViewportWidth,
-                Global.ViewportHeight);
+            sourceRect = new Rectangle(0, 0, Global.viewport_width,
+                Global.viewport_height);
 
             Fichas[0] = new Rectangle(0, 0, 200, 150);
             Fichas[1] = new Rectangle(200, 0, 200, 150);
@@ -36,21 +36,21 @@ namespace HLG.Abstracts.GameStates
             Fichas[3] = new Rectangle(600, 0, 200, 150);
 
             // Guarda y lee los estados actuales y anteriores del joystick y teclado
-            Input_Management();
+            InputManagement();
 
             // Actualiza el estado del juego
             UpdateState(gameTime);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        public override void Draw()
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(Global.Pantalla_Seleccion, sourceRect, Color.White);
+            Global.sprite_batch.Begin();
+            Global.sprite_batch.Draw(Global.selection_screen, sourceRect, Color.White);
             //spriteBatch.Draw(Variables_Generales.Selector, new Vector2(0,0), Fichas[0], Color.White);
             //spriteBatch.Draw(Variables_Generales.Selector, new Vector2(200,0), Fichas[1], Color.White);
             //spriteBatch.Draw(Variables_Generales.Selector, new Vector2(400,0), Fichas[2], Color.White);
             //spriteBatch.Draw(Variables_Generales.Selector, new Vector2(600,0), Fichas[3], Color.White);
-            spriteBatch.End();
+            Global.sprite_batch.End();
         }
 
         public override void UpdateState(GameTime gameTime)
@@ -62,7 +62,7 @@ namespace HLG.Abstracts.GameStates
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                Global.CurrentState.Estadoejecutandose = Global.EstadosJuego.AVANCE;
+                Global.current_game_state.ongoing_state = Global.EstadosJuego.AVANCE;
             }
         }
         

@@ -5,25 +5,13 @@ namespace HLG.Objects
 {
     public class Animation
     {
-        #region VARIABLES
-
-        // La textura con los sprites dentro
-        public Textures loadedTexture;
-
-        // Nombre de la pieza a animar
-        public string pieceName;
-
-        // El tiempo que actualizamos el cuadro por ultima vez
-        int elapsedTime;
-
-        // El tiempo que mostramos el cuadro antes de cambiarlo
-        public int frameTime;
-
-        // Para pausarse en un frame especifico
-        public bool pause;
-
-        // El numero de cuadros que tiene la animacion
-        int oldFrameCount;
+        //-//-// VARIABLES //-//-//
+        public Textures loadedTexture; // La textura con los sprites dentro
+        public string pieceName; // Nombre de la pieza a animar
+        int elapsedTime; // El tiempo que actualizamos el cuadro por ultima vez
+        public int frameTime; // El tiempo que mostramos el cuadro antes de cambiarlo
+        public bool pause; // Para pausarse en un frame especifico
+        int oldFrameCount; // El numero de cuadros que tiene la animacion
         int frameCount;
         public int FrameCount
         {
@@ -62,12 +50,9 @@ namespace HLG.Objects
         public Vector2 position;
 
         // Escala de Heroes con respecto al alto de la pantalla
-        private float escalaAnimacion = Global.ViewportHeight / Global.Scalar;
+        private float escalaAnimacion = Global.viewport_height / Global.scalar;
 
-        #endregion
-
-        #region METODOS
-        
+        //-//-// METHODS //-//-//
         /// <summary>
         /// Asignamos el nombre al principio, cuando esta todo vacio, para poder completarlo gracias a este dato.
         /// </summary>
@@ -84,7 +69,7 @@ namespace HLG.Objects
         public void LoadTexture(Textures texture)
         {
             loadedTexture = texture;
-            frameCount = int.Parse(texture.frame);
+            frameCount = int.Parse(texture.texture_frames);
         }
 
         /// <summary>
@@ -103,7 +88,7 @@ namespace HLG.Objects
             this.color = color;
             this.frameWidth = frameWidth;
             this.frameHeight = frameHeight;
-            frameCount = int.Parse(texture.frame);
+            frameCount = int.Parse(texture.texture_frames);
             oldFrameCount = frameCount;
             frameTime = frametime;
             this.looping = looping;
@@ -182,37 +167,37 @@ namespace HLG.Objects
 
         }
 
-        public void Draw(SpriteBatch spriteBatch, Global.Mirada direccion)
+        public void Draw(Global.Facing direccion)
         {
             // Solo dibujar la animacion si esta activa
             if (active)
             {
-                if (direccion == Global.Mirada.LEFT)
+                if (direccion == Global.Facing.LEFT)
                 {
-                    spriteBatch.Draw(loadedTexture.textura, destinationRect, sourceRect, color,
+                    Global.sprite_batch.Draw(loadedTexture.texture, destinationRect, sourceRect, color,
                         0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 else
                 {
-                    spriteBatch.Draw(loadedTexture.textura, destinationRect, sourceRect, color);
+                    Global.sprite_batch.Draw(loadedTexture.texture, destinationRect, sourceRect, color);
                 }
 
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Global.Mirada direccion, Color tinte)
+        public void Draw(Global.Facing direccion, Color tinte)
         {
             // Solo dibujar la animacion si esta activa
             if (active)
             {
-                if (direccion == Global.Mirada.LEFT)
+                if (direccion == Global.Facing.LEFT)
                 {
-                    spriteBatch.Draw(loadedTexture.textura, destinationRect, sourceRect, tinte,
+                    Global.sprite_batch.Draw(loadedTexture.texture, destinationRect, sourceRect, tinte,
                         0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 }
                 else
                 {
-                    spriteBatch.Draw(loadedTexture.textura, destinationRect, sourceRect, tinte);
+                    Global.sprite_batch.Draw(loadedTexture.texture, destinationRect, sourceRect, tinte);
                 }
 
             }
@@ -220,9 +205,8 @@ namespace HLG.Objects
 
         public void SetScale(int Scale)
         {
-            escalaAnimacion = Global.ViewportHeight / Scale;
+            escalaAnimacion = Global.viewport_height / Scale;
         }
-
-        #endregion
+        
     }
 }

@@ -5,31 +5,25 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace HLG
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
     public class TheGame : Game
     {
-        #region VARIABLES
-
-        // Variables necesarias para dibujar por default
-        SpriteBatch spriteBatch;
+        
+        //-//-// VARIABLES //-//-//
         GraphicsDeviceManager graphics;
+        
+        Vector2 check_status = new Vector2(50, 550); // Donde se va a alojar el mensaje de chequeo de status
+        Global.EstadosJuego state_check; // Check de estado de juego
 
-        // Donde se va a alojar el mensaje de chequeo de status
-        Vector2 ChkStatVar = new Vector2(50, 550);
+        public static List<Being> players = new List<Being>();
 
-        // Check de estado de juego
-        Global.EstadosJuego Estado_Check;
+        static List<string> armors = new List<string>();
 
-        #endregion
-
-        #region METODOS
-
+        //-//-// METHODS //-//-//
         public TheGame()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -68,27 +62,27 @@ namespace HLG
         protected override void Initialize()
         {
             // Agrego los personajes a la lista asi se pueden utilizar mas tarde, no importa la clase en esta instancia
-            for (int i = 0; i < Global.playersQuant; i++)
+            for (int i = 0; i < Global.players_quant; i++)
             {
                 Global.players.Add(new Paladin());
                 Global.players[i].index = i;
             }
 
             // Agrego los enemigos a la lista, no importa la clase en esta instancia
-            for (int i = 0; i < Global.enemiesQuant; i++)
+            for (int i = 0; i < Global.enemies_quant; i++)
             {
-                Global.players.Add(new IA_1());
+                Global.players.Add(new Skeleton());
                 //Global.players[i].indexPlayer = i;
             }
 
-            Global.CurrentState = new State_Level_1();
-            Global.CurrentState.Estadoejecutandose = Global.EstadosJuego.TITULO;
+            Global.current_game_state = new State_Level_1();
+            Global.current_game_state.ongoing_state = Global.EstadosJuego.TITULO;
 
             // Ponemos este estado por defecto en un modo que no es nada, asi cuando va al case detecta incongruencia
             // y acomoda al que corresponde, que seria el que dice arriba en ejecutandose.
-            Estado_Check = Global.EstadosJuego.GAMEOVER;
+            state_check = Global.EstadosJuego.GAMEOVER;
 
-            Global.CurrentState.Initialize();
+            Global.current_game_state.Initialize();
 
             // Ralentizar los cuadros por segundo de todo el juego
             //this.TargetElapsedTime = TimeSpan.FromTicks(TimeSpan.TicksPerSecond / 5);
@@ -103,18 +97,18 @@ namespace HLG
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            Global.sprite_batch = new SpriteBatch(GraphicsDevice);
 
-            Global.ViewportWidth = GraphicsDevice.Viewport.Width;
-            Global.ViewportHeight = GraphicsDevice.Viewport.Height;
+            Global.viewport_width = GraphicsDevice.Viewport.Width;
+            Global.viewport_height = GraphicsDevice.Viewport.Height;
 
-            Global.CurrentState.Load(GraphicsDevice.Viewport);
+            Global.current_game_state.Load(GraphicsDevice.Viewport);
 
             // Cargo todas las Textures de los personas y sus movimientos de cada carpeta.
             // Acordarse que los png tienen que estar en la carpeta DEBUG para el modo DEBUG, y asi con cada modo.
             // Si no hay nada va al catch asi que no pasa nada
             # region TEXTURA_HEROES
-            foreach (string heroe in Global.Heroes)
+            foreach (string heroe in Global.characters)
             {
                 try
                 {
@@ -132,13 +126,13 @@ namespace HLG
 
                             case "Paladin":
                                 {
-                                    Global.PaladinTextures.Add(textura);
+                                    Global.paladin_textures.Add(textura);
                                     break;
                                 }
 
                             case "IA_1":
                                 {
-                                    Global.IA_BasicTextures.Add(textura);
+                                    Global.skeleton_textures.Add(textura);
                                     break;
                                 }
 
@@ -149,9 +143,9 @@ namespace HLG
 
                         }
 
-                        if (!Global.Armors.Contains(Nombre.Split('_')[0]))
+                        if (!armors.Contains(Nombre.Split('_')[0]))
                         {
-                            Global.Armors.Add(Nombre.Split('_')[0]);
+                            armors.Add(Nombre.Split('_')[0]);
                         }
                     }
                 }
@@ -168,7 +162,7 @@ namespace HLG
             // Cargo los niveles
             #region TEXTURA_NIVELES
 
-            foreach (string escenario in Global.Scenes)
+            foreach (string escenario in Global.scenes)
             {
                 try
                 {
@@ -184,13 +178,13 @@ namespace HLG
 
                             case "Avance":
                                 {
-                                    Global.Level_1Textures.Add(textura);
+                                    Global.level_1textures.Add(textura);
                                     break;
                                 }
 
                             case "Versus":
                                 {
-                                    Global.VersusTextures.Add(textura);
+                                    Global.versus_textures.Add(textura);
                                     break;
                                 }
 
@@ -242,31 +236,31 @@ namespace HLG
             #endregion
 
             // Cargo punto blanco
-            Global.Punto_Blanco = Content.Load<Texture2D>("Seleccion/puntoblanco");
+            Global.white_dot = Content.Load<Texture2D>("Seleccion/puntoblanco");
 
             // Cargo titulos y pantallas de presentacion
-            Global.Pantalla_Titulo = Content.Load<Texture2D>("Titulo/TitleScreen");
+            Global.title_screen = Content.Load<Texture2D>("Titulo/TitleScreen");
 
             // Cargo pantalla de seleccion y selectores
-            Global.Pantalla_Seleccion = Content.Load<Texture2D>("Seleccion/fondo");
+            Global.selection_screen = Content.Load<Texture2D>("Seleccion/fondo");
             //Variables_Generales.Selector = Content.Load<Texture2D>("Seleccion/Selector");
             
             // Cargo fuentes
-            Global.CheckStatusVar = Content.Load<SpriteFont>("Fuente_Prueba");
-            Global.CheckStatusVar_2 = Content.Load<SpriteFont>("Fuente_Prueba_2");
+            Global.check_status_font = Content.Load<SpriteFont>("Fuente_Prueba");
+            Global.check_status_font_2 = Content.Load<SpriteFont>("Fuente_Prueba_2");
 
             // Asigno posiciones iniciales de los personajes, se chequea antes del Initialize
             foreach (Being Jugador in Global.players)
             {
                 if (Jugador.index == -1)
                 {
-                    Jugador.Initialize(new Vector2(Global.randomly.Next(-100, Global.ViewportWidth + 100),
-                                                   Global.randomly.Next(Global.ViewportHeight / 2 + 50, Global.ViewportHeight + 100)));
+                    Jugador.Initialize(new Vector2(Global.randomly.Next(-100, Global.viewport_width + 100),
+                                                   Global.randomly.Next(Global.viewport_height / 2 + 50, Global.viewport_height + 100)));
                 }
                 else
                 {
-                    Jugador.Initialize(new Vector2(Global.randomly.Next(200, Global.ViewportWidth - 200),
-                                                   Global.randomly.Next(Global.ViewportHeight / 2 + 50, Global.ViewportHeight - 50)));
+                    Jugador.Initialize(new Vector2(Global.randomly.Next(200, Global.viewport_width - 200),
+                                                   Global.randomly.Next(Global.viewport_height / 2 + 50, Global.viewport_height - 50)));
                 }
             }
         }
@@ -295,17 +289,17 @@ namespace HLG
             // Acomoda los estados correspondientes del juego, las distintas pantallas
             StateSwitch();
 
-            Global.CurrentState.Update(gameTime);
+            Global.current_game_state.Update(gameTime);
 
             base.Update(gameTime);
 
-            Global.elapsedTime += gameTime.ElapsedGameTime;
+            Global.elapsed_time += gameTime.ElapsedGameTime;
 
-            if (Global.elapsedTime > TimeSpan.FromSeconds(1))
+            if (Global.elapsed_time > TimeSpan.FromSeconds(1))
             {
-                Global.elapsedTime -= TimeSpan.FromSeconds(1);
-                Global.frameRate = Global.frameCounter;
-                Global.frameCounter = 0;
+                Global.elapsed_time -= TimeSpan.FromSeconds(1);
+                Global.frame_rate = Global.frame_counter;
+                Global.frame_counter = 0;
             }
         }
 
@@ -315,26 +309,26 @@ namespace HLG
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            Global.frameCounter++;
+            Global.frame_counter++;
 
             GraphicsDevice.Clear(Color.White);
 
             // Dibuja el estado actual
-            Global.CurrentState.Draw(spriteBatch);
+            Global.current_game_state.Draw();
 
             # region MENSAJES DE ERROR
-            spriteBatch.Begin();
+            Global.sprite_batch.Begin();
 
-            spriteBatch.DrawString(Global.CheckStatusVar,
+            Global.sprite_batch.DrawString(Global.check_status_font,
             "altoViewport = " + Global.mensaje1.ToString() + Environment.NewLine +
             "anchoViewport = " + Global.mensaje2.ToString() + Environment.NewLine +
             "limitePantallaX = " + Global.mensaje3.ToString() + Environment.NewLine +
             "limitePantallaAncho = " + Global.mensaje4.ToString() + Environment.NewLine +
             "Zoom = " + Global.mensaje5.ToString() + Environment.NewLine +
-            "FPS = " + Global.frameRate + Environment.NewLine,
-            ChkStatVar, Color.DarkRed);
+            "FPS = " + Global.frame_rate + Environment.NewLine,
+            check_status, Color.DarkRed);
 
-            spriteBatch.End();
+            Global.sprite_batch.End();
             #endregion
 
             base.Draw(gameTime);
@@ -372,13 +366,13 @@ namespace HLG
         {
             if (Global.OnePulseKey(Keys.D2))
             {
-                if (Global.EnableRectangles)
+                if (Global.enable_rectangles)
                 {
-                    Global.EnableRectangles = false;
+                    Global.enable_rectangles = false;
                 }
                 else
                 {
-                    Global.EnableRectangles = true;
+                    Global.enable_rectangles = true;
                 }
             }
         }
@@ -389,29 +383,29 @@ namespace HLG
         private void StateSwitch()
         {
 
-            if (Estado_Check != Global.CurrentState.Estadoejecutandose)
+            if (state_check != Global.current_game_state.ongoing_state)
             {
-                switch (Global.CurrentState.Estadoejecutandose)
+                switch (Global.current_game_state.ongoing_state)
                 {
 
                     case Global.EstadosJuego.TITULO:
                         {
-                            Estado_Check = Global.EstadosJuego.TITULO;
-                            Global.CurrentState = new State_Title();
+                            state_check = Global.EstadosJuego.TITULO;
+                            Global.current_game_state = new State_Title();
                             break;
                         }
 
                     case Global.EstadosJuego.SELECCION:
                         {
-                            Estado_Check = Global.EstadosJuego.SELECCION;
-                            Global.CurrentState = new State_Selection();
+                            state_check = Global.EstadosJuego.SELECCION;
+                            Global.current_game_state = new State_Selection();
                             break;
                         }
 
                     case Global.EstadosJuego.AVANCE:
                         {
-                            Estado_Check = Global.EstadosJuego.AVANCE;
-                            Global.CurrentState = new State_Level_1();
+                            state_check = Global.EstadosJuego.AVANCE;
+                            Global.current_game_state = new State_Level_1();
                             break;
                         }
 
@@ -420,7 +414,6 @@ namespace HLG
                 }
             }
         }
-
-        #endregion
+                
     }
 }

@@ -9,38 +9,21 @@ namespace HLG.Abstracts.GameStates
 {
     public abstract class States
     {
-        private Global.EstadosJuego EstadoEjecutandose;
 
-        internal Global.EstadosJuego Estadoejecutandose
-        {
-            get
-            {
-                return EstadoEjecutandose;
-            }
+        //-//-// VARIABLES //-//-//
+        public Global.EstadosJuego ongoing_state { get; internal set; }
 
-            set
-            {
-                EstadoEjecutandose = value;
-            }
-        }
-
-        // Inicializar estado
+        //-//-// METHODS //-//-//
         public abstract void Initialize();
 
-        // Cargar la camara y otras cosas
         public abstract void Load(Viewport _viewport);
 
-        // Actualizar estado
         public abstract void Update(GameTime gameTime);
-
-        // Dibujar estado, puede incluir otros draw como DrawUI
-        public abstract void Draw(SpriteBatch spriteBatch);
-
-        // Actualizar comportamiento de estado
         public abstract void UpdateState(GameTime gameTime);
 
-        // Ordenar lista de personajes segun su eje Y
-        public void Reordenar_Personajes(SpriteBatch spriteBatch)
+        public abstract void Draw();
+
+        public void RearrangeCharacters()
         {
             // Ordeno los personajes a dibujar segun su eje Y en una nueva lista usando LinQ
             List<Being> AxisList = Global.players.OrderBy(item => item.positionY).ToList();
@@ -48,17 +31,16 @@ namespace HLG.Abstracts.GameStates
             // Si los personajes estan en camara los dibujo en pantalla.
             foreach (Being character in AxisList)
             {
-                if (Global.Camara.EnCamara(character.GetPositionRec()))
-                    character.DrawWithParallax(spriteBatch);
+                if (Global.camara.EnCamara(character.GetPositionRec()))
+                    character.DrawWithParallax();
             }
         }
 
-        // Obtiene los gamepads y teclado que se tocaron y se estan tocando
-        public void Input_Management()
+        public void InputManagement()
         {
             // Guarda los estados anteriores del joystick y del teclado
-            Global.previousKeyboardState = Global.currentKeyboardState;
-            Global.currentKeyboardState = Keyboard.GetState();
+            Global.previous_keyboard_state = Global.current_keyboard_state;
+            Global.current_keyboard_state = Keyboard.GetState();
 
             //for (int i = 0; i < 4;i++ )
             //{

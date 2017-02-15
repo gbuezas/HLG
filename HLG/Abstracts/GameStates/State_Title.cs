@@ -11,8 +11,8 @@ namespace HLG.Abstracts.GameStates
         // El area de la linea de sprite que queremos mostrar
         Rectangle sourceRect;
 
-        int Var_AltoNivel = Global.ViewportHeight;
-        int Var_AnchoNivel = Global.ViewportWidth;
+        int Var_AltoNivel = Global.viewport_height;
+        int Var_AnchoNivel = Global.viewport_width;
 
         // Traigo la camara del game
         Camera CamaraTraida;
@@ -30,21 +30,21 @@ namespace HLG.Abstracts.GameStates
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             // Agarro el cuadro correcto
-            sourceRect = new Rectangle(0, 0, Global.ViewportWidth,
-                Global.ViewportHeight);
+            sourceRect = new Rectangle(0, 0, Global.viewport_width,
+                Global.viewport_height);
 
             // Guarda y lee los estados actuales y anteriores del joystick y teclado
-            Input_Management();
+            InputManagement();
 
             // Actualiza el estado del juego
             UpdateState(gameTime);
         }
 
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public override void Draw()
         {
-            spriteBatch.Begin();
-            spriteBatch.Draw(Global.Pantalla_Titulo, sourceRect, Color.White);
-            spriteBatch.End();
+            Global.sprite_batch.Begin();
+            Global.sprite_batch.Draw(Global.title_screen, sourceRect, Color.White);
+            Global.sprite_batch.End();
         }
 
         public override void UpdateState(Microsoft.Xna.Framework.GameTime gameTime)
@@ -57,7 +57,7 @@ namespace HLG.Abstracts.GameStates
 
             if ((Keyboard.GetState().IsKeyDown(Keys.A)))
             {
-                Global.CurrentState.Estadoejecutandose = Global.EstadosJuego.SELECCION;
+                Global.current_game_state.ongoing_state = Global.EstadosJuego.SELECCION;
             }
 
         }

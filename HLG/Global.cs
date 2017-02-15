@@ -11,129 +11,102 @@ namespace HLG
 {
     public class Global
     {
-        // Fuente de los mensajes de chequeo
-        public static SpriteFont CheckStatusVar;
-        public static SpriteFont CheckStatusVar_2;
+
+        //-//-// VARIABLES //-//-//
+        public enum Facing { RIGHT, LEFT };
+        public enum Actions { WALK, STAND, HIT1, HIT2, HIT3, DEAD } // Las distintas acciones que se pueden hacer
+        public enum Controls { UP, DOWN, LEFT, RIGHT, BUTTON_HIT, BUTTON_SPECIAL } // Los controles
+        public enum EstadosJuego { INTRO, TITULO, SELECCION, MAPA, VS, AVANCE, PAUSA, GAMEOVER, FINAL } // Los distintos estados del juego
+
+        public static SpriteBatch sprite_batch; // Variable utilizada para todo el dibujado
+
+        public static SpriteFont check_status_font; // Fuente de los mensajes de chequeo
+        public static SpriteFont check_status_font_2;
         public static float mensaje1;
         public static float mensaje2;
         public static float mensaje3;
         public static float mensaje4;
         public static float mensaje5;
 
-        // Camara - Se setea en el Load() de cada nivel
-        public static Camera Camara;
+        public static Camera camara; // Camara - Se setea en el Load() de cada nivel
 
-        // Colores, tintes
-        public static Color ColorGhost = new Color(255, 255, 255, 30);
-        public static Color[] SkeletonRandomColors = new Color[] { Color.AntiqueWhite, Color.Wheat, Color.WhiteSmoke, Color.SeaShell, Color.OldLace, Color.LightYellow, Color.Gainsboro, Color.Cornsilk };
+        public static Color color_ghost = new Color(255, 255, 255, 30);
+        public static Color[] skeleton_random_colors = new Color[] { Color.AntiqueWhite, Color.Wheat, Color.WhiteSmoke, Color.SeaShell, Color.OldLace, Color.LightYellow, Color.Gainsboro, Color.Cornsilk };
         
-        // La clase de los estados del juego
-        public static States CurrentState;
+        public static States current_game_state;
 
-        // Determina lo que se presiono en el teclado y gamepad
-        public static KeyboardState currentKeyboardState = new KeyboardState();
-        public static KeyboardState previousKeyboardState = new KeyboardState();
-        //public static GamePadState[] currentGamePadState = new GamePadState[4];
+        public static KeyboardState current_keyboard_state = new KeyboardState(); // Determina lo que se presiono en el teclado
+        public static KeyboardState previous_keyboard_state = new KeyboardState();
+        //public static GamePadState[] currentGamePadState = new GamePadState[4]; // Determina lo que se presiono en el gamepad
         //public static GamePadState[] previousGamePadState = new GamePadState[4];
 
-        // Dimensiones de la pantalla
-        public static int ViewportHeight;
-        public static int ViewportWidth;
+        public static int viewport_height;
+        public static int viewport_width;
 
-        // Dimensiones del frame de los personajes y escala de los mismos
-        public static int FrameHeight = 240;
-        public static int FrameWidth = 320;
-        // Mas grande es el numero mas chico es el personaje
-        public static float Scalar = 6;
-
-        // Dimensiones de los iconos del inventario
-        //public static int IconHeight, IconWidht = 41;
-
+        //public static int FrameHeight = 240;
+        //public static int FrameWidth = 320;
+        public static float scalar = 6; // Mas grande es el numero mas chico es el personaje
+        
         // Crea lista del objeto Being, el cual alberga a los personajes y a los enemigos
         public static List<Being> players = new List<Being>();
-        public static int playersQuant = 4;
-        public static int enemiesQuant = 8;
-        public static int totalQuant = playersQuant + enemiesQuant;
+        public static int players_quant = 4;
+        public static int enemies_quant = 8;
+        public static int total_quant = players_quant + enemies_quant;
 
-        // Para donde mira el personaje
-        public enum Mirada { RIGHT, LEFT };
-
-        // Las distintas acciones que puede hacer con sus respectivos frames y los controles
-        public enum Actions { WALK, STAND, HIT1, HIT2, HIT3, DEAD }
-        public enum Controls { UP, DOWN, LEFT, RIGHT, BUTTON_HIT, BUTTON_2 }
-
-        // Los distintos estados del juego
-        public enum EstadosJuego { INTRO, TITULO, SELECCION, MAPA, VS, AVANCE, PAUSA, GAMEOVER, FINAL }
-
-        // Los distintos parametros de busqueda de objetivo de la IA
-        public enum TargetCondition { MAXHEALTH, MINHEALTH/*, MAXMONEY, MINMONEY */}
-
-        // Los distintos heroes
-        public static string[] Heroes = new string[7] { "Paladin", "Paladina", "Barbaro", "Barbara", "Arquero", "Arquera", "IA_1" };
-
-        // El orden de los items influye directamente en el orden en el que se dibujan las piezas.
-        // Cada clase tiene su set de items (paladin, barbaro, etc)
-        public static string[] PiecesPaladin = new string[] { "shield", "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "sword", "gauntlettop" };
-        public static string[] PiecesBarbaro = new string[] { "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "sword", "gauntlettop" };
-        public static string[] PiecesIA_1 = new string[] { "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "gauntlettop" };
-        public static string[] IconBarSlots = new string[] { "greaves", "gauntlets", "breastplates", "helms", "shields", "swords", "weapons", "items" };
-        public static List<string> Armors = new List<string>();
-
-        // Los distintos estilos de escenarios
-        public static string[] Scenes = new string[] { "Avance", "Versus", "Titulo" };
+        /// Este nombre corresponde al de los archivos, asi que si cambio estos tambien tengo que ir a cambiar las carpetas de los mismos
+        public static string[] characters = new string[7] { "Paladin", "Paladina", "Barbaro", "Barbara", "Arquero", "Arquera", "IA_1" }; 
+        public static string[] scenes = new string[] { "Avance", "Versus", "Titulo" };
 
         // Las distintas armaduras o skins que puede llevar y las piezas de animacion
-        public static List<Textures> PaladinTextures = new List<Textures>();
-        public static List<Textures> IA_BasicTextures = new List<Textures>();
+        public static List<Textures> paladin_textures = new List<Textures>();
+        public static List<Textures> skeleton_textures = new List<Textures>();
 
         // Los distintos niveles de avance y los tamaños de sus tiles
-        public static List<Textures> Level_1Textures = new List<Textures>();
+        public static List<Textures> level_1textures = new List<Textures>();
 
         // Los distintos niveles de versus
-        public static List<Textures> VersusTextures = new List<Textures>();
+        public static List<Textures> versus_textures = new List<Textures>();
 
         // Las distintas capas de parallax
-        public static List<Parallax> Background_Layers = new List<Parallax>();
-        public static List<Parallax> Front_Layers = new List<Parallax>();
+        public static List<Parallax> background_layers = new List<Parallax>();
+        public static List<Parallax> front_layers = new List<Parallax>();
 
         // Textures de titulos
-        public static Texture2D Pantalla_Titulo;
+        public static Texture2D title_screen;
         // Textura de Seleccion
-        public static Texture2D Pantalla_Seleccion;
-        public static Texture2D Selector;
+        public static Texture2D selection_screen;
+        public static Texture2D selector;
 
         // Rectangulos de colisiones para chequear y su textura, 
         // solo se implementa en el modo de creación, no se utiliza para el producto final.
-        public static Rectangle Rectangle_Collision;
-        public static Rectangle Rectangle_Collision_2;
-        public static Texture2D Punto_Blanco;
-        public static Boolean EnableRectangles = false;
+        public static Rectangle rectangle_collision;
+        public static Rectangle rectangle_collision_2;
+        public static Texture2D white_dot;
+        public static Boolean enable_rectangles = false;
 
         // Texturas de UI e InGameInv
         public static List<Textures> UITextures = new List<Textures>();
 
         // UI de vida
-        public static int UIancho = 450; //100;
-        public static int UIalto = 550; //150;
-        public static int UIy = 78;
+        public static int ui_widht = 450; //100;
+        public static int ui_height = 550; //150;
+        public static int ui_y = 78;
         public static float max_bar_length = 49;
         
         // InGameInv
-        public static int InvAncho = 41;
-        public static int InvAlto = 41;
-        public static int InvBarAncho = 328;
-        public static int InvBarAlto = 41;
+        public static int inv_width = 41;
+        public static int inv_height = 41;
+        public static int inv_bar_width = 328;
+        public static int inv_bar_height = 41;
 
         // Para llevar la cuenta de los frames por segundo
-        public static TimeSpan elapsedTime = TimeSpan.Zero;
-        public static int frameRate = 0;
-        public static int frameCounter = 0;
+        public static TimeSpan elapsed_time = TimeSpan.Zero;
+        public static int frame_rate = 0;
+        public static int frame_counter = 0;
         
-        /// <summary>
-        /// Variable random
-        /// </summary>
         public static Random randomly = new Random();
-        
+
+        //-//-// METHODS //-//-//
         /// <summary>
         /// Dibuja lineas rectas
         /// </summary>
@@ -143,7 +116,7 @@ namespace HLG
         /// <param name="col">Color de las lineas</param>
         /// <param name="spriteBatch">Proceso de dibujado</param>
         /// <param name="thickness">Grosor de la linea</param>
-        public static void DrawStraightLine(Vector2 A, Vector2 B, Texture2D tex, Color col, SpriteBatch spriteBatch, int thickness)
+        public static void DrawStraightLine(Vector2 A, Vector2 B, Texture2D tex, Color col, int thickness)
         {
             Rectangle rec;
             if (A.X < B.X)
@@ -155,7 +128,7 @@ namespace HLG
                 rec = new Rectangle((int)A.X, (int)A.Y, thickness, (int)(B.Y - A.Y));
             }
 
-            spriteBatch.Draw(tex, rec, col);
+            Global.sprite_batch.Draw(tex, rec, col);
         }
 
         /// <summary>
@@ -165,15 +138,15 @@ namespace HLG
         /// <param name="rec">Rectangulo del personaje</param>
         /// <param name="tex">Textura utilizada para dibujar el rectangulo</param>
         /// <param name="spriteBatch">Proceso de dibujado</param>
-        public static void DrawRectangle(Rectangle rec, Texture2D tex, SpriteBatch spriteBatch)
+        public static void DrawRectangle(Rectangle rec, Texture2D tex)
         {
             int border = 1;
             int borderWidth = rec.Width + (border * 2);
             int borderHeight = rec.Height + (border);
-            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X + rec.Width, rec.Y), tex, Color.White, spriteBatch, border);
-            Global.DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
-            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
-            Global.DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, spriteBatch, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X + rec.Width, rec.Y), tex, Color.White, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y + rec.Height), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, border);
+            Global.DrawStraightLine(new Vector2(rec.X, rec.Y), new Vector2(rec.X, rec.Y + rec.Height), tex, Color.White, border);
+            Global.DrawStraightLine(new Vector2(rec.X + rec.Width, rec.Y), new Vector2(rec.X + rec.Width, rec.Y + rec.Height), tex, Color.White, border);
         }
 
         /// <summary>
@@ -183,10 +156,7 @@ namespace HLG
         /// <returns></returns>
         public static bool OnePulseKey(Keys Tecla)
         {
-            //previousKeyboardState = currentKeyboardState;
-            //currentKeyboardState = Keyboard.GetState();
-
-            if (previousKeyboardState.IsKeyDown(Tecla) && currentKeyboardState.IsKeyUp(Tecla))
+            if (previous_keyboard_state.IsKeyDown(Tecla) && current_keyboard_state.IsKeyUp(Tecla))
                 return true;
             else
                 return false;
