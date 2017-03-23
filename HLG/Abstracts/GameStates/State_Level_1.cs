@@ -9,38 +9,26 @@ namespace HLG.Abstracts.GameStates
 {
     class State_Level_1 : States
     {
-        #region VARIABLES
-
-        #region MAPA Y PARALLAX
-
+        //-//-// VARIABLES //-//-//
         // Mapa de tiles de las capas
-        static string[] Mapa_Piso = new string[] { "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1" };
-        static string[] Mapa_Arboles = new string[] { "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1" };
-        static string[] Mapa_Nubes = new string[] { "cloud1", "cloud2", "cloud3", "cloud4", "cloud5", "cloud6", "cloud7", "cloud8", "cloud9", "cloud10", "cloud11", "cloud1", "cloud2", "cloud3", "cloud4", "cloud5", };
-        static string[] Mapa_Frente = new string[] { "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", };
+        static string[] mapaPiso = new string[] { "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1", "soil1" };
+        static string[] mapaArboles = new string[] { "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1", "wood1" };
+        static string[] mapaNubes = new string[] { "cloud1", "cloud2", "cloud3", "cloud4", "cloud5", "cloud6", "cloud7", "cloud8", "cloud9", "cloud10", "cloud11", "cloud1", "cloud2", "cloud3", "cloud4", "cloud5", };
+        static string[] mapaFrente = new string[] { "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", "front1", };
 
-        // Velocidades del parallax de cada capa
-        // Valores de parallax aceptables con esta configuracion y zoom (0.2 a 1.0) 
-        Parallax Nubes = new Parallax(Mapa_Nubes, 0.4f, 1f);
-        Parallax Arboles = new Parallax(Mapa_Arboles, 0.6f, 0.5f);
-        Parallax Piso = new Parallax(Mapa_Piso, 0.85f, 1f);
-        Parallax Frente = new Parallax(Mapa_Frente, 1f, 1f);
+        /// Velocidades del parallax de cada capa
+        /// Valores de parallax aceptables con esta configuracion y zoom (0.2 a 1.0) 
+        Parallax nubes = new Parallax(mapaNubes, 0.4f, 1f);
+        Parallax arboles = new Parallax(mapaArboles, 0.6f, 0.5f);
+        Parallax piso = new Parallax(mapaPiso, 0.85f, 1f);
+        Parallax frente = new Parallax(mapaFrente, 1f, 1f);
         
-        #endregion
-
-        // Genero un vector con la cantidad de rectangulos necesarios para pintar todo el mapa
-        Rectangle[] sourceRect = new Rectangle[Mapa_Nubes.Length];
-
-        // Alto del nivel
-        int Var_AltoNivel = Global.viewport_height;
-
-        // Ancho del nivel
-        int Var_AnchoNivel = Global.viewport_width / 4 * Mapa_Nubes.Length;
+        Rectangle[] sourceRect = new Rectangle[mapaNubes.Length]; // Genero un vector con la cantidad de rectangulos necesarios para pintar todo el mapa
         
-        #endregion
+        int varAltoNivel = Global.viewport_height;
+        int varAnchoNivel = Global.viewport_width / 4 * mapaNubes.Length;
 
-        #region METODOS
-
+        //-//-// METHODS //-//-//
         /// <summary>
         /// Cargo los Being segun su clase seleccionada.
         /// Tambien cargo las capas de parallax.
@@ -48,10 +36,10 @@ namespace HLG.Abstracts.GameStates
         public override void Initialize()
         {
             // Agrego las diferentes capas de parallax
-            Global.background_layers.Add(Nubes);
-            Global.background_layers.Add(Arboles);
-            Global.background_layers.Add(Piso);
-            Global.front_layers.Add(Frente);
+            Global.background_layers.Add(nubes);
+            Global.background_layers.Add(arboles);
+            Global.background_layers.Add(piso);
+            Global.front_layers.Add(frente);
         }
 
         /// <summary>
@@ -60,7 +48,7 @@ namespace HLG.Abstracts.GameStates
         public override void Load(Viewport _viewport)
         {
             // Seteo el viewport correspondiente a la camara
-            Global.camara = new Camera(_viewport, Var_AltoNivel, Global.viewport_width / 4 * Mapa_Nubes.Length);
+            Global.camara = new Camera(_viewport, varAltoNivel, Global.viewport_width / 4 * mapaNubes.Length);
         }
 
         public override void Update(GameTime gameTime)
@@ -71,14 +59,14 @@ namespace HLG.Abstracts.GameStates
             // Actualiza jugador
             foreach (Being Jugador in Global.players)
             {
-                Jugador.UpdatePlayer(gameTime, Var_AltoNivel, Var_AnchoNivel);
+                Jugador.Update_Player(gameTime, varAltoNivel, varAnchoNivel);
             }
 
             // Ajusto los limites de la camara para que no pueda mostrar mas de este rectangulo
             // En vez de ir de 0 al limite del nivel voy a recortarlo un poco asi no se ven los cortes de las capas del parallax
 
             /*ORIGINAL*/
-            Global.camara.Limits = new Rectangle(0, 0, Global.viewport_width / 4 * Mapa_Nubes.Length, Var_AltoNivel);
+            Global.camara.Limits = new Rectangle(0, 0, Global.viewport_width / 4 * mapaNubes.Length, varAltoNivel);
 
             //Global.Camara.Limits = new Rectangle(Global.ViewportWidth / 4, 0, Global.ViewportWidth / 4 * (Mapa_Nubes.Length - 1), Var_AltoNivel);
 
@@ -111,7 +99,7 @@ namespace HLG.Abstracts.GameStates
             {
                 if (Jugador.index != -1)
                 {
-                    Global.camara.ViewTargets.Add(Jugador.GetPositionVec());
+                    Global.camara.ViewTargets.Add(Jugador.Get_Position_Vec());
                 }
             }
             Global.camara.CentrarCamara();
@@ -251,7 +239,7 @@ namespace HLG.Abstracts.GameStates
             {
                 if (item.index != -1)
                 {
-                    item.DrawWithoutParallax();
+                    item.Draw_Without_Parallax();
                 }
             }
             Global.sprite_batch.End();
@@ -259,16 +247,15 @@ namespace HLG.Abstracts.GameStates
             #endregion
         }
         
-        private static void DrawLayers(SpriteBatch spriteBatch)
+        private static void Draw_Layers()
         {
 
         }
 
-        public override void UpdateState(GameTime gameTime)
+        public override void Update_State(GameTime gameTime)
         {
             
         }
         
-        #endregion
     }
 }

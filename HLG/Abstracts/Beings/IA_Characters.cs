@@ -40,9 +40,9 @@ namespace HLG.Abstracts.Beings
 
                         for (int i = 0; i < Global.players_quant; i++)
                         {
-                            if (Global.players[i].current_health >= healthTemp && Global.players[i].current_health > 0)
+                            if (Global.players[i].currentHealth >= healthTemp && Global.players[i].currentHealth > 0)
                             {
-                                healthTemp = Global.players[i].current_health;
+                                healthTemp = Global.players[i].currentHealth;
                                 playerMaxHealth = i;
                             }
                         }
@@ -60,9 +60,9 @@ namespace HLG.Abstracts.Beings
 
                         for (int i = 0; i < Global.players_quant; i++)
                         {
-                            if (Global.players[i].current_health <= healthTemp && Global.players[i].current_health > 0)
+                            if (Global.players[i].currentHealth <= healthTemp && Global.players[i].currentHealth > 0)
                             {
-                                healthTemp = Global.players[i].current_health;
+                                healthTemp = Global.players[i].currentHealth;
                                 playerMinHealth = i;
                             }
                         }
@@ -100,10 +100,10 @@ namespace HLG.Abstracts.Beings
             // Si no esta en movimiento por default queda parado
             //currentAction = Global.Actions.STAND;
 
-            if (GetPositionRec().Center.X <= target.GetPositionRec().Center.X)
+            if (Get_Position_Rec().Center.X <= target.Get_Position_Rec().Center.X)
             {
                 // Izquierda
-                if (GetPositionRec().Center.X >= target.GetPositionRec().Center.X - hitRangeX)
+                if (Get_Position_Rec().Center.X >= target.Get_Position_Rec().Center.X - hitRangeX)
                 {
                     positionX -= playerMoveSpeed;
                 }
@@ -115,10 +115,10 @@ namespace HLG.Abstracts.Beings
                 facing = Global.Facing.RIGHT;
                 //currentAction = Global.Actions.WALK;
             }
-            else if (GetPositionRec().Center.X > target.GetPositionRec().Center.X)
+            else if (Get_Position_Rec().Center.X > target.Get_Position_Rec().Center.X)
             {
                 // Derecha
-                if (GetPositionRec().Center.X <= target.GetPositionRec().Center.X + hitRangeX)
+                if (Get_Position_Rec().Center.X <= target.Get_Position_Rec().Center.X + hitRangeX)
                 {
                     positionX += playerMoveSpeed;
                 }
@@ -132,13 +132,13 @@ namespace HLG.Abstracts.Beings
             }
 
             //if (target.GetPositionRec().Center.Y < GetPositionRec().Center.Y - hitrangeY)
-            if (target.GetPositionRec().Center.Y <= GetPositionRec().Center.Y - hitRangeY)
+            if (target.Get_Position_Rec().Center.Y <= Get_Position_Rec().Center.Y - hitRangeY)
             {
                 // Arriba
                 positionY -= playerMoveSpeed;
                 //currentAction = Global.Actions.WALK;
             }
-            else if (target.GetPositionRec().Center.Y > GetPositionRec().Center.Y + hitRangeY)
+            else if (target.Get_Position_Rec().Center.Y > Get_Position_Rec().Center.Y + hitRangeY)
             {
                 // Abajo
                 positionY += playerMoveSpeed;
@@ -148,14 +148,14 @@ namespace HLG.Abstracts.Beings
             currentAction = Global.Actions.WALK;
         }
         
-        public override void DrawWithParallax()
+        public override void Draw_With_Parallax()
         {
-            foreach (Animation piezaAnimada in animation_pieces)
+            foreach (Animation piezaAnimada in animationPieces)
             {
                 piezaAnimada.Draw(facing, piezaAnimada.color);
             }
         }
-        public override void DrawWithoutParallax()
+        public override void Draw_Without_Parallax()
         {
             throw new NotImplementedException();
         }

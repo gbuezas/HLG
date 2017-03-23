@@ -16,21 +16,16 @@ namespace HLG
         //-//-// VARIABLES //-//-//
         GraphicsDeviceManager graphics;
         
-        Vector2 check_status = new Vector2(50, 550); // Donde se va a alojar el mensaje de chequeo de status
-        Global.EstadosJuego state_check; // Check de estado de juego
+        Vector2 checkStatus = new Vector2(50, 350); // Donde se va a alojar el mensaje de chequeo de status
+        Global.EstadosJuego stateCheck; // Check de estado de juego
 
         public static List<Being> players = new List<Being>();
-
         static List<string> armors = new List<string>();
 
         //-//-// METHODS //-//-//
         public TheGame()
         {
             graphics = new GraphicsDeviceManager(this);
-
-            // Establezco la resolucion maxima adecuada para el dispositivo
-            // Supuestamente con esta resolucion autoescala a menores
-            // Hay que probarlo en algun lado
 
             // Seteo manual de resolucion
             graphics.PreferredBackBufferWidth = 1200;
@@ -53,12 +48,6 @@ namespace HLG
             Content.RootDirectory = "Content";
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
             // Agrego los personajes a la lista asi se pueden utilizar mas tarde, no importa la clase en esta instancia
@@ -72,42 +61,107 @@ namespace HLG
             for (int i = 0; i < Global.enemies_quant; i++)
             {
                 Global.players.Add(new Skeleton());
-                //Global.players[i].indexPlayer = i;
             }
 
             Global.current_game_state = new State_Level_1();
             Global.current_game_state.ongoing_state = Global.EstadosJuego.TITULO;
-
-            // Ponemos este estado por defecto en un modo que no es nada, asi cuando va al case detecta incongruencia
-            // y acomoda al que corresponde, que seria el que dice arriba en ejecutandose.
-            state_check = Global.EstadosJuego.GAMEOVER;
-
-            Global.current_game_state.Initialize();
-
-            // Ralentizar los cuadros por segundo de todo el juego
-            //this.TargetElapsedTime = TimeSpan.FromTicks(TimeSpan.TicksPerSecond / 5);
-
-            base.Initialize();
-        }
-
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
-        {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            Global.sprite_batch = new SpriteBatch(GraphicsDevice);
-
+            stateCheck = Global.EstadosJuego.GAMEOVER;
+            Global.sprite_batch = new SpriteBatch(GraphicsDevice); // Create a new SpriteBatch, which is used to draw textures.
             Global.viewport_width = GraphicsDevice.Viewport.Width;
             Global.viewport_height = GraphicsDevice.Viewport.Height;
-
             Global.current_game_state.Load(GraphicsDevice.Viewport);
+            
+            Global.current_game_state.Initialize();
+            base.Initialize();
+            
+        }
 
-            // Cargo todas las Textures de los personas y sus movimientos de cada carpeta.
-            // Acordarse que los png tienen que estar en la carpeta DEBUG para el modo DEBUG, y asi con cada modo.
-            // Si no hay nada va al catch asi que no pasa nada
-            # region TEXTURA_HEROES
+        protected override void LoadContent()
+        {
+            Load_Textures();
+            Load_Fonts();
+
+            Asign_Characters_Initial_Position();
+        }
+        private void Load_Textures()
+        {
+            Load_Characters_Textures();
+            Load_Levels_Textures();
+            Load_GUI_Textures();
+            Load_Scattered_Textures();
+        }
+        private void Load_GUI_Textures()
+        {
+            try
+            {
+
+                string[] archivos_UI = Directory.GetFiles("Content/UI", "*.png");
+
+                foreach (string nombre_UI in archivos_UI)
+                {
+                    string nombre = Path.GetFileNameWithoutExtension(nombre_UI);
+                    Textures textura = new Textures(Content.Load<Texture2D>("UI/" + nombre), nombre);
+
+                    Global.UITextures.Add(textura);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Para que aunque no encuentre carpeta ni nada siga igual, 
+                // porque no hace diferencia al juego que no pueda encontrar nada.
+                // Mas tarde si va a importar que no cargue todas las Textures de todos cuando las tengamos.
+                // Pero ahora en esta etapa de prueba donde me faltan un monton de cosas no es necesario.
+                throw ex;
+            }
+        }
+        private void Load_Levels_Textures()
+        {
+            foreach (string escenario in Global.scenes)
+            {
+                try
+                {
+                    string[] archivos_niveles = Directory.GetFiles("Content/" + escenario, "*.png");
+
+                    foreach (string nombre_niveles in archivos_niveles)
+                    {
+                        string Nombre = Path.GetFileNameWithoutExtension(nombre_niveles);
+                        Textures textura = new Textures(Content.Load<Texture2D>(escenario + "/" + Nombre), Nombre);
+
+                        switch (escenario)
+                        {
+
+                            case "Avance":
+                                {
+                                    Global.level_1textures.Add(textura);
+                                    break;
+                                }
+
+                            case "Versus":
+                                {
+                                    Global.versus_textures.Add(textura);
+                                    break;
+                                }
+
+                            default:
+                                {
+                                    break;
+                                }
+
+                        }
+
+                    }
+                }
+                catch
+                {
+                    // Para que aunque no encuentre carpeta ni nada siga igual, 
+                    // porque no hace diferencia al juego que no pueda encontrar nada.
+                    // Mas tarde si va a importar que no cargue todas las Textures de todos cuando las tengamos.
+                    // Pero ahora en esta etapa de prueba donde me faltan un monton de cosas no es necesario.
+                }
+            }
+        }
+        private void Load_Characters_Textures()
+        {
             foreach (string heroe in Global.characters)
             {
                 try
@@ -157,99 +211,20 @@ namespace HLG
                     // Pero ahora en esta etapa de prueba donde me faltan un monton de cosas no es necesario.
                 }
             }
-            #endregion
-
-            // Cargo los niveles
-            #region TEXTURA_NIVELES
-
-            foreach (string escenario in Global.scenes)
-            {
-                try
-                {
-                    string[] archivos_niveles = Directory.GetFiles("Content/" + escenario, "*.png");
-
-                    foreach (string nombre_niveles in archivos_niveles)
-                    {
-                        string Nombre = Path.GetFileNameWithoutExtension(nombre_niveles);
-                        Textures textura = new Textures(Content.Load<Texture2D>(escenario + "/" + Nombre), Nombre);
-
-                        switch (escenario)
-                        {
-
-                            case "Avance":
-                                {
-                                    Global.level_1textures.Add(textura);
-                                    break;
-                                }
-
-                            case "Versus":
-                                {
-                                    Global.versus_textures.Add(textura);
-                                    break;
-                                }
-
-                            default:
-                                {
-                                    break;
-                                }
-
-                        }
-
-                    }
-                }
-                catch
-                {
-                    // Para que aunque no encuentre carpeta ni nada siga igual, 
-                    // porque no hace diferencia al juego que no pueda encontrar nada.
-                    // Mas tarde si va a importar que no cargue todas las Textures de todos cuando las tengamos.
-                    // Pero ahora en esta etapa de prueba donde me faltan un monton de cosas no es necesario.
-                }
-            }
-
-            #endregion
-
-            // Cargo las UI
-            #region TEXTURA_UI
-
-            try
-            {
-
-                string[] archivos_UI = Directory.GetFiles("Content/UI", "*.png");
-
-                foreach (string nombre_UI in archivos_UI)
-                {
-                    string nombre = Path.GetFileNameWithoutExtension(nombre_UI);
-                    Textures textura = new Textures(Content.Load<Texture2D>("UI/" + nombre), nombre);
-
-                    Global.UITextures.Add(textura);
-                }
-            }
-            catch(Exception ex)
-            {
-                // Para que aunque no encuentre carpeta ni nada siga igual, 
-                // porque no hace diferencia al juego que no pueda encontrar nada.
-                // Mas tarde si va a importar que no cargue todas las Textures de todos cuando las tengamos.
-                // Pero ahora en esta etapa de prueba donde me faltan un monton de cosas no es necesario.
-                throw ex;
-            }
-            
-            #endregion
-
-            // Cargo punto blanco
+        }
+        private void Load_Scattered_Textures()
+        {
             Global.white_dot = Content.Load<Texture2D>("Seleccion/puntoblanco");
-
-            // Cargo titulos y pantallas de presentacion
             Global.title_screen = Content.Load<Texture2D>("Titulo/TitleScreen");
-
-            // Cargo pantalla de seleccion y selectores
             Global.selection_screen = Content.Load<Texture2D>("Seleccion/fondo");
-            //Variables_Generales.Selector = Content.Load<Texture2D>("Seleccion/Selector");
-            
-            // Cargo fuentes
+        }
+        private void Load_Fonts()
+        {
             Global.check_status_font = Content.Load<SpriteFont>("Fuente_Prueba");
             Global.check_status_font_2 = Content.Load<SpriteFont>("Fuente_Prueba_2");
-
-            // Asigno posiciones iniciales de los personajes, se chequea antes del Initialize
+        }
+        private static void Asign_Characters_Initial_Position()
+        {
             foreach (Being Jugador in Global.players)
             {
                 if (Jugador.index == -1)
@@ -264,37 +239,26 @@ namespace HLG
                 }
             }
         }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        
         protected override void Update(GameTime gameTime)
         {
-            // Funciones del juego
-            QuitGame();
-            GiveLife();
-            EnableColRec();
+            Quit_Game();
+            Give_Life();
+            Enable_Collision_Rec();
 
-            // Acomoda los estados correspondientes del juego, las distintas pantallas
-            StateSwitch();
-
+            State_Switch(); // Acomoda los estados correspondientes del juego, las distintas pantallas
+            Set_State_And_Time(gameTime);
+        }
+        private void Set_State_And_Time(GameTime gameTime)
+        {
             Global.current_game_state.Update(gameTime);
-
             base.Update(gameTime);
 
             Global.elapsed_time += gameTime.ElapsedGameTime;
-
             if (Global.elapsed_time > TimeSpan.FromSeconds(1))
             {
                 Global.elapsed_time -= TimeSpan.FromSeconds(1);
@@ -302,11 +266,72 @@ namespace HLG
                 Global.frame_counter = 0;
             }
         }
+        private void State_Switch()
+        {
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+            if (stateCheck != Global.current_game_state.ongoing_state)
+            {
+                switch (Global.current_game_state.ongoing_state)
+                {
+
+                    case Global.EstadosJuego.TITULO:
+                        {
+                            stateCheck = Global.EstadosJuego.TITULO;
+                            Global.current_game_state = new State_Title();
+                            break;
+                        }
+
+                    case Global.EstadosJuego.SELECCION:
+                        {
+                            stateCheck = Global.EstadosJuego.SELECCION;
+                            Global.current_game_state = new State_Selection();
+                            break;
+                        }
+
+                    case Global.EstadosJuego.AVANCE:
+                        {
+                            stateCheck = Global.EstadosJuego.AVANCE;
+                            Global.current_game_state = new State_Level_1();
+                            break;
+                        }
+
+                    default: break;
+
+                }
+            }
+        }
+        private static void Give_Life()
+        {
+            // Da vida a los Being
+            if (Keyboard.GetState().IsKeyDown(Keys.D1))
+            {
+                foreach (Being jugador in Global.players)
+                {
+                    jugador.currentHealth += 1;
+                }
+            }
+        }
+        private void Quit_Game()
+        {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+                Keyboard.GetState().IsKeyDown(Keys.Escape))
+                this.Exit();
+        }
+        private static void Enable_Collision_Rec()
+        {
+            if (Global.OnePulseKey(Keys.D2))
+            {
+                if (Global.enable_rectangles)
+                {
+                    Global.enable_rectangles = false;
+                }
+                else
+                {
+                    Global.enable_rectangles = true;
+                }
+            }
+        }
+
         protected override void Draw(GameTime gameTime)
         {
             Global.frame_counter++;
@@ -326,94 +351,22 @@ namespace HLG
             "limitePantallaAncho = " + Global.mensaje4.ToString() + Environment.NewLine +
             "Zoom = " + Global.mensaje5.ToString() + Environment.NewLine +
             "FPS = " + Global.frame_rate + Environment.NewLine,
-            check_status, Color.DarkRed);
+            checkStatus, Color.DarkRed);
 
             Global.sprite_batch.End();
             #endregion
 
             base.Draw(gameTime);
         }
-
+        
         /// <summary>
-        /// Añade vida a todos los Being
+        /// Ralentizar los cuadros por segundo de todo el juego
         /// </summary>
-        private static void GiveLife()
+        /// <param name="speed"></param>
+        private void Slow_Motion(int speed)
         {
-            // Da vida a los Being
-            if (Keyboard.GetState().IsKeyDown(Keys.D1))
-            {
-                foreach (Being jugador in Global.players)
-                {
-                    jugador.current_health += 1;
-                }
-            }
+            TargetElapsedTime = TimeSpan.FromTicks(TimeSpan.TicksPerSecond / speed);
         }
 
-        /// <summary>
-        /// Permite salir del juego desde el joystick o teclado apretando select o escape.
-        /// </summary>
-        private void QuitGame()
-        {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-                Keyboard.GetState().IsKeyDown(Keys.Escape))
-                this.Exit();
-        }
-
-        /// <summary>
-        /// Habilita rectangulo de colisiones.
-        /// </summary>
-        private static void EnableColRec()
-        {
-            if (Global.OnePulseKey(Keys.D2))
-            {
-                if (Global.enable_rectangles)
-                {
-                    Global.enable_rectangles = false;
-                }
-                else
-                {
-                    Global.enable_rectangles = true;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Chequea en que estado tiene que estar el juego y lo gestiona.
-        /// </summary>
-        private void StateSwitch()
-        {
-
-            if (state_check != Global.current_game_state.ongoing_state)
-            {
-                switch (Global.current_game_state.ongoing_state)
-                {
-
-                    case Global.EstadosJuego.TITULO:
-                        {
-                            state_check = Global.EstadosJuego.TITULO;
-                            Global.current_game_state = new State_Title();
-                            break;
-                        }
-
-                    case Global.EstadosJuego.SELECCION:
-                        {
-                            state_check = Global.EstadosJuego.SELECCION;
-                            Global.current_game_state = new State_Selection();
-                            break;
-                        }
-
-                    case Global.EstadosJuego.AVANCE:
-                        {
-                            state_check = Global.EstadosJuego.AVANCE;
-                            Global.current_game_state = new State_Level_1();
-                            break;
-                        }
-
-                    default: break;
-
-                }
-            }
-        }
-                
     }
 }

@@ -8,25 +8,24 @@ namespace HLG.Abstracts.GameStates
 {
     class State_Title : States
     {
-        // El area de la linea de sprite que queremos mostrar
-        Rectangle sourceRect;
+
+        //-//-// VARIABLES //-//-//
+        Rectangle sourceRect; // El area de la linea de sprite que queremos mostrar
 
         int Var_AltoNivel = Global.viewport_height;
         int Var_AnchoNivel = Global.viewport_width;
+        
+        Camera CamaraTraida; // Traigo la camara del game
 
-        // Traigo la camara del game
-        Camera CamaraTraida;
-
+        //-//-// METHODS //-//-//
         public override void Initialize()
         {
             throw new NotImplementedException();
         }
-
         public override void Load(Viewport _viewport)
         {
             CamaraTraida = new Camera(_viewport, Var_AltoNivel, Var_AnchoNivel);
         }
-
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             // Agarro el cuadro correcto
@@ -37,17 +36,9 @@ namespace HLG.Abstracts.GameStates
             InputManagement();
 
             // Actualiza el estado del juego
-            UpdateState(gameTime);
+            Update_State(gameTime);
         }
-
-        public override void Draw()
-        {
-            Global.sprite_batch.Begin();
-            Global.sprite_batch.Draw(Global.title_screen, sourceRect, Color.White);
-            Global.sprite_batch.End();
-        }
-
-        public override void UpdateState(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update_State(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
             //if (Variables_Generales.currentGamePadState[0].Buttons.A == ButtonState.Pressed)
@@ -61,6 +52,14 @@ namespace HLG.Abstracts.GameStates
             }
 
         }
+        public override void Draw()
+        {
+            Global.sprite_batch.Begin();
+            Global.sprite_batch.Draw(Global.title_screen, sourceRect, Color.White);
+            Global.sprite_batch.End();
+        }
+
+        
         
     }
 }

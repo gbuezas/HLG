@@ -39,7 +39,7 @@ namespace HLG.Abstracts.GameStates
             InputManagement();
 
             // Actualiza el estado del juego
-            UpdateState(gameTime);
+            Update_State(gameTime);
         }
 
         public override void Draw()
@@ -53,7 +53,7 @@ namespace HLG.Abstracts.GameStates
             Global.sprite_batch.End();
         }
 
-        public override void UpdateState(GameTime gameTime)
+        public override void Update_State(GameTime gameTime)
         {
             //if (Variables_Generales.currentGamePadState[0].Buttons.B == ButtonState.Pressed)
             //{

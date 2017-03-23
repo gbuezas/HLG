@@ -1,7 +1,6 @@
 ﻿using HLG.Abstracts.GUI;
 using HLG.Objects;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace HLG.Abstracts.Beings
 {
@@ -12,9 +11,9 @@ namespace HLG.Abstracts.Beings
         public User_Interface gui = new User_Interface();
 
         //-//-// METHODS //-//-//
-        public override void DrawWithParallax()
+        public override void Draw_With_Parallax()
         {
-            foreach (Animation piezaAnimada in animation_pieces)
+            foreach (Animation piezaAnimada in animationPieces)
             {
                 piezaAnimada.Draw(facing, piezaAnimada.color);
             }
@@ -36,20 +35,20 @@ namespace HLG.Abstracts.Beings
             // rectangulos de colision para chequear
             if (Global.enable_rectangles)
             {
-                Global.DrawRectangle(GetPositionRec(), Global.white_dot);
+                Global.DrawRectangle(Get_Position_Rec(), Global.white_dot);
                 Global.DrawRectangle(Global.rectangle_collision, Global.white_dot);
                 Global.DrawRectangle(Global.rectangle_collision_2, Global.white_dot);
             }
         }
-        public override void DrawWithoutParallax()
+        public override void Draw_Without_Parallax()
         {
-            gui.DrawUI(current_health, max_health);
+            gui.DrawUI(currentHealth, maxHealth);
         }
         public void StayInScreen(int AltoNivel)
         {
             if (Global.camara.LimitesPantalla.Right != 0)
             {
-                Rectangle FrameEscalado = GetPositionRec();
+                Rectangle FrameEscalado = Get_Position_Rec();
                 positionX = MathHelper.Clamp(position.X, Global.camara.LimitesPantalla.Left + FrameEscalado.Width / 2, Global.camara.LimitesPantalla.Width - FrameEscalado.Width / 2);
                 positionY = MathHelper.Clamp(position.Y, AltoNivel - AltoNivel / 2, AltoNivel - FrameEscalado.Height / 2);
             }

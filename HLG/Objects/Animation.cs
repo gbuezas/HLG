@@ -5,53 +5,30 @@ namespace HLG.Objects
 {
     public class Animation
     {
+        
         //-//-// VARIABLES //-//-//
         public Textures loadedTexture; // La textura con los sprites dentro
         public string pieceName; // Nombre de la pieza a animar
-        int elapsedTime; // El tiempo que actualizamos el cuadro por ultima vez
+        private float escalaAnimacion = Global.viewport_height / Global.scalar; // Escala de Heroes con respecto al alto de la pantalla
+
+        private int elapsedTime; // El tiempo que actualizamos el cuadro por ultima vez
         public int frameTime; // El tiempo que mostramos el cuadro antes de cambiarlo
         public bool pause; // Para pausarse en un frame especifico
-        int oldFrameCount; // El numero de cuadros que tiene la animacion
-        int frameCount;
-        public int FrameCount
-        {
-            get { return frameCount; }
-            set { frameCount = value; }
-        }
 
-        // El indice del cuadro que estamos mostrando
-        int currentFrame;
-        public int CurrentFrame
-        {
-            get { return currentFrame; }
-            set { currentFrame = value; }
-        }
-
-        // El color del cuadro que estamos mostrando
-        public Color color;
-
-        // El area de la fila de sprite que queremos mostrar
-        Rectangle sourceRect = new Rectangle();
-
-        // El area donde queremos mostrar el sprite
-        Rectangle destinationRect = new Rectangle();
-
-        // Ancho y alto de un cuadro dado
-        public int frameWidth;
+        public int frameCount { get; internal set; }
+        public int currentFrame { get; internal set; } // El indice del cuadro que estamos mostrando
+        public Color color; // El color del cuadro que estamos mostrando
+        public int frameWidth; // Ancho y alto de un cuadro dado
         public int frameHeight;
-
-        // El estado de la animacion
-        public bool active;
-
-        // Activa o desactiva el loopeo
-        public bool looping;
-
-        // Posicion de un cuadro determinado
-        public Vector2 position;
-
-        // Escala de Heroes con respecto al alto de la pantalla
-        private float escalaAnimacion = Global.viewport_height / Global.scalar;
-
+        private int oldFrameCount; // El numero de cuadros que tiene la animacion
+        
+        public Vector2 position; // Posicion de un cuadro determinado
+        Rectangle sourceRect = new Rectangle(); // El area de la fila de sprite que queremos mostrar
+        Rectangle destinationRect = new Rectangle(); // El area donde queremos mostrar el sprite
+        
+        public bool active; // El estado de la animacion
+        public bool looping; // Activa o desactiva el loopeo
+        
         //-//-// METHODS //-//-//
         /// <summary>
         /// Asignamos el nombre al principio, cuando esta todo vacio, para poder completarlo gracias a este dato.
@@ -66,12 +43,11 @@ namespace HLG.Objects
         /// Carga de textura al cambiar de animacion, es la que se usa durante el juego repetidas veces.
         /// </summary>
         /// <param name="texture"></param>
-        public void LoadTexture(Textures texture)
+        public void Load_Texture(Textures texture)
         {
             loadedTexture = texture;
             frameCount = int.Parse(texture.texture_frames);
         }
-
         /// <summary>
         /// Cargo la textura por primera vez, o cuando cambio el set de alguna pieza.
         /// </summary>
@@ -82,7 +58,7 @@ namespace HLG.Objects
         /// <param name="frametime"></param>
         /// <param name="color"></param>
         /// <param name="looping"></param>
-        public void LoadTexture(Textures texture, Vector2 position, int frameWidth, int frameHeight, int frametime, Color color, bool looping)
+        public void Load_Texture(Textures texture, Vector2 position, int frameWidth, int frameHeight, int frametime, Color color, bool looping)
         {
             // Mantiene una copia local de los valores obtenidos
             this.color = color;
@@ -110,16 +86,20 @@ namespace HLG.Objects
         /// Rectangulo donde se encuentra esta pieza de animacion en la pantalla
         /// </summary>
         /// <returns></returns>
-        public Rectangle GetPosition()
+        public Rectangle Get_Position()
         {
             return destinationRect;
         }
+        public void Set_Scale(int Scale)
+        {
+            escalaAnimacion = Global.viewport_height / Scale;
+        }
 
-        public void ColorChange(Color tinte)
+        public void Color_Change(Color tinte)
         {
             color = tinte;
         }
-
+        
         public void Update(GameTime gameTime)
         {
             // No actualizar la animacion si no esta activa
@@ -166,7 +146,6 @@ namespace HLG.Objects
                                             Height);
 
         }
-
         public void Draw(Global.Facing direccion)
         {
             // Solo dibujar la animacion si esta activa
@@ -184,7 +163,6 @@ namespace HLG.Objects
 
             }
         }
-
         public void Draw(Global.Facing direccion, Color tinte)
         {
             // Solo dibujar la animacion si esta activa
@@ -201,11 +179,6 @@ namespace HLG.Objects
                 }
 
             }
-        }
-
-        public void SetScale(int Scale)
-        {
-            escalaAnimacion = Global.viewport_height / Scale;
         }
         
     }

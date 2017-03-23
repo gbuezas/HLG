@@ -17,10 +17,8 @@ namespace HLG.Abstracts.GameStates
         public abstract void Initialize();
 
         public abstract void Load(Viewport _viewport);
-
         public abstract void Update(GameTime gameTime);
-        public abstract void UpdateState(GameTime gameTime);
-
+        public abstract void Update_State(GameTime gameTime);
         public abstract void Draw();
 
         public void RearrangeCharacters()
@@ -31,11 +29,10 @@ namespace HLG.Abstracts.GameStates
             // Si los personajes estan en camara los dibujo en pantalla.
             foreach (Being character in AxisList)
             {
-                if (Global.camara.EnCamara(character.GetPositionRec()))
-                    character.DrawWithParallax();
+                if (Global.camara.EnCamara(character.Get_Position_Rec()))
+                    character.Draw_With_Parallax();
             }
         }
-
         public void InputManagement()
         {
             // Guarda los estados anteriores del joystick y del teclado
@@ -49,5 +46,6 @@ namespace HLG.Abstracts.GameStates
             //}
 
         }
+
     }
 }

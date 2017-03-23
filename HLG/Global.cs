@@ -19,7 +19,7 @@ namespace HLG
         public enum EstadosJuego { INTRO, TITULO, SELECCION, MAPA, VS, AVANCE, PAUSA, GAMEOVER, FINAL } // Los distintos estados del juego
 
         public static SpriteBatch sprite_batch; // Variable utilizada para todo el dibujado
-
+        
         public static SpriteFont check_status_font; // Fuente de los mensajes de chequeo
         public static SpriteFont check_status_font_2;
         public static float mensaje1;
@@ -161,5 +161,6 @@ namespace HLG
             else
                 return false;
         }
+
     }
 }

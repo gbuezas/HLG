@@ -14,11 +14,11 @@ namespace HLG.Abstracts.Beings
         //-//-// VARIABLES //-//-//
         public int index { get; internal set; } = -1;
 
-        public Pieces_Sets pieces_armor = new Pieces_Sets();
-        public List<Piece_Set> pieces_armor_new = new List<Piece_Set>();
-        public List<Textures> object_textures = new List<Textures>();
+        public Pieces_Sets piecesArmor = new Pieces_Sets();
+        public List<Piece_Set> piecesArmorNew = new List<Piece_Set>();
+        public List<Textures> objectTextures = new List<Textures>();
         public Animation[] animations { get; internal set; } = null;
-        public Animation[] animation_pieces { get; internal set; } = null;
+        public Animation[] animationPieces { get; internal set; } = null;
         public int frameTime { get; internal set; }
         public int frameWidth { get; internal set; } = 0;
         public int frameHeight { get; internal set; } = 0;
@@ -47,9 +47,9 @@ namespace HLG.Abstracts.Beings
         
         public Global.Facing facing { get; internal set; } = Global.Facing.RIGHT;
 
-        public int current_health { get; internal set; }
-        public int max_health { get; internal set; }
-        public bool ghost_mode { get; internal set; } = false;
+        public int currentHealth { get; internal set; }
+        public int maxHealth { get; internal set; }
+        public bool ghostMode { get; internal set; } = false;
 
         public float hitRangeX { get; internal set; }
         public float hitRangeY { get; internal set; }
@@ -61,7 +61,7 @@ namespace HLG.Abstracts.Beings
         /// Siempre tiene que englobar al total de personajes que estan en el juego (tanto jugables como IA).
         /// </summary>
         public bool[] injuredByMe { get; internal set; } = new bool[Global.total_quant];
-        public int injured_value { get; internal set; } = 0;
+        public int injuredValue { get; internal set; } = 0;
 
         /// <summary>
         /// Se coloco en este nivel asi se facilita la habilidad de poseer enemigos y controlarlos
@@ -80,7 +80,7 @@ namespace HLG.Abstracts.Beings
         public Vector2 mensaje;
 
         //-//-// METHODS //-//-//
-        public void ActivatePlayer(bool active)
+        public void Activate_Player(bool active)
         {
             foreach (Animation piece in animations)
             {
@@ -91,17 +91,17 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// Logica de todas las acciones, los movimientos, los golpes, etc.
         /// </summary>
-        public void ActionLogicManual()
+        public void Action_Logic_Manual()
         {
             /// Si esta pegando tiene que terminar su animacion y despues desbloquear otra vez la gama de movimientos,
             /// para esto comparamos el frame actual de la animacion con su frame total.
             /// Cuando termine la animacion de pegar puede generar daño de vuelta a alguien que ya haya atacado
             if (new Global.Actions[] { Global.Actions.HIT1, Global.Actions.HIT2, Global.Actions.HIT3 }.Contains(currentAction))
             {
-                if (GetCurrentFrame() == GetTotalFrames())
+                if (Get_Current_Frame() == Get_Total_Frames())
                 {
                     currentAction = Global.Actions.STAND;
-                    ResetInjured();
+                    Reset_Injured();
                 }
             }
             else
@@ -149,7 +149,7 @@ namespace HLG.Abstracts.Beings
                 currentAction = Global.Actions.WALK;
             }
         }
-        public void ResetInjured()
+        public void Reset_Injured()
         {
             for (int i = 0; i < injuredByMe.Length; i++)
             {
@@ -159,25 +159,25 @@ namespace HLG.Abstracts.Beings
 
         public abstract void Initialize(Vector2 posicion);
 
-        public void CapsMaxHealth()
+        public void Caps_Max_Health()
         {
-            if (current_health > max_health)
-                current_health = max_health;
+            if (currentHealth > maxHealth)
+                currentHealth = maxHealth;
         }
 
         /// <summary>
         /// Obtiene la posicion de una pieza de animacion en rectangulo
         /// </summary>
         /// <returns> Posicion del jugador </returns>
-        public Rectangle GetPositionRec()
+        public Rectangle Get_Position_Rec()
         {
-            return animation_pieces[0].GetPosition();
+            return animationPieces[0].Get_Position();
         }
         /// <summary>
         /// Obtiene la posicion del jugador relativa a la parte superior izquierda de la pantalla
         /// </summary>
         /// <returns> Posicion del jugador </returns>
-        public Vector2 GetPositionVec()
+        public Vector2 Get_Position_Vec()
         {
             return position;
         }
@@ -190,9 +190,9 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         /// <param name="victima">Rectangulo de la victima</param>
         /// <returns>Si la victima colisiona o no con el objeto</returns>
-        public bool CollisionVerifier(Rectangle victima)
+        public bool Collision_Verifier(Rectangle victima)
         {
-            Rectangle atacante = GetPositionRec();
+            Rectangle atacante = Get_Position_Rec();
 
             return (atacante.Center.X >= (victima.Center.X - hitRangeX) &&
                     atacante.Center.X <= victima.Center.X &&
@@ -206,9 +206,9 @@ namespace HLG.Abstracts.Beings
                     atacante.Center.Y <= (victima.Center.Y + hitRangeY) &&
                     facing == Global.Facing.LEFT);
         }
-        public bool CollisionVerifierEnhanced(Rectangle victima)
+        public bool Collision_Verifier_Enhanced(Rectangle victima)
         {
-            Rectangle atacante = GetPositionRec();
+            Rectangle atacante = Get_Position_Rec();
 
             return (atacante.Center.X >= (victima.Center.X - hitRangeX - 10) &&
                     atacante.Center.X <= victima.Center.X &&
@@ -223,89 +223,89 @@ namespace HLG.Abstracts.Beings
                     facing == Global.Facing.LEFT);
         }
         
-        public int GetCurrentFrame()
+        public int Get_Current_Frame()
         {
-            return animations[0].CurrentFrame;
+            return animations[0].currentFrame;
         }
-        public int GetTotalFrames()
+        public int Get_Total_Frames()
         {
-            return animations[0].FrameCount - 1;
+            return animations[0].frameCount - 1;
         }
-        public void PauseAnimation(bool desactivar)
+        public void Pause_Animation(bool desactivar)
         {
-            foreach (Animation piezaAnimada in animation_pieces)
+            foreach (Animation piezaAnimada in animationPieces)
             {
                 piezaAnimada.pause = desactivar;
             }
         }
-        public void FrameNumberActionReset()
+        public void Frame_Number_Action_Reset()
         {
             if (oldAction != currentAction)
             {
-                foreach (Animation Animation in animation_pieces)
-                    Animation.CurrentFrame = 0;
+                foreach (Animation Animation in animationPieces)
+                    Animation.currentFrame = 0;
 
                 oldAction = currentAction;
             }
         }
-        public void AnimationFramePositionUpdate(GameTime gameTime)
+        public void Animation_Frame_Position_Update(GameTime gameTime)
         {
-            foreach (Animation piezaAnimada in animation_pieces)
+            foreach (Animation piezaAnimada in animationPieces)
             {
                 piezaAnimada.position = position;
                 piezaAnimada.Update(gameTime);
             }
         }
 
-        public abstract void DrawWithParallax();
-        public abstract void DrawWithoutParallax();
-        public void ColorAnimationChange(Color tinte)
+        public abstract void Draw_With_Parallax();
+        public abstract void Draw_Without_Parallax();
+        public void Color_Animation_Change(Color tinte)
         {
             foreach (Animation Animation in animations)
             {
-                Animation.ColorChange(tinte);
+                Animation.Color_Change(tinte);
             }
         }
-        public void ColorPieceChange(Color tinte, int pieza)
+        public void Color_Piece_Change(Color tinte, int pieza)
         {
-            animations[pieza].ColorChange(tinte);
+            animations[pieza].Color_Change(tinte);
         }
 
-        public abstract void UpdatePlayer(GameTime gameTime, int var_AltoNivel, int var_AnchoNivel);
-        public void UpdateArmor(List<Piece_Set> set_pieces)
+        public abstract void Update_Player(GameTime gameTime, int var_AltoNivel, int var_AnchoNivel);
+        public void Update_Armor(List<Piece_Set> set_pieces)
         {
             foreach (Piece_Set set_piece in set_pieces)
-                pieces_armor.Set_Set(set_piece);
+                piecesArmor.Set_Set(set_piece);
 
-            TextureForceLoad();
+            Texture_Force_Load();
         }
 
-        private void TextureForceLoad()
+        private void Texture_Force_Load()
         {
-            foreach (Animation piezaAnimation in animation_pieces)
+            foreach (Animation piezaAnimation in animationPieces)
             {
-                foreach (Textures textura in object_textures)
+                foreach (Textures textura in objectTextures)
                 {
                     if (textura.texture_piece_name == piezaAnimation.pieceName &&
-                        textura.texture_set_name == pieces_armor.Get_Set(textura.texture_piece_name) &&
+                        textura.texture_set_name == piecesArmor.Get_Set(textura.texture_piece_name) &&
                         textura.texture_action == currentAction.ToString().ToLower())
                     {
-                        piezaAnimation.LoadTexture(textura, position, frameWidth, frameHeight, frameTime, Color.White, true);
+                        piezaAnimation.Load_Texture(textura, position, frameWidth, frameHeight, frameTime, Color.White, true);
                     }
                 }
             }
         }
-        public void TextureRegularLoad()
+        public void Texture_Regular_Load()
         {
-            foreach (Animation animation_piece in animation_pieces)
+            foreach (Animation animation_piece in animationPieces)
             {
-                foreach (Textures texture in object_textures)
+                foreach (Textures texture in objectTextures)
                 {
                     if (texture.texture_piece_name == animation_piece.pieceName &&
-                        texture.texture_set_name == pieces_armor.Get_Set(texture.texture_piece_name) &&
+                        texture.texture_set_name == piecesArmor.Get_Set(texture.texture_piece_name) &&
                         texture.texture_action == currentAction.ToString().ToLower())
                     {
-                        animation_piece.LoadTexture(texture);
+                        animation_piece.Load_Texture(texture);
                     }
                 }
             }

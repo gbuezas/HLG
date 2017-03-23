@@ -11,12 +11,14 @@ namespace HLG.Abstracts.Beings
         //-//-// VARIABLES //-//-//
         List<Piece_Set> pieces_armor_recambio = new List<Piece_Set>(); // GAB - borrar despues, es para mostrar el cambio de armadura
         static string[] pieces_paladin = new string[] { "shield", "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "sword", "gauntlettop" };
-        
+        static string[] pieces_inventory = new string[] { "greaveback", "gauntletback", "breastplate", "helm", "shield", "sword", "potion", "throw" }; // Este numero tendría que sacarse de los frames que tiene la skin del inventorio correspondiente al personaje
+        List<string> sets = new List<string>(); 
+
         //-//-// METHODS //-//-//
         public override void Initialize(Vector2 posicion)
         {
-            animation_pieces = new Animation[pieces_paladin.Length];
-            object_textures = Global.paladin_textures;
+            animationPieces = new Animation[pieces_paladin.Length];
+            objectTextures = Global.paladin_textures;
 
             position = posicion;
             mensaje = position;
@@ -31,92 +33,32 @@ namespace HLG.Abstracts.Beings
             hitRangeX = 100;
             hitRangeY = 7;
 
-            max_health = 200;
-            current_health = max_health;
+            maxHealth = 200;
+            currentHealth = maxHealth;
             
-            ResetInjured();
+            Reset_Injured();
 
-            pieces_armor.Initialize(pieces_paladin); // Inicializo partes de armadura actual
+            piecesArmor.Initialize(pieces_paladin); // Inicializo partes de armadura actual
             for (int i = 0; i < pieces_paladin.Length; i++) // Inicializo las piezas de animacion
             {
-                animation_pieces[i] = new Animation();
-                animation_pieces[i].Initialize(pieces_paladin[i]);
+                animationPieces[i] = new Animation();
+                animationPieces[i].Initialize(pieces_paladin[i]);
             }
-            UpdateArmor(pieces_armor_new); // Piezas de la armadura al comenzar
-            animations = animation_pieces;
+            Update_Armor(piecesArmorNew); // Piezas de la armadura al comenzar
+            animations = animationPieces;
 
-            // Animacion de escudito animado de vida
-            /// Usamos [2] porque es la textura de los escuditos animados de vida, pero tenemos que buscar una buena manera de que localice
-            /// y que sean los escuditos, porque ahora tambien estan los iconos de inventorio [0] y [1]
-            //UIAnimation = new Animation();
-            //UIAnimation.LoadTexture(Global.UITextures[2], new Vector2((int)(Global.camara.parallax.X + Global.viewport_width / 5) * (index + 1), Global.ui_y),
-            //                            Global.ui_widht,
-            //                            Global.ui_height,
-            //                            2,
-            //                            Color.White,
-            //                            true);
+            string nombresettextura = string.Empty;
+            foreach ( Textures texture in Global.paladin_textures )
+            {
+                if (texture.texture_set_name != nombresettextura)
+                {
+                    sets.Add(texture.texture_set_name);
+                    nombresettextura = texture.texture_set_name;
+                }
+            }
 
-            gui.initialize(index);
-
-            /// Animacion de Iconos del inventario
-            /// X - Tenemos que automatizar la locacion de los iconos y los fonditos, esta harcodeada. 
-            ///     Se hace a partir de las escalas que se le dan a los iconos y barra
-            /// X - Tenemos que hacer que cambie de set desde esa barra de iconos. Ella tendria que tener los colores correspondientes a los set disponibles 
-            ///     y cuando aceptamos ese cambio se tiene que cambiar el set en el personaje.
+            gui.initialize(index, pieces_inventory, sets);
             
-            //int moverEje = 0;
-            //int iii = 0;
-            //foreach (var item in Global.IconBarSlots)
-            //{
-
-            //    Animation UIInvAnimation = new Animation();
-            //    Animation UIIconAnimation = new Animation();
-                
-            //    UIInvAnimation.SetScale(25);
-            //    UIIconAnimation.SetScale(25);
-                
-            //    // Fondo del inventario (slots)
-            //    UIInvAnimation.LoadTexture(Global.UITextures[0], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (index + 1) - (Global.InvAncho * 2 + (41 / 3)) + moverEje, 20),
-            //                                Global.InvAncho,
-            //                                Global.InvAlto,
-            //                                2,
-            //                                Color.White,
-            //                                false);
-
-            //    // Aca se elige los iconos del invenario
-            //    UIIconAnimation.LoadTexture(Global.UITextures[3], new Vector2((int)(Global.Camara.parallax.X + Global.ViewportWidth / 5) * (index + 1) - (Global.InvAncho*2+(41/3)) + moverEje, 20),
-            //                                Global.InvAncho,
-            //                                Global.InvAlto,
-            //                                2,
-            //                                Color.White,
-            //                                false);
-                
-            //    //UIInvAnimation.SetScale(30);
-            //    //UIIconAnimation.SetScale(30);
-
-            //    UIInvAnimation.pause = true;
-            //    UIIconAnimation.pause = true;
-                
-            //    UIIconAnimation.CurrentFrame = iii;
-            //    iii++;
-
-            //    //UIInventario.Add(UIInvAnimation);
-            //    //UIIcon.Add(UIIconAnimation);
-                
-            //    //moverEje += Global.InvAncho - 20;
-            //    moverEje += Global.InvAncho - 15;
-            //    //iii++;
-            //}
-            
-            /// Calculo sector de numero de vida
-            //Rectangle UI_Rect = new Rectangle(UIx * (i + 1) - Global.UIancho / 2, 0, Global.UIancho, Global.UIalto);
-            //Rectangle UI_Rect = new Rectangle((int)UIAnimation.position.X * (indexPlayer + 1), 0, Global.UIancho, Global.UIalto);
-            //Rectangle UI_Rect = new Rectangle(0, 0, Global.UIancho, Global.UIalto);
-            //UILifeNumber.X = UI_Rect.X + Global.UIancho / 4;
-            //UILifeNumber.Y = UI_Rect.Y + Global.UIalto / 2 + 10;
-            //UILifeNumber.X = ((Global.viewport_width/5) * (index + 1)) - 25;
-            //UILifeNumber.Y = Global.ui_y + 8;
-
             // Asigno control por default al jugador
             controls[(int)Global.Controls.UP] = Keys.W;
             controls[(int)Global.Controls.DOWN] = Keys.S;
@@ -169,45 +111,20 @@ namespace HLG.Abstracts.Beings
 
         }
         
-        public override void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel)
+        public override void Update_Player(GameTime gameTime, int AltoNivel, int AnchoNivel)
         {
             ManualArmorChange();
 
-            AnimationFramePositionUpdate(gameTime);
+            Animation_Frame_Position_Update(gameTime);
 
-            CapsMaxHealth();
+            Caps_Max_Health();
 
             // Para los stats de cada personaje (borrar mas tarde) GAB
             mensaje = position;
-
-            #region UI
-
-            gui.UpdateGUI(gameTime, current_health, max_health);
-
-            //UIAnimation.frameTime = 300;
-            //UIAnimation.Update(gameTime);
-
-            // Inventario
-            //foreach (var item in UIInventario)
-            //{
-            //    item.frameTime = 300;
-            //    item.Update(gameTime);
-            //}
-            //// Inventario
-            //foreach (var item in UIIcon)
-            //{
-            //    item.frameTime = 300;
-            //    item.Update(gameTime);
-            //}
-
-            ///// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
-            //actual_bar_length = current_health * Global.max_bar_length / max_health;
-            //bar_color = new Color(255 - (int)(actual_bar_length * 210 / Global.max_bar_length), (int)(actual_bar_length * 210 / Global.max_bar_length), 0);
-
-
-            #endregion
-
-            ActionLogicManual();
+            
+            gui.UpdateGUI(gameTime, currentHealth, maxHealth);
+            
+            Action_Logic_Manual();
             CollisionLogic();
             EffectLogic();
 
@@ -218,18 +135,18 @@ namespace HLG.Abstracts.Beings
             StayInScreen(AltoNivel);
 
             /// Carga texturas y acomoda los frames al cambiar de accion
-            TextureRegularLoad();
-            FrameNumberActionReset();
+            Texture_Regular_Load();
+            Frame_Number_Action_Reset();
             
             // Status del personaje
-            mensaje1 = GetCurrentFrame();
-            mensaje2 = GetTotalFrames();
+            mensaje1 = Get_Current_Frame();
+            mensaje2 = Get_Total_Frames();
             mensaje3 = facing;
             mensaje4 = currentAction;
             //mensaje5 = Global.FrameHeight;
             //mensaje6 = Global.FrameWidth;
-            mensaje7 = GetPositionVec().X;
-            mensaje8 = GetPositionVec().Y;
+            mensaje7 = Get_Position_Vec().X;
+            mensaje8 = Get_Position_Vec().Y;
         }
         
         /// <summary>
@@ -238,7 +155,7 @@ namespace HLG.Abstracts.Beings
         /// <param name="Tiempo">El tiempo que va a durar el frame en pantalla de las distintas animaciones del personaje</param>
         void FrameSpeed(int Tiempo)
         {
-            foreach (Animation piezaAnimada in animation_pieces)
+            foreach (Animation piezaAnimada in animationPieces)
             {
                 piezaAnimada.frameTime = Tiempo;
             }
@@ -253,7 +170,7 @@ namespace HLG.Abstracts.Beings
                 else
                     pieces_armor_recambio[7].set = "set1";
 
-                UpdateArmor(pieces_armor_recambio);
+                Update_Armor(pieces_armor_recambio);
             }
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D7)))
@@ -263,7 +180,7 @@ namespace HLG.Abstracts.Beings
                 else
                     pieces_armor_recambio[0].set = "set1";
 
-                UpdateArmor(pieces_armor_recambio);
+                Update_Armor(pieces_armor_recambio);
             }
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D6)))
@@ -279,7 +196,7 @@ namespace HLG.Abstracts.Beings
                     pieces_armor_recambio[5].set = "set1";
                 }
 
-                UpdateArmor(pieces_armor_recambio);
+                Update_Armor(pieces_armor_recambio);
             }
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D5)))
@@ -295,7 +212,7 @@ namespace HLG.Abstracts.Beings
                     pieces_armor_recambio[6].set = "set1";
                 }
 
-                UpdateArmor(pieces_armor_recambio);
+                Update_Armor(pieces_armor_recambio);
             }
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D4)))
@@ -311,7 +228,7 @@ namespace HLG.Abstracts.Beings
                     pieces_armor_recambio[8].set = "set1";
                 }
 
-                UpdateArmor(pieces_armor_recambio);
+                Update_Armor(pieces_armor_recambio);
             }
 
             if ((Keyboard.GetState().IsKeyDown(Keys.D3)))
@@ -321,7 +238,7 @@ namespace HLG.Abstracts.Beings
                 else
                     pieces_armor_recambio[4].set = "set1";
 
-                UpdateArmor(pieces_armor_recambio);
+                Update_Armor(pieces_armor_recambio);
             }
         }
         
@@ -339,8 +256,8 @@ namespace HLG.Abstracts.Beings
             if ((currentAction == Global.Actions.HIT1 ||
                  currentAction == Global.Actions.HIT2 ||
                  currentAction == Global.Actions.HIT3) &&
-                 !ghost_mode &&
-                 GetCurrentFrame() == 5)
+                 !ghostMode &&
+                 Get_Current_Frame() == 5)
             {
 
                 for (int i = 0; i < Global.total_quant; i++)
@@ -348,16 +265,16 @@ namespace HLG.Abstracts.Beings
                     // Ver summary
                     if (!injuredByMe[i] &&
                         Global.players[i] != this &&
-                        !Global.players[i].ghost_mode)
+                        !Global.players[i].ghostMode)
                     {
                         
                         // Si esta dentro del radio del golpe
-                        if (CollisionVerifier(Global.players[i].GetPositionRec()))
+                        if (Collision_Verifier(Global.players[i].Get_Position_Rec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             // Le sumamos el resultado para que sea acumulativo si varios golpean al mismo objetivo
                             //Global.players[i].ColorAnimationChange(Color.Red);
-                            Global.players[i].injured_value += 10;
+                            Global.players[i].injuredValue += 10;
                             injuredByMe[i] = true;
                         }
                     }
@@ -370,39 +287,39 @@ namespace HLG.Abstracts.Beings
         private void EffectLogic()
         {
 
-            if (!ghost_mode)
+            if (!ghostMode)
             {
                 // Reestablezco su color natural si no va a recibir daño, de esta manera no permito que vuelva a su color 
                 // demasiado rapido como para que no se vea que fue dañado
-                if (injured_value == 0)
-                    ColorAnimationChange(Color.White);
+                if (injuredValue == 0)
+                    Color_Animation_Change(Color.White);
                 else
-                    ColorAnimationChange(Color.Red);
+                    Color_Animation_Change(Color.Red);
 
                 // Hago la resta necesaria a la health
-                current_health -= injured_value;
+                currentHealth -= injuredValue;
 
                 // Vuelvo el contador de daño a 0 y quito que este dañado
-                injured_value = 0;
+                injuredValue = 0;
 
                 // Si pierde toda su HP se vuelve fantasma
-                if (current_health <= 0)
+                if (currentHealth <= 0)
                 {
-                    ghost_mode = true;
+                    ghostMode = true;
                 }
             }
             else
             {
-                ColorAnimationChange(Global.color_ghost);
+                Color_Animation_Change(Global.color_ghost);
 
-                if (current_health > 0)
+                if (currentHealth > 0)
                 {
-                    ghost_mode = false;
+                    ghostMode = false;
                 }
             }
 
             // MENSAJES: Veo la health de los personajes
-            mensaje9 = current_health;
+            mensaje9 = currentHealth;
         }
         
     }
