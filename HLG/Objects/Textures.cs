@@ -8,7 +8,7 @@ namespace HLG.Objects
         //-//-// VARIABLES //-//-//
         public Texture2D texture { get; internal set; }
         
-        public string texture_set_name { get; }
+        public string texture_set_name { get; set; }
         public string texture_piece_name { get; }
         public string texture_action { get; }
         public string texture_frames { get; set; }

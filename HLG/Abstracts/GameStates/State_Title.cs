@@ -36,9 +36,9 @@ namespace HLG.Abstracts.GameStates
             InputManagement();
 
             // Actualiza el estado del juego
-            Update_State(gameTime);
+            UpdateState(gameTime);
         }
-        public override void Update_State(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void UpdateState(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
             //if (Variables_Generales.currentGamePadState[0].Buttons.A == ButtonState.Pressed)

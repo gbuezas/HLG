@@ -13,6 +13,7 @@ namespace HLG.Abstracts.GUI
         //-//-// VARIABLES //-//-//
         protected Animation UIAnimation;
         protected Animation UIAnimation_inventory;
+        static protected Animation current_piece;
 
         //protected string item_name = string.Empty;
         protected Vector2 item_name_vector;
@@ -24,14 +25,15 @@ namespace HLG.Abstracts.GUI
         //int current_set;
         //string chequeo = string.Empty;
 
-        List<string> losdistintossets;
+        //List<string> losdistintossets;
 
         protected Vector2 UILifeNumber;
         protected float actual_bar_length;
         protected Color bar_color;
 
         //-//-// METHODS //-//-//
-        public void initialize(int index, string[] inventory_equipment, List<string> sets )
+        //public void initialize(int index, string[] inventory_equipment, List<string> sets )
+        public void initialize(int index, string[] inventory_equipment)
         {
             player_index = index;
             sets_quantity = Global.players[player_index].objectTextures.Count;
@@ -65,7 +67,7 @@ namespace HLG.Abstracts.GUI
             UILifeNumber.X = ((Global.viewport_width / 5) * (index + 1)) - 25;
             UILifeNumber.Y = Global.ui_y + 8;
             
-            losdistintossets = sets;
+            //losdistintossets = sets;
             
         }
 
@@ -95,21 +97,24 @@ namespace HLG.Abstracts.GUI
                     {
                         item_name = temporal.loadedTexture.texture_set_name;
                         chequeoframe = UIAnimation_inventory.currentFrame;
+                        current_piece = temporal;
                     }
                 }
             }
 
-            int indicedesetmostrado = losdistintossets.IndexOf(item_name);
-            if ((Global.OnePulseKey(Keys.Up)) && indicedesetmostrado < losdistintossets.Count - 1)
+            int indicedesetmostrado = TheGame.allSetsNames.IndexOf(item_name);
+            if ((Global.OnePulseKey(Keys.Up)) && indicedesetmostrado < TheGame.allSetsNames.Count - 1)
             {
                 indicedesetmostrado++;
-                item_name = losdistintossets[indicedesetmostrado];
+                item_name = TheGame.allSetsNames[indicedesetmostrado];
+                current_piece.loadedTexture.texture_set_name = item_name;
             }
                 
             if ((Global.OnePulseKey(Keys.Down)) && indicedesetmostrado > 0)
             {
                 indicedesetmostrado--;
-                item_name = losdistintossets[indicedesetmostrado];
+                item_name = TheGame.allSetsNames[indicedesetmostrado];
+                current_piece.loadedTexture.texture_set_name = item_name;
             }
             
             /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
@@ -146,9 +151,9 @@ namespace HLG.Abstracts.GUI
             
         }
 
-        //public string GetCurrentItem()
-        //{
-        //    return items_name[UIAnimation_inventory.currentFrame];
-        //}
+        public Animation GetCurrentItem()
+        {
+            return current_piece;
+        }
     }
 }

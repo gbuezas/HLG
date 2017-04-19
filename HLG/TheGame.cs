@@ -20,7 +20,7 @@ namespace HLG
         Global.EstadosJuego stateCheck; // Check de estado de juego
 
         public static List<Being> players = new List<Being>();
-        static List<string> armors = new List<string>();
+        public static List<string> allSetsNames = new List<string>();
 
         //-//-// METHODS //-//-//
         public TheGame()
@@ -197,9 +197,9 @@ namespace HLG
 
                         }
 
-                        if (!armors.Contains(Nombre.Split('_')[0]))
+                        if (!allSetsNames.Contains(Nombre.Split('_')[0]))
                         {
-                            armors.Add(Nombre.Split('_')[0]);
+                            allSetsNames.Add(Nombre.Split('_')[0]);
                         }
                     }
                 }

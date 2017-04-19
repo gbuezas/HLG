@@ -18,20 +18,14 @@ namespace HLG.Abstracts.GameStates
 
         public abstract void Load(Viewport _viewport);
         public abstract void Update(GameTime gameTime);
-        public abstract void Update_State(GameTime gameTime);
+        public abstract void UpdateState(GameTime gameTime);
         public abstract void Draw();
 
-        public void RearrangeCharacters()
+        public void SortAndDrawCharacters()
         {
-            // Ordeno los personajes a dibujar segun su eje Y en una nueva lista usando LinQ
-            List<Being> AxisList = Global.players.OrderBy(item => item.positionY).ToList();
-
-            // Si los personajes estan en camara los dibujo en pantalla.
-            foreach (Being character in AxisList)
-            {
-                if (Global.camara.EnCamara(character.Get_Position_Rec()))
-                    character.Draw_With_Parallax();
-            }
+            var AxisList = Global.players.Where(item => Global.camara.EnCamara(item.Get_Position_Rec()));
+            foreach (var item in AxisList.OrderBy(item => item.positionY))
+                item.Draw_With_Parallax();
         }
         public void InputManagement()
         {

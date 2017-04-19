@@ -181,7 +181,7 @@ namespace HLG.Abstracts.GameStates
             // SpriteSortMode.Deferred soluciono el problema de que pegaba las capas como se le cantaba el ojete, estaba en BacktoFront
             Global.sprite_batch.Begin(SpriteSortMode.Deferred, null, SamplerState.AnisotropicClamp, null, null, null, Global.camara.ViewMatrix);
             
-            RearrangeCharacters();
+                SortAndDrawCharacters();
 
             Global.sprite_batch.End();
             
@@ -252,7 +252,7 @@ namespace HLG.Abstracts.GameStates
 
         }
 
-        public override void Update_State(GameTime gameTime)
+        public override void UpdateState(GameTime gameTime)
         {
             
         }

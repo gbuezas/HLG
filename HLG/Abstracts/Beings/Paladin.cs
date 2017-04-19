@@ -12,7 +12,7 @@ namespace HLG.Abstracts.Beings
         List<Piece_Set> pieces_armor_recambio = new List<Piece_Set>(); // GAB - borrar despues, es para mostrar el cambio de armadura
         static string[] pieces_paladin = new string[] { "shield", "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "sword", "gauntlettop" };
         static string[] pieces_inventory = new string[] { "greaveback", "gauntletback", "breastplate", "helm", "shield", "sword", "potion", "throw" }; // Este numero tendría que sacarse de los frames que tiene la skin del inventorio correspondiente al personaje
-        List<string> sets = new List<string>(); 
+        //List<string> sets = new List<string>(); 
 
         //-//-// METHODS //-//-//
         public override void Initialize(Vector2 posicion)
@@ -47,18 +47,20 @@ namespace HLG.Abstracts.Beings
             Update_Armor(piecesArmorNew); // Piezas de la armadura al comenzar
             animations = animationPieces;
 
-            string nombresettextura = string.Empty;
-            foreach ( Textures texture in Global.paladin_textures )
-            {
-                if (texture.texture_set_name != nombresettextura)
-                {
-                    sets.Add(texture.texture_set_name);
-                    nombresettextura = texture.texture_set_name;
-                }
-            }
+            //string nombresettextura = string.Empty;
+            //foreach ( Textures texture in Global.paladin_textures )
+            //{
+            //    if (texture.texture_set_name != nombresettextura)
+            //    {
+            //        sets.Add(texture.texture_set_name);
+            //        nombresettextura = texture.texture_set_name;
+            //    }
+            //}
 
-            gui.initialize(index, pieces_inventory, sets);
-            
+            //gui.initialize(index, pieces_inventory, sets);
+            //gui.initialize(index, pieces_inventory, TheGame.allSetsNames);
+            gui.initialize(index, pieces_inventory);
+
             // Asigno control por default al jugador
             controls[(int)Global.Controls.UP] = Keys.W;
             controls[(int)Global.Controls.DOWN] = Keys.S;
@@ -163,85 +165,35 @@ namespace HLG.Abstracts.Beings
         
         private void ManualArmorChange() // Tendria que eliminarse con la beta cerrada
         {
-            if ((Keyboard.GetState().IsKeyDown(Keys.D8)))
+            //if ((Keyboard.GetState().IsKeyDown(Keys.Q)))
+            if (Global.OnePulseKey(Keys.Q)) 
             {
-                if (pieces_armor_recambio[7].set == "set1")
-                    pieces_armor_recambio[7].set = "set2";
-                else
-                    pieces_armor_recambio[7].set = "set1";
+                var guitempitem = gui.GetCurrentItem();
 
-                Update_Armor(pieces_armor_recambio);
-            }
-
-            if ((Keyboard.GetState().IsKeyDown(Keys.D7)))
-            {
-                if (pieces_armor_recambio[0].set == "set1")
-                    pieces_armor_recambio[0].set = "set2";
-                else
-                    pieces_armor_recambio[0].set = "set1";
-
-                Update_Armor(pieces_armor_recambio);
-            }
-
-            if ((Keyboard.GetState().IsKeyDown(Keys.D6)))
-            {
-                if (pieces_armor_recambio[3].set == "set1")
+                foreach (var temporal in pieces_armor_recambio)
                 {
-                    pieces_armor_recambio[3].set = "set2";
-                    pieces_armor_recambio[5].set = "set2";
-                }
-                else
-                {
-                    pieces_armor_recambio[3].set = "set1";
-                    pieces_armor_recambio[5].set = "set1";
-                }
+                    /*Algo esta pasando que se genera el cambio con las flechas, si tocar la Q, para mi es que se cambia el current y eso genera un cambio
+                     manual aunque no tendria que cambiar sin hacer la llamada al manual, fijarse de poner breakpoint en el manual y ver si 
+                     entra cuando tocamos las flechas solamente*/
 
-                Update_Armor(pieces_armor_recambio);
+                    /*No pasa por la parte de la Q con la flecha, lo esta haciendo de afuera*/
+                    if (temporal.piece.Substring(0,4) == guitempitem.loadedTexture.texture_piece_name.Substring(0,4))
+                    {
+                        temporal.set = guitempitem.loadedTexture.texture_set_name;
+
+                        // si cambia un brazo cambiar los 2 y lo mismo para las piernas
+                        //if (temporal.piece == )
+                        //{
+
+                        //}
+
+                        Update_Armor(pieces_armor_recambio);
+                    }
+                }
             }
-
-            if ((Keyboard.GetState().IsKeyDown(Keys.D5)))
-            {
-                if (pieces_armor_recambio[2].set == "set1")
-                {
-                    pieces_armor_recambio[2].set = "set2";
-                    pieces_armor_recambio[6].set = "set2";
-                }
-                else
-                {
-                    pieces_armor_recambio[2].set = "set1";
-                    pieces_armor_recambio[6].set = "set1";
-                }
-
-                Update_Armor(pieces_armor_recambio);
-            }
-
-            if ((Keyboard.GetState().IsKeyDown(Keys.D4)))
-            {
-                if (pieces_armor_recambio[1].set == "set1")
-                {
-                    pieces_armor_recambio[1].set = "set2";
-                    pieces_armor_recambio[8].set = "set2";
-                }
-                else
-                {
-                    pieces_armor_recambio[1].set = "set1";
-                    pieces_armor_recambio[8].set = "set1";
-                }
-
-                Update_Armor(pieces_armor_recambio);
-            }
-
-            if ((Keyboard.GetState().IsKeyDown(Keys.D3)))
-            {
-                if (pieces_armor_recambio[4].set == "set1")
-                    pieces_armor_recambio[4].set = "set2";
-                else
-                    pieces_armor_recambio[4].set = "set1";
-
-                Update_Armor(pieces_armor_recambio);
-            }
+            
         }
-        
+
         /// <summary>
         /// Logica de las colisiones de los golpes:
         /// 
