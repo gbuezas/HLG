@@ -60,7 +60,7 @@ namespace HLG.Abstracts.Beings
         /// sera interna de cada atacante, la misma se reseteara cuando acabe la animacion del golpe correspondiente.
         /// Siempre tiene que englobar al total de personajes que estan en el juego (tanto jugables como IA).
         /// </summary>
-        public bool[] injuredByMe { get; internal set; } = new bool[Global.total_quant];
+        public bool[] injuredByMe { get; internal set; } = new bool[Global.totalQuant];
         public int injuredValue { get; internal set; } = 0;
 
         /// <summary>
@@ -80,76 +80,76 @@ namespace HLG.Abstracts.Beings
         public Vector2 mensaje;
 
         //-//-// METHODS //-//-//
-        public void Activate_Player(bool active)
+        public void ActivatePlayer(bool active)
         {
-            foreach (Animation piece in animations)
+            foreach (Animation animationsItem in animations)
             {
-                piece.active = active;
+                animationsItem.active = active;
             }
         }
 
         /// <summary>
         /// Logica de todas las acciones, los movimientos, los golpes, etc.
         /// </summary>
-        public void Action_Logic_Manual()
+        public void ActionLogicManual()
         {
             /// Si esta pegando tiene que terminar su animacion y despues desbloquear otra vez la gama de movimientos,
             /// para esto comparamos el frame actual de la animacion con su frame total.
             /// Cuando termine la animacion de pegar puede generar daño de vuelta a alguien que ya haya atacado
             if (new Global.Actions[] { Global.Actions.HIT1, Global.Actions.HIT2, Global.Actions.HIT3 }.Contains(currentAction))
             {
-                if (Get_Current_Frame() == Get_Total_Frames())
+                if (GetCurrentFrame() == GetTotalFrames())
                 {
                     currentAction = Global.Actions.STAND;
-                    Reset_Injured();
+                    ResetInjured();
                 }
             }
             else
             {
-                Movement_Input();
-                Hit_Input();
+                MovementInput();
+                HitInput();
             }
         }
-        private void Hit_Input()
+        private void HitInput()
         {
             /// Si presiono golpear cancela todas las demas acciones hasta que esta termine su ciclo,
             /// tambien genera un rango de los 3 diferentes tipos de golpes (algo netamente visual sin impacto en el juego).
             /// La aleatoriedad en los golpes depende de como estan almacenados en las variables Global, 
             /// la primer variable es incluyente y la segunda excluyente.
-            if (Global.current_keyboard_state.IsKeyDown(controls[(int)Global.Controls.BUTTON_HIT]))
+            if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.BUTTON_HIT]))
                 currentAction = (Global.Actions)Global.randomly.Next(2, 5);
         }
-        private void Movement_Input()
+        private void MovementInput()
         {
             /// Si no se toca nada quedara por default que esta parado.
             /// Si se presiona alguna tecla de movimiento se asignara el mismo.
             currentAction = Global.Actions.STAND;
 
-            if (Global.current_keyboard_state.IsKeyDown(controls[(int)Global.Controls.LEFT]))
+            if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.LEFT]))
             {
                 positionX -= playerMoveSpeed;
                 facing = Global.Facing.LEFT;
                 currentAction = Global.Actions.WALK;
             }
-            else if (Global.current_keyboard_state.IsKeyDown(controls[(int)Global.Controls.RIGHT]))
+            else if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.RIGHT]))
             {
                 positionX += playerMoveSpeed;
                 facing = Global.Facing.RIGHT;
                 currentAction = Global.Actions.WALK;
             }
 
-            if (Global.current_keyboard_state.IsKeyDown(controls[(int)Global.Controls.UP]))
+            if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.UP]))
             {
                 positionY -= playerMoveSpeed;
                 currentAction = Global.Actions.WALK;
             }
-            else if (Global.current_keyboard_state.IsKeyDown(controls[(int)Global.Controls.DOWN]))
+            else if (Global.currentKeyboardState.IsKeyDown(controls[(int)Global.Controls.DOWN]))
             {
                 positionY += playerMoveSpeed;
                 currentAction = Global.Actions.WALK;
             }
         }
-        public void Reset_Injured()
+        public void ResetInjured()
         {
             for (int i = 0; i < injuredByMe.Length; i++)
             {
@@ -159,7 +159,7 @@ namespace HLG.Abstracts.Beings
 
         public abstract void Initialize(Vector2 posicion);
 
-        public void Caps_Max_Health()
+        public void CapsMaxHealth()
         {
             if (currentHealth > maxHealth)
                 currentHealth = maxHealth;
@@ -169,15 +169,15 @@ namespace HLG.Abstracts.Beings
         /// Obtiene la posicion de una pieza de animacion en rectangulo
         /// </summary>
         /// <returns> Posicion del jugador </returns>
-        public Rectangle Get_Position_Rec()
+        public Rectangle GetPositionRec()
         {
-            return animationPieces[0].Get_Position();
+            return animationPieces[0].GetPosition();
         }
         /// <summary>
         /// Obtiene la posicion del jugador relativa a la parte superior izquierda de la pantalla
         /// </summary>
         /// <returns> Posicion del jugador </returns>
-        public Vector2 Get_Position_Vec()
+        public Vector2 GetPositionVec()
         {
             return position;
         }
@@ -190,9 +190,9 @@ namespace HLG.Abstracts.Beings
         /// </summary>
         /// <param name="victima">Rectangulo de la victima</param>
         /// <returns>Si la victima colisiona o no con el objeto</returns>
-        public bool Collision_Verifier(Rectangle victima)
+        public bool CollisionVerifier(Rectangle victima)
         {
-            Rectangle atacante = Get_Position_Rec();
+            Rectangle atacante = GetPositionRec();
 
             return (atacante.Center.X >= (victima.Center.X - hitRangeX) &&
                     atacante.Center.X <= victima.Center.X &&
@@ -206,9 +206,9 @@ namespace HLG.Abstracts.Beings
                     atacante.Center.Y <= (victima.Center.Y + hitRangeY) &&
                     facing == Global.Facing.LEFT);
         }
-        public bool Collision_Verifier_Enhanced(Rectangle victima)
+        public bool CollisionVerifierEnhanced(Rectangle victima)
         {
-            Rectangle atacante = Get_Position_Rec();
+            Rectangle atacante = GetPositionRec();
 
             return (atacante.Center.X >= (victima.Center.X - hitRangeX - 10) &&
                     atacante.Center.X <= victima.Center.X &&
@@ -223,89 +223,89 @@ namespace HLG.Abstracts.Beings
                     facing == Global.Facing.LEFT);
         }
         
-        public int Get_Current_Frame()
+        public int GetCurrentFrame()
         {
             return animations[0].currentFrame;
         }
-        public int Get_Total_Frames()
+        public int GetTotalFrames()
         {
             return animations[0].frameCount - 1;
         }
-        public void Pause_Animation(bool desactivar)
+        public void PauseAnimation(bool desactivar)
         {
-            foreach (Animation piezaAnimada in animationPieces)
+            foreach (Animation animationPiecesItem in animationPieces)
             {
-                piezaAnimada.pause = desactivar;
+                animationPiecesItem.pause = desactivar;
             }
         }
-        public void Frame_Number_Action_Reset()
+        public void FrameNumberActionReset()
         {
             if (oldAction != currentAction)
             {
-                foreach (Animation Animation in animationPieces)
-                    Animation.currentFrame = 0;
+                foreach (Animation animationPiecesItem in animationPieces)
+                    animationPiecesItem.currentFrame = 0;
 
                 oldAction = currentAction;
             }
         }
-        public void Animation_Frame_Position_Update(GameTime gameTime)
+        public void AnimationFramePositionUpdate(GameTime gameTime)
         {
-            foreach (Animation piezaAnimada in animationPieces)
+            foreach (Animation animationPiecesItem in animationPieces)
             {
-                piezaAnimada.position = position;
-                piezaAnimada.Update(gameTime);
+                animationPiecesItem.position = position;
+                animationPiecesItem.Update(gameTime);
             }
         }
 
-        public abstract void Draw_With_Parallax();
-        public abstract void Draw_Without_Parallax();
-        public void Color_Animation_Change(Color tinte)
+        public abstract void DrawWithParallax();
+        public abstract void DrawWithoutParallax();
+        public void ColorAnimationChange(Color tinte)
         {
-            foreach (Animation Animation in animations)
+            foreach (Animation animationsItem in animations)
             {
-                Animation.Color_Change(tinte);
+                animationsItem.ColorChange(tinte);
             }
         }
-        public void Color_Piece_Change(Color tinte, int pieza)
+        public void ColorPieceChange(Color tinte, int pieza)
         {
-            animations[pieza].Color_Change(tinte);
+            animations[pieza].ColorChange(tinte);
         }
 
-        public abstract void Update_Player(GameTime gameTime, int var_AltoNivel, int var_AnchoNivel);
-        public void Update_Armor(List<Piece_Set> set_pieces)
+        public abstract void UpdatePlayer(GameTime gameTime, int var_AltoNivel, int var_AnchoNivel);
+        public void UpdateArmor(List<Piece_Set> setPieces)
         {
-            foreach (Piece_Set set_piece in set_pieces)
-                piecesArmor.Set_Set(set_piece);
+            foreach (Piece_Set setPiecesItem in setPieces)
+                piecesArmor.SetSet(setPiecesItem);
 
-            Texture_Force_Load();
+            TextureForceLoad();
         }
 
-        private void Texture_Force_Load()
+        private void TextureForceLoad()
         {
-            foreach (Animation piezaAnimation in animationPieces)
+            foreach (Animation animationPiecesItem in animationPieces)
             {
-                foreach (Textures textura in objectTextures)
+                foreach (Textures objectTexturesItem in objectTextures)
                 {
-                    if (textura.texture_piece_name == piezaAnimation.pieceName &&
-                        textura.texture_set_name == piecesArmor.Get_Set(textura.texture_piece_name) &&
-                        textura.texture_action == currentAction.ToString().ToLower())
+                    if (objectTexturesItem.texturePieceName == animationPiecesItem.pieceName &&
+                        objectTexturesItem.textureSetName == piecesArmor.GetSet(objectTexturesItem.texturePieceName) &&
+                        objectTexturesItem.textureAction == currentAction.ToString().ToLower())
                     {
-                        piezaAnimation.Load_Texture(textura, position, frameWidth, frameHeight, frameTime, Color.White, true);
+                        animationPiecesItem.LoadTexture(objectTexturesItem, position, frameWidth, frameHeight, frameTime, Color.White, true);
                     }
                 }
             }
         }
-        public void Texture_Regular_Load()
+        public void TextureRegularLoad()
         {
-            foreach (Animation animation_piece in animationPieces)
+            foreach (Animation animationPiecesItem in animationPieces)
             {
-                foreach (Textures texture in objectTextures)
+                foreach (Textures objectTexturesItem in objectTextures)
                 {
-                    if (texture.texture_piece_name == animation_piece.pieceName &&
-                        texture.texture_set_name == piecesArmor.Get_Set(texture.texture_piece_name) &&
-                        texture.texture_action == currentAction.ToString().ToLower())
+                    if (objectTexturesItem.texturePieceName == animationPiecesItem.pieceName &&
+                        objectTexturesItem.textureSetName == piecesArmor.GetSet(objectTexturesItem.texturePieceName) &&
+                        objectTexturesItem.textureAction == currentAction.ToString().ToLower())
                     {
-                        animation_piece.Load_Texture(texture);
+                        animationPiecesItem.LoadTexture(objectTexturesItem);
                     }
                 }
             }

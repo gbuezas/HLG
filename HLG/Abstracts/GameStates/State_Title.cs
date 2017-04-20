@@ -11,10 +11,6 @@ namespace HLG.Abstracts.GameStates
 
         //-//-// VARIABLES //-//-//
         Rectangle sourceRect; // El area de la linea de sprite que queremos mostrar
-
-        int Var_AltoNivel = Global.viewport_height;
-        int Var_AnchoNivel = Global.viewport_width;
-        
         Camera CamaraTraida; // Traigo la camara del game
 
         //-//-// METHODS //-//-//
@@ -24,13 +20,13 @@ namespace HLG.Abstracts.GameStates
         }
         public override void Load(Viewport _viewport)
         {
-            CamaraTraida = new Camera(_viewport, Var_AltoNivel, Var_AnchoNivel);
+            CamaraTraida = new Camera(_viewport, Global.viewportHeight, Global.viewportWidth);
         }
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             // Agarro el cuadro correcto
-            sourceRect = new Rectangle(0, 0, Global.viewport_width,
-                Global.viewport_height);
+            sourceRect = new Rectangle(0, 0, Global.viewportWidth,
+                Global.viewportHeight);
 
             // Guarda y lee los estados actuales y anteriores del joystick y teclado
             InputManagement();
@@ -48,15 +44,15 @@ namespace HLG.Abstracts.GameStates
 
             if ((Keyboard.GetState().IsKeyDown(Keys.A)))
             {
-                Global.current_game_state.ongoing_state = Global.EstadosJuego.SELECCION;
+                Global.currentGameState.ongoingState = Global.EstadosJuego.SELECCION;
             }
 
         }
         public override void Draw()
         {
-            Global.sprite_batch.Begin();
-            Global.sprite_batch.Draw(Global.title_screen, sourceRect, Color.White);
-            Global.sprite_batch.End();
+            Global.spriteBatch.Begin();
+            Global.spriteBatch.Draw(Global.titleScreen, sourceRect, Color.White);
+            Global.spriteBatch.End();
         }
 
         

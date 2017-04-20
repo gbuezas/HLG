@@ -11,7 +11,7 @@ namespace HLG.Abstracts.GameStates
     {
 
         //-//-// VARIABLES //-//-//
-        public Global.EstadosJuego ongoing_state { get; internal set; }
+        public Global.EstadosJuego ongoingState { get; internal set; }
 
         //-//-// METHODS //-//-//
         public abstract void Initialize();
@@ -23,15 +23,15 @@ namespace HLG.Abstracts.GameStates
 
         public void SortAndDrawCharacters()
         {
-            var AxisList = Global.players.Where(item => Global.camara.EnCamara(item.Get_Position_Rec()));
-            foreach (var item in AxisList.OrderBy(item => item.positionY))
-                item.Draw_With_Parallax();
+            var AxisList = Global.players.Where(item => Global.camara.InsideCamera(item.GetPositionRec()));
+            foreach (var AxisListItem in AxisList.OrderBy(item => item.positionY))
+                AxisListItem.DrawWithParallax();
         }
         public void InputManagement()
         {
             // Guarda los estados anteriores del joystick y del teclado
-            Global.previous_keyboard_state = Global.current_keyboard_state;
-            Global.current_keyboard_state = Keyboard.GetState();
+            Global.previousKeyboardState = Global.currentKeyboardState;
+            Global.currentKeyboardState = Keyboard.GetState();
 
             //for (int i = 0; i < 4;i++ )
             //{

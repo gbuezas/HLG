@@ -9,16 +9,16 @@ namespace HLG.Abstracts.Beings
     {
         
         //-//-// VARIABLES //-//-//
-        List<Piece_Set> pieces_armor_recambio = new List<Piece_Set>(); // GAB - borrar despues, es para mostrar el cambio de armadura
-        static string[] pieces_paladin = new string[] { "shield", "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "sword", "gauntlettop" };
-        static string[] pieces_inventory = new string[] { "greaveback", "gauntletback", "breastplate", "helm", "shield", "sword", "potion", "throw" }; // Este numero tendría que sacarse de los frames que tiene la skin del inventorio correspondiente al personaje
+        List<Piece_Set> piecesArmorRecambio = new List<Piece_Set>(); // GAB - borrar despues, es para mostrar el cambio de armadura
+        static string[] piecesPaladin = new string[] { "shield", "gauntletback", "greaveback", "breastplate", "helm", "tasset", "greavetop", "sword", "gauntlettop" };
+        static string[] piecesInventory = new string[] { "greaveback", "gauntletback", "breastplate", "helm", "shield", "sword", "potion", "throw" }; // Este numero tendría que sacarse de los frames que tiene la skin del inventorio correspondiente al personaje
         //List<string> sets = new List<string>(); 
 
         //-//-// METHODS //-//-//
         public override void Initialize(Vector2 posicion)
         {
-            animationPieces = new Animation[pieces_paladin.Length];
-            objectTextures = Global.paladin_textures;
+            animationPieces = new Animation[piecesPaladin.Length];
+            objectTextures = Global.paladinTextures;
 
             position = posicion;
             mensaje = position;
@@ -36,15 +36,15 @@ namespace HLG.Abstracts.Beings
             maxHealth = 200;
             currentHealth = maxHealth;
             
-            Reset_Injured();
+            ResetInjured();
 
-            piecesArmor.Initialize(pieces_paladin); // Inicializo partes de armadura actual
-            for (int i = 0; i < pieces_paladin.Length; i++) // Inicializo las piezas de animacion
+            piecesArmor.Initialize(piecesPaladin); // Inicializo partes de armadura actual
+            for (int i = 0; i < piecesPaladin.Length; i++) // Inicializo las piezas de animacion
             {
                 animationPieces[i] = new Animation();
-                animationPieces[i].Initialize(pieces_paladin[i]);
+                animationPieces[i].Initialize(piecesPaladin[i]);
             }
-            Update_Armor(piecesArmorNew); // Piezas de la armadura al comenzar
+            UpdateArmor(piecesArmorNew); // Piezas de la armadura al comenzar
             animations = animationPieces;
 
             //string nombresettextura = string.Empty;
@@ -59,7 +59,7 @@ namespace HLG.Abstracts.Beings
 
             //gui.initialize(index, pieces_inventory, sets);
             //gui.initialize(index, pieces_inventory, TheGame.allSetsNames);
-            gui.initialize(index, pieces_inventory);
+            gui.Initialize(index, piecesInventory);
 
             // Asigno control por default al jugador
             controls[(int)Global.Controls.UP] = Keys.W;
@@ -83,50 +83,50 @@ namespace HLG.Abstracts.Beings
 
             Piece_Set recambio = new Piece_Set();
             recambio.Initialize("shield", "set1");
-            pieces_armor_recambio.Add(recambio);
+            piecesArmorRecambio.Add(recambio);
             recambio = new Piece_Set();
             recambio.Initialize("gauntletback", "set1");
-            pieces_armor_recambio.Add(recambio);
+            piecesArmorRecambio.Add(recambio);
             recambio = new Piece_Set();
             recambio.Initialize("greaveback", "set1");
-            pieces_armor_recambio.Add(recambio);
+            piecesArmorRecambio.Add(recambio);
             recambio = new Piece_Set();
             recambio.Initialize("breastplate", "set1");
-            pieces_armor_recambio.Add(recambio);
+            piecesArmorRecambio.Add(recambio);
             recambio = new Piece_Set();
             recambio.Initialize("helm", "set1");
-            pieces_armor_recambio.Add(recambio);
+            piecesArmorRecambio.Add(recambio);
             recambio = new Piece_Set();
             recambio.Initialize("tasset", "set1");
-            pieces_armor_recambio.Add(recambio);
+            piecesArmorRecambio.Add(recambio);
             recambio = new Piece_Set();
             recambio.Initialize("greavetop", "set1");
-            pieces_armor_recambio.Add(recambio);
+            piecesArmorRecambio.Add(recambio);
             recambio = new Piece_Set();
             recambio.Initialize("sword", "set1");
-            pieces_armor_recambio.Add(recambio);
+            piecesArmorRecambio.Add(recambio);
             recambio = new Piece_Set();
             recambio.Initialize("gauntlettop", "set1");
-            pieces_armor_recambio.Add(recambio);
+            piecesArmorRecambio.Add(recambio);
             
             #endregion
 
         }
         
-        public override void Update_Player(GameTime gameTime, int AltoNivel, int AnchoNivel)
+        public override void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel)
         {
             ManualArmorChange();
 
-            Animation_Frame_Position_Update(gameTime);
+            AnimationFramePositionUpdate(gameTime);
 
-            Caps_Max_Health();
+            CapsMaxHealth();
 
             // Para los stats de cada personaje (borrar mas tarde) GAB
             mensaje = position;
             
             gui.UpdateGUI(gameTime, currentHealth, maxHealth);
             
-            Action_Logic_Manual();
+            ActionLogicManual();
             CollisionLogic();
             EffectLogic();
 
@@ -137,18 +137,18 @@ namespace HLG.Abstracts.Beings
             StayInScreen(AltoNivel);
 
             /// Carga texturas y acomoda los frames al cambiar de accion
-            Texture_Regular_Load();
-            Frame_Number_Action_Reset();
+            TextureRegularLoad();
+            FrameNumberActionReset();
             
             // Status del personaje
-            mensaje1 = Get_Current_Frame();
-            mensaje2 = Get_Total_Frames();
+            mensaje1 = GetCurrentFrame();
+            mensaje2 = GetTotalFrames();
             mensaje3 = facing;
             mensaje4 = currentAction;
             //mensaje5 = Global.FrameHeight;
             //mensaje6 = Global.FrameWidth;
-            mensaje7 = Get_Position_Vec().X;
-            mensaje8 = Get_Position_Vec().Y;
+            mensaje7 = GetPositionVec().X;
+            mensaje8 = GetPositionVec().Y;
         }
         
         /// <summary>
@@ -157,9 +157,9 @@ namespace HLG.Abstracts.Beings
         /// <param name="Tiempo">El tiempo que va a durar el frame en pantalla de las distintas animaciones del personaje</param>
         void FrameSpeed(int Tiempo)
         {
-            foreach (Animation piezaAnimada in animationPieces)
+            foreach (Animation animationPiecesItem in animationPieces)
             {
-                piezaAnimada.frameTime = Tiempo;
+                animationPiecesItem.frameTime = Tiempo;
             }
         }
         
@@ -170,16 +170,16 @@ namespace HLG.Abstracts.Beings
             {
                 var guitempitem = gui.GetCurrentItem();
 
-                foreach (var temporal in pieces_armor_recambio)
+                foreach (var temporal in piecesArmorRecambio)
                 {
                     /*Algo esta pasando que se genera el cambio con las flechas, si tocar la Q, para mi es que se cambia el current y eso genera un cambio
                      manual aunque no tendria que cambiar sin hacer la llamada al manual, fijarse de poner breakpoint en el manual y ver si 
                      entra cuando tocamos las flechas solamente*/
 
                     /*No pasa por la parte de la Q con la flecha, lo esta haciendo de afuera*/
-                    if (temporal.piece.Substring(0,4) == guitempitem.loadedTexture.texture_piece_name.Substring(0,4))
+                    if (temporal.piece.Substring(0,4) == guitempitem.loadedTexture.texturePieceName.Substring(0,4))
                     {
-                        temporal.set = guitempitem.loadedTexture.texture_set_name;
+                        temporal.set = guitempitem.loadedTexture.textureSetName;
 
                         // si cambia un brazo cambiar los 2 y lo mismo para las piernas
                         //if (temporal.piece == )
@@ -187,7 +187,7 @@ namespace HLG.Abstracts.Beings
 
                         //}
 
-                        Update_Armor(pieces_armor_recambio);
+                        UpdateArmor(piecesArmorRecambio);
                     }
                 }
             }
@@ -209,10 +209,10 @@ namespace HLG.Abstracts.Beings
                  currentAction == Global.Actions.HIT2 ||
                  currentAction == Global.Actions.HIT3) &&
                  !ghostMode &&
-                 Get_Current_Frame() == 5)
+                 GetCurrentFrame() == 5)
             {
 
-                for (int i = 0; i < Global.total_quant; i++)
+                for (int i = 0; i < Global.totalQuant; i++)
                 {
                     // Ver summary
                     if (!injuredByMe[i] &&
@@ -221,7 +221,7 @@ namespace HLG.Abstracts.Beings
                     {
                         
                         // Si esta dentro del radio del golpe
-                        if (Collision_Verifier(Global.players[i].Get_Position_Rec()))
+                        if (CollisionVerifier(Global.players[i].GetPositionRec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             // Le sumamos el resultado para que sea acumulativo si varios golpean al mismo objetivo
@@ -244,9 +244,9 @@ namespace HLG.Abstracts.Beings
                 // Reestablezco su color natural si no va a recibir daño, de esta manera no permito que vuelva a su color 
                 // demasiado rapido como para que no se vea que fue dañado
                 if (injuredValue == 0)
-                    Color_Animation_Change(Color.White);
+                    ColorAnimationChange(Color.White);
                 else
-                    Color_Animation_Change(Color.Red);
+                    ColorAnimationChange(Color.Red);
 
                 // Hago la resta necesaria a la health
                 currentHealth -= injuredValue;
@@ -262,7 +262,7 @@ namespace HLG.Abstracts.Beings
             }
             else
             {
-                Color_Animation_Change(Global.color_ghost);
+                ColorAnimationChange(Global.colorGhost);
 
                 if (currentHealth > 0)
                 {

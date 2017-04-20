@@ -4,25 +4,15 @@ namespace HLG.Objects
 {
     public class Piece_Set
     {
-        // Pieza del cuerpo
-        private string Piece;
-        public string piece
-        {
-            get { return Piece; }
-        }
+        //-//-// VARIABLES //-//-//
+        public string piece { get; internal set; }
+        public string set { get; internal set; }
 
-        // Set de armadura de la pieza del cuerpo
-        private string Set;
-        public string set
+        //-//-// METHODS //-//-//
+        public void Initialize(string newPiece, string newSet)
         {
-            get { return Set; }
-            set { Set = value; }
-        }
-        
-        public void Initialize(string piece, string set)
-        {
-            Piece = piece;
-            Set = set;
+            piece = newPiece;
+            set = newSet;
         }
     }
 }

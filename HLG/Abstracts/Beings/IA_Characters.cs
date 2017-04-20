@@ -9,7 +9,7 @@ namespace HLG.Abstracts.Beings
 
         //-//-// VARIABLES //-//-//
         public enum TargetCondition { MAXHEALTH, MINHEALTH/*, MAXMONEY, MINMONEY */}
-        public TargetCondition TargetCond;
+        public TargetCondition targetCond;
          
         //-//-// METHODS //-//-//
         /// <summary>
@@ -18,7 +18,7 @@ namespace HLG.Abstracts.Beings
         public void GetCondition()
         {
             /// Me muevo en el rango de la cantidad de condiciones que existen en generales
-            TargetCond = (TargetCondition)Global.randomly.Next(0, Enum.GetNames(typeof(TargetCondition)).Length);
+            targetCond = (TargetCondition)Global.randomly.Next(0, Enum.GetNames(typeof(TargetCondition)).Length);
         }
         /// <summary>
         /// Setea un objetivo segun los criterios de busqueda que se obtuvieron de GetCondition() en Initialize.
@@ -38,7 +38,7 @@ namespace HLG.Abstracts.Beings
                         int healthTemp = 0;
                         int playerMaxHealth = 0;
 
-                        for (int i = 0; i < Global.players_quant; i++)
+                        for (int i = 0; i < Global.playersQuant; i++)
                         {
                             if (Global.players[i].currentHealth >= healthTemp && Global.players[i].currentHealth > 0)
                             {
@@ -58,7 +58,7 @@ namespace HLG.Abstracts.Beings
                         int healthTemp = 5000;
                         int playerMinHealth = 0;
 
-                        for (int i = 0; i < Global.players_quant; i++)
+                        for (int i = 0; i < Global.playersQuant; i++)
                         {
                             if (Global.players[i].currentHealth <= healthTemp && Global.players[i].currentHealth > 0)
                             {
@@ -100,10 +100,10 @@ namespace HLG.Abstracts.Beings
             // Si no esta en movimiento por default queda parado
             //currentAction = Global.Actions.STAND;
 
-            if (Get_Position_Rec().Center.X <= target.Get_Position_Rec().Center.X)
+            if (GetPositionRec().Center.X <= target.GetPositionRec().Center.X)
             {
                 // Izquierda
-                if (Get_Position_Rec().Center.X >= target.Get_Position_Rec().Center.X - hitRangeX)
+                if (GetPositionRec().Center.X >= target.GetPositionRec().Center.X - hitRangeX)
                 {
                     positionX -= playerMoveSpeed;
                 }
@@ -115,10 +115,10 @@ namespace HLG.Abstracts.Beings
                 facing = Global.Facing.RIGHT;
                 //currentAction = Global.Actions.WALK;
             }
-            else if (Get_Position_Rec().Center.X > target.Get_Position_Rec().Center.X)
+            else if (GetPositionRec().Center.X > target.GetPositionRec().Center.X)
             {
                 // Derecha
-                if (Get_Position_Rec().Center.X <= target.Get_Position_Rec().Center.X + hitRangeX)
+                if (GetPositionRec().Center.X <= target.GetPositionRec().Center.X + hitRangeX)
                 {
                     positionX += playerMoveSpeed;
                 }
@@ -132,13 +132,13 @@ namespace HLG.Abstracts.Beings
             }
 
             //if (target.GetPositionRec().Center.Y < GetPositionRec().Center.Y - hitrangeY)
-            if (target.Get_Position_Rec().Center.Y <= Get_Position_Rec().Center.Y - hitRangeY)
+            if (target.GetPositionRec().Center.Y <= GetPositionRec().Center.Y - hitRangeY)
             {
                 // Arriba
                 positionY -= playerMoveSpeed;
                 //currentAction = Global.Actions.WALK;
             }
-            else if (target.Get_Position_Rec().Center.Y > Get_Position_Rec().Center.Y + hitRangeY)
+            else if (target.GetPositionRec().Center.Y > GetPositionRec().Center.Y + hitRangeY)
             {
                 // Abajo
                 positionY += playerMoveSpeed;
@@ -148,14 +148,15 @@ namespace HLG.Abstracts.Beings
             currentAction = Global.Actions.WALK;
         }
         
-        public override void Draw_With_Parallax()
+        public override void DrawWithParallax()
         {
-            foreach (Animation piezaAnimada in animationPieces)
+            foreach (Animation animationPiecesItem in animationPieces)
             {
-                piezaAnimada.Draw(facing, piezaAnimada.color);
+                animationPiecesItem.facing = facing;
+                animationPiecesItem.Draw();
             }
         }
-        public override void Draw_Without_Parallax()
+        public override void DrawWithoutParallax()
         {
             throw new NotImplementedException();
         }

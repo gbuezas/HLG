@@ -8,10 +8,10 @@ namespace HLG.Objects
         //-//-// VARIABLES //-//-//
         public Texture2D texture { get; internal set; }
         
-        public string texture_set_name { get; set; }
-        public string texture_piece_name { get; }
-        public string texture_action { get; }
-        public string texture_frames { get; set; }
+        public string textureSetName { get; set; }
+        public string texturePieceName { get; }
+        public string textureAction { get; }
+        public string textureFrames { get; set; }
         
         //-//-// METHODS //-//-//
         /// <summary>
@@ -26,10 +26,10 @@ namespace HLG.Objects
             texture = textura;
             
             string[] separador = nombre.Split('_');
-            texture_set_name = separador[0];
-            texture_piece_name = separador[1];
-            texture_action = separador[2];
-            texture_frames = separador[3];
+            textureSetName = separador[0];
+            texturePieceName = separador[1];
+            textureAction = separador[2];
+            textureFrames = separador[3];
         }
         
     }

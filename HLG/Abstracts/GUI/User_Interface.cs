@@ -11,61 +11,61 @@ namespace HLG.Abstracts.GUI
     public class User_Interface
     {
         //-//-// VARIABLES //-//-//
-        protected Animation UIAnimation;
-        protected Animation UIAnimation_inventory;
-        static protected Animation current_piece;
+        protected Animation uiAnimation;
+        protected Animation uiAnimationInventory;
+        static protected Animation currentPiece;
 
         //protected string item_name = string.Empty;
-        protected Vector2 item_name_vector;
-        protected string item_name = "BLANK";
-        public string[] items_name { get; internal set; } = null;
+        protected Vector2 itemNameVector;
+        protected string itemName = "BLANK";
+        public string[] itemsName { get; internal set; } = null;
         //protected List<Animation> UIInventory = new List<Animation>();
-        int player_index;
-        int sets_quantity;
+        int playerIndex;
+        int setsQuantity;
         //int current_set;
         //string chequeo = string.Empty;
 
         //List<string> losdistintossets;
 
-        protected Vector2 UILifeNumber;
-        protected float actual_bar_length;
-        protected Color bar_color;
+        protected Vector2 uiLifeNumber;
+        protected float actualBarLength;
+        protected Color barColor;
 
         //-//-// METHODS //-//-//
         //public void initialize(int index, string[] inventory_equipment, List<string> sets )
-        public void initialize(int index, string[] inventory_equipment)
+        public void Initialize(int index, string[] inventory_equipment)
         {
-            player_index = index;
-            sets_quantity = Global.players[player_index].objectTextures.Count;
+            playerIndex = index;
+            setsQuantity = Global.players[playerIndex].objectTextures.Count;
             //current_set = 0;
 
 
-            UIAnimation = new Animation();
-            UIAnimation.Load_Texture(
-                Global.UITextures[2], 
-                new Vector2((int)(Global.camara.parallax.X + Global.viewport_width / 5) * (index + 1), Global.ui_y),
-                Global.ui_widht,
-                Global.ui_height,
+            uiAnimation = new Animation();
+            uiAnimation.LoadTexture(
+                Global.uiTextures[2], 
+                new Vector2((int)(Global.camara.parallax.X + Global.viewportWidth / 5) * (index + 1), Global.uiY),
+                Global.uiWidht,
+                Global.uiHeight,
                 2,
                 Color.White,
                 true);
 
-            UIAnimation_inventory = new Animation();
-            UIAnimation_inventory.Load_Texture(
-                Global.UITextures[1], 
-                new Vector2(UIAnimation.position.X, 20),
+            uiAnimationInventory = new Animation();
+            uiAnimationInventory.LoadTexture(
+                Global.uiTextures[1], 
+                new Vector2(uiAnimation.position.X, 20),
                 41,
                 41,
                 2,
                 Color.White,
                 true);
-            UIAnimation_inventory.pause = true;
+            uiAnimationInventory.pause = true;
 
-            item_name_vector = new Vector2(UIAnimation_inventory.position.X, UIAnimation_inventory.position.Y);
-            items_name = inventory_equipment;
+            itemNameVector = new Vector2(uiAnimationInventory.position.X, uiAnimationInventory.position.Y);
+            itemsName = inventory_equipment;
 
-            UILifeNumber.X = ((Global.viewport_width / 5) * (index + 1)) - 25;
-            UILifeNumber.Y = Global.ui_y + 8;
+            uiLifeNumber.X = ((Global.viewportWidth / 5) * (index + 1)) - 25;
+            uiLifeNumber.Y = Global.uiY + 8;
             
             //losdistintossets = sets;
             
@@ -74,52 +74,55 @@ namespace HLG.Abstracts.GUI
         public void UpdateGUI(GameTime gameTime, int currentHealth, int maxHealth)
         {
 
-            UIAnimation.frameTime = 300;
-            UIAnimation.Update(gameTime);
+            uiAnimation.frameTime = 300;
+            uiAnimation.Update(gameTime);
 
-            UIAnimation_inventory.frameTime = 3000;
-            UIAnimation_inventory.Update(gameTime);
-            UIAnimation_inventory.Set_Scale(20);
+            uiAnimationInventory.frameTime = 3000;
+            uiAnimationInventory.Update(gameTime);
+            uiAnimationInventory.SetScale(20);
 
-            int chequeoframe = UIAnimation_inventory.currentFrame;
-            if ((Global.OnePulseKey(Keys.Right)) && UIAnimation_inventory.currentFrame < UIAnimation_inventory.frameCount - 1)
-                UIAnimation_inventory.currentFrame++;
+            int chequeoframe = uiAnimationInventory.currentFrame;
+            if ((Global.OnePulseKey(Keys.Right)) && uiAnimationInventory.currentFrame < uiAnimationInventory.frameCount - 1)
+                uiAnimationInventory.currentFrame++;
 
-            if ((Global.OnePulseKey(Keys.Left)) && UIAnimation_inventory.currentFrame > 0)
-                UIAnimation_inventory.currentFrame--;
+            if ((Global.OnePulseKey(Keys.Left)) && uiAnimationInventory.currentFrame > 0)
+                uiAnimationInventory.currentFrame--;
 
-            if (UIAnimation_inventory.currentFrame != chequeoframe)
+            if (uiAnimationInventory.currentFrame != chequeoframe)
             {
-                string temp = items_name[UIAnimation_inventory.currentFrame];
-                foreach (Animation temporal in Global.players[player_index].animationPieces)
+                string temp = itemsName[uiAnimationInventory.currentFrame];
+                foreach (Animation animationPiecesItem in Global.players[playerIndex].animationPieces)
                 {
-                    if (temporal.loadedTexture.texture_piece_name == temp)
+                    if (animationPiecesItem.loadedTexture.texturePieceName == temp)
                     {
-                        item_name = temporal.loadedTexture.texture_set_name;
-                        chequeoframe = UIAnimation_inventory.currentFrame;
-                        current_piece = temporal;
+                        itemName = animationPiecesItem.loadedTexture.textureSetName;
+                        chequeoframe = uiAnimationInventory.currentFrame;
+                        currentPiece = animationPiecesItem;
                     }
                 }
             }
 
-            int indicedesetmostrado = TheGame.allSetsNames.IndexOf(item_name);
-            if ((Global.OnePulseKey(Keys.Up)) && indicedesetmostrado < TheGame.allSetsNames.Count - 1)
+            int indicedesetmostrado = The_Game.allSetsNames.IndexOf(itemName);
+
+            /// ACA ESTA EL QUILOMBO - el cambio en el current cambia el original
+            if ((Global.OnePulseKey(Keys.Up)) && indicedesetmostrado < The_Game.allSetsNames.Count - 1)
             {
                 indicedesetmostrado++;
-                item_name = TheGame.allSetsNames[indicedesetmostrado];
-                current_piece.loadedTexture.texture_set_name = item_name;
+                itemName = The_Game.allSetsNames[indicedesetmostrado];
+                currentPiece.loadedTexture.textureSetName = itemName;
             }
                 
             if ((Global.OnePulseKey(Keys.Down)) && indicedesetmostrado > 0)
             {
                 indicedesetmostrado--;
-                item_name = TheGame.allSetsNames[indicedesetmostrado];
-                current_piece.loadedTexture.texture_set_name = item_name;
+                itemName = The_Game.allSetsNames[indicedesetmostrado];
+                currentPiece.loadedTexture.textureSetName = itemName;
             }
-            
+            /// ACA ESTA EL QUILOMBO - el cambio en el current cambia el original
+
             /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
-            actual_bar_length = currentHealth * Global.max_bar_length / maxHealth;
-            bar_color = new Color(255 - (int)(actual_bar_length * 210 / Global.max_bar_length), (int)(actual_bar_length * 210 / Global.max_bar_length), 0);
+            actualBarLength = currentHealth * Global.maxBarLength / maxHealth;
+            barColor = new Color(255 - (int)(actualBarLength * 210 / Global.maxBarLength), (int)(actualBarLength * 210 / Global.maxBarLength), 0);
         }
 
         public void DrawUI(int currentHealth, int maxHealth)
@@ -129,31 +132,31 @@ namespace HLG.Abstracts.GUI
             //int UIx = (int)(Global.Camara.parallax.X + Global.ViewportWidth / 5);
 
             // Dibuja UI animada (escuditos)
-            UIAnimation.Draw(Global.Facing.RIGHT);
+            uiAnimation.Draw();
 
-            UIAnimation_inventory.Draw(Global.Facing.RIGHT);
+            uiAnimationInventory.Draw();
 
             // Dibujar barra de vida
-            Global.DrawStraightLine(new Vector2(UILifeNumber.X, UILifeNumber.Y),
-                                    new Vector2(UILifeNumber.X + actual_bar_length, UILifeNumber.Y),
-                                    Global.white_dot,
-                                    bar_color,
+            Global.DrawStraightLine(new Vector2(uiLifeNumber.X, uiLifeNumber.Y),
+                                    new Vector2(uiLifeNumber.X + actualBarLength, uiLifeNumber.Y),
+                                    Global.whiteDot,
+                                    barColor,
                                     14);
 
             // Vida en numeros
-            Global.sprite_batch.DrawString(Global.check_status_font_2,
+            Global.spriteBatch.DrawString(Global.checkStatusFont2,
                                    currentHealth.ToString() + " / " + maxHealth.ToString(),
-                                   UILifeNumber,
+                                   uiLifeNumber,
                                    Color.White);
 
 
-            Global.sprite_batch.DrawString(Global.check_status_font, item_name, item_name_vector, Color.DarkRed);
+            Global.spriteBatch.DrawString(Global.checkStatusFont, itemName, itemNameVector, Color.DarkRed);
             
         }
 
         public Animation GetCurrentItem()
         {
-            return current_piece;
+            return currentPiece;
         }
     }
 }

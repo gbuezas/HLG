@@ -7,33 +7,28 @@ namespace HLG.Abstracts.GameStates
 {
     class State_Selection : States
     {
-        // El area de la linea de sprite que queremos mostrar
+        //-//-// VARIABLES //-//-//
         Rectangle sourceRect;
-        Rectangle[] Fichas = new Rectangle[4];
 
-        int Var_AltoNivel = Global.viewport_height;
-        int Var_AnchoNivel = Global.viewport_width;
-
+        //-//-// METHODS //-//-//
         public override void Initialize()
         {
             throw new NotImplementedException();
         }
-
         public override void Load(Viewport _viewport)
         {
 
         }
-
         public override void Update(GameTime gameTime)
         {
             // Agarro el cuadro correcto
-            sourceRect = new Rectangle(0, 0, Global.viewport_width,
-                Global.viewport_height);
+            sourceRect = new Rectangle(0, 0, Global.viewportWidth,
+                Global.viewportHeight);
 
-            Fichas[0] = new Rectangle(0, 0, 200, 150);
-            Fichas[1] = new Rectangle(200, 0, 200, 150);
-            Fichas[2] = new Rectangle(400, 0, 200, 150);
-            Fichas[3] = new Rectangle(600, 0, 200, 150);
+            //Fichas[0] = new Rectangle(0, 0, 200, 150);
+            //Fichas[1] = new Rectangle(200, 0, 200, 150);
+            //Fichas[2] = new Rectangle(400, 0, 200, 150);
+            //Fichas[3] = new Rectangle(600, 0, 200, 150);
 
             // Guarda y lee los estados actuales y anteriores del joystick y teclado
             InputManagement();
@@ -41,18 +36,16 @@ namespace HLG.Abstracts.GameStates
             // Actualiza el estado del juego
             UpdateState(gameTime);
         }
-
         public override void Draw()
         {
-            Global.sprite_batch.Begin();
-            Global.sprite_batch.Draw(Global.selection_screen, sourceRect, Color.White);
+            Global.spriteBatch.Begin();
+            Global.spriteBatch.Draw(Global.selectionScreen, sourceRect, Color.White);
             //spriteBatch.Draw(Variables_Generales.Selector, new Vector2(0,0), Fichas[0], Color.White);
             //spriteBatch.Draw(Variables_Generales.Selector, new Vector2(200,0), Fichas[1], Color.White);
             //spriteBatch.Draw(Variables_Generales.Selector, new Vector2(400,0), Fichas[2], Color.White);
             //spriteBatch.Draw(Variables_Generales.Selector, new Vector2(600,0), Fichas[3], Color.White);
-            Global.sprite_batch.End();
+            Global.spriteBatch.End();
         }
-
         public override void UpdateState(GameTime gameTime)
         {
             //if (Variables_Generales.currentGamePadState[0].Buttons.B == ButtonState.Pressed)
@@ -62,7 +55,7 @@ namespace HLG.Abstracts.GameStates
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                Global.current_game_state.ongoing_state = Global.EstadosJuego.AVANCE;
+                Global.currentGameState.ongoingState = Global.EstadosJuego.AVANCE;
             }
         }
         

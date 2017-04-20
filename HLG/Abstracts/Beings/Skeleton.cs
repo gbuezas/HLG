@@ -26,7 +26,7 @@ namespace HLG.Abstracts.Beings
         public override void Initialize(Vector2 posicion)
         {
             animationPieces = new Animation[piecesSkeleton.Length];
-            objectTextures = Global.skeleton_textures;
+            objectTextures = Global.skeletonTextures;
 
             position = posicion;
             playerMoveSpeed = 1.5f;
@@ -46,7 +46,7 @@ namespace HLG.Abstracts.Beings
             currentHealth = maxHealth;
 
             // Establezco las banderas de dañados
-            Reset_Injured();
+            ResetInjured();
 
             piecesArmor.Initialize(piecesSkeleton); // Inicializo partes de armadura actual
             for (int i = 0; i < piecesSkeleton.Length; i++) // Inicializo las piezas de animacion
@@ -54,7 +54,7 @@ namespace HLG.Abstracts.Beings
                 animationPieces[i] = new Animation();
                 animationPieces[i].Initialize(piecesSkeleton[i]);
             }
-            Update_Armor(piecesArmorNew); // Piezas de la armadura al comenzar
+            UpdateArmor(piecesArmorNew); // Piezas de la armadura al comenzar
             animations = animationPieces;
 
             // Seteo condicion de busqueda de objetivo para atacar
@@ -62,26 +62,26 @@ namespace HLG.Abstracts.Beings
 
             // Genero colores al azar en cada pieza del personaje
             // Mas tarde usaremos DefaultRandomPiecesColors() para repintar con estos colores obtenidos luego de alguna modificacion
-            Generate_Random_Pieces_Colors();
+            GenerateRandomPiecesColors();
             
             // Ralentizar los cuadros por segundo del personaje
             // TiempoFrameEjecucion(1);
 
             //this.ActivatePlayer(true);
         }
-        public override void Update_Player(GameTime gameTime, int AltoNivel, int AnchoNivel)
+        public override void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel)
         {
 
-            Animation_Frame_Position_Update(gameTime);
+            AnimationFramePositionUpdate(gameTime);
 
-            Caps_Max_Health();
+            CapsMaxHealth();
 
-            Action_Logic_Automatic();
-            Collision_Logic();
-            Effect_Logic();
+            ActionLogicAutomatic();
+            CollisionLogic();
+            EffectLogic();
 
-            Texture_Regular_Load();
-            Frame_Number_Action_Reset();
+            TextureRegularLoad();
+            FrameNumberActionReset();
 
         }
         
@@ -89,21 +89,21 @@ namespace HLG.Abstracts.Beings
         /// Establece el tiempo de frame en ejecucion
         /// </summary>
         /// <param name="Tiempo">El tiempo que va a durar el frame en pantalla de las distintas animaciones del personaje</param>
-        private void Frame_Speed(int Tiempo)
+        private void FrameSpeed(int Tiempo)
         {
-            foreach (Animation piezaAnimada in animationPieces)
+            foreach (Animation animationPiecesItem in animationPieces)
             {
-                piezaAnimada.frameTime = Tiempo;
+                animationPiecesItem.frameTime = Tiempo;
             }
         }
 
         /// <summary>
         /// Logica de todas las acciones, los movimientos, los golpes, etc.
         /// </summary>
-        private void Action_Logic_Automatic()
+        private void ActionLogicAutomatic()
         {
             // Busca blanco para golpear segun los criterios dados
-            Being target = GetTarget(TargetCond);
+            Being target = GetTarget(targetCond);
 
             if (currentAction != Global.Actions.HIT1 &&
                 currentAction != Global.Actions.HIT2 &&
@@ -118,7 +118,7 @@ namespace HLG.Abstracts.Beings
                 #region GOLPEAR
 
                 // Si el blanco esta dentro del rango de golpe se lo ataca
-                if (Collision_Verifier(target.Get_Position_Rec()))
+                if (CollisionVerifier(target.GetPositionRec()))
                 {
                     // El rango depende de como estan almacenados en las variables Global, la primer variable es incluyente y la segunda excluyente.
                     currentAction = (Global.Actions)Global.randomly.Next(2, 5);
@@ -130,12 +130,12 @@ namespace HLG.Abstracts.Beings
             {
                 // Si esta pegando tiene que terminar su animacion y despues desbloquear otra vez la gama de movimientos
                 // Para esto comparamos el frame actual de la animacion con su frame
-                if (Get_Current_Frame() == Get_Total_Frames())
+                if (GetCurrentFrame() == GetTotalFrames())
                 {
                     currentAction = Global.Actions.STAND;
 
                     // Cuando termine la animacion de pegar puede generar daño de vuelta a alguien que ya haya atacado
-                    Reset_Injured();
+                    ResetInjured();
                 }
             }
         }
@@ -148,16 +148,16 @@ namespace HLG.Abstracts.Beings
         ///     - Si es fantasma se saltea
         ///     - Si es IA se saltea
         /// </summary>
-        private void Collision_Logic()
+        private void CollisionLogic()
         {
             if ((currentAction == Global.Actions.HIT1 ||
                     currentAction == Global.Actions.HIT2 ||
                     currentAction == Global.Actions.HIT3) &&
                     !ghostMode &&
-                    Get_Current_Frame() == 5)
+                    GetCurrentFrame() == 5)
             {
 
-                for (int i = 0; i < Global.total_quant; i++)
+                for (int i = 0; i < Global.totalQuant; i++)
                 {
                     // Ver sumamry
                     if (Global.players[i].index != -1 &&
@@ -169,7 +169,7 @@ namespace HLG.Abstracts.Beings
                         /// se usa en CollisionVerifierEnhanced porque tiene un arreglo que agranda el rango
                         /// lamentablemente no pude reconocer por que hay un desfasaje de pixeles
                         /// podría ser el tema de la camara y tendría que ver si utilizando el revert matrix de la misma se puede solucionar
-                        if (Collision_Verifier_Enhanced(Global.players[i].Get_Position_Rec()))
+                        if (CollisionVerifierEnhanced(Global.players[i].GetPositionRec()))
                         {
                             // Cuando la armadura esta detras del efecto de la espada no se puede ver bien el cambio de color
                             // Global.players[i] ColorAnimationChange(Color.Red);
@@ -184,7 +184,7 @@ namespace HLG.Abstracts.Beings
         /// <summary>
         /// Lógica de los efectos de las colisiones y movimientos realizados.
         /// </summary>
-        private void Effect_Logic()
+        private void EffectLogic()
         {
 
             if (!ghostMode)
@@ -193,11 +193,11 @@ namespace HLG.Abstracts.Beings
                 // demasiado rapido como para que no se vea que fue dañado
                 if (injuredValue == 0)
                 {
-                    Default_Random_Pieces_Colors();
+                    DefaultRandomPiecesColors();
                 }
                 else
                 {
-                    Color_Animation_Change(Color.Red);
+                    ColorAnimationChange(Color.Red);
                 }
 
                 // Hago la resta necesaria a la health
@@ -217,22 +217,22 @@ namespace HLG.Abstracts.Beings
                 // Lo manejo con el ghost a la IA tb asi no tengo que cambiar todo lo que esta hecho con los Being.
                 // De esta manera es mas facil porque las corroboraciones del ghost_mode siguen corriendo, 
                 // entonces si la IA entra en modo ghost (muere) se desactiva su animacion
-                Activate_Player(false);
+                ActivatePlayer(false);
             }
         }
 
-        private void Generate_Random_Pieces_Colors()
+        private void GenerateRandomPiecesColors()
         {
             for (int i = 0; i < piecesSkeleton.Length; i++)
             {
-                defaultColors[i] = Global.skeleton_random_colors[Global.randomly.Next(0, Global.skeleton_random_colors.Length)];
-                Color_Piece_Change(defaultColors[i], i);
+                defaultColors[i] = Global.skeletonRandomColors[Global.randomly.Next(0, Global.skeletonRandomColors.Length)];
+                ColorPieceChange(defaultColors[i], i);
             }
         }
-        private void Default_Random_Pieces_Colors()
+        private void DefaultRandomPiecesColors()
         {
             for (int i = 0; i < piecesSkeleton.Length; i++)
-                Color_Piece_Change(defaultColors[i], i);
+                ColorPieceChange(defaultColors[i], i);
         }
         
     }

@@ -4,33 +4,13 @@ namespace HLG.Objects
 {
     public class Parallax
     {
-        private string[] CapaParallax;
-        public string[] capa_parallax
-        {
-            get { return CapaParallax; }
-            set { CapaParallax = value; }
-        }
+        //-//-// VARIABLES //-//-//
+        public string[] parallaxLayer { get; internal set; }
+        public Rectangle parallaxRectangle = Rectangle.Empty;
+        public float parallaxSpeedX { get; internal set; }
+        public float parallaxSpeedY { get; internal set; }
 
-        // Rectangulo adaptado al parallax para no poner tiles de mas
-        // y que se adapte segun la velocidad de la capa correspondiente al limite de la pantalla
-        public Rectangle RectanguloParallax = Rectangle.Empty;
-
-        // Velocidad del parallax en el eje X
-        private float Parallax_X;
-        public float parallax_x
-        {
-            get { return Parallax_X; }
-            set { Parallax_X = value; }
-        }
-
-        // Velocidad del parallax en el eje Y
-        private float Parallax_Y;
-        public float parallax_y
-        {
-            get { return Parallax_Y; }
-            set { Parallax_Y = value; }
-        }
-        
+        //-//-// METHODS //-//-//
         /// <summary>
         /// Inicializador de capa parallax
         /// </summary>
@@ -39,9 +19,9 @@ namespace HLG.Objects
         /// <param name="parallax_y">Movimiento sobre eje Y</param>
         public Parallax(string[] capa_parallax, float parallax_x, float parallax_y)
         {
-            CapaParallax = capa_parallax;
-            Parallax_X = parallax_x;
-            Parallax_Y = parallax_y;
+            parallaxLayer = capa_parallax;
+            parallaxSpeedX = parallax_x;
+            parallaxSpeedY = parallax_y;
         }
     }
 }

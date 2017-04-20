@@ -14,7 +14,7 @@ namespace HLG
         [STAThread]
         static void Main()
         {
-            using (var game = new TheGame())
+            using (var game = new The_Game())
                 game.Run();
         }
     }

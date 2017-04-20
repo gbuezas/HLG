@@ -9,15 +9,16 @@ namespace HLG.Objects
         //-//-// VARIABLES //-//-//
         public Textures loadedTexture; // La textura con los sprites dentro
         public string pieceName; // Nombre de la pieza a animar
-        private float escalaAnimacion = Global.viewport_height / Global.scalar; // Escala de Heroes con respecto al alto de la pantalla
+        private float scaleAnimation = Global.viewportHeight / Global.scalar; // Escala de Heroes con respecto al alto de la pantalla
 
         private int elapsedTime; // El tiempo que actualizamos el cuadro por ultima vez
         public int frameTime; // El tiempo que mostramos el cuadro antes de cambiarlo
         public bool pause; // Para pausarse en un frame especifico
 
+        public Global.Facing facing = Global.Facing.RIGHT;
         public int frameCount { get; internal set; }
         public int currentFrame { get; internal set; } // El indice del cuadro que estamos mostrando
-        public Color color; // El color del cuadro que estamos mostrando
+        public Color color = Color.White; // El color del cuadro que estamos mostrando
         public int frameWidth; // Ancho y alto de un cuadro dado
         public int frameHeight;
         private int oldFrameCount; // El numero de cuadros que tiene la animacion
@@ -43,10 +44,10 @@ namespace HLG.Objects
         /// Carga de textura al cambiar de animacion, es la que se usa durante el juego repetidas veces.
         /// </summary>
         /// <param name="texture"></param>
-        public void Load_Texture(Textures texture)
+        public void LoadTexture(Textures texture)
         {
             loadedTexture = texture;
-            frameCount = int.Parse(texture.texture_frames);
+            frameCount = int.Parse(texture.textureFrames);
         }
         /// <summary>
         /// Cargo la textura por primera vez, o cuando cambio el set de alguna pieza.
@@ -58,13 +59,13 @@ namespace HLG.Objects
         /// <param name="frametime"></param>
         /// <param name="color"></param>
         /// <param name="looping"></param>
-        public void Load_Texture(Textures texture, Vector2 position, int frameWidth, int frameHeight, int frametime, Color color, bool looping)
+        public void LoadTexture(Textures texture, Vector2 position, int frameWidth, int frameHeight, int frametime, Color color, bool looping)
         {
             // Mantiene una copia local de los valores obtenidos
             this.color = color;
             this.frameWidth = frameWidth;
             this.frameHeight = frameHeight;
-            frameCount = int.Parse(texture.texture_frames);
+            frameCount = int.Parse(texture.textureFrames);
             oldFrameCount = frameCount;
             frameTime = frametime;
             this.looping = looping;
@@ -86,16 +87,16 @@ namespace HLG.Objects
         /// Rectangulo donde se encuentra esta pieza de animacion en la pantalla
         /// </summary>
         /// <returns></returns>
-        public Rectangle Get_Position()
+        public Rectangle GetPosition()
         {
             return destinationRect;
         }
-        public void Set_Scale(int Scale)
+        public void SetScale(int Scale)
         {
-            escalaAnimacion = Global.viewport_height / Scale;
+            scaleAnimation = Global.viewportHeight / Scale;
         }
 
-        public void Color_Change(Color tinte)
+        public void ColorChange(Color tinte)
         {
             color = tinte;
         }
@@ -136,7 +137,7 @@ namespace HLG.Objects
             // Escalo con respecto a la altura que deseo comparando el personaje con la pantalla.
             // Se cambia el valor de la escala desde Globales.Escalar
             float AspectRatio = (float)frameHeight / frameWidth;
-            int Height = (int)((escalaAnimacion) + 0.5f);
+            int Height = (int)((scaleAnimation) + 0.5f);
             int Width = (int)((Height / AspectRatio) + 0.5f);
 
             // Seteo el rectangulo donde va a ir con las dimensiones ajustadas.
@@ -146,40 +147,17 @@ namespace HLG.Objects
                                             Height);
 
         }
-        public void Draw(Global.Facing direccion)
+        public void Draw()
         {
             // Solo dibujar la animacion si esta activa
             if (active)
             {
-                if (direccion == Global.Facing.LEFT)
-                {
-                    Global.sprite_batch.Draw(loadedTexture.texture, destinationRect, sourceRect, color,
-                        0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                }
+                if (facing == Global.Facing.LEFT)
+                    Global.spriteBatch.Draw(loadedTexture.texture, destinationRect, sourceRect, color, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 else
-                {
-                    Global.sprite_batch.Draw(loadedTexture.texture, destinationRect, sourceRect, color);
-                }
-
+                    Global.spriteBatch.Draw(loadedTexture.texture, destinationRect, sourceRect, color, 0, Vector2.Zero, SpriteEffects.None, 0);
             }
         }
-        public void Draw(Global.Facing direccion, Color tinte)
-        {
-            // Solo dibujar la animacion si esta activa
-            if (active)
-            {
-                if (direccion == Global.Facing.LEFT)
-                {
-                    Global.sprite_batch.Draw(loadedTexture.texture, destinationRect, sourceRect, tinte,
-                        0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                }
-                else
-                {
-                    Global.sprite_batch.Draw(loadedTexture.texture, destinationRect, sourceRect, tinte);
-                }
 
-            }
-        }
-        
     }
 }

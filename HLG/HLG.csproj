@@ -48,7 +48,7 @@
     <Compile Include="Abstracts\GameStates\State_Selection.cs" />
     <Compile Include="Abstracts\GameStates\State_Title.cs" />
     <Compile Include="Abstracts\GUI\User_Interface.cs" />
-    <Compile Include="TheGame.cs" />
+    <Compile Include="The_Game.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Objects\Animation.cs" />
     <Compile Include="Objects\Camera.cs" />
