@@ -26,7 +26,6 @@ namespace HLG.Abstracts.Beings
             currentAction = Global.Actions.STAND;
             oldAction = currentAction;
             frameTime = 50;
-
             frameHeight = 240;
             frameWidth = 320;
 
@@ -168,28 +167,15 @@ namespace HLG.Abstracts.Beings
             //if ((Keyboard.GetState().IsKeyDown(Keys.Q)))
             if (Global.OnePulseKey(Keys.Q)) 
             {
-                var guitempitem = gui.GetCurrentItem();
+                //var guitempitem = gui.GetCurrentItem();
 
                 foreach (var temporal in piecesArmorRecambio)
                 {
-                    /*Algo esta pasando que se genera el cambio con las flechas, si tocar la Q, para mi es que se cambia el current y eso genera un cambio
-                     manual aunque no tendria que cambiar sin hacer la llamada al manual, fijarse de poner breakpoint en el manual y ver si 
-                     entra cuando tocamos las flechas solamente*/
-
-                    /*No pasa por la parte de la Q con la flecha, lo esta haciendo de afuera*/
-                    if (temporal.piece.Substring(0,4) == guitempitem.loadedTexture.texturePieceName.Substring(0,4))
-                    {
-                        temporal.set = guitempitem.loadedTexture.textureSetName;
-
-                        // si cambia un brazo cambiar los 2 y lo mismo para las piernas
-                        //if (temporal.piece == )
-                        //{
-
-                        //}
-
-                        UpdateArmor(piecesArmorRecambio);
-                    }
+                    if (temporal.piece.Substring(0, 4) == gui.GetCurrentPiece().loadedTexture.texturePieceName.Substring(0, 4))
+                        temporal.set = gui.GetCurrentPiece().loadedTexture.textureSetName;
                 }
+
+                UpdateArmor(piecesArmorRecambio);
             }
             
         }

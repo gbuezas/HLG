@@ -9,11 +9,26 @@ namespace HLG.Objects
         public Texture2D texture { get; internal set; }
         
         public string textureSetName { get; set; }
-        public string texturePieceName { get; }
+        public string texturePieceName { get; set; }
         public string textureAction { get; }
         public string textureFrames { get; set; }
-        
+
         //-//-// METHODS //-//-//
+        
+
+        /// <summary>
+        /// Crea una textura totalmente vacia.
+        /// </summary>
+        public Textures()
+        {
+            texture = null;
+
+            textureSetName = string.Empty;
+            texturePieceName = string.Empty; ;
+            textureAction = string.Empty;
+            textureFrames = string.Empty;
+        }
+
         /// <summary>
         /// Cargamos los sprites a utilizar y los datos necesarios para poder utilizarlos.
         /// Mas tarde se van a contrastar con los datos del jugador para utilizarlos correctamente.
