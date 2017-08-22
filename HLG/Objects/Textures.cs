@@ -14,10 +14,9 @@ namespace HLG.Objects
         public string textureFrames { get; set; }
 
         //-//-// METHODS //-//-//
-        
-
         /// <summary>
-        /// Crea una textura totalmente vacia.
+        /// Crea una textura totalmente vacia. 
+        /// Esto se utiliza para cuando queremos generar una copia de este objeto, por ejemplo en la User_Interface
         /// </summary>
         public Textures()
         {

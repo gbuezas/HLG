@@ -10,7 +10,7 @@ namespace HLG.Abstracts.GUI
         protected Animation uiAnimationPortrait;
         protected Animation uiAnimationInventory;
 
-        protected Animation currentInventoryPiece;
+        protected Textures currentInventoryPiece;
         
         protected Vector2 itemNameVector;
         public string[] itemsName { get; internal set; } = null;
@@ -37,10 +37,10 @@ namespace HLG.Abstracts.GUI
             itemNameVector = new Vector2(uiAnimationInventory.position.X, uiAnimationInventory.position.Y);
             itemsName = inventoryEquipment;
 
-            currentInventoryPiece = new Animation();
-            currentInventoryPiece.loadedTexture = new Textures();
-            currentInventoryPiece.loadedTexture.texturePieceName = Global.players[playerIndex].animationPieces[2].loadedTexture.texturePieceName;
-            currentInventoryPiece.loadedTexture.textureSetName = Global.players[playerIndex].animationPieces[0].loadedTexture.textureSetName;
+            //currentInventoryPiece = new Animation();
+            currentInventoryPiece = new Textures();
+            currentInventoryPiece.texturePieceName = Global.players[playerIndex].animationPieces[2].loadedTexture.texturePieceName;
+            currentInventoryPiece.textureSetName = Global.players[playerIndex].animationPieces[0].loadedTexture.textureSetName;
             
             uiLifeNumber.X = ((Global.viewportWidth / 5) * (index + 1)) - 25;
             uiLifeNumber.Y = Global.uiY + 8;
@@ -67,11 +67,11 @@ namespace HLG.Abstracts.GUI
                 foreach (Animation animationPiecesItem in Global.players[playerIndex].animationPieces)
                 {
                     if (animationPiecesItem.loadedTexture.texturePieceName == itemsName[uiAnimationInventory.currentFrame])
-                        currentInventoryPiece.loadedTexture.texturePieceName = animationPiecesItem.loadedTexture.texturePieceName;
+                        currentInventoryPiece.texturePieceName = animationPiecesItem.loadedTexture.texturePieceName;
                 }
             }
 
-            int indicedesetmostrado = The_Game.allSetsNames.IndexOf(currentInventoryPiece.loadedTexture.textureSetName);
+            int indicedesetmostrado = The_Game.allSetsNames.IndexOf(currentInventoryPiece.textureSetName);
 
             if ((Global.OnePulseKey(Keys.Up)) && indicedesetmostrado < The_Game.allSetsNames.Count - 1)
                 indicedesetmostrado++;
@@ -79,7 +79,7 @@ namespace HLG.Abstracts.GUI
             if ((Global.OnePulseKey(Keys.Down)) && indicedesetmostrado > 0)
                 indicedesetmostrado--;
 
-            currentInventoryPiece.loadedTexture.textureSetName = The_Game.allSetsNames[indicedesetmostrado];
+            currentInventoryPiece.textureSetName = The_Game.allSetsNames[indicedesetmostrado];
             
             /// Los calculos del tamaño y el color de la barra de vida estan hechos con regla de 3 simple
             actualBarLength = currentHealth * Global.maxBarLength / maxHealth;
@@ -107,11 +107,11 @@ namespace HLG.Abstracts.GUI
                                    Color.White);
 
 
-            Global.spriteBatch.DrawString(Global.checkStatusFont, currentInventoryPiece.loadedTexture.textureSetName, itemNameVector, Color.DarkRed);
+            Global.spriteBatch.DrawString(Global.checkStatusFont, currentInventoryPiece.textureSetName, itemNameVector, Color.DarkRed);
             
         }
 
-        public Animation GetCurrentPiece()
+        public Textures GetCurrentPiece()
         {
             return currentInventoryPiece;
         }

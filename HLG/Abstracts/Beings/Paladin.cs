@@ -46,18 +46,6 @@ namespace HLG.Abstracts.Beings
             UpdateArmor(piecesArmorNew); // Piezas de la armadura al comenzar
             animations = animationPieces;
 
-            //string nombresettextura = string.Empty;
-            //foreach ( Textures texture in Global.paladin_textures )
-            //{
-            //    if (texture.texture_set_name != nombresettextura)
-            //    {
-            //        sets.Add(texture.texture_set_name);
-            //        nombresettextura = texture.texture_set_name;
-            //    }
-            //}
-
-            //gui.initialize(index, pieces_inventory, sets);
-            //gui.initialize(index, pieces_inventory, TheGame.allSetsNames);
             gui.Initialize(index, piecesInventory);
 
             // Asigno control por default al jugador
@@ -71,45 +59,20 @@ namespace HLG.Abstracts.Beings
             // Ralentizar los cuadros por segundo del personaje
             // TiempoFrameEjecucion(1);
 
-            // GAB - borrar despues
-            // esta mal armado por eso las posiciones son distintas a las globales
-            #region cambiar armadura (solo para probar, borrar mas tarde)
             // shield, gauntletback, greaveback, breastplate, helm, tasset, greavetop, sword, gauntlettop, lifebar
             // 0, 4, 7 ,9
             // 1-8, 2-6, 3-5
             // Coloco un recambio de armadura, que en el juego orginal esto tiene que pasar al obtener armaduras nuevas
             // por lo tanto se haria chequeando el inventario.
 
-            Piece_Set recambio = new Piece_Set();
-            recambio.Initialize("shield", "set1");
-            piecesArmorRecambio.Add(recambio);
-            recambio = new Piece_Set();
-            recambio.Initialize("gauntletback", "set1");
-            piecesArmorRecambio.Add(recambio);
-            recambio = new Piece_Set();
-            recambio.Initialize("greaveback", "set1");
-            piecesArmorRecambio.Add(recambio);
-            recambio = new Piece_Set();
-            recambio.Initialize("breastplate", "set1");
-            piecesArmorRecambio.Add(recambio);
-            recambio = new Piece_Set();
-            recambio.Initialize("helm", "set1");
-            piecesArmorRecambio.Add(recambio);
-            recambio = new Piece_Set();
-            recambio.Initialize("tasset", "set1");
-            piecesArmorRecambio.Add(recambio);
-            recambio = new Piece_Set();
-            recambio.Initialize("greavetop", "set1");
-            piecesArmorRecambio.Add(recambio);
-            recambio = new Piece_Set();
-            recambio.Initialize("sword", "set1");
-            piecesArmorRecambio.Add(recambio);
-            recambio = new Piece_Set();
-            recambio.Initialize("gauntlettop", "set1");
-            piecesArmorRecambio.Add(recambio);
+            // Inicializo cada pieza de armadura con un default
+            foreach (string piecesPaladinItem in piecesPaladin)
+            {
+                Piece_Set recambio = new Piece_Set();
+                recambio.Initialize(piecesPaladinItem, The_Game.allSetsNames[0]);
+                piecesArmorRecambio.Add(recambio);
+            }
             
-            #endregion
-
         }
         
         public override void UpdatePlayer(GameTime gameTime, int AltoNivel, int AnchoNivel)
@@ -164,15 +127,12 @@ namespace HLG.Abstracts.Beings
         
         private void ManualArmorChange() // Tendria que eliminarse con la beta cerrada
         {
-            //if ((Keyboard.GetState().IsKeyDown(Keys.Q)))
             if (Global.OnePulseKey(Keys.Q)) 
             {
-                //var guitempitem = gui.GetCurrentItem();
-
                 foreach (var temporal in piecesArmorRecambio)
                 {
-                    if (temporal.piece.Substring(0, 4) == gui.GetCurrentPiece().loadedTexture.texturePieceName.Substring(0, 4))
-                        temporal.set = gui.GetCurrentPiece().loadedTexture.textureSetName;
+                    if (temporal.piece.Substring(0, 4) == gui.GetCurrentPiece().texturePieceName.Substring(0, 4))
+                        temporal.set = gui.GetCurrentPiece().textureSetName;
                 }
 
                 UpdateArmor(piecesArmorRecambio);
@@ -227,8 +187,8 @@ namespace HLG.Abstracts.Beings
 
             if (!ghostMode)
             {
-                // Reestablezco su color natural si no va a recibir daño, de esta manera no permito que vuelva a su color 
-                // demasiado rapido como para que no se vea que fue dañado
+                /// Reestablezco su color natural si no va a recibir daño, de esta manera no permito que vuelva a su color 
+                /// demasiado rapido como para que no se vea que fue dañado
                 if (injuredValue == 0)
                     ColorAnimationChange(Color.White);
                 else
