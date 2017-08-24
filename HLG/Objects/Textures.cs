@@ -4,56 +4,29 @@ namespace HLG.Objects
 {
     public class Textures
     {
-        #region VARIABLES
+        
+        //-//-// VARIABLES //-//-//
+        public Texture2D texture { get; internal set; }
+        
+        public string textureSetName { get; set; }
+        public string texturePieceName { get; set; }
+        public string textureAction { get; }
+        public string textureFrames { get; set; }
 
-        // La textura a utilizar
-        private Texture2D Textura;
-        public Texture2D textura
+        //-//-// METHODS //-//-//
+        /// <summary>
+        /// Crea una textura totalmente vacia. 
+        /// Esto se utiliza para cuando queremos generar una copia de este objeto, por ejemplo en la User_Interface
+        /// </summary>
+        public Textures()
         {
-            get { return Textura; }
-            set { Textura = value; }
+            texture = null;
+
+            textureSetName = string.Empty;
+            texturePieceName = string.Empty; ;
+            textureAction = string.Empty;
+            textureFrames = string.Empty;
         }
-
-        // Nombre completo de la textura
-        private string Nombre_textura;
-        public string nombre_textura
-        {
-            get { return Nombre_textura; }
-            set { Nombre_textura = value; }
-        }
-
-        // Set de armadura a la que pertenece esta pieza
-        private string Set;
-        public string set
-        {
-            get { return Set; }
-        }
-
-        // Pieza que representa la textura
-        private string Piece;
-        public string piece
-        {
-            get { return Piece; }
-        }
-
-        // Accion que realiza esta pieza
-        private string Action;
-        public string action
-        {
-            get { return Action; }
-        }
-
-        // Frames de la animacion
-        private string Frame;
-        public string frame
-        {
-            get { return Frame; }
-            set { Frame = value; }
-        }
-
-        #endregion
-
-        #region METODOS
 
         /// <summary>
         /// Cargamos los sprites a utilizar y los datos necesarios para poder utilizarlos.
@@ -64,17 +37,14 @@ namespace HLG.Objects
         /// <param name="nombre">El nombre del archivo con sus datos pertinentes</param>
         public Textures(Texture2D textura, string nombre)
         {
-            Textura = textura;
-            Nombre_textura = nombre;
-
+            texture = textura;
+            
             string[] separador = nombre.Split('_');
-
-            Set = separador[0];
-            Piece = separador[1];
-            Action = separador[2];
-            Frame = separador[3];
+            textureSetName = separador[0];
+            texturePieceName = separador[1];
+            textureAction = separador[2];
+            textureFrames = separador[3];
         }
-
-        #endregion
+        
     }
 }

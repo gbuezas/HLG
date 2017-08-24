@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>C:/Users/buezas/Desktop/HLG/HLG/Content/Paladin/set1_tasset_stand_10.png</SourceFile>
-  <SourceTime>2015-03-25T11:18:29.8885216-03:00</SourceTime>
+  <SourceTime>2016-10-24T18:02:14.1131811-03:00</SourceTime>
   <DestFile>C:/Users/buezas/Desktop/HLG/HLG/Content/bin/Windows/Paladin/set1_tasset_stand_10.xnb</DestFile>
-  <DestTime>2016-01-14T15:05:22.3773386-03:00</DestTime>
+  <DestTime>2016-10-24T18:03:50.5786811-03:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T14:14:44-03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

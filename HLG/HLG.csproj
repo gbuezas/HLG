@@ -39,13 +39,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Abstracts\Beings\Being.cs" />
-    <Compile Include="Abstracts\Beings\IA_1.cs" />
+    <Compile Include="Abstracts\Beings\IA_Characters.cs" />
+    <Compile Include="Abstracts\Beings\Playable_Characters.cs" />
+    <Compile Include="Abstracts\Beings\Skeleton.cs" />
     <Compile Include="Abstracts\Beings\Paladin.cs" />
     <Compile Include="Abstracts\GameStates\States.cs" />
     <Compile Include="Abstracts\GameStates\State_Level_1.cs" />
     <Compile Include="Abstracts\GameStates\State_Selection.cs" />
     <Compile Include="Abstracts\GameStates\State_Title.cs" />
-    <Compile Include="TheGame.cs" />
+    <Compile Include="Abstracts\GUI\User_Interface.cs" />
+    <Compile Include="The_Game.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Objects\Animation.cs" />
     <Compile Include="Objects\Camera.cs" />
@@ -61,6 +64,7 @@
       <HintPath>$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>

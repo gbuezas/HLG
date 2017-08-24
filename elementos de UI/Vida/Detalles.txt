@@ -1,0 +1,32 @@
+*** 0 ***
+Buscar el escudo de cada clan y de ahi sale la barra de vida.
+Encima del escudo va la foto del personaje.
+Quedaria escudo y saliendo del mismo hacia la derecha las barras.
+*** 0 ***
+---------------------------------
+*** 1 ***
+Barra con numeracion.
+La idea es de una barra que a la vez que muestra cuanta vida tenemos tambien nos da los numeros.
+Un ejemplo seria tenemos la mitad de la vida graficamente y abajo de ella nos dice 50 / 100 como en el dibujo
+Obviamente ira un corazoncito como dibujo en vez de los que estan ahi.
+*** 1 ***
+---------------------------------
+*** 2 ***
+Cada clan va a tener su marco.
+Una variante es que el escudo vaya arriba y los datos numericos abajo del todo con estos marcos.
+*** 2 ***
+---------------------------------
+*** 3 ***
+Asi pero invertido horizontalmente, esto claro utilizando
+la idea del 0.
+*** 3 ***
+---------------------------------
+*** 4/6 ***
+Utilizando la variante 2 tenemos que meter en el centro
+del escudo del marco algunos de estos  donde ira la cara
+del personaje. Ver quizas no es necesario esto.
+*** 4/6 ***
+---------------------------------
+*** 5 ***
+Otra variante que me interesa donde colorcar otros datos tb
+*** 5 ***

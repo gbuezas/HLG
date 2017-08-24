@@ -8,45 +8,32 @@ namespace HLG.Abstracts.GameStates
 {
     class State_Title : States
     {
-        // El area de la linea de sprite que queremos mostrar
-        Rectangle sourceRect;
 
-        int Var_AltoNivel = Global.ViewportHeight;
-        int Var_AnchoNivel = Global.ViewportWidth;
+        //-//-// VARIABLES //-//-//
+        Rectangle sourceRect; // El area de la linea de sprite que queremos mostrar
+        Camera CamaraTraida; // Traigo la camara del game
 
-        // Traigo la camara del game
-        Camera CamaraTraida;
-
+        //-//-// METHODS //-//-//
         public override void Initialize()
         {
             throw new NotImplementedException();
         }
-
         public override void Load(Viewport _viewport)
         {
-            CamaraTraida = new Camera(_viewport, Var_AltoNivel, Var_AnchoNivel);
+            CamaraTraida = new Camera(_viewport, Global.viewportHeight, Global.viewportWidth);
         }
-
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             // Agarro el cuadro correcto
-            sourceRect = new Rectangle(0, 0, Global.ViewportWidth,
-                Global.ViewportHeight);
+            sourceRect = new Rectangle(0, 0, Global.viewportWidth,
+                Global.viewportHeight);
 
             // Guarda y lee los estados actuales y anteriores del joystick y teclado
-            Input_Management();
+            InputManagement();
 
             // Actualiza el estado del juego
             UpdateState(gameTime);
         }
-
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin();
-            spriteBatch.Draw(Global.Pantalla_Titulo, sourceRect, Color.White);
-            spriteBatch.End();
-        }
-
         public override void UpdateState(Microsoft.Xna.Framework.GameTime gameTime)
         {
 
@@ -57,10 +44,18 @@ namespace HLG.Abstracts.GameStates
 
             if ((Keyboard.GetState().IsKeyDown(Keys.A)))
             {
-                Global.CurrentState.Estadoejecutandose = Global.EstadosJuego.SELECCION;
+                Global.currentGameState.ongoingState = Global.EstadosJuego.SELECCION;
             }
 
         }
+        public override void Draw()
+        {
+            Global.spriteBatch.Begin();
+            Global.spriteBatch.Draw(Global.titleScreen, sourceRect, Color.White);
+            Global.spriteBatch.End();
+        }
+
+        
         
     }
 }

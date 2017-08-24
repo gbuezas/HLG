@@ -3,71 +3,38 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HLG.Objects
 {
-    class Animation
+    public class Animation
     {
-        #region VARIABLES
+        
+        //-//-// VARIABLES //-//-//
+        public Textures loadedTexture; // La textura con los sprites dentro
+        public string pieceName; // Nombre de la pieza a animar
+        private float scaleAnimation = Global.viewportHeight / Global.scalar; // Escala de Heroes con respecto al alto de la pantalla
 
-        // La textura con los sprites dentro
-        public Textures loadedTexture;
+        private int elapsedTime; // El tiempo que actualizamos el cuadro por ultima vez
+        public int frameTime; // El tiempo que mostramos el cuadro antes de cambiarlo
+        public bool pause; // Para pausarse en un frame especifico
 
-        // Nombre de la pieza a animar
-        public string pieceName;
-
-        // El tiempo que actualizamos el cuadro por ultima vez
-        int elapsedTime;
-
-        // El tiempo que mostramos el cuadro antes de cambiarlo
-        public int frameTime;
-
-        // Para pausarse en un frame especifico
-        public bool pause;
-
-        // El numero de cuadros que tiene la animacion
-        int oldFrameCount;
-        int frameCount;
-        public int FrameCount
-        {
-            get { return frameCount; }
-            set { frameCount = value; }
-        }
-
-        // El indice del cuadro que estamos mostrando
-        int currentFrame;
-        public int CurrentFrame
-        {
-            get { return currentFrame; }
-            set { currentFrame = value; }
-        }
-
-        // El color del cuadro que estamos mostrando
-        public Color color;
-
-        // El area de la linea de sprite que queremos mostrar
-        Rectangle sourceRect = new Rectangle();
-
-        // El area donde queremos mostrar el sprite
-        Rectangle destinationRect = new Rectangle();
-
-        // Ancho y alto de un cuadro dado
-        public int frameWidth;
+        public Global.Facing facing = Global.Facing.RIGHT;
+        public int frameCount { get; internal set; }
+        public int currentFrame { get; internal set; } // El indice del cuadro que estamos mostrando
+        public Color color = Color.White; // El color del cuadro que estamos mostrando
+        public int frameWidth; // Ancho y alto de un cuadro dado
         public int frameHeight;
-
-        // El estado de la animacion
-        public bool active;
-
-        // Activa o desactiva el loopeo
-        public bool looping;
-
-        // Posicion de un cuadro determinado
-        public Vector2 position;
-
-        // Escala de Heroes con respecto al alto de la pantalla
-        public float escalaAnimacion = Global.ViewportHeight / Global.Scalar;
-
-        #endregion
-
-        #region METODOS
-
+        private int oldFrameCount; // El numero de cuadros que tiene la animacion
+        
+        public Vector2 position; // Posicion de un cuadro determinado
+        Rectangle sourceRect = new Rectangle(); // El area de la fila de sprite que queremos mostrar
+        Rectangle destinationRect = new Rectangle(); // El area donde queremos mostrar el sprite
+        
+        public bool active; // El estado de la animacion
+        public bool looping; // Activa o desactiva el loopeo
+        
+        //-//-// METHODS //-//-//
+        /// <summary>
+        /// Asignamos el nombre al principio, cuando esta todo vacio, para poder completarlo gracias a este dato.
+        /// </summary>
+        /// <param name="nombre"></param>
         public void Initialize(string nombre)
         {
             pieceName = nombre;
@@ -80,14 +47,13 @@ namespace HLG.Objects
         public void LoadTexture(Textures texture)
         {
             loadedTexture = texture;
-            frameCount = int.Parse(texture.frame);
+            frameCount = int.Parse(texture.textureFrames);
         }
-
         /// <summary>
         /// Cargo la textura por primera vez, o cuando cambio el set de alguna pieza.
         /// </summary>
         /// <param name="texture"></param>
-        /// <param name="position"></param>
+        /// <param name="position">Posición Destino</param>
         /// <param name="frameWidth"></param>
         /// <param name="frameHeight"></param>
         /// <param name="frametime"></param>
@@ -99,7 +65,7 @@ namespace HLG.Objects
             this.color = color;
             this.frameWidth = frameWidth;
             this.frameHeight = frameHeight;
-            frameCount = int.Parse(texture.frame);
+            frameCount = int.Parse(texture.textureFrames);
             oldFrameCount = frameCount;
             frameTime = frametime;
             this.looping = looping;
@@ -125,12 +91,16 @@ namespace HLG.Objects
         {
             return destinationRect;
         }
+        public void SetScale(int Scale)
+        {
+            scaleAnimation = Global.viewportHeight / Scale;
+        }
 
         public void ColorChange(Color tinte)
         {
             color = tinte;
         }
-
+        
         public void Update(GameTime gameTime)
         {
             // No actualizar la animacion si no esta activa
@@ -167,53 +137,27 @@ namespace HLG.Objects
             // Escalo con respecto a la altura que deseo comparando el personaje con la pantalla.
             // Se cambia el valor de la escala desde Globales.Escalar
             float AspectRatio = (float)frameHeight / frameWidth;
-            int Height = (int)((escalaAnimacion) + 0.5f);
+            int Height = (int)((scaleAnimation) + 0.5f);
             int Width = (int)((Height / AspectRatio) + 0.5f);
 
             // Seteo el rectangulo donde va a ir con las dimensiones ajustadas.
             destinationRect = new Rectangle((int)position.X - Width / 2,
-            (int)position.Y - Height / 2,
-            Width,
-            Height);
+                                            (int)position.Y - Height / 2,
+                                            Width,
+                                            Height);
 
         }
-
-        public void Draw(SpriteBatch spriteBatch, Global.Mirada direccion)
+        public void Draw()
         {
             // Solo dibujar la animacion si esta activa
             if (active)
             {
-                if (direccion == Global.Mirada.LEFT)
-                {
-                    spriteBatch.Draw(loadedTexture.textura, destinationRect, sourceRect, color,
-                        0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                }
+                if (facing == Global.Facing.LEFT)
+                    Global.spriteBatch.Draw(loadedTexture.texture, destinationRect, sourceRect, color, 0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
                 else
-                {
-                    spriteBatch.Draw(loadedTexture.textura, destinationRect, sourceRect, color);
-                }
-
+                    Global.spriteBatch.Draw(loadedTexture.texture, destinationRect, sourceRect, color, 0, Vector2.Zero, SpriteEffects.None, 0);
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Global.Mirada direccion, Color tinte)
-        {
-            // Solo dibujar la animacion si esta activa
-            if (active)
-            {
-                if (direccion == Global.Mirada.LEFT)
-                {
-                    spriteBatch.Draw(loadedTexture.textura, destinationRect, sourceRect, tinte,
-                        0, Vector2.Zero, SpriteEffects.FlipHorizontally, 0);
-                }
-                else
-                {
-                    spriteBatch.Draw(loadedTexture.textura, destinationRect, sourceRect, tinte);
-                }
-
-            }
-        }
-
-        #endregion
     }
 }
